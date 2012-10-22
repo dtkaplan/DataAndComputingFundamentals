@@ -36,7 +36,10 @@ Introduce students to the database operations by having them make GapMinder-like
 
 Find some health-related data.  FAO doesn't have this.  GAPMINDER?
 
+The FAO site was suggested by Dan Flath.
+
 ## Possible Examples
+* Raindrop timing and weather forecasts.  If the forecast probability of rain was 30%, what is the probability (across times) of drops having falling in the last 30 minutes (or over 20 of the last 30 minutes, etc.)
 * Zillow versus political donations
 * from Nolan/Lang summer Berkeley course
 * Verizon text telephone data (see Dick De Veaux example from JSM)
