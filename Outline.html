@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Working Outline</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Working Outline</h1>
+
+<h1>Modes of Visualization</h1>
+
+<h2>Topics</h2>
+
+<ul>
+<li>grammar of graphics, up to a level where students can parse Rossling-type graphics</li>
+<li>visual esthetics</li>
+</ul>
+
+<h2>Readings</h2>
+
+<ul>
+<li>Tufte, <em>[The Display of Quantitative Information][<a href="http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142/ref=sr_1_1?ie=UTF8&amp;qid=1343928142&amp;sr=8-1&amp;keywords=tufte">http://www.amazon.com/The-Visual-Display-Quantitative-Information/dp/0961392142/ref=sr_1_1?ie=UTF8&amp;qid=1343928142&amp;sr=8-1&amp;keywords=tufte</a>]</em> 2/e </li>
+<li><a href="http://xkcd.com/657/">http://xkcd.com/657/</a><br/>
+# Structure of Relational Data</li>
+</ul>
+
+<h2>Topics</h2>
+
+<ul>
+<li>wide vs long</li>
+<li>operations through join</li>
+<li>cleaning data/tidy data</li>
+</ul>
+
+<h2>Country-by-Country Data</h2>
+
+<p>The United Nations Food and Agriculture Organization (FAO) has a wide range of data broken down by year and country.</p>
+
+<p>Access it by going to <a href="http://faostat3.fao.org/home/index.html#DOWNLOAD">http://faostat3.fao.org/home/index.html#DOWNLOAD</a></p>
+
+<p>Pick a category, select all countries and all years, choose &ldquo;table&rdquo; (not &ldquo;pivot table&rdquo;) and download.  The result will be in narrow format.  </p>
+
+<p>Two examples are in</p>
+
+<ol>
+<li>FAO_DATA/CountryArea.csv which gives areas (including many subareas, like arable land) for each country</li>
+<li>FAO_DATA/CountryPopulation.csv which gives various population numbers across the years, including total, working, rural, etc.</li>
+</ol>
+
+<p>Introduce students to the database operations by having them make GapMinder-like graphics.</p>
+
+<h4>Comments</h4>
+
+<p>Find some health-related data.  FAO doesn&#39;t have this.  GAPMINDER?</p>
+
+<h2>Possible Examples</h2>
+
+<ul>
+<li>Zillow versus political donations</li>
+<li>from Nolan/Lang summer Berkeley course</li>
+<li>Verizon text telephone data (see Dick De Veaux example from JSM)</li>
+<li>Simple text mining: extracting sex from the Federal Election Commission database</li>
+</ul>
+
+<h1>NOT</h1>
+
+<ul>
+<li>No formal inference</li>
+<li>No grungy programming</li>
+</ul>
+
+</body>
+
+</html>
+
