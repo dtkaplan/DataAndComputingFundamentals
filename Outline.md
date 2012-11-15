@@ -47,7 +47,7 @@ The FAO site was suggested by Dan Flath.
 * from Nolan/Lang summer Berkeley course
 * Verizon text telephone data (see Dick De Veaux example from JSM)
 * Simple text mining: extracting sex from the Federal Election Commission database
-
+* [Tufte Sparklines in R](http://cran.r-project.org/web/packages/YaleToolkit/YaleToolkit.pdf)
 
 # NOT
 * No formal inference
