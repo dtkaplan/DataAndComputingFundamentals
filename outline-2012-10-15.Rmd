@@ -1,0 +1,115 @@
+Data & Computing Fundamentals Outline
+==========
+
+### For discussion by HHMI faculty group, Nov 15, 2012
+
+### Class Format
+
+#### Use of Time
+* 1-credit course
+* Class meeting 1.5 hrs per week in one meeting for 7 weeks
+* Typical arrangement of a week/class meeting
+    * Introduction of a topic
+    * A short small group activity that's hands on
+    * Introducing the longer homework activity
+    * Roughly one hour homework each week on drill: small scale exercises to perform specific operations.
+    * A project that can be completed in roughly two hours, e.g. make a gapminder graphic of these particular data. 
+* As we develop the materials over several semesters, perhaps segue to an on-line lecture of 30 minutes and then spend more class time in small groups.
+* When we teach multiple sections, make it feasible for the students to attend any of the sections in a given week to avoid absences.
+
+
+#### Language
+
+There may be some topics that we want to give students in GUI form (e.g. constructing graphics).  But we think it is important that students have at least some exposure to a language.
+* Danny would do the whole course in R.
+* Libby is inclined toward Python.
+* There may also be some consideration of what I'll call "advanced topics", such as map/reduce and systems for doing this.
+
+### Topics
+
+#### Markup, Documentation, and Files
+
+I want to expose students to a modern workflow, where presentation, documentation, and computation are integrated.  Therefore:
+* We'll use an IDE
+* Teach students how to write reports in some "literate programming"/"reproducible research" system.  Danny would use Markdown/Knitr.
+
+#### Structure of Data
+
+Note, these topics would be taught in an integrated way with graphics, starting with simple concepts from data and simple graphics modes, then building up toward more complicated processes.
+
+##### Basics of Data
+
+* Tabular form: cases versus variables
+* Cross tabulations
+* Relational database operations
+    * Select, 
+    * Project 
+    * Group
+    * Join
+* "Tidy Data"
+    * Wide versus narrow
+    * Data cleaning
+
+#### Graphics
+
+##### Basic modalities
+
+* Scatter 
+* Line (time series)
+* Counts and comparisons (bar charts, stacked bar charts)
+* Density (for one variable)
+* Density (the extension of scatter for large $n$)
+
+##### Gapminder Graphics
+
+![Gapminder](http://www.gapminder.org/GapminderMedia/wp-uploads/images_front/gapminder_home_bg_3.jpg)
+
+Example: 
+* Take a subset of one year's UNFAO data for four variables and construct a gapminder graphic with x, y, size, and color attributes.
+* Provide a slider system to control which year is subsetted and turn the one-year graphic into a flowing year graphic.
+
+##### Word Clouds
+
+![Word clouds](http://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Word_population_tagcloud_2011.png/350px-Word_population_tagcloud_2011.png)
+
+#### Parameterization and Model Fitting
+
+* Curve fitting.
+* Multivariate fitting as an extension of this
+* A syntax for doing it
+* Sampling (resampling) variation
+    * Example: Which model fits best (a la Chemistry)
+
+#### Clustering, Quantization, and Classification
+
+* Cladistics, dendrogram
+* Clustering Location
+![Where are people using R](http://rstudioblog.files.wordpress.com/2012/10/world.png?w=500&h=375)
+* First name -> sex
+* Words -> parts of speech
+
+#### Dimension Reduction
+
+* Gene expression a la Paul Overvoorde
+* Types of political organizations from FEC donation data
+
+### Labs/Activities
+
+We want to have a short, in-class activity on each topic, and an out-of-class project for each topic.
+
+
+
+### Readings
+
+Background: Readings will be primarily non-technical, introducing students to ways in which data are collected, reasons for the interest in data, and Tufte-like analysis of graphics.
+
+#### Sources of Data
+
+* Instrumentation
+* Surveys 
+* Government and other records
+
+
+### Data Settings
+
+We want to have (eventually) multiple settings for data, many drawn from faculty research, that can be used to illustrate the topics or serve as the subject of the weekly projects.

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Data &amp; Computing Fundamentals Outline</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</head>
+
+<body>
+<h1>Data &amp; Computing Fundamentals Outline</h1>
+
+<h3>For discussion by HHMI faculty group, Nov 15, 2012</h3>
+
+<h3>Class Format</h3>
+
+<h4>Use of Time</h4>
+
+<ul>
+<li>1-credit course</li>
+<li>Class meeting 1.5 hrs per week in one meeting for 7 weeks</li>
+<li>Typical arrangement of a week/class meeting
+
+<ul>
+<li>Introduction of a topic</li>
+<li>A short small group activity that&#39;s hands on</li>
+<li>Introducing the longer homework activity</li>
+<li>Roughly one hour homework each week on drill: small scale exercises to perform specific operations.</li>
+<li>A project that can be completed in roughly two hours, e.g. make a gapminder graphic of these particular data. </li>
+</ul></li>
+<li>As we develop the materials over several semesters, perhaps segue to an on-line lecture of 30 minutes and then spend more class time in small groups.</li>
+<li>When we teach multiple sections, make it feasible for the students to attend any of the sections in a given week to avoid absences.</li>
+</ul>
+
+<h4>Language</h4>
+
+<p>There may be some topics that we want to give students in GUI form (e.g. constructing graphics).  But we think it is important that students have at least some exposure to a language.</p>
+
+<ul>
+<li>Danny would do the whole course in R.</li>
+<li>Libby is inclined toward Python.</li>
+<li>There may also be some consideration of what I&#39;ll call &ldquo;advanced topics&rdquo;, such as map/reduce and systems for doing this.</li>
+</ul>
+
+<h3>Topics</h3>
+
+<h4>Markup, Documentation, and Files</h4>
+
+<p>I want to expose students to a modern workflow, where presentation, documentation, and computation are integrated.  Therefore:</p>
+
+<ul>
+<li>We&#39;ll use an IDE</li>
+<li>Teach students how to write reports in some &ldquo;literate programming&rdquo;/&ldquo;reproducible research&rdquo; system.  Danny would use Markdown/Knitr.</li>
+</ul>
+
+<h4>Structure of Data</h4>
+
+<p>Note, these topics would be taught in an integrated way with graphics, starting with simple concepts from data and simple graphics modes, then building up toward more complicated processes.</p>
+
+<h5>Basics of Data</h5>
+
+<ul>
+<li>Tabular form: cases versus variables</li>
+<li>Cross tabulations</li>
+<li>Relational database operations
+
+<ul>
+<li>Select, </li>
+<li>Project </li>
+<li>Group</li>
+<li>Join</li>
+</ul></li>
+<li>&ldquo;Tidy Data&rdquo;
+
+<ul>
+<li>Wide versus narrow</li>
+<li>Data cleaning</li>
+</ul></li>
+</ul>
+
+<h4>Graphics</h4>
+
+<h5>Basic modalities</h5>
+
+<ul>
+<li>Scatter </li>
+<li>Line (time series)</li>
+<li>Counts and comparisons (bar charts, stacked bar charts)</li>
+<li>Density (for one variable)</li>
+<li>Density (the extension of scatter for large \( n \))</li>
+</ul>
+
+<h5>Gapminder Graphics</h5>
+
+<p><img src="http://www.gapminder.org/GapminderMedia/wp-uploads/images_front/gapminder_home_bg_3.jpg" alt="Gapminder"/></p>
+
+<p>Example: </p>
+
+<ul>
+<li>Take a subset of one year&#39;s UNFAO data for four variables and construct a gapminder graphic with x, y, size, and color attributes.</li>
+<li>Provide a slider system to control which year is subsetted and turn the one-year graphic into a flowing year graphic.</li>
+</ul>
+
+<h5>Word Clouds</h5>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Word_population_tagcloud_2011.png/350px-Word_population_tagcloud_2011.png" alt="Word clouds"/></p>
+
+<h4>Parameterization and Model Fitting</h4>
+
+<ul>
+<li>Curve fitting.</li>
+<li>Multivariate fitting as an extension of this</li>
+<li>A syntax for doing it</li>
+<li>Sampling (resampling) variation
+
+<ul>
+<li>Example: Which model fits best (a la Chemistry)</li>
+</ul></li>
+</ul>
+
+<h4>Clustering, Quantization, and Classification</h4>
+
+<ul>
+<li>Cladistics, dendrogram</li>
+<li>Clustering Location
+<img src="http://rstudioblog.files.wordpress.com/2012/10/world.png?w=500&amp;h=375" alt="Where are people using R"/></li>
+<li>First name -&gt; sex</li>
+<li>Words -&gt; parts of speech</li>
+</ul>
+
+<h4>Dimension Reduction</h4>
+
+<ul>
+<li>Gene expression a la Paul Overvoorde</li>
+<li>Types of political organizations from FEC donation data</li>
+</ul>
+
+<h3>Labs/Activities</h3>
+
+<p>We want to have a short, in-class activity on each topic, and an out-of-class project for each topic.</p>
+
+<h3>Readings</h3>
+
+<p>Background: Readings will be primarily non-technical, introducing students to ways in which data are collected, reasons for the interest in data, and Tufte-like analysis of graphics.</p>
+
+<h4>Sources of Data</h4>
+
+<ul>
+<li>Instrumentation</li>
+<li>Surveys </li>
+<li>Government and other records</li>
+</ul>
+
+<h3>Data Settings</h3>
+
+<p>We want to have (eventually) multiple settings for data, many drawn from faculty research, that can be used to illustrate the topics or serve as the subject of the weekly projects.</p>
+
+</body>
+
+</html>
+
