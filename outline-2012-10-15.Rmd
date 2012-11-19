@@ -103,6 +103,11 @@ We want to have a short, in-class activity on each topic, and an out-of-class pr
 
 Background: Readings will be primarily non-technical, introducing students to ways in which data are collected, reasons for the interest in data, and Tufte-like analysis of graphics.
 
+Some resources for more technical readings:
+* [Syracuse University Data Science course](http://jsresearch.net/groups/teachdatascience/)
+* [Paul Murrell's Data Technologies book](http://www.stat.auckland.ac.nz/~paul/ItDT/)
+* [AnalyticBridge Data Science book](http://www.analyticbridge.com/group/data-science/forum/topics/data-science-e-book-first-draft-available-for-download)
+
 #### Sources of Data
 
 * Instrumentation
