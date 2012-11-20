@@ -59,6 +59,7 @@ Note, these topics would be taught in an integrated way with graphics, starting 
 * Counts and comparisons (bar charts, stacked bar charts)
 * Density (for one variable)
 * Density (the extension of scatter for large $n$)
+* Parallel coordinates
 
 ##### Gapminder Graphics
 
