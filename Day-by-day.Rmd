@@ -1,0 +1,45 @@
+Day-by-Day Objectives for Data and Computing Fundamentals
+=====================
+
+Day 1
+--------------
+
+### In Class
+1. Create a "Hello, World" type markdown document
+2. Projection operations on tables
+    *  Read in a table already in a good form, e.g. area and population for many countries
+3. Simple case-by-case calculations
+    * e.g. population density
+4. Scatterplots
+    * Selection of variables and assignment to axes
+    * Attributes for points: shapes, colors
+    
+### Exercises
+
+### Project Assignment
+
+Create a markdown document with some informative scatter plot.  Document the creation of the graph and interpret it.
+
+
+
+Day 2
+--------------
+1. Selection of cases
+    * Comparison operators and boolean combinations
+    * e.g., picking out a specific year from a larger data set
+2. Group operations
+    * counts of cases
+    * lists of levels, and data cleaning
+3. Graphics
+    * side-by-side
+    * stacked
+    * "mosaic" plots
+    * parallel coordinates
+4. Tidy data
+    * Narrow versus wide format
+
+
+Day 3
+--------------
+1. Join
+2. Maps --- join the country data with the geographical data
