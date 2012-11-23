@@ -20,9 +20,9 @@ As a one-credit course, most students will be able to add the course to their ex
 
 Our plan is to meet on Tuesdays (time to be arranged based on the schedules of those interested in participating).  
 
-* **Feb 12**: Introduction, data files, documentation markup and elementary graphics
-* **Feb 17**: Relational database operations, intermediate graphics
-* **Feb 26**: More data operations, map graphics
+* **Feb 12**: Introduction, data files, documentation markup and elementary graphical visualization
+* **Feb 17**: Relational database operations, intermediate visualization
+* **Feb 26**: More data operations, map visualization
 * **Mar 5**:  Basic models, fitting, and summaries
 * **Mar 12**: Clustering
 * **Mar 26**: Dimension reduction
