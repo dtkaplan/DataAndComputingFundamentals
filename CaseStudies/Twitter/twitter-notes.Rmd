@@ -1,0 +1,28 @@
+Twitter Case Study (Notes)
+========================================================
+
+Load the packages that are needed:
+```{r message=FALSE,error=FALSE,warning=FALSE,results="hide"}
+require('bitops', quietly=TRUE)
+require('RCurl', quietly=TRUE)
+require('RJSONIO', quietly=TRUE)
+require('twitteR', quietly=TRUE)
+require('lattice', quietly=TRUE)
+```
+
+Following the example in Jeffrey Stanton's *Data Science* book:
+
+This takes about 1 minute to run
+```{r}
+tweetList <- searchTwitter("#climate", n=500)
+```
+
+Convert to a dataframe:
+```{r}
+tweetDF <- do.call("rbind", lapply(tweetList, as.data.frame))
+```
+
+Arrival times:
+```{r}
+histogram(~created, data=tweetDF, xlab="Time Tweet Sent")
+```
