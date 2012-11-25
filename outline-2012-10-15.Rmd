@@ -112,6 +112,7 @@ Some resources for more technical readings:
 #### Sources of Data
 
 * Instrumentation
+    * [Networked industrial equipment](http://www.nytimes.com/2012/11/24/technology/internet/ge-looks-to-industry-for-the-next-digital-disruption.html?_r=0)
 * Surveys 
 * Government and other records
 

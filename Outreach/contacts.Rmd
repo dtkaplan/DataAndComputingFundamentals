@@ -6,5 +6,6 @@ Faculty who indicated that they are interested in following the development of t
 From IsoStat:
 * Allen, I. Elaine allenie@babson.edu
 * Abra Brisbin abrisbin@gmail.com University of Wisconsin-Eau Claire
-* Kuiper, Shonda KUIPERS@grinnell.edu Grinnell College
+* Shonda Kuiper KUIPERS@grinnell.edu Grinnell College
 * John Reber reber@cord.edu
+* Jeff Hamrick hamrickj@rhodes.edu
