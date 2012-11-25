@@ -7,3 +7,4 @@ From IsoStat:
 * Allen, I. Elaine allenie@babson.edu
 * Abra Brisbin abrisbin@gmail.com University of Wisconsin-Eau Claire
 * Kuiper, Shonda KUIPERS@grinnell.edu Grinnell College
+* John Reber reber@cord.edu
