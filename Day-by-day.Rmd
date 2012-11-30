@@ -48,6 +48,9 @@ Day 2
 * Barplots: Cookbook for R<http://wiki.stdout.org/rcookbook/Graphs/Bar%20and%20line%20graphs%20(ggplot2)/>
 * Narrow to wide (and *vice versa*): Cookbook for R<http://wiki.stdout.org/rcookbook/Manipulating%20data/Converting%20data%20between%20wide%20and%20long%20format/>
 
+### Basic Learning Objectives
+
+Putting titles on graphs, captions on tables, etc. e.g. have the students make a report with a summary table that's nicely formatted?  Insist that titles, axes, units all be on the graphics.
 
 Day 3
 --------------

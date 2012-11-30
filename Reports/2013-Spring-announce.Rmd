@@ -28,11 +28,12 @@ Our plan is to meet on Tuesdays (time to be arranged based on the schedules of t
 * **Mar 26**: Dimension reduction
 * **Apr 2**: Putting it all together
 
+Sign up by sending an email to [This Google Form] the form should ask them what is their availability.  ... dcf@macalester.edu
 
+Books will be provided for free.
 
 We'll sign students up during Add/Drop period.  
 
-For now, you can get on the mailing list for future announcements.
-<a href="mailto:kaplan@macalester.edu?subject=Data%20and%20Computing%20Fundamentals:%20Mailing%20List">Get on the mailing list!</a>
+
 
 
