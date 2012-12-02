@@ -1,0 +1,25 @@
+Exploring Recursive Partitioning
+========================================================
+
+```{r message=FALSE,error=FALSE,warning=FALSE,results="hide"}
+require(rpart, quietly=TRUE)
+```
+
+```{r}
+fit.r <- rpart(Kyphosis ~ Age + Number + Start, data=kyphosis)
+plot(fit.r) # Draw rtree plot
+text(fit.r, use.n=TRUE) # Add text
+```
+
+Next we will convert the display to ctree style.
+Please note that this only changes the way it is stored, not the actual tree
+```{r}
+library(party) # For ctree.plot
+library(partykit) # For conversion
+plot(as.party(fit.r))
+```
+And voila, you have a nicer looking tree. Please note that this is a different tree than if you had used the conditional tree algorithm.
+```{r}
+fit.c <- ctree(Kyphosis ~ Age + Number + Start, data=kyphosis)
+plot(fit.c)
+```
