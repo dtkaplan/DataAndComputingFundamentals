@@ -52,6 +52,10 @@ Day 2
 
 Putting titles on graphs, captions on tables, etc. e.g. have the students make a report with a summary table that's nicely formatted?  Insist that titles, axes, units all be on the graphics.
 
+### Data Sets
+* The UN Agricultural organization data in a wide format
+* The chocolate-shop sales data in a wide format.  See [this letter](https://mail.google.com/mail/u/0/?shva=1#inbox/13b76703fd8dec48) regarding Chris Curtis's data.
+
 Day 3
 --------------
 1. Join

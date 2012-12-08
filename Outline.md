@@ -53,4 +53,8 @@ The FAO site was suggested by Dan Flath.
 * No formal inference
 * No grungy programming
 
+## Origins of Big Data
+
+* GE article on 20B things connected to the Internet by 2020
+* [Cars and safety data](http://wheels.blogs.nytimes.com/2012/12/07/safety-agency-proposing-mandatory-event-data-recorders/)
                                                                                                                                                                                     
