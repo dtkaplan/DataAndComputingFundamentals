@@ -1,18 +1,24 @@
-#### Learn to Compute with Big Data  
+<h2>Learn to Compute with Big Data</h2>
 
 ...............
 
-### Data and Computing Fundamentals
+<h1>Data and Computing Fundamentals</h1>
 
 ...............
 
-#### A new 1-credit course: Spring 2013: Profs. Kaplan and Shoop
+### A new 1-credit course
 
-### No Pre-Requisites!
+### Spring 2013 
+
+### Profs. Kaplan and Shoop
+
+
 
 The *Data and Computing Fundamentals* course is being developed by Profs. Kaplan and Shoop here at Macalester.  It's part of Macalester's HHMI project to improve science education and prepare students for the data-intensive science of the 21st century.  
 
 In Spring 2013, the course will be offered in prototype form to a group of approximately 20 students.  Eventually it will be a co-requisite for courses such as Applied Calculus, Statistical Modeling, General Chemistry, and Genetics; over the next several years it will be ramped up to an expected enrollment of about 200 students per year. 
+
+### No Pre-Requisites!
 
 This is your chance to get in on the ground floor --- a small class team-taught by two professors.  By doing so, not only will you be learning about Big Data and gaining useful skills, you'll be helping to shape the curriculum for students in future years.  Join us!  There are no pre-requisites!
 
@@ -28,12 +34,12 @@ Our plan is to meet on Tuesdays (time to be arranged based on the schedules of t
 * **Mar 26**: Dimension reduction
 * **Apr 2**: Putting it all together
 
-Sign up by sending an email to [This Google Form] the form should ask them what is their availability.  ... dcf@macalester.edu
+Sign up for more information [by filling out this Google form](https://docs.google.com/a/macalester.edu/spreadsheet/viewform?formkey=dE1SUElWaVRaNVJkeW4waWQ0QzBoWkE6MQ#gid=0) or talk to Prof. Kaplan or Prof. Shoop.
 
-Books will be provided for free.
+The course textbooks will be provided for free.
 
 We'll sign students up during Add/Drop period.  
 
-
+<img src="http://www.gapminder.org/GapminderMedia/wp-uploads/images_front/gapminder_home_bg_3.jpg" align="center">
 
 
