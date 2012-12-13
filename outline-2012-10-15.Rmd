@@ -113,6 +113,7 @@ Some resources for more technical readings:
 
 * Instrumentation
     * [Networked industrial equipment](http://www.nytimes.com/2012/11/24/technology/internet/ge-looks-to-industry-for-the-next-digital-disruption.html?_r=0)
+    * [Car insurance by the mile](http://bits.blogs.nytimes.com/2012/12/05/car-insurance-gets-personal/)
 * Surveys 
 * Government and other records
 
