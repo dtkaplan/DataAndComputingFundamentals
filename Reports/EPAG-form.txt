@@ -1,0 +1,21 @@
+#### Part 4.  Course Catalog Description
+
+A short introduction to the handling, analysis, and interpretation of "big data," the massive datasets now routinely being collected in science, commerce, and government.   Students achieve facility with a sophisticated, technical computing environment.  The course aligns with techniques being used in several courses in the sciences, statistics, and mathematics; it is a co-requisite for these courses.   There are no pre-requisites.  The course is intended to be accessible to all students, regardless of background.  
+
+
+#### Part 7f. If this is a course addition, how can it be offered without a deletion?
+
+We are drawing on four-year funding from the Howard Hughes Medical Institute.  By the end of that four-year plan, our goal is to have roughly 200 enrollments each year, the equivalent of 50 students in a 4-credit course.  It's premature to plan past the four-year funding horizon.  One possibility, consistent with our coordination with other colleges in the HHMI curricular consortium, is to offer the course online.  As regards teaching the course in a conventional manner, currently we do not even have a plan to handle the growth in our existing courses which are already beyond capacity. 
+
+#### Part 7h. Who will teach this course?
+
+Libby Shoop and Danny Kaplan will team-teach the course in Spring 2013.
+In AY 2013-14, Danny Kaplan will teach the course (although Libby may contribute). In AY 2014-15, Libby Shoop will teach the course (although Danny may contribute).  In AY 2015-16, both Danny and Libby will teach some of the several anticipated sections of the course.
+
+#### Course Rationale: 
+
+"Data and Computing Fundamentals" is the object of roughly half of the Howard Hughes Medical Institute grant awarded to Macalester in spring 2012.  As described in detail in that proposal, which was submitted to HHMI under the close supervision of the Provost and the subject of collaborative discussions by large numbers of faculty in the science division, the course is intended to give science students the background in "big data" that they need to engage science in the 21st century.
+
+The course is one credit so that it can be offered as a co-requisite with several other introductory science and math courses.  The effect will be that essentially all science students will be required to take the course.  DCF is being designed with quantitative social science students in mind as well, since many of them will take courses such as calculus and statistics for which DCF is a co-requisite.
+
+We anticipate that by 2014-15, the course will be taken by about 200 students per year.  More speculatively, DCF may also be made available to students at other colleges in the HHMI curricular consortium.  As part of the HHMI project, we will be working with several other colleges to help train their science faculty in the big data techniques that are the subject of the course.

@@ -1,2 +1,69 @@
-Students for DCF in Spring 2013
+Registration for DCF in Spring 2013
 ========================================================
+```{r include=FALSE}
+require(mosaic)
+fetchData("survey-processing.R")
+require(xtable)
+options(xtable.type="html")
+```
+
+As of `r I(date())`.
+
+```{r echo=FALSE,message=FALSE}
+enroll <- fetchGoogle("https://docs.google.com/spreadsheet/pub?key=0Av2C2RiwUxpVdE1SUElWaVRaNVJkeW4waWQ0QzBoWkE&single=true&gid=0&output=csv")
+enroll <- enroll[-1,] # kill the first row, which was a test case
+```
+
+We currently have `r nrow(enroll)` who have signed up on the information sheet for the DCF course for Spring 2013.
+
+### Meeting Time
+
+Students indicated availability for different time slots:
+
+#### Tuesdays 3:00-4:30 pm: `r table(enroll[[7]])[1]` available
+
+#### Tuesdays 4:30-6:00 pm: `r table(enroll[[6]])[1]` available
+
+#### Tuesdays 7:00-8:30 pm: `r table(enroll[[5]])[1]` available
+
+### Interest Areas
+
+```{r echo=FALSE,results="asis"}
+fields = c("Bio","Econ","Env","Math","Phys","Poli","Soc","Stat")
+for (k in 8:15) {
+enroll[[k]] <- factor(enroll[[k]],levels=c("Not at all","Weak interest", "Somewhat", "Strong interest","My main interest"), 
+                      labels=c("none","weak","some", "strong","main"),
+                      ordered=TRUE)
+cat(paste("#### ", fields[k-7],"\n\n<pre>\n"))
+print(table(enroll[[k]]))
+cat("</pre>\n")
+}
+```
+
+### Computer Experience
+
+```{r include=FALSE}
+for (k in 16:18){
+  inds = enroll[[k]]==""
+  enroll[[k]][inds] = NA
+  enroll[[k]] = factor( as.character(enroll[[k]]))
+}
+```
+
+#### Spreadsheets
+
+```{r echo=FALSE,results="asis"}
+print(table(enroll[[18]]))
+```
+
+#### Programming
+
+```{r echo=FALSE,results="asis"}
+xtable(table(enroll[[17]]))
+```
+
+#### R
+
+```{r echo=FALSE,results="asis"}
+print(table(enroll[[16]]))
+```
