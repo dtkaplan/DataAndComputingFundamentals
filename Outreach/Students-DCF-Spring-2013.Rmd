@@ -11,7 +11,6 @@ As of `r I(date())`.
 
 ```{r echo=FALSE,message=FALSE}
 enroll <- fetchGoogle("https://docs.google.com/spreadsheet/pub?key=0Av2C2RiwUxpVdE1SUElWaVRaNVJkeW4waWQ0QzBoWkE&single=true&gid=0&output=csv")
-enroll <- enroll[-1,] # kill the first row, which was a test case
 ```
 
 We currently have `r nrow(enroll)` who have signed up on the information sheet for the DCF course for Spring 2013.

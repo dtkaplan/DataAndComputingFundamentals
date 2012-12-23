@@ -1,0 +1,74 @@
+GGPLOT2 explorations
+========================================================
+
+```r include=FALSE
+require(mosic)
+require(ggplot2)
+```
+
+A simple scatter plot:
+```{r}
+ggplot(data=utils) + geom_point( aes(x=temp,y=ccf,colour=month)) + aes(size=kwh) + facet_grid(year~month)
+```
+
+Assembling a `ggplot` call given some variable names:
+```{r}
+scatter <- list(dat="utils",x="temp",y="ccf",color=NA,size=NA,facet=NA)
+scatterString <- function(s){
+  res <- paste("ggplot(data=",s$dat,")",sep="")
+    res<-paste(res,"+geom_point(aes(x=",s$x,",y=",s$y,"))",sep="")
+  if (!is.na(s$color))
+    res<-paste(res, "+aes(colour=",s$color,")",sep="")
+  if (!is.na(s$size))
+    res<-paste(res,"+aes(size=",s$size,")",sep="")
+  cat(res)
+  if (!is.na(s$facet))
+    # res<-paste(res,"+facet_wrap(",facet,")",sep="")
+  cat(res)
+  return(res)
+}
+```
+
+```{r}
+scat <- scatter
+scat$ssi <- "year"
+eval(parse(text=scatterString(scatter)))
+```
+
+Converting a vector of names into a list.
+```{r}
+v2list <- function(nms) {
+  res = list()
+  res[nms] <- nms
+  return(res)
+}
+```
+
+Testing a manipulate command:
+```{r}
+dogg <- function(show=FALSE,dname,x=NA,y=NA,color=NA,size=NA,facet=NA){
+  vals <- list(dat=dname,x=x,y=y,color=color,size=size,facet=facet)
+  s <- scatterString(vals)
+  if (show) cat(paste(s,"\n"))
+  p <- eval(parse(text=s))
+  print(p)
+  return(p)
+}
+
+mgg <- function(dat) {
+  df = substitute(dat)
+  nm = names(dat)
+  vnames <- v2list(nm)
+  cnames <- snames <- c(list(none=NA),vnames)
+  manipulate({p<-dogg(show,df,x=x,y=y,color=color,size=size,facet=facet)},
+             show = button("Show Expression"),
+             x = picker(vnames,initial=nm[1],label="x axis"),
+             y = picker(vnames,initial=nm[2],label="y axis"),
+             color = picker(cnames, initial="none",label="Color"),
+             size = picker(snames, initial="none",label="Size"),
+             facet = picker(snames, initial="none", label="Facet")
+             )
+}
+```
+
+Maybe call this `mScatter`
