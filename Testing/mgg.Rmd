@@ -6,6 +6,11 @@ require(mosic)
 require(ggplot2)
 ```
 
+* A blog posting on an attempt to use [manipulate and ggplot2](http://www.r-bloggers.com/a-first-go-at-%E2%80%98manipulate%E2%80%99-in-rstudio/)
+* A [ggplot2 tutorial](https://wiki.nbic.nl/index.php/R_ggplot2_tutorial)
+
+### My Shot at it.
+
 A simple scatter plot:
 ```{r}
 ggplot(data=utils) + geom_point( aes(x=temp,y=ccf,colour=month)) + aes(size=kwh) + facet_grid(year~month)

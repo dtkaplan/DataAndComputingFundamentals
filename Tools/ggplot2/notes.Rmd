@@ -4,6 +4,7 @@ Notes on Using ggplot2
 Resources
 ==========
 * [Documentation on geoms](http://docs.ggplot2.org/current/)
+* Documentation on facets: <http://wiki.stdout.org/rcookbook/Graphs/Facets%20(ggplot2)/>
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring web pages (click the **MD** toolbar button for help on Markdown).
 

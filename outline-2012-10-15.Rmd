@@ -106,7 +106,7 @@ Background: Readings will be primarily non-technical, introducing students to wa
 
 Some resources for more technical readings:
 * [Syracuse University Data Science course](http://jsresearch.net/groups/teachdatascience/)
-* [Paul Murrell's Data Technologies book](http://www.stat.auckland.ac.nz/~paul/ItDT/)
+* [Paul Murrell's Data Technologies book](http://www.stat.auckland.ac.nz/~paul/ItDT/) available in [PDF format under Creative Commons license](http://www.stat.auckland.ac.nz/~paul/ItDT/itdt-2012-07-29.pdf)
 * [AnalyticBridge Data Science book](http://www.analyticbridge.com/group/data-science/forum/topics/data-science-e-book-first-draft-available-for-download)
 
 #### Sources of Data
@@ -116,8 +116,21 @@ Some resources for more technical readings:
     * [Car insurance by the mile](http://bits.blogs.nytimes.com/2012/12/05/car-insurance-gets-personal/)
 * Surveys 
 * Government and other records
+* [Open Data Releases 2012](http://www.theatlanticcities.com/technology/2012/12/best-open-data-releases-2012/4200/#)
+* Health data.  The [NHANES III Survey](http://www.cdc.gov/nchs/nhanes/nh3data.htm) and [linked mortality data](http://www.cdc.gov/nchs/data_access/data_linkage/mortality/nhanes3_linkage.htm).  For an example of a paper based on these data, see ["A New Body Shape Index ..."](http://www.plosone.org/article/info%3Adoi/10.1371/journal.pone.0039504)
 
 
 ### Data Settings
 
 We want to have (eventually) multiple settings for data, many drawn from faculty research, that can be used to illustrate the topics or serve as the subject of the weekly projects.
+
+## Computation
+
+### Relevant R packages
+* `tm` for text analysis
+* `scrapeR` for web scraping
+* `twitteR` for analysis of Twitter tweets
+
+### Web presentation
+* [d3](http://d3js.org/) --- Data-driven documents
+    * Example: ["Wealth of Nations" graph](http://bost.ocks.org/mike/nations/)

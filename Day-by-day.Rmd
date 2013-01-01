@@ -6,8 +6,9 @@ Day 1
 
 ### In Class
 1. Create a "Hello, World" type markdown document
+    * Change the default Rmd document to include mosaic and DCF
 2. Projection operations on tables
-    *  Read in a table already in a good form, e.g. area and population for many countries
+    * Read in a table already in a good form, e.g. area and population for many countries
 3. Simple case-by-case calculations
     * e.g. population density
 4. Scatterplots
