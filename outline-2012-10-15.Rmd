@@ -109,6 +109,9 @@ Some resources for more technical readings:
 * [Paul Murrell's Data Technologies book](http://www.stat.auckland.ac.nz/~paul/ItDT/) available in [PDF format under Creative Commons license](http://www.stat.auckland.ac.nz/~paul/ItDT/itdt-2012-07-29.pdf)
 * [AnalyticBridge Data Science book](http://www.analyticbridge.com/group/data-science/forum/topics/data-science-e-book-first-draft-available-for-download)
 
+Historical Readings
+* [Florence Nightingale](http://hernanresnizky.wordpress.com/2012/12/17/florence-nightingale-and-the-importance-of-data-visualization/)
+
 #### Sources of Data
 
 * Instrumentation
