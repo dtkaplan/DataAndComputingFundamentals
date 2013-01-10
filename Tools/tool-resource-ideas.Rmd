@@ -1,0 +1,16 @@
+Tools/Resources to Consider
+========================================================
+
+As we find new things, let's list them here so that we have a record.
+
+### Unexamined
+
+* [Hadoop and R](http://www.linkedin.com/groups/Using-R-Hadoop-webinar-January-77616.S.202738754?view=&gid=77616&type=member&item=202738754&trk=eml-anet_dig-b_nd-pst_ttle-cn&_mSplash=1)
+
+### In progress
+
+* ggplot2 --- Danny is writing a simple R-GUI for this, so that students can construct plots easily and get the command out.
+
+### Discarded
+
+Put the things we've decided not to use here.
