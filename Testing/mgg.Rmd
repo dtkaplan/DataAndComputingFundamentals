@@ -18,7 +18,8 @@ ggplot(data=utils) + geom_point( aes(x=temp,y=ccf,colour=month)) + aes(size=kwh)
 
 Assembling a `ggplot` call given some variable names:
 ```{r}
-scatter <- list(dat="utils",x="temp",y="ccf",color=NA,size=NA,facet=NA)
+scatter <- list(dat="utils",x="temp",y="ccf",
+                color=NA,size=NA,facet=NA,logx=FALSE,logy=FALSE)
 scatterString <- function(s){
   res <- paste("ggplot(data=",s$dat,")",sep="")
     res<-paste(res,"+geom_point(aes(x=",s$x,",y=",s$y,"))",sep="")
@@ -26,6 +27,10 @@ scatterString <- function(s){
     res<-paste(res, "+aes(colour=",s$color,")",sep="")
   if (!is.na(s$size))
     res<-paste(res,"+aes(size=",s$size,")",sep="")
+  if (s$logx)
+    res <- paste(res,"+scale_x_log10()",sep="")
+  if (s$logy)
+    res <- paste(res,"+scale_y_log10()",sep="")
   cat(res)
   if (!is.na(s$facet))
     # res<-paste(res,"+facet_wrap(",facet,")",sep="")
@@ -51,8 +56,8 @@ v2list <- function(nms) {
 
 Testing a manipulate command:
 ```{r}
-dogg <- function(show=FALSE,dname,x=NA,y=NA,color=NA,size=NA,facet=NA){
-  vals <- list(dat=dname,x=x,y=y,color=color,size=size,facet=facet)
+dogg <- function(show=FALSE,dname,x=NA,y=NA,color=NA,size=NA,facet=NA,logx=FALSE,logy=FALSE){
+  vals <- list(dat=dname,x=x,y=y,color=color,size=size,facet=facet,logx=logx,logy=logy)
   s <- scatterString(vals)
   if (show) cat(paste(s,"\n"))
   p <- eval(parse(text=s))
@@ -65,13 +70,15 @@ mgg <- function(dat) {
   nm = names(dat)
   vnames <- v2list(nm)
   cnames <- snames <- c(list(none=NA),vnames)
-  manipulate({p<-dogg(show,df,x=x,y=y,color=color,size=size,facet=facet)},
+  manipulate({p<-dogg(show,df,x=x,y=y,color=color,size=size,facet=facet,logx=logx,logy=logy)},
              show = button("Show Expression"),
              x = picker(vnames,initial=nm[1],label="x axis"),
              y = picker(vnames,initial=nm[2],label="y axis"),
              color = picker(cnames, initial="none",label="Color"),
              size = picker(snames, initial="none",label="Size"),
-             facet = picker(snames, initial="none", label="Facet")
+             facet = picker(snames, initial="none", label="Facet"),
+             logx = checkbox(label="Log X-axis"),
+             logy = checkbox(label="Log Y-axis")
              )
 }
 ```

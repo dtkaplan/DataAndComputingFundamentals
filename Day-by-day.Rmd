@@ -13,6 +13,7 @@ Day 1
     * e.g. population density
 4. Scatterplots
     * Selection of variables and assignment to axes
+    * Log axes.  See [xkcd cartoon](http://xkcd.com/1162/)
     * Attributes for points: shapes, colors
     
 ### Development Resources
@@ -57,6 +58,8 @@ Putting titles on graphs, captions on tables, etc. e.g. have the students make a
 * The UN Agricultural organization data in a wide format
 * The chocolate-shop sales data in a wide format.  See [this letter](https://mail.google.com/mail/u/0/?shva=1#inbox/13b76703fd8dec48) regarding Chris Curtis's data.  
 * Weather in Saint Paul.  [data site](http://cdo.ncdc.noaa.gov/qclcd/QCLCD)
+* Grades 
+* Body Shape
 
 Day 3
 --------------
