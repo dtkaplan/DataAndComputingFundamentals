@@ -1,0 +1,38 @@
+Registering for 
+========================
+
+## *Data and Computing Fundamentals* for Spring 2013
+
+At the end of last semester, you expressed interest in the upcoming *Data and Computing Fundamentals* mini-course.  This is a 1-credit introduction to computing with "big data" that is being developed with the support of the Howard Hughes Medical Institute.  
+
+* There are **no pre-requisites**, either in mathematics, computation, or science.
+* There will be an emphasis on data in bioscience- and medical-related contexts, but the techniques are very general and applicable to many, many fields.
+* The class will meet on seven Tuesday evenings at 7:00-8:30pm starting Feb. 19 and ending on April 9.
+* The instructors are Profs. Libby Shoop and Danny Kaplan
+* This is a prototype course.  Over a period of two years, our plan is to expand enrollment from this semester's 20 students to approximately 200 students per year (in many sections).  According to the plan, the course will eventually become a co-requisite for several widely enrolled introductory science, statistics, and mathematics courses.
+* The development of the course at Macalester is being followed by a consortium of liberal arts colleges, so in addition to teaching the course, we will be documenting what works and what doesn't work.
+
+### The Plan
+
+Forty-five students expressed interest and availability for the Tuesday 7-8:30pm meeting time.  In order to ensure that there is plenty of one-on-one contact, there is room only for twenty students this semester.
+
+We propose to choose those twenty in a two-step process.  
+
+1. You write back to us to confirm your continuing interest and availability on Tuesday 7-8:30pm and your acceptance of a few conditions, described below. [Here's a link to a Google form for this purpose](https://docs.google.com/a/macalester.edu/spreadsheet/viewform?formkey=dGFPTzEyOXNtdENSb3l0Sk9Fa2VqZ1E6MQ).
+2. From the people who respond to (1) in the affirmative, we will select 20 at random (using a statistical process called "blocking" to ensure balance among disciplines).
+
+
+#### The Conditions
+
+1. You'll register for COMP 194 (the number assigned by the registrar for intro prototype courses) for 1 credit, taking it with a pass-fail option.
+2. You'll complete the course.  That is, you will attend each of the seven 1.5 hours Tuesday evening sessions (barring extra-ordinary circumstances such as sickness) and will commit to spend three to four hours each week on homework/reading during the seven weeks of the course, handing in as much of the assignments as you can reasonably do during that time.
+3. You will commit to participating in some short surveys and course evaluation questions during the semester and over the next year or so *even if you don't end up selected for the course*.  The reason for this is to enable us to examine the effect of the course, comparing students who take the course to those who do not but who express a similar level of interest.
+4. Students who are not selected for the Spring 2013 session will have the opportunity to take the course in 2013-14.
+5. Text materials will be provided to the students in the course for free.
+
+..........
+
+Version: `r I(date())`
+
+
+
