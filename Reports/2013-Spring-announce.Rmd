@@ -26,13 +26,13 @@ As a one-credit course, most students will be able to add the course to their ex
 
 Our plan is to meet on Tuesdays (time to be arranged based on the schedules of those interested in participating).  
 
-* **Feb 12**: Introduction, data files, documentation markup and elementary data visualization
-* **Feb 17**: Relational database operations, intermediate data visualization
-* **Feb 26**: More data operations, map visualization
-* **Mar 5**:  Basic models, fitting, and summaries
-* **Mar 12**: Clustering
-* **Mar 26**: Dimension reduction
-* **Apr 2**: Putting it all together
+* **Feb 19**: Introduction, data files, documentation markup and elementary data visualization
+* **Feb 26**: Relational database operations, intermediate data visualization
+* **Mar 5**: More data operations, map visualization
+* **Mar 12**:  Basic models, fitting, and summaries
+* **Mar 26**: Clustering
+* **Apr 9**: Dimension reduction
+* **Apr 16**: Putting it all together
 
 Sign up for more information [by filling out this Google form](https://docs.google.com/a/macalester.edu/spreadsheet/viewform?formkey=dE1SUElWaVRaNVJkeW4waWQ0QzBoWkE6MQ#gid=0) or talk to Prof. Kaplan or Prof. Shoop.
 

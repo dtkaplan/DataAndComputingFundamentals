@@ -19,14 +19,17 @@ Day 1
 ### Development Resources
 
 * Scatterplots: Cookbook for R<http://wiki.stdout.org/rcookbook/Graphs/Scatterplots%20(ggplot2)>
-    
+* United Nations Food and Agriculture Organization (FAO) has a wide range of data broken down by year and country. Access it by going to <http://faostat3.fao.org/home/index.html#DOWNLOAD> Pick a category, select all countries and all years, choose "table" (not "pivot table") and download.  The result will be in narrow format.   
+
 ### Exercises
 
 ### Project Assignment
 
 Create a markdown document with some informative scatter plot.  Document the creation of the graph and interpret it.
 
+### DCF Software
 
+`mScatter` for interaction with scatter plots
 
 Day 2
 --------------
@@ -38,17 +41,19 @@ Day 2
     * lists of levels, and data cleaning
 3. Graphics
     * barplots
-        * side-by-side
-        * stacked
-    * "mosaic" plots
-    * parallel coordinates
-4. Tidy data
-    * Narrow versus wide format
+
+
+### Activity
+
+Food consumption by country and type of food
+
+### DCF Software
+
+* `mBar` for interaction with bar charts
 
 ### Development Resources
 
 * Barplots: Cookbook for R<http://wiki.stdout.org/rcookbook/Graphs/Bar%20and%20line%20graphs%20(ggplot2)/>
-* Narrow to wide (and *vice versa*): Cookbook for R<http://wiki.stdout.org/rcookbook/Manipulating%20data/Converting%20data%20between%20wide%20and%20long%20format/>
 
 ### Basic Learning Objectives
 
@@ -60,11 +65,13 @@ Putting titles on graphs, captions on tables, etc. e.g. have the students make a
 * Weather in Saint Paul.  [data site](http://cdo.ncdc.noaa.gov/qclcd/QCLCD)
 * Grades 
 * Body Shape
+* Weather in Australia: See [this write-up](http://onepager.togaware.com/Models.pdf) with [data available via Rattle](http://rattle.togaware.com/weather.csv)
 
 Day 3
 --------------
 1. Join
 2. Maps --- join the country data with the geographical data
+
 
 ### Development Resources
 
@@ -76,3 +83,36 @@ Day 3
         * `maps` is pretty small and contains just a few maps: US, World low resolution.  See `example(maps)`
         * `mapdata` is 25MB and contains higher resolution maps of the world, rivers, Japan, and China
         
+Day 4
+-------------
+1. Basic Models, Fitting, and Summaries
+2. Graphics
+    * Line plots
+    * Overlaying fitted functions
+    * Smoothers
+    * Error bounds
+
+Day 5
+-------------
+1. Density and Clustering
+2. Graphics
+    * Density plots
+    * Scatterplots with cluster ID
+    * Dendrograms
+    * Parallel coordinates
+
+Day 6
+-------------
+1. Dimension Reduction
+2. Classifcation modeling (e.g. CART)
+
+Day 7
+-------------
+1. Dealing with miscellaneous data formas
+2. Tidy data
+    * Narrow versus wide format
+
+### Development Resources
+
+* Narrow to wide (and *vice versa*): Cookbook for R<http://wiki.stdout.org/rcookbook/Manipulating%20data/Converting%20data%20between%20wide%20and%20long%20format/>
+

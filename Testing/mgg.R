@@ -34,6 +34,8 @@ barString <- function(s){
   res<-paste(res,"+geom_bar(stat='identity',position=",s$position,"(width=.9))", sep="")
   if( !is.na(s$colors)) 
     res <- paste(res,"+scale_fill_brewer(type='",s$colors,"',palette=",s$palette,")",sep="")
+  if (s$sideways) 
+    res <- paste(res, "+ theme(axis.text.x=element_text(angle=60,hjust=1))")
   return(res)
 }
 
@@ -61,7 +63,9 @@ mBar <- function(dat) {
   fillColorNames <- list( default=NA, seq="seq",div="div",qual="qual")
   paletteNames <- list(default=1,two=2,three=3,four=4,five=5,six=6,seven=7,eight=8)
   manipulate({p<-doBar(show,df,x=x,y=y,position=position,
-                       fill=fill,ordery=ordery,orderx=orderx,colors=colors,palette=palette)},
+                       fill=fill,ordery=ordery,orderx=orderx,
+                       colors=colors,palette=palette,
+                       sideways=sideways)},
              show = button("Show Expression"),
              x = picker(factorNames,initial=factorNames[[2]],label="x axis"),
              y = picker(numberNames,initial=numberNames[[2]],label="y axis"),
@@ -70,7 +74,8 @@ mBar <- function(dat) {
              ordery=picker(numberNames, initial="NONE",label="Fill Order"),
              orderx=picker(numberNames, initial="NONE",label="X Order"),
              colors=picker(fillColorNames, initial="default",label="Color Scheme"),
-             palette=picker(paletteNames, initial="default",label="Palette")
+             palette=picker(paletteNames, initial="default",label="Palette"),
+             sideways=checkbox(label="Sideways Labels")
              )
 }
 
@@ -98,7 +103,7 @@ mScatter <- function(dat) {
   nm = names(dat)
   vnames <- v2list(nm)
   cnames <- snames <- c(list(none=NA),vnames)
-  manipulate({p<-dogg(show,df,x=x,y=y,color=color,size=size,facet=facet,logx=logx,logy=logy)},
+  manipulate({p<-doScatter(show,df,x=x,y=y,color=color,size=size,facet=facet,logx=logx,logy=logy)},
              show = button("Show Expression"),
              x = picker(vnames,initial=nm[1],label="x axis"),
              y = picker(vnames,initial=nm[2],label="y axis"),

@@ -1,0 +1,21 @@
+Computational Summary
+====================
+
+An evolving document showing the set of commands and command types for students in the DCF course.
+
+```{r include=FALSE}
+require(ggplot2)
+require(gcookbook)
+require(plyr)
+require(mosaic)
+```
+
+### Day 1
+
+Scatter plots from the UN FAO population and country size data
+```{r}
+FAO <- read.csv("FAO_DATA/FAO-simple.csv")
+ggplot(data=FAO)+geom_point(aes(x=Arable.land/Country.area,y=I(Rural.population/Urban.population)))+aes(colour=log10(Country.area))+aes(size=log10(Total.Population...Both.sexes))+scale_x_log10()+scale_y_log10()
+```
+
+

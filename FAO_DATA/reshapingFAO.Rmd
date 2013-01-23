@@ -8,6 +8,8 @@ Use the `reshape2` package
 require(reshape2)
 ```
 
+### Population and Area
+
 Read in the "raw" data:
 ```{r}
 pop <- read.csv("CountryPopulation.csv")
@@ -36,3 +38,17 @@ Write the data, just for 2009:
 ```{r}
 write.csv(file="FAO-simple.csv", subset(FAO,Year==2009), row.names=FALSE)
 ```
+
+### Food Supply
+
+Read in the data files.  The raw files, downloaded in bulk mode from the UN FAO, should be opened in Excel and saved as CSV files.  
+
+An example has been saved as `foobar.csv`
+
+```{r}
+raw <- read.csv("FAO_DATA/foobar.csv")
+#raw2 <- raw[,c(1:9,seq(11,length(raw),by=2))] # get rid of F columns
+raw2009 <- raw[,c(1:8,(length(raw)-1))]
+```
+
+Delete the `(Total)` columns?
