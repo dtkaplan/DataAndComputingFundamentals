@@ -122,6 +122,7 @@ Historical Readings
 * Government and other records
 * [Open Data Releases 2012](http://www.theatlanticcities.com/technology/2012/12/best-open-data-releases-2012/4200/#)
 * Health data.  The [NHANES III Survey](http://www.cdc.gov/nchs/nhanes/nh3data.htm) and [linked mortality data](http://www.cdc.gov/nchs/data_access/data_linkage/mortality/nhanes3_linkage.htm).  For an example of a paper based on these data, see ["A New Body Shape Index ..."](http://www.plosone.org/article/info%3Adoi/10.1371/journal.pone.0039504)
+* [Data and policing](http://www.nytimes.com/2013/01/26/nyregion/police-have-done-more-than-prisons-to-cut-crime-in-new-york.html?_r=0)
 
 
 ### Data Settings

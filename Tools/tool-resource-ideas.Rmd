@@ -3,6 +3,11 @@ Tools/Resources to Consider
 
 As we find new things, let's list them here so that we have a record.
 
+### Data
+
+* Gapminder: <http://www.gapminder.org/data>
+* Environmental, country-by-country: <http://epi.yale.edu/downloads>
+
 ### Unexamined
 
 * [Hadoop and R](http://www.linkedin.com/groups/Using-R-Hadoop-webinar-January-77616.S.202738754?view=&gid=77616&type=member&item=202738754&trk=eml-anet_dig-b_nd-pst_ttle-cn&_mSplash=1)
@@ -10,6 +15,7 @@ As we find new things, let's list them here so that we have a record.
 ### In progress
 
 * ggplot2 --- Danny is writing a simple R-GUI for this, so that students can construct plots easily and get the command out.
+* rworldmap --- for making easy world maps.
 
 ### Discarded
 

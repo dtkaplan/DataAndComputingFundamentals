@@ -7,14 +7,14 @@ At the end of last semester, you expressed interest in the upcoming *Data and Co
 
 * There are **no pre-requisites**, either in mathematics, computation, or science.
 * There will be an emphasis on data in bioscience- and medical-related contexts, but the techniques are very general and applicable to many, many fields.
-* The class will meet on seven Tuesday evenings at 7:00-8:30pm starting Feb. 19 and ending on April 9.
+* The class will meet on seven Tuesday evenings at 7:00-8:30pm starting Feb. 19 and ending on April 16.  Everything will be wrapped up by the week of April 16; you'll be completely done. 
 * The instructors are Profs. Libby Shoop and Danny Kaplan
 * This is a prototype course.  Over a period of two years, our plan is to expand enrollment from this semester's 20 students to approximately 200 students per year (in many sections).  According to the plan, the course will eventually become a co-requisite for several widely enrolled introductory science, statistics, and mathematics courses.
 * The development of the course at Macalester is being followed by a consortium of liberal arts colleges, so in addition to teaching the course, we will be documenting what works and what doesn't work.
 
 ### The Plan
 
-Forty-five students expressed interest and availability for the Tuesday 7-8:30pm meeting time.  In order to ensure that there is plenty of one-on-one contact, there is room only for twenty students this semester.
+Forty-five students expressed interest and availability for the Tuesday 7-8:30pm meeting time.  In order to ensure that there is plenty of one-on-one contact, we are admitting only twenty students this semester.
 
 We propose to choose those twenty in a two-step process.  
 

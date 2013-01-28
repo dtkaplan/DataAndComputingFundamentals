@@ -1,0 +1,13 @@
+North Carolina Voter Data
+========================================================
+
+### from Shilad Sen
+
+The dataset contains voter data for Wake County, NC (home of Raleigh / Durham / Chapel Hill). It includes: gender, age, address, party affiliation, and other fun stuff. You can view the field description at <http://msweb03.co.wake.nc.us/bordelec/Waves/boedatadescription.pdf>.
+
+The data file is publicly available <http://msweb03.co.wake.nc.us/bordelec/Waves/WavesDownload.asp>. It's in a weird windows self-extracting format. If you are okay with an older version (from Fall 2010), I've attached a zip file containing a CSV file I extracted (about 500K rows) and a field description. 
+
+### Danny
+
+I've stripped away the street address information and stored the remaining data in a compressed Rdata format.  There's also a "-small.Rdata" version with a random sample of 10000 cases.
+

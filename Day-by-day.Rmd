@@ -66,6 +66,7 @@ Putting titles on graphs, captions on tables, etc. e.g. have the students make a
 * Grades 
 * Body Shape
 * Weather in Australia: See [this write-up](http://onepager.togaware.com/Models.pdf) with [data available via Rattle](http://rattle.togaware.com/weather.csv)
+* The Christman bird banding data from Jerald Dosh (on Macalester Google Drive).  Species versus month, sex versus species, etc.  For later in the semester, have the students assemble a data set about body size, diet, etc. for each species and then see how this changes over the seasons.
 
 Day 3
 --------------
@@ -91,6 +92,8 @@ Day 4
     * Overlaying fitted functions
     * Smoothers
     * Error bounds
+    
+
 
 Day 5
 -------------
@@ -101,10 +104,13 @@ Day 5
     * Dendrograms
     * Parallel coordinates
 
+* [Saint Paul Weather display](http://www.startribune.com/lifestyle/185479852.html) Discuss how a density plot might be more illuminating, for instance for snowfall and precip. 
+* [Population of the US](http://bmander.com/dotmap/index.html)
+
 Day 6
 -------------
 1. Dimension Reduction
-2. Classifcation modeling (e.g. CART)
+2. Classification modeling (e.g. CART)
 
 Day 7
 -------------

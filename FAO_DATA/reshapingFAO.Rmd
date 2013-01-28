@@ -46,9 +46,21 @@ Read in the data files.  The raw files, downloaded in bulk mode from the UN FAO,
 An example has been saved as `foobar.csv`
 
 ```{r}
-raw <- read.csv("FAO_DATA/foobar.csv")
-#raw2 <- raw[,c(1:9,seq(11,length(raw),by=2))] # get rid of F columns
-raw2009 <- raw[,c(1:8,(length(raw)-1))]
+directory <- "FAO_DATA/"
+area_names <- c("E_Africa_1","E_Americas_1",
+                 "E_Asia_1","E_Europe_1", "E_Oceania_1")
+names <- paste("FoodSupply_",
+               rep(c("Crops","LivestockFish"),each=length(area_names)),"_",sep="")
+names <- paste(names, area_names,
+               ".csv",sep="")
+res = NULL
+for (k in names) {
+  raw <- read.csv(paste(directory,k,sep=""))
+  raw2009 <- raw[,c(1:8,(length(raw)-1))]
+  res <- rbind(res, raw2009)
+}
+foo <- dcast(res, Country+Element~Item, value.var="X2009",
+             fun.aggregate=mean)
 ```
 
 Delete the `(Total)` columns?
