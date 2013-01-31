@@ -1,0 +1,33 @@
+Syllabus
+==============
+
+In draft as of `r I(date())`.
+
+
+* Week 1: Tables, scatterplots, workflow
+    * Reading
+        * *As You See It* Chapter 3
+        * Notes
+            * Using R/Markdown
+            * Logarithmic scales.  See p. 172 of *As You See It*. 
+    * Assignment
+* Week 2: Groupwise summaries, bar plots
+    * Reading
+        * *As You See It* Chapter 8
+    * Assignment
+* Week 3: Joins, maps
+    * Reading
+        * Nothing yet
+    * Assignment
+* Week 4: Basic models and fitting
+    * Reading
+        * *As You See It* Chapter 9
+    * Assignment
+* Week 5: Density and clustering
+    * Reading
+        * *As You See It* Chapter 10
+        * *As You See It* Chapter 12 (this is weak)
+    * Assignment
+* Week 6: Dimension reduction
+    * Reading
+        * *As You See It* Chapter 11
