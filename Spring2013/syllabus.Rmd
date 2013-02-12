@@ -17,7 +17,7 @@ In draft as of `r I(date())`.
     * Assignment
 * Week 3: Joins, maps
     * Reading
-        * Nothing yet
+        * [Philosophy of Big Data](http://www.nytimes.com/2013/02/05/opinion/brooks-the-philosophy-of-data.html?_r=0)
     * Assignment
 * Week 4: Basic models and fitting
     * Reading
@@ -31,3 +31,7 @@ In draft as of `r I(date())`.
 * Week 6: Dimension reduction
     * Reading
         * *As You See It* Chapter 11
+
+
+Miscellaneous:
+* [Origins of "Big Data"](http://bits.blogs.nytimes.com/2013/02/01/the-origins-of-big-data-an-etymological-detective-story/)

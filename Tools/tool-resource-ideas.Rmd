@@ -8,9 +8,24 @@ As we find new things, let's list them here so that we have a record.
 * Gapminder: <http://www.gapminder.org/data>
 * Environmental, country-by-country: <http://epi.yale.edu/downloads>
 
+### People/Contacts
+
+* [Seth Madison](seth.madison@gmail.com) who works at Compete, Inc. in Boston.
+
+
+### News Articles
+
+* [Match making](http://www.nytimes.com/2013/02/12/science/skepticism-as-eharmony-defends-its-matchmaking-algorithm.html?_r=0)
+* [Making personal connections](http://dealbook.nytimes.com/2013/02/11/a-database-of-names-and-how-they-connect/)
+
+### Graphics commentary
+
+* [Bad graphics](http://www.biostat.wisc.edu/~kbroman/topten_worstgraphs/)
+
 ### Unexamined
 
 * [Hadoop and R](http://www.linkedin.com/groups/Using-R-Hadoop-webinar-January-77616.S.202738754?view=&gid=77616&type=member&item=202738754&trk=eml-anet_dig-b_nd-pst_ttle-cn&_mSplash=1)
+* [Database instructional materials](http://www.dataone.org/education-modules)
 
 ### In progress
 
