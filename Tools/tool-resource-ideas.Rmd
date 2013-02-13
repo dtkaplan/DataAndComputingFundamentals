@@ -17,6 +17,8 @@ As we find new things, let's list them here so that we have a record.
 
 * [Match making](http://www.nytimes.com/2013/02/12/science/skepticism-as-eharmony-defends-its-matchmaking-algorithm.html?_r=0)
 * [Making personal connections](http://dealbook.nytimes.com/2013/02/11/a-database-of-names-and-how-they-connect/)
+* [Data and social welfare in India](http://www.nytimes.com/2013/02/13/opinion/friedman-when-et-and-it-meet-id.html?_r=0)
+* [Personal health-related data](http://gadgetwise.blogs.nytimes.com/2013/02/12/a-patch-that-monitors-the-body/)
 
 ### Graphics commentary
 
