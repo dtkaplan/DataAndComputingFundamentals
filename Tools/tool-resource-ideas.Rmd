@@ -19,6 +19,7 @@ As we find new things, let's list them here so that we have a record.
 * [Making personal connections](http://dealbook.nytimes.com/2013/02/11/a-database-of-names-and-how-they-connect/)
 * [Data and social welfare in India](http://www.nytimes.com/2013/02/13/opinion/friedman-when-et-and-it-meet-id.html?_r=0)
 * [Personal health-related data](http://gadgetwise.blogs.nytimes.com/2013/02/12/a-patch-that-monitors-the-body/)
+* [Insurance and big data](http://www.analyticbridge.com/profiles/blogs/excerpt-from-too-big-to-ignore)
 
 ### Graphics commentary
 
@@ -28,6 +29,7 @@ As we find new things, let's list them here so that we have a record.
 
 * [Hadoop and R](http://www.linkedin.com/groups/Using-R-Hadoop-webinar-January-77616.S.202738754?view=&gid=77616&type=member&item=202738754&trk=eml-anet_dig-b_nd-pst_ttle-cn&_mSplash=1)
 * [Database instructional materials](http://www.dataone.org/education-modules)
+* [64 interview questions for data scientists](http://www.datasciencecentral.com/profiles/blogs/66-job-interview-questions-for-data-scientists?goback=%2Egde_77616_member_213965264)
 
 ### In progress
 

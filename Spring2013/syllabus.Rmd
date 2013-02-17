@@ -23,6 +23,7 @@ In draft as of `r I(date())`.
     * Reading
         * *As You See It* Chapter 9
     * Assignment
+    * [Arsenic data](http://www.stat.columbia.edu/~gelman/arm/examples/arsenic/wells.dat) set subjected to smoother to see if there is a trend with distance.
 * Week 5: Density and clustering
     * Reading
         * *As You See It* Chapter 10
