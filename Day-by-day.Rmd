@@ -84,6 +84,10 @@ Day 3
         * `maps` is pretty small and contains just a few maps: US, World low resolution.  See `example(maps)`
         * `mapdata` is 25MB and contains higher resolution maps of the world, rivers, Japan, and China
         
+### Exercises
+
+* Fix the species in the Ordway bird data.  Make a table that recodes the levels of species, join it with the data to get a corrected species for each bird.
+        
 Day 4
 -------------
 1. Basic Models, Fitting, and Summaries
