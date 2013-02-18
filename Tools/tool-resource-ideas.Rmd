@@ -8,6 +8,10 @@ As we find new things, let's list them here so that we have a record.
 * Gapminder: <http://www.gapminder.org/data>
 * Environmental, country-by-country: <http://epi.yale.edu/downloads>
 
+### Books/Courses
+
+* [Coursera.com data science course](https://www.coursera.org/course/datasci) requires python or JAVA.
+
 ### People/Contacts
 
 * [Seth Madison](seth.madison@gmail.com) who works at Compete, Inc. in Boston.
@@ -20,6 +24,7 @@ As we find new things, let's list them here so that we have a record.
 * [Data and social welfare in India](http://www.nytimes.com/2013/02/13/opinion/friedman-when-et-and-it-meet-id.html?_r=0)
 * [Personal health-related data](http://gadgetwise.blogs.nytimes.com/2013/02/12/a-patch-that-monitors-the-body/)
 * [Insurance and big data](http://www.analyticbridge.com/profiles/blogs/excerpt-from-too-big-to-ignore)
+* [Identifying Persuadable Voters](http://www.thefiscaltimes.com/Articles/2013/01/21/The-Real-Story-Behind-Obamas-Election-Victory.aspx#page1)
 
 ### Graphics commentary
 
