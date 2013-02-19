@@ -1,0 +1,61 @@
+```{r include=FALSE}
+require(DCF)
+options(na.rm=TRUE)
+```
+
+### Data and Computing Fundamentals
+
+Week 1: Out-of-Class Activity
+-----------------
+
+
+## Data on the Web
+
+Look at the various data sets available at <http://www.gapminder.org/data/>.
+
+1. Based on the names of the data sets available, construct several hypotheses that you would like to test using this sort of country-by-country data.  Later in the course, you'll learn how to assemble such data in a form you can use for your analysis.
+2. Look at one of the data sets (by pressing the little "View" magnifying-glass icon).  What are the cases?  What are the variables?
+
+## Body Shape Data
+
+Read the the simplified version of the NHANES dataset using 
+```{r}
+data(nhanes)
+```
+
+You can use `help(nhanes)` to see t
+Look at the names of the variables and make sure you understand what is the meaning of each of them.
+
+You're going to be making scatter plots using `mScatter()`.  To generate the graphics in this document, remember to cut-and-paste the command output of `mScatter()` into a fenced R command in this document.
+
+#### Create a Sample
+
+It takes several seconds to generate a graph using this number of data points.  To speed things up, take a random sample of 2000 people and develop your graphs with that.  
+```{r}
+small = sample(nhanes,2000)
+```
+
+Then, when you know exactly what you want, you can translate your commands to use the whole data set, if appropriate.
+
+------------
+
+#### QUESTION: 
+
+Describe the relationship between height and weight.  Is there reason to think that it's different for the two sexes?
+
+#### QUESTION
+
+Describe the relationship between weight and BMI.  Is it different from the two sexes?  Where do the people with diabetes show up?
+
+#### QUESTION
+
+Is there a relationship between BMI and age?  Where do the people with diabetes show up?
+
+#### QUESTION
+
+Is cholesterol level a good predictor of the development of diabetes?
+
+#### QUESTION
+
+Come up with a hypothesis of your own and address it with a graphic.
+

@@ -1,0 +1,38 @@
+### Data and Computing Fundamentals
+
+Week 1: In-Class Data Exploration
+================
+
+```{r include=FALSE}
+require(DCF)
+options(rm.na=TRUE)
+```
+
+Read the the simplified version of the United Nations Food and Agriculture Organization dataset using
+```{r}
+data(FAOsimple)
+```
+Look at the names of the variables and make sure you understand what is the meaning of each of them.
+
+You're going to be making scatter plots using mScatter(). To generate the graphics in this document, remember to cut-and-paste the command output of mScatter() into a fenced R command in this document, e.g.
+
+<pre>
+ggplot(data=FAOsimple)+geom_point(aes(x=Total.Population...Both.sexes,y=Agricultural.area))
+</pre>
+
+#### QUESTION:
+
+Is there a clear relationship between area of a country and the total population?
+
+#### QUESTION:
+
+Is there a clear relationship between the fraction of a country's total land that is arable and the fraction of a country's total population that is engaged in agricultural work?
+
+#### TASK:
+
+Pick out some variables that you think ought to be related.  Describe the relationship you hypothesize and then demonstrate whether or not your hypothesis is consistent with the data.
+
+#### TASK:
+
+Show a situation where the use of logarithmic axes helps to illustrate a relationship.
+

@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Basic Syntax in R</title>
+<title>Data and Computing Fundamentals</title>
 
 <style type="text/css">
 body, td {
@@ -178,273 +178,38 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>Basic Syntax in R</h1>
+<h3>Data and Computing Fundamentals</h3>
 
-<p>In English, &ldquo;syntax&rdquo; refers to the arrangement of words and phrases to create well formed sentences.  In computer languages, such as R, the syntax refers to the arrangement of symbols that creates legitimate commands.  Some basic syntax:</p>
+<h1>Week 1: In-Class Data Exploration</h1>
 
-<h3>Atoms</h3>
+<p>Read the the simplified version of the United Nations Food and Agriculture Organization dataset using</p>
 
-<ul>
-<li>Names of objects.  These start with a letter and contain letters and numbers (and periods and underscores, if you like).  Names with different capitalization are different.</li>
-<li>Literals, or &ldquo;strings&rdquo;.  These are characters enclosed in quotation marks, such as <code>&#39;hello&#39;</code> or <code>&quot;Hello to you!&quot;</code>.  You can use either single or double quotes, but you must use the same type of quotation to start and end the string.  Remember: strings are in quotes, whereas names of objects are not.</li>
-<li>Numbers.  Things like <code>12.4</code> or <code>-12.7</code> or even <code>-2e-3</code>, using scientific notation.</li>
-</ul>
-
-<p>R also works with collections of atoms.  Think of these as being like molecules in chemistry.  </p>
-
-<h3>Function Invocation</h3>
-
-<p>A function is something that takes one or more inputs and produces an output. There are many functions built in to R and you can create your own.  To invoke a function, give the function name followed by open and close parentheses.  Any inputs to the function are contained inside the parentheses, separated by parentheses.  Examples:</p>
-
-<pre><code class="r">date()
+<pre><code class="r">data(FAOsimple)
 </code></pre>
 
-<pre><code>## [1] &quot;Tue Feb 19 11:16:50 2013&quot;
-</code></pre>
+<p>Look at the names of the variables and make sure you understand what is the meaning of each of them.</p>
 
-<pre><code class="r">sqrt(25)
-</code></pre>
+<p>You&#39;re going to be making scatter plots using mScatter(). To generate the graphics in this document, remember to cut-and-paste the command output of mScatter() into a fenced R command in this document, e.g.</p>
 
-<pre><code>## [1] 5
-</code></pre>
+<pre>
+ggplot(data=FAOsimple)+geom_point(aes(x=Total.Population...Both.sexes,y=Agricultural.area))
+</pre>
 
-<pre><code class="r">sin(3)
-</code></pre>
+<h4>QUESTION:</h4>
 
-<pre><code>## [1] 0.1411
-</code></pre>
+<p>Is there a clear relationship between area of a country and the total population?</p>
 
-<pre><code class="r">seq(1, 10)
-</code></pre>
+<h4>QUESTION:</h4>
 
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10
-</code></pre>
+<p>Is there a clear relationship between the fraction of a country&#39;s total land that is arable and the fraction of a country&#39;s total population that is engaged in agricultural work?</p>
 
-<h3>Assignment</h3>
+<h4>TASK:</h4>
 
-<p>You can create a new object by using <code>=</code> to &ldquo;assign&rdquo; a value to a name.  Example:</p>
+<p>Pick out some variables that you think ought to be related.  Describe the relationship you hypothesize and then demonstrate whether or not your hypothesis is consistent with the data.</p>
 
-<pre><code class="r">x = 17
-courseName = &quot;DCF&quot;
-</code></pre>
+<h4>TASK:</h4>
 
-<p>When you re-assign an object, the old value is forgotten.  Only the new value is kept.  For instance:</p>
-
-<pre><code class="r">x = 18
-</code></pre>
-
-<h3>Arithmetic</h3>
-
-<p>In order to make arithmetic easy to read, the arithmetic functions are arranged so that you can invoke them using the traditional syntax.  Examples:</p>
-
-<pre><code class="r">3 + 4
-</code></pre>
-
-<pre><code>## [1] 7
-</code></pre>
-
-<pre><code class="r">3 * 4
-</code></pre>
-
-<pre><code>## [1] 12
-</code></pre>
-
-<pre><code class="r">3^2
-</code></pre>
-
-<pre><code>## [1] 9
-</code></pre>
-
-<pre><code class="r">3/(1 + 5)
-</code></pre>
-
-<pre><code>## [1] 0.5
-</code></pre>
-
-<p>You&#39;re used to associating the <code>=</code> sign with arithmetic, but that is not the meaning of <code>=</code> in R.  Remember, <code>=</code> is about assigning a name to a value: creating an object. So expressions that are impossible in mathematics can be perfectly sensible in R and other computer languages:</p>
-
-<pre><code class="r">n = 10
-n = n + 1
-</code></pre>
-
-<h3>Named Arguments</h3>
-
-<p>The arguments to a function are often given names so that you can refer to them explicitly.  This is particularly convenient when a function has multiple arguments and you want to make sure that you don&#39;t mix them up. </p>
-
-<p>Example:</p>
-
-<pre><code class="r">seq(from = 3, to = 1)
-</code></pre>
-
-<pre><code>## [1] 3 2 1
-</code></pre>
-
-<p>Many functions, particularly graphics functions, have a large number of potential arguments.  You can use one or more of these to control the behavior of the function.</p>
-
-<pre><code class="r">seq(from = 1, to = 10, by = 3)
-</code></pre>
-
-<pre><code>## [1]  1  4  7 10
-</code></pre>
-
-<pre><code class="r">seq(from = 1, to = 100, length = 3)
-</code></pre>
-
-<pre><code>## [1]   1.0  50.5 100.0
-</code></pre>
-
-<h3>Collections of Similar Things &mdash; Vectors</h3>
-
-<p>Often you will have a handful of things that you want to put together so that they become a single object: a collection. The <code>c()</code> function provides one way to put things together:</p>
-
-<pre><code class="r">c(&quot;April&quot;, &quot;January&quot;)
-</code></pre>
-
-<pre><code>## [1] &quot;April&quot;   &quot;January&quot;
-</code></pre>
-
-<pre><code class="r">c(seq(1, 5), seq(5, 1))
-</code></pre>
-
-<pre><code>##  [1] 1 2 3 4 5 5 4 3 2 1
-</code></pre>
-
-<p>A &ldquo;vector&rdquo; is a collection of things that are all the same type, e.g. numbers or strings.  There are also collections of things that are not necessarily all the same type.  The most common one that you will use is a &ldquo;data frame&rdquo; &mdash; see below.</p>
-
-<h3>Dialogs, Workspaces, Sessions</h3>
-
-<p>When you have a well formed expression, you can instruct R to execute it.  In response, R will do one of several things:</p>
-
-<ol>
-<li>Print out the value that has been produced by the operation.</li>
-<li>Assignment: Create the object, silently.</li>
-<li>Produce a graphic, etc.</li>
-<li>Give an error</li>
-</ol>
-
-<p>The &ldquo;dialog&rdquo; is the sequence of your commands and R&#39;s command-by-command response.</p>
-
-<p>A &ldquo;workspace&rdquo; is the collection of objects created by your commands.</p>
-
-<p>A &ldquo;session&rdquo; is a sequence of commands and the objects created by them.  The commands in the console window create a session.  Each of your R/Markdown documents is an entirely separate session.</p>
-
-<h4>Errors</h4>
-
-<p>When you tell R to execute an expression that isn&#39;t well formed, R will not be able to carry out the operation.  Instead, R will &ldquo;throw an error.&rdquo;  You&#39;ll see this as a printed error message. </p>
-
-<pre><code class="r">fred + 3 = 2
-</code></pre>
-
-<pre><code>## Error: object &#39;fred&#39; not found
-</code></pre>
-
-<p>The operation is not performed.</p>
-
-<h4>Warnings</h4>
-
-<p>Sometimes, the people who wrote functions have identified situations when the operation makes sense and is do-able, but where they suspect that you might not intend to do what you asked.  In such a situation, a warning is printed.  The operation was performed, but you have been warned!</p>
-
-<h3>Big Collections &mdash; Data Frames</h3>
-
-<p>You will be working with data in this course, arranged in a tabular format.  This kind of object is called a &ldquo;data frame&rdquo; in R.  </p>
-
-<h4>Reading in Data</h4>
-
-<p>There are two main commands that you will use to create data-frame objects.</p>
-
-<ul>
-<li>The <code>fetchData()</code> takes the name of a data file and returns the data frame.  This is almost always assigned to a name for further use.</li>
-</ul>
-
-<pre><code class="r">cps = fetchData(&quot;CPS85&quot;)
-</code></pre>
-
-<pre><code>## Data CPS85 found in package.
-</code></pre>
-
-<ul>
-<li>The <code>data()</code> command reads in a data file and &mdash; different from <code>fetchData()</code> &mdash; silently creates an object without your having to do any assignment.</li>
-</ul>
-
-<pre><code class="r">data(&quot;FAOsimple&quot;)
-</code></pre>
-
-<h3>Basic Operations to Display Data</h3>
-
-<ul>
-<li>Names of the variables: use <code>names()</code> with the data frame as an argument.</li>
-</ul>
-
-<pre><code class="r">names(cps)
-</code></pre>
-
-<pre><code>##  [1] &quot;wage&quot;     &quot;educ&quot;     &quot;race&quot;     &quot;sex&quot;      &quot;hispanic&quot; &quot;south&quot;   
-##  [7] &quot;married&quot;  &quot;exper&quot;    &quot;union&quot;    &quot;age&quot;      &quot;sector&quot;
-</code></pre>
-
-<ul>
-<li>Number of rows: use <code>nrow()</code></li>
-</ul>
-
-<pre><code class="r">nrow(cps)
-</code></pre>
-
-<pre><code>## [1] 534
-</code></pre>
-
-<ul>
-<li>Show just a few lines:</li>
-</ul>
-
-<pre><code class="r">head(cps)
-</code></pre>
-
-<pre><code>##   wage educ race sex hispanic south married exper union age   sector
-## 1  9.0   10    W   M       NH    NS Married    27   Not  43    const
-## 2  5.5   12    W   M       NH    NS Married    20   Not  38    sales
-## 3  3.8   12    W   F       NH    NS  Single     4   Not  22    sales
-## 4 10.5   12    W   F       NH    NS Married    29   Not  47 clerical
-## 5 15.0   12    W   M       NH    NS Married    40 Union  58    const
-## 6  9.0   16    W   F       NH    NS Married    27   Not  49 clerical
-</code></pre>
-
-<ul>
-<li>Show a summary:</li>
-</ul>
-
-<pre><code class="r">summary(cps)
-</code></pre>
-
-<pre><code>##       wage            educ    race     sex     hispanic   south   
-##  Min.   : 1.00   Min.   : 2   NW: 67   F:245   Hisp: 27   NS:378  
-##  1st Qu.: 5.25   1st Qu.:12   W :467   M:289   NH  :507   S :156  
-##  Median : 7.78   Median :12                                       
-##  Mean   : 9.02   Mean   :13                                       
-##  3rd Qu.:11.25   3rd Qu.:15                                       
-##  Max.   :44.50   Max.   :18                                       
-##                                                                   
-##     married        exper        union          age            sector   
-##  Married:350   Min.   : 0.0   Not  :438   Min.   :18.0   prof    :105  
-##  Single :184   1st Qu.: 8.0   Union: 96   1st Qu.:28.0   clerical: 97  
-##                Median :15.0               Median :35.0   service : 83  
-##                Mean   :17.8               Mean   :36.8   manuf   : 68  
-##                3rd Qu.:26.0               3rd Qu.:44.0   other   : 68  
-##                Max.   :55.0               Max.   :64.0   manag   : 55  
-##                                                          (Other) : 58
-</code></pre>
-
-<h3>Creating a New Variable</h3>
-
-<p>Use the <code>transform()</code> function to create a new variable.  Use assignment (<code>=</code>) to store the modified dataframe.  Example:</p>
-
-<pre><code class="r">cps = transform(cps, lwage = log(wage))
-</code></pre>
-
-<h3>HELP</h3>
-
-<p>The <code>help()</code> function will show the documentation for a function or data set.  This is particularly helpful to remind you what are the arguments to a function and what they mean, or what are the variables and cases in a data frame.</p>
-
-<p>Try <code>help(seq)</code>.</p>
+<p>Show a situation where the use of logarithmic axes helps to illustrate a relationship.</p>
 
 </body>
 

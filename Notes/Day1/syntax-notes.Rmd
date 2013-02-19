@@ -149,11 +149,18 @@ head(cps)
 summary(cps)
 ```
 
+### Creating a New Variable
+
+Use the `transform()` function to create a new variable.  Use assignment (`=`) to store the modified dataframe.  Example:
+```{r}
+cps = transform(cps, lwage=log(wage))
+```
+
 ### HELP
 
 The `help()` function will show the documentation for a function or data set.  This is particularly helpful to remind you what are the arguments to a function and what they mean, or what are the variables and cases in a data frame.
 
-Try, `help(seq)`.
+Try `help(seq)`.
 
 
 
