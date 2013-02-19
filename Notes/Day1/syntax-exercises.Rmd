@@ -62,8 +62,6 @@ What are the names of the variables?
 Write the Markdown to reproduce this outline.  See below for a hint.
 
 
-### Fruits
-
 1. Sweet
     * Apples
     * Pears

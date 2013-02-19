@@ -35,6 +35,11 @@ It takes several seconds to generate a graph using this number of data points.  
 small = sample(nhanes,2000)
 ```
 
+To start up the scatter-plot making process, use `mScatter()`
+```{r eval=FALSE}
+mScatter(small)
+```
+
 Then, when you know exactly what you want, you can translate your commands to use the whole data set, if appropriate.
 
 ------------
