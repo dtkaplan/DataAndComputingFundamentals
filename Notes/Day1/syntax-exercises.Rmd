@@ -22,7 +22,7 @@ Answer the following by constructing appropriate R commands and/or giving a text
 
 Show that names with different capitalization refer to different objects.
 
-Try to create several objects with different types of illegal names.  
+The name of the object being assigned to always goes to the left of the `=` operator.  What happens if you put it on the right?  
 
 #### Strings and Names
 
@@ -59,7 +59,8 @@ What are the names of the variables?
 
 #### R Markdown Syntax
 
-Write the Markdown to reproduce this outline
+Write the Markdown to reproduce this outline.  See below for a hint.
+
 
 ### Fruits
 
@@ -82,4 +83,11 @@ Write the Markdown to reproduce this outline
     * Broccoli
     * Asparagus
     
+Hint:
+<pre class="hint">
+### Fruits
+
+1. Sweet
+    * Apples
+</pre>
 

@@ -194,12 +194,21 @@ hljs.initHighlightingOnLoad();
 
 <h3>Function Invocation</h3>
 
-<p>A function is something that takes one or more inputs and produces an output. There are many functions built in to R and you can create your own.  To invoke a function, give the function name followed by open and close parentheses.  Any inputs to the function are contained inside the parentheses, separated by parentheses.  Examples:</p>
+<p>A function is something that takes one or more inputs and produces an output.  Functions are central to computing, and there are synonyms for common features of functions:</p>
+
+<ul>
+<li>Inputs, also known as <em>arguments</em>.</li>
+<li>Outputs, also known as <em>return values</em>.</li>
+<li>Functions, sometimes called <em>operators</em> or <em>procedures</em>.</li>
+<li>Evaluating a function on inputs, also called <em>invoking</em> a function or <em>applying</em> a function.</li>
+</ul>
+
+<p>There are many functions built in to R and you can create your own.  To invoke a function, give the function name followed by open and close parentheses.  Any inputs to the function are contained inside the parentheses, separated by parentheses.  Examples:</p>
 
 <pre><code class="r">date()
 </code></pre>
 
-<pre><code>## [1] &quot;Tue Feb 19 12:04:24 2013&quot;
+<pre><code>## [1] &quot;Tue Feb 19 15:12:31 2013&quot;
 </code></pre>
 
 <pre><code class="r">sqrt(25)
@@ -383,7 +392,7 @@ n = n + 1
 </code></pre>
 
 <ul>
-<li>Number of rows: use <code>nrow()</code></li>
+<li>Number of rows: use <code>nrow()</code> </li>
 </ul>
 
 <pre><code class="r">nrow(cps)

@@ -19,7 +19,14 @@ R also works with collections of atoms.  Think of these as being like molecules 
 
 ### Function Invocation
 
-A function is something that takes one or more inputs and produces an output. There are many functions built in to R and you can create your own.  To invoke a function, give the function name followed by open and close parentheses.  Any inputs to the function are contained inside the parentheses, separated by parentheses.  Examples:
+A function is something that takes one or more inputs and produces an output.  Functions are central to computing, and there are synonyms for common features of functions:
+
+* Inputs, also known as *arguments*.
+* Outputs, also known as *return values*.
+* Functions, sometimes called *operators* or *procedures*.
+* Evaluating a function on inputs, also called *invoking* a function or *applying* a function.
+
+There are many functions built in to R and you can create your own.  To invoke a function, give the function name followed by open and close parentheses.  Any inputs to the function are contained inside the parentheses, separated by parentheses.  Examples:
 ```{r}
 date()
 sqrt(25)
