@@ -3,6 +3,30 @@ Day 1
 
 ## Introduction
 
+### Something has changed
+
+Data used to be something that was collected in lab notebooks or in government offices and published in printed tables.  Recording each piece of data required a human intervention, accessing each piece of data required a human interpretation.  
+
+Nowadays, data is being recorded automatically. Vast volumes are being collected. It's easily copied and transferred.  
+* Genetics:
+    * The old days: medical outcomes of your relatives, and handful of chromosomally detected abnormalities (e.g. Downs syndrome), inference of genotype based on ancestors phenotype, e.g. Sickle-cell disease, Tay-Sachs. 
+    * Now: Human genome.  10 years to sequence for the first time, now we're seeing differential sequencing of normal and cancerous cells.
+* Physiology:
+    * The old days: blood pressure, respiration, 5-second traces of electrocardiograms
+    * Now: Microarray data --- monitor expressions of tens of thousands of proteins.  Long-term monitoring.
+* Consumer Economics:
+    * Old days: payments in cash or by check.  
+    * Now: Payments by credit card and EFT.  Data available on where people spend money.
+* Sales:
+    * The old days: Close down for inventory every month or so.  Thousands of products.
+    * Now: sales are tracked immediately and often linked to customer traits.  Hundreds of thousands of products: need for recommender systems.  
+* Human-to-human contacts:
+    * The old days: A Rolodex. ![rotary rolodex](sub_67236.jpg)
+    * Now: Facebook. [Making personal connections](http://dealbook.nytimes.com/2013/02/11/a-database-of-names-and-how-they-connect/)
+* Insurance:
+    * The old days: determine rates based based on group membership, e.g. males aged 16-20.
+    * Now: Monitor the car and pull out risky behaviors.  (What constitutes risky behavior is a question a data analyst might want to address).  A recent controversy and car monitoring: A test drive of the new Tesla [original article](http://www.nytimes.com/2013/02/10/automobiles/stalled-on-the-ev-highway.html), [Tesla's response](http://www.teslamotors.com/blog/most-peculiar-test-drive) and an [ombudsman's review](http://publiceditor.blogs.nytimes.com/2013/02/18/problems-with-precision-and-judgment-but-not-integrity-in-tesla-test/?hp)
+
 ### What is Data?
 
 Measurements together with the context in which the measurement was taken.
@@ -12,12 +36,13 @@ Major types of information being collected nowadays:
 * Photographs and videos: Russian meteorite
 * Time series and sounds: Stock prices, seismograms, North Korean nuclear test detection
 * Text: Crisis mapping, earthquake estimation
-* Tabular data
+* Tabular data --- organization as rows and columns.
 
-### What is Big Data?
+### What is "Big Data"?
 
 * Data with lots of cases.
 * Data with lots of variables.
+* "Any amount of data that is too big to be handled by one computer." --- John Rauser (Amazon.com)
 
 The goal of computing on data is to reduce it to a form where decisions and judgments can be supported.  We'll call this a "presentation" of data.
 
@@ -40,6 +65,8 @@ Some goals for data presentations:
 * Develop the confidence to work with modern tools
     * Computer commands
     * Documentation and work-flow
+    
+One way to think about this is as the "grammar of data."  We want you to know what are the nouns and verbs, and what combinations make sense.
     
 #### What we won't do
 

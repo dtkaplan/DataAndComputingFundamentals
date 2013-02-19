@@ -136,7 +136,7 @@ data("FAOsimple")
 ```{r}
 names(cps)
 ```
-* Number of rows: use `nrow()`
+* Number of rows: use `nrow()` 
 ```{r}
 nrow(cps)
 ```
