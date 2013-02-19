@@ -1,0 +1,101 @@
+Computational Summary
+====================
+
+An evolving document showing the set of commands and command types for students in the DCF course.
+
+```{r include=FALSE}
+require(ggplot2)
+require(gcookbook)
+require(plyr)
+require(mosaic)
+require(rworldmap)
+```
+
+
+### Graphics
+
+#### Day 1
+
+```{r}
+library(gcookbook)
+p <- ggplot(heightweight, aes(x=ageYear, y=heightIn, color=weightLb)) + geom_point(size=3)
+library(scales)
+p + scale_colour_gradientn(colours=c("darkred","orange", "yellow", "white"))
+
+#### Day 5 Density
+
+```{r}
+p <- ggplot(faithful, aes(x=eruptions, y=waiting))
+p + stat_density2d() + geom_point()
+```
+
+#### Day 6 Classification
+
+```{r}
+library(gcookbook)
+c2 <- subset(countries, Year==2009)
+c2 <- c2[complete.cases(c2),]
+set.seed(201)
+c2 <- c2[sample(1:nrow(c2),25),]
+rownames(c2) <- c2$Name
+c3 <- scale(c2[,4:7])
+hc <- hclust(dist(c3))
+plot(hc, hang=-1,main="",xlab="",ylab="")
+```
+### Day 1
+
+Scatter plots from the UN FAO population and country size data
+```{r}
+FAO <- read.csv("FAO_DATA/FAO-simple.csv")
+ggplot(data=FAO)+geom_point(aes(x=Arable.land/Country.area,y=I(Rural.population/Urban.population)))+aes(colour=log10(Country.area))+aes(size=log10(Total.Population...Both.sexes))+scale_x_log10()+scale_y_log10()
+```
+
+
+### Day 2
+
+Bird data, voter data
+```{r}
+birds <- read.csv("Data/Ordway/christman-short.csv")
+count <- data.frame(tally( ~species.name, data=birds))
+names(count) <- c("species.name","species.count")
+hoo <- join(birds, count, by="species.name")
+hoo <- droplevels(subset(hoo, species.count > 200))
+counts <- data.frame(tally( ~species.name | Month, format="count",margins=FALSE, data=hoo))
+ggplot(data=counts,aes(x=species.name,y=Freq ,fill=Month))+geom_bar(stat='identity',position=position_fill(width=.9)) + theme(axis.text.x=element_text(angle=60,hjust=1)) 
+ggplot(data=counts,aes(x=Month,y=Freq ,fill=species.name))+geom_bar(stat='identity',position=position_stack(width=.9)) + theme(axis.text.x=element_text(angle=60,hjust=1)) 
+```
+
+Questions:
+1. Which species are migratory?
+2. Which species winter over? Which species summer over?
+3. Are the sexes about equally represented?  Does sex ratio depend on species?
+
+Do a bit of research on each of the species?  According to Wikipedia --- what questions are worth asking: migratory?  insect eating?  
+
+Is sex related to age?
+
+Do the species vary by time of day?
+
+Pick a month of the year.
+
+### Day 3
+
+Maps
+* Use `rworldmap` package for world maps
+* Perhaps `maps` or `ggplot2` for US maps
+
+```{r}
+FAO$fracUrban <- with(FAO, Urban.population/Total.Population...Both.sexes)
+sPDF <-joinCountryData2Map( FAO, joinCode="NAME",nameJoinColumn="Country")
+mapCountryData(sPDF, nameColumnToPlot="fracUrban")
+```
+
+```{r}
+library(maps)
+us <- map_data("state")
+world <- map_data("world")
+crimes <- data.frame(state=tolower(rownames(USArrests)),USArrests)
+crime_map <- merge(us, crimes, by.x="region", by.y="state")
+crime_map <- arrange(crime_map, group, order)
+ggplot( crime_map, aes(x=long, y=lat, group=group, fill=Assault)) + geom_polygon(color="black") + coord_map("polyconic")
+```

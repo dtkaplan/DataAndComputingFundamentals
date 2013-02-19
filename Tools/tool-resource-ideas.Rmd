@@ -25,6 +25,7 @@ As we find new things, let's list them here so that we have a record.
 * [Personal health-related data](http://gadgetwise.blogs.nytimes.com/2013/02/12/a-patch-that-monitors-the-body/)
 * [Insurance and big data](http://www.analyticbridge.com/profiles/blogs/excerpt-from-too-big-to-ignore)
 * [Identifying Persuadable Voters](http://www.thefiscaltimes.com/Articles/2013/01/21/The-Real-Story-Behind-Obamas-Election-Victory.aspx#page1)
+* [Watch your driving](http://www.teslamotors.com/blog/most-peculiar-test-drive) with the [original article](http://www.nytimes.com/2013/02/10/automobiles/stalled-on-the-ev-highway.html) and an [ombudsman's review](http://publiceditor.blogs.nytimes.com/2013/02/18/problems-with-precision-and-judgment-but-not-integrity-in-tesla-test/?hp)
 
 ### Graphics commentary
 

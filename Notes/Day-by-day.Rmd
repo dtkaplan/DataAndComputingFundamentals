@@ -1,0 +1,128 @@
+Day-by-Day Objectives for Data and Computing Fundamentals
+=====================
+
+Day 1
+--------------
+
+### In Class
+1. Create a "Hello, World" type markdown document
+    * Change the default Rmd document to include mosaic and DCF
+2. Projection operations on tables
+    * Read in a table already in a good form, e.g. area and population for many countries
+3. Simple case-by-case calculations
+    * e.g. population density
+4. Scatterplots
+    * Selection of variables and assignment to axes
+    * Log axes.  See [xkcd cartoon](http://xkcd.com/1162/)
+    * Attributes for points: shapes, colors
+    
+### Development Resources
+
+* Scatterplots: Cookbook for R<http://wiki.stdout.org/rcookbook/Graphs/Scatterplots%20(ggplot2)>
+* United Nations Food and Agriculture Organization (FAO) has a wide range of data broken down by year and country. Access it by going to <http://faostat3.fao.org/home/index.html#DOWNLOAD> Pick a category, select all countries and all years, choose "table" (not "pivot table") and download.  The result will be in narrow format.   
+
+### Exercises
+
+### Project Assignment
+
+Create a markdown document with some informative scatter plot.  Document the creation of the graph and interpret it.
+
+### DCF Software
+
+`mScatter` for interaction with scatter plots
+
+Day 2
+--------------
+1. Selection of cases
+    * Comparison operators and boolean combinations
+    * e.g., picking out a specific year from a larger data set
+2. Group operations
+    * counts of cases
+    * lists of levels, and data cleaning
+3. Graphics
+    * barplots
+
+
+### Activity
+
+Food consumption by country and type of food
+
+### DCF Software
+
+* `mBar` for interaction with bar charts
+
+### Development Resources
+
+* Barplots: Cookbook for R<http://wiki.stdout.org/rcookbook/Graphs/Bar%20and%20line%20graphs%20(ggplot2)/>
+
+### Basic Learning Objectives
+
+Putting titles on graphs, captions on tables, etc. e.g. have the students make a report with a summary table that's nicely formatted?  Insist that titles, axes, units all be on the graphics.
+
+### Data Sets
+* The UN Agricultural organization data in a wide format
+* The chocolate-shop sales data in a wide format.  See [this letter](https://mail.google.com/mail/u/0/?shva=1#inbox/13b76703fd8dec48) regarding Chris Curtis's data.  
+* Weather in Saint Paul.  [data site](http://cdo.ncdc.noaa.gov/qclcd/QCLCD)
+* Grades 
+* Body Shape
+* Weather in Australia: See [this write-up](http://onepager.togaware.com/Models.pdf) with [data available via Rattle](http://rattle.togaware.com/weather.csv)
+* The Christman bird banding data from Jerald Dosh (on Macalester Google Drive).  Species versus month, sex versus species, etc.  For later in the semester, have the students assemble a data set about body size, diet, etc. for each species and then see how this changes over the seasons.
+
+Day 3
+--------------
+1. Join
+2. Maps --- join the country data with the geographical data
+
+
+### Development Resources
+
+* Maps
+    * [In ggplot2](http://spatialanalysis.co.uk/2012/02/great-maps-ggplot2/)
+    * [plotting shapefiles](http://uce.uniovi.es/mundor/howtoplotashapemap.html)
+    * [New geoms in ggplot2](http://cloud.github.com/downloads/hadley/ggplot2/guide-col.pdf)
+    * `maps` and `mapdata` packages.  
+        * `maps` is pretty small and contains just a few maps: US, World low resolution.  See `example(maps)`
+        * `mapdata` is 25MB and contains higher resolution maps of the world, rivers, Japan, and China
+        
+### Exercises
+
+* Fix the species in the Ordway bird data.  Make a table that recodes the levels of species, join it with the data to get a corrected species for each bird.
+        
+Day 4
+-------------
+1. Basic Models, Fitting, and Summaries
+2. Graphics
+    * Line plots
+    * Overlaying fitted functions
+    * Smoothers
+    * Error bounds
+    
+
+
+Day 5
+-------------
+1. Density and Clustering
+2. Graphics
+    * Density plots
+    * Scatterplots with cluster ID
+    * Dendrograms
+    * Parallel coordinates
+
+* [Saint Paul Weather display](http://www.startribune.com/lifestyle/185479852.html) Discuss how a density plot might be more illuminating, for instance for snowfall and precip. 
+* [Population of the US](http://bmander.com/dotmap/index.html)
+
+Day 6
+-------------
+1. Dimension Reduction
+2. Classification modeling (e.g. CART)
+
+Day 7
+-------------
+1. Dealing with miscellaneous data formas
+2. Tidy data
+    * Narrow versus wide format
+
+### Development Resources
+
+* Narrow to wide (and *vice versa*): Cookbook for R<http://wiki.stdout.org/rcookbook/Manipulating%20data/Converting%20data%20between%20wide%20and%20long%20format/>
+

@@ -1,0 +1,159 @@
+Basic Syntax in R
+=======================
+
+```{r include=FALSE}
+require(DCF)
+```
+
+In English, "syntax" refers to the arrangement of words and phrases to create well formed sentences.  In computer languages, such as R, the syntax refers to the arrangement of symbols that creates legitimate commands.  Some basic syntax:
+
+
+### Atoms
+
+* Names of objects.  These start with a letter and contain letters and numbers (and periods and underscores, if you like).  Names with different capitalization are different.
+* Literals, or "strings".  These are characters enclosed in quotation marks, such as `'hello'` or `"Hello to you!"`.  You can use either single or double quotes, but you must use the same type of quotation to start and end the string.  Remember: strings are in quotes, whereas names of objects are not.
+* Numbers.  Things like `12.4` or `-12.7` or even `-2e-3`, using scientific notation.
+
+R also works with collections of atoms.  Think of these as being like molecules in chemistry.  
+
+
+### Function Invocation
+
+A function is something that takes one or more inputs and produces an output. There are many functions built in to R and you can create your own.  To invoke a function, give the function name followed by open and close parentheses.  Any inputs to the function are contained inside the parentheses, separated by parentheses.  Examples:
+```{r}
+date()
+sqrt(25)
+sin(3)
+seq(1,10)
+```
+
+### Assignment
+
+You can create a new object by using `=` to "assign" a value to a name.  Example:
+```{r}
+x = 17
+courseName = "DCF"
+```
+
+When you re-assign an object, the old value is forgotten.  Only the new value is kept.  For instance:
+```{r}
+x = 18
+```
+
+### Arithmetic
+
+In order to make arithmetic easy to read, the arithmetic functions are arranged so that you can invoke them using the traditional syntax.  Examples:
+```{r}
+3 + 4
+3*4
+3^2
+3/(1+5)
+```
+
+You're used to associating the `=` sign with arithmetic, but that is not the meaning of `=` in R.  Remember, `=` is about assigning a name to a value: creating an object. So expressions that are impossible in mathematics can be perfectly sensible in R and other computer languages:
+```{r}
+n = 10
+n = n + 1
+```
+
+### Named Arguments
+
+The arguments to a function are often given names so that you can refer to them explicitly.  This is particularly convenient when a function has multiple arguments and you want to make sure that you don't mix them up. 
+
+Example:
+```{r}
+seq(from=3,to=1)
+```
+
+Many functions, particularly graphics functions, have a large number of potential arguments.  You can use one or more of these to control the behavior of the function.
+
+```{r}
+seq(from=1,to=10,by=3)
+seq(from=1,to=100,length=3)
+```
+
+### Collections of Similar Things --- Vectors
+
+Often you will have a handful of things that you want to put together so that they become a single object: a collection. The `c()` function provides one way to put things together:
+```{r}
+c("April","January")
+c( seq(1,5), seq(5,1))
+```
+
+A "vector" is a collection of things that are all the same type, e.g. numbers or strings.  There are also collections of things that are not necessarily all the same type.  The most common one that you will use is a "data frame" --- see below.
+
+
+
+### Dialogs, Workspaces, Sessions
+
+When you have a well formed expression, you can instruct R to execute it.  In response, R will do one of several things:
+
+1. Print out the value that has been produced by the operation.
+2. Assignment: Create the object, silently.
+3. Produce a graphic, etc.
+4. Give an error
+
+The "dialog" is the sequence of your commands and R's command-by-command response.
+
+A "workspace" is the collection of objects created by your commands.
+
+A "session" is a sequence of commands and the objects created by them.  The commands in the console window create a session.  Each of your R/Markdown documents is an entirely separate session.
+
+#### Errors
+
+When you tell R to execute an expression that isn't well formed, R will not be able to carry out the operation.  Instead, R will "throw an error."  You'll see this as a printed error message. 
+```{r}
+fred + 3 = 2
+```
+
+The operation is not performed.
+
+#### Warnings
+
+Sometimes, the people who wrote functions have identified situations when the operation makes sense and is do-able, but where they suspect that you might not intend to do what you asked.  In such a situation, a warning is printed.  The operation was performed, but you have been warned!
+
+### Big Collections --- Data Frames
+
+You will be working with data in this course, arranged in a tabular format.  This kind of object is called a "data frame" in R.  
+
+#### Reading in Data
+
+There are two main commands that you will use to create data-frame objects.
+
+* The `fetchData()` takes the name of a data file and returns the data frame.  This is almost always assigned to a name for further use.
+```{r}
+cps = fetchData("CPS85")
+```
+* The `data()` command reads in a data file and --- different from `fetchData()` --- silently creates an object without your having to do any assignment.
+```{r}
+data("FAOsimple")
+```
+
+
+### Basic Operations to Display Data
+
+* Names of the variables: use `names()` with the data frame as an argument.
+```{r}
+names(cps)
+```
+* Number of rows: use `nrow()`
+```{r}
+nrow(cps)
+```
+* Show just a few lines:
+```{r}
+head(cps)
+```
+* Show a summary:
+```{r}
+summary(cps)
+```
+
+### HELP
+
+The `help()` function will show the documentation for a function or data set.  This is particularly helpful to remind you what are the arguments to a function and what they mean, or what are the variables and cases in a data frame.
+
+Try, `help(seq)`.
+
+
+

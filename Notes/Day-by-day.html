@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Day-by-Day Objectives for Data and Computing Fundamentals</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Day-by-Day Objectives for Data and Computing Fundamentals</h1>
+
+<h2>Day 1</h2>
+
+<h3>In Class</h3>
+
+<ol>
+<li>Create a &ldquo;Hello, World&rdquo; type markdown document
+
+<ul>
+<li>Change the default Rmd document to include mosaic and DCF</li>
+</ul></li>
+<li>Projection operations on tables
+
+<ul>
+<li>Read in a table already in a good form, e.g. area and population for many countries</li>
+</ul></li>
+<li>Simple case-by-case calculations
+
+<ul>
+<li>e.g. population density</li>
+</ul></li>
+<li>Scatterplots
+
+<ul>
+<li>Selection of variables and assignment to axes</li>
+<li>Log axes.  See <a href="http://xkcd.com/1162/">xkcd cartoon</a></li>
+<li>Attributes for points: shapes, colors</li>
+</ul></li>
+</ol>
+
+<h3>Development Resources</h3>
+
+<ul>
+<li>Scatterplots: Cookbook for R<a href="http://wiki.stdout.org/rcookbook/Graphs/Scatterplots%20(ggplot2)">http://wiki.stdout.org/rcookbook/Graphs/Scatterplots%20(ggplot2)</a></li>
+</ul>
+
+<h3>Exercises</h3>
+
+<h3>Project Assignment</h3>
+
+<p>Create a markdown document with some informative scatter plot.  Document the creation of the graph and interpret it.</p>
+
+<h2>Day 2</h2>
+
+<ol>
+<li>Selection of cases
+
+<ul>
+<li>Comparison operators and boolean combinations</li>
+<li>e.g., picking out a specific year from a larger data set</li>
+</ul></li>
+<li>Group operations
+
+<ul>
+<li>counts of cases</li>
+<li>lists of levels, and data cleaning</li>
+</ul></li>
+<li>Graphics
+
+<ul>
+<li>barplots</li>
+</ul></li>
+</ol>
+
+<h3>Development Resources</h3>
+
+<ul>
+<li>Barplots: Cookbook for R<a href="http://wiki.stdout.org/rcookbook/Graphs/Bar%20and%20line%20graphs%20(ggplot2)/">http://wiki.stdout.org/rcookbook/Graphs/Bar%20and%20line%20graphs%20(ggplot2)/</a></li>
+<li>Narrow to wide (and <em>vice versa</em>): Cookbook for R<a href="http://wiki.stdout.org/rcookbook/Manipulating%20data/Converting%20data%20between%20wide%20and%20long%20format/">http://wiki.stdout.org/rcookbook/Manipulating%20data/Converting%20data%20between%20wide%20and%20long%20format/</a></li>
+</ul>
+
+<h3>Basic Learning Objectives</h3>
+
+<p>Putting titles on graphs, captions on tables, etc. e.g. have the students make a report with a summary table that&#39;s nicely formatted?  Insist that titles, axes, units all be on the graphics.</p>
+
+<h3>Data Sets</h3>
+
+<ul>
+<li>The UN Agricultural organization data in a wide format</li>
+<li>The chocolate-shop sales data in a wide format.  See <a href="https://mail.google.com/mail/u/0/?shva=1#inbox/13b76703fd8dec48">this letter</a> regarding Chris Curtis&#39;s data.<br/></li>
+<li>Weather in Saint Paul.  <a href="http://cdo.ncdc.noaa.gov/qclcd/QCLCD">data site</a></li>
+<li>Grades </li>
+<li>Body Shape</li>
+<li>Weather in Australia: See <a href="http://onepager.togaware.com/Models.pdf">this write-up</a> with <a href="http://rattle.togaware.com/weather.csv">data available via Rattle</a></li>
+</ul>
+
+<h2>Day 3</h2>
+
+<ol>
+<li>Join</li>
+<li>Maps &mdash; join the country data with the geographical data</li>
+</ol>
+
+<h3>Development Resources</h3>
+
+<ul>
+<li>Maps
+
+<ul>
+<li><a href="http://spatialanalysis.co.uk/2012/02/great-maps-ggplot2/">In ggplot2</a></li>
+<li><a href="http://uce.uniovi.es/mundor/howtoplotashapemap.html">plotting shapefiles</a></li>
+<li><a href="http://cloud.github.com/downloads/hadley/ggplot2/guide-col.pdf">New geoms in ggplot2</a></li>
+<li><code>maps</code> and <code>mapdata</code> packages.<br/>
+
+<ul>
+<li><code>maps</code> is pretty small and contains just a few maps: US, World low resolution.  See <code>example(maps)</code></li>
+<li><code>mapdata</code> is 25MB and contains higher resolution maps of the world, rivers, Japan, and China</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2>Day 4</h2>
+
+<ol>
+<li>Basic Models, Fitting, and Summaries</li>
+<li>Graphics
+
+<ul>
+<li>Line plots</li>
+<li>Overlaying fitted functions</li>
+<li>Smoothers</li>
+<li>Error bounds</li>
+</ul></li>
+</ol>
+
+<h2>Day 5</h2>
+
+<ol>
+<li>Density and Clustering</li>
+<li>Graphics
+
+<ul>
+<li>Density plots</li>
+<li>Scatterplots with cluster ID</li>
+<li>Dendrograms</li>
+<li>Parallel coordinates</li>
+</ul></li>
+</ol>
+
+<h2>Day 6</h2>
+
+<ol>
+<li>Dimension Reduction</li>
+<li>Classifcation modeling</li>
+</ol>
+
+<h2>Day 7</h2>
+
+<ol>
+<li>Dealing with miscellaneous data formas</li>
+<li>Tidy data
+
+<ul>
+<li>Narrow versus wide format</li>
+</ul></li>
+</ol>
+
+</body>
+
+</html>
+
