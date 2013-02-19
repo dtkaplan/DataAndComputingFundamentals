@@ -55,7 +55,11 @@ Is there a relationship between BMI and age?  Where do the people with diabetes 
 
 Is cholesterol level a good predictor of the development of diabetes?
 
-#### QUESTION
+#### TASK: 
+
+Calculate body-mass index according to the formula $\frac{m}{h^2}$ and see how it corresponds to the body mass index in the data.  (Hint: You can plot out one versus the other.)
+
+#### TASK:
 
 Come up with a hypothesis of your own and address it with a graphic.
 

@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Data and Computing Fundamentals</title>
+<title>Constructing the Simple Area/Population file</title>
 
 <style type="text/css">
 body, td {
@@ -178,52 +178,40 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h3>Data and Computing Fundamentals</h3>
+<h1>Constructing the Simple Area/Population file</h1>
 
-<h1>Week 1: In-Class Data Exploration</h1>
+<p>The raw data are from the UN Food and Agriculture Organization.  In this document, the format is changed to make them a standard table so that students can work with the data effectively from the start.</p>
 
-<p>Read the the simplified version of the United Nations Food and Agriculture Organization dataset using</p>
+<p>Use the <code>reshape2</code> package</p>
 
-<pre><code class="r">data(FAOsimple)
+<p>Read in the &ldquo;raw&rdquo; data:</p>
+
+<pre><code class="r">pop &lt;- read.csv(&quot;CountryPopulation.csv&quot;)
+area &lt;- read.csv(&quot;CountryArea.csv&quot;)
 </code></pre>
 
-<p>Look at the names of the variables and make sure you understand what is the meaning of each of them.</p>
+<p>Create a population dataframe that has separate columns for each population variable:</p>
 
-<p>You&#39;re going to be making scatter plots using mScatter(). To generate the graphics in this document, remember to cut-and-paste the command output of mScatter() into a fenced R command in this document, e.g.</p>
+<pre><code class="r">goo &lt;- dcast(pop, Country + Year ~ Element, value.var = &quot;Value&quot;)
+</code></pre>
 
-<pre>
-ggplot(data=FAOsimple)+geom_point(aes(x=Total.Population...Both.sexes,y=Agricultural.area))
-</pre>
+<p>Similarly, create an area dataframe that has separate columns for each area variable:</p>
 
-<h4>QUESTION:</h4>
+<pre><code class="r">foo &lt;- dcast(area, Country + Year ~ Item, value.var = &quot;Value&quot;)
+</code></pre>
 
-<p>Is there a clear relationship between area of a country and the total population?</p>
+<p>Put them into one, wider dataframe and fix the names:</p>
 
-<h4>QUESTION:</h4>
+<pre><code class="r">FAO &lt;- merge(foo, goo)
+nms &lt;- names(FAO)
+nms &lt;- sub(&quot;[[:space:]]+$&quot;, &quot;&quot;, nms)
+names(FAO) &lt;- nms
+</code></pre>
 
-<p>Is there a clear relationship between the fraction of a country&#39;s total land that is arable and the fraction of a country&#39;s total population that is engaged in agricultural work?</p>
+<p>Write the data, just for 2009:</p>
 
-<h4>TASK:</h4>
-
-<p>Construct new variables</p>
-
-<ul>
-<li>Calculate population density
-
-<ul>
-<li>population per area</li>
-<li>population per agricultural area</li>
-</ul></li>
-<li>Add up the male and female population and verify that it matches total population.  (You can make a new variable and plot it against the original total population.)</li>
-</ul>
-
-<h4>TASK:</h4>
-
-<p>Pick out some variables that you think ought to be related.  Describe the relationship you hypothesize and then demonstrate whether or not your hypothesis is consistent with the data.</p>
-
-<h4>TASK:</h4>
-
-<p>Show a situation where the use of logarithmic axes helps to illustrate a relationship.</p>
+<pre><code class="r">write.csv(file = &quot;FAO-simple.csv&quot;, subset(FAO, Year == 2009), row.names = FALSE)
+</code></pre>
 
 </body>
 

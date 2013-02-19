@@ -1,0 +1,66 @@
+Constructing the Simple Area/Population file
+=============================
+
+The raw data are from the UN Food and Agriculture Organization.  In this document, the format is changed to make them a standard table so that students can work with the data effectively from the start.
+
+Use the `reshape2` package
+```{r include=FALSE}
+require(reshape2)
+```
+
+### Population and Area
+
+Read in the "raw" data:
+```{r}
+pop <- read.csv("CountryPopulation.csv")
+area <- read.csv("CountryArea.csv")
+```
+
+Create a population dataframe that has separate columns for each population variable:
+```{r}
+goo <- dcast( pop, Country + Year ~ Element, value.var="Value")
+```
+
+Similarly, create an area dataframe that has separate columns for each area variable:
+```{r}
+foo <- dcast(area, Country+Year ~ Item, value.var="Value")
+```
+
+Put them into one, wider dataframe and fix the names:
+```{r}
+FAO <- merge(foo,goo)
+nms <- names(FAO)
+nms <- sub('[[:space:]]+$', '', nms)
+names(FAO) <- nms
+```
+
+Write the data, just for 2009:
+```{r}
+write.csv(file="FAO-simple.csv", subset(FAO,Year==2009), row.names=FALSE)
+```
+
+### Food Supply
+
+Read in the data files.  The raw files, downloaded in bulk mode from the UN FAO, should be opened in Excel and saved as CSV files.  
+
+An example has been saved as `foobar.csv`
+
+```{r}
+directory <- "FAO_DATA/"
+area_names <- c("E_Africa_1","E_Americas_1",
+                 "E_Asia_1","E_Europe_1", "E_Oceania_1")
+names <- paste("FoodSupply_",
+               rep(c("Crops","LivestockFish"),each=length(area_names)),"_",sep="")
+names <- paste(names, area_names,
+               ".csv",sep="")
+res = NULL
+for (k in names) {
+  raw <- read.csv(paste(directory,k,sep=""))
+  raw2009 <- raw[,c(1:8,(length(raw)-1))]
+  res <- rbind(res, raw2009)
+}
+foo <- dcast(res, Country+Element~Item, value.var="X2009",
+             fun.aggregate=mean)
+```
+
+Delete the `(Total)` columns?

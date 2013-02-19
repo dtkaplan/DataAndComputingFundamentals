@@ -130,24 +130,10 @@ Elaborate scatter plots with `mScatter`:
 
 ### Larger data: `FAOsimple` country data
 
-Scaling and logarithms
+How to make scatter.
 
-Tell a story with the FAO data.
+Scaling and logarithms.
 
+Work through the [in-class activity](http://rpubs.com/dtkaplan/DCF2013-Day1-in-class).
 
-### Out of class: `nhanes` data
-
-Try to tell a story about body shape using the 33,000 people in the nhanes data.  Pay attention to your failures: the scatter-plot format isn't well suited for everything.  Make note of ways that the scatter plot isn't informative for a hypothesis that you want to test.  We'll try again later in the course with new techniques that we'll learn.
-
-### Exercises
-
-Create a document "Week-1-Exercises.Rmd" and write up your work there.
-
-#### Creating New Variables
-
-* Calculate population density
-    * population per area
-    * population per agricultural area
-* Add up the male and female population and verify that it matches total population.  (You can make a new variable and plot it against the original total population.)
-* Calculate body-mass index according to the formula $\frac{m}{h^2}$ and see how it corresponds to the body mass index in the data.  (Hint: You can plot out one versus the other.)
 

@@ -30,6 +30,15 @@ Is there a clear relationship between the fraction of a country's total land tha
 
 #### TASK:
 
+Construct new variables
+* Calculate population density
+    * population per area
+    * population per agricultural area
+* Add up the male and female population and verify that it matches total population.  (You can make a new variable and plot it against the original total population.)
+
+
+#### TASK:
+
 Pick out some variables that you think ought to be related.  Describe the relationship you hypothesize and then demonstrate whether or not your hypothesis is consistent with the data.
 
 #### TASK:
