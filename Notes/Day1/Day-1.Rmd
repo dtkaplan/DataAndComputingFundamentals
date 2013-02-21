@@ -5,8 +5,9 @@ Day 1
 
 An [article about us in the Macalester Alumni magazine](http://www.macalester.edu/news/2013/01/why-big-data-is-a-big-deal).
 
-> Teaching the Grammar of Data
-Twenty years ago, science students could get by with a working knowledge of a spreadsheet program. Those days are long gone, says Danny Kaplan, DeWitt Wallace Professor of Mathematics and Computer Science. “Excel isn’t going to cut it,” he says. “In today’s world, students can’t escape big data. Though it won’t be easy to teach it, it will only get harder as they move into their professional training.”
+> **Teaching the Grammar of Data**
+
+> Twenty years ago, science students could get by with a working knowledge of a spreadsheet program. Those days are long gone, says Danny Kaplan, DeWitt Wallace Professor of Mathematics and Computer Science. “Excel isn’t going to cut it,” he says. “In today’s world, students can’t escape big data. Though it won’t be easy to teach it, it will only get harder as they move into their professional training.”
 
 > To that end, Kaplan and computer science professor Libby Shoop have developed a one-credit class called Data Computation Fundamentals, which is being offered beginning this semester. Though Kaplan doesn’t pretend the course can address all the complexities of specific software packages, he does hope it will provide a framework that students can apply when they come across databases or data-reliant programs in biology, chemistry, and physics. “We believe we can give students that grammar of data that they need to use these modern capabilities,” he says.
 
@@ -135,13 +136,12 @@ Basic operations on data frames: examples with small data sets, CPS85, KidsFeet,
     * head
     * sample
     * Indexing --- before the comma
-
 * transformation of variables on a case-by-case basis within a data frame.
     * Heads up:
         * Week 2: Combination of multiple cases
         * Week 3: Combination of multiple data frames
     * Scaling and rates (dividing one variable by another)
-    * Use of transformations, esp. logarithms
+    * Use of transformations, esp. logarithms --- See [xkcd cartoon](<http://xkcd.com/1162/)
 
 ### Today's graphics modality: The scatter plot
 
@@ -168,10 +168,12 @@ Elaborate scatter plots with `mScatter`:
 
 ### Larger data: `FAOsimple` country data
 
-How to make scatter.
+How to make scatterPlots.
+
+Activity and exercises on syntax.
 
 Scaling and logarithms.
 
-Work through the [in-class activity](http://rpubs.com/dtkaplan/DCF2013-Day1-in-class).
+Work through the in-class activity.
 
 

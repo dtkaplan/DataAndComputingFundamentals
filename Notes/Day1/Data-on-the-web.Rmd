@@ -1,0 +1,17 @@
+```{r include=FALSE}
+require(DCF)
+options(na.rm=TRUE)
+```
+
+### Data and Computing Fundamentals
+
+
+## Data on the Web
+
+Look at the various data sets available at <http://www.gapminder.org/data/>.
+
+1. Based on the names of the data sets available, construct several hypotheses that you would like to test using this sort of country-by-country data.  Later in the course, you'll learn how to assemble such data in a form you can use for your analysis.
+2. Look at one of the data sets (by pressing the little "View" magnifying-glass icon).  What are the cases?  What are the variables?
+
+
+

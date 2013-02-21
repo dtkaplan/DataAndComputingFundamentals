@@ -1,0 +1,41 @@
+```{r include=FALSE}
+require(DCF)
+options(na.rm=TRUE)
+```
+
+### Data and Computing Fundamentals
+
+Data on body shape and diabetes are contained in the `nhanes` dataframe.
+
+```{r eval=FALSE}
+data(nhanes)
+```
+
+For a description of the variables, see
+```{r eval=FALSE}
+help(nhanes)
+```
+
+#### QUESTION: 
+
+Describe the relationship between height and weight.  Is there reason to think that it's different for the two sexes?
+
+#### QUESTION
+
+Describe the relationship between weight and BMI.  Is it different from the two sexes?  Where do the people with diabetes show up?
+
+#### QUESTION
+
+Is there a relationship between BMI and age?  Where do the people with diabetes show up?
+
+#### QUESTION
+
+Is cholesterol level a good predictor of the development of diabetes?
+
+#### TASK: 
+
+Calculate body-mass index according to the formula $\frac{m}{h^2}$ and see how it corresponds to the body mass index in the data.  (Hint: You can plot out one versus the other.)
+
+#### TASK:
+
+Come up with a hypothesis of your own and address it with a graphic.
