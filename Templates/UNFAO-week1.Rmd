@@ -1,0 +1,53 @@
+```{r include=FALSE}
+require(DCF) # leave this chunk alone: boilerplate
+```
+
+United Nations Food & Agriculture Organization: Week 1
+=======================
+
+### Your Name Goes Here
+
+
+The data on area, land use, and population are from the UN FAO records for 2009.
+```{r}
+data(FAOsimple) # Read in the data: boilerplate
+```
+
+#### Editing this document
+
+The point of this template is to give you a working document that you can modify in steps to create your final report.  Of course you will want to delete the template contents and substitute your own.
+
+R chunks labelled "boilerplate" should be left alone.
+
+
+### Techniques
+#### Creating a New Variable
+
+You can make new variables by combining existing variables.  Here's the fraction of the population engaged in agricultural work, a simple fraction:
+```{r}
+FAOsimple = transform(FAOsimple,
+  popAgFrac=Agricultural.population/Total.Population...Both.sexes)
+```
+
+#### Making a Simple Scatter Plot
+
+Here's an example of a plot showing the UN FAO data:
+```{r fig.width=8,fig.height=4,warning=FALSE}
+ggplot(data=FAOsimple)+
+  geom_point(aes(x=Land.area,y=Agricultural.area),alpha=.5)+
+  aes(color=popAgFrac,
+      size=log10(Total.Population...Both.sexes))+
+  scale_x_log10()+scale_y_log10() 
+```
+
+This graph of each country's agricultural area versus total land area shows some aspects of the relationship between land use and population.
+* There is a sharp diagonal boundary to the cloud of points because a country's agricultural area cannot be larger than its land area.  
+* Countries with an agricultural area much smaller than the land area tend to have only a small fraction of the population in agriculture.  
+* Countries with agricultural area about the same as the land area (near the diagonal) tend might have either a small or a large fraction of the population in agriculture.
+
+
+Once you have a basic plot, you can easily substitute names of new variables for old, without having to go through the user interface.
+
+
+----------------------
+Compiled on `r I(date())`
