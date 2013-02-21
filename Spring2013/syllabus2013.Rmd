@@ -23,6 +23,8 @@ Syllabus
 
 #### Danny Kaplan and Libby Shoop, instructors
 
+[Assignment Discussion Forum](https://moodle.macalester.edu/mod/forum/view.php?id=17817) on Moodle.
+
 To update the DCF software: copy and paste these commands into your R console.
 ```{r eval=FALSE}
 require(devtools) 
@@ -57,16 +59,19 @@ require(DCF)
 
 #### Topics: 
 * Welcome `r I(gitHTML("Notes",nm="Day-1",folder="Notes/Day1/"))`
-* Introduction to R and R/Markdown
+* Introduction to R and R/Markdown. 
 * The structure of data tables
 * Scatter plots
 
 #### In-Class
-* R Syntax
+* R Syntax `r I(gitHTML("Notes",nm="syntax-notes",folder="Notes/Day1/"))`
 * Country-by-country size and population data
 
-#### Out-of-Class
+#### Out of Class
 * Body shape and diabetes
+
+#### Background
+* [A cartoon about logarithms](http://xkcd.com/1162/)
 
 #### To Hand in
 Topic | Instructions | Template | Hand in on Moodle
@@ -91,6 +96,9 @@ Body shape data | `r I(gitHTML(nm="body-shape", folder="Notes/Day1/"))` | `r I(t
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
 
+-------------
+
+
 ### Week 3
 
 <img src="Images/world-map.png" width=100 style="float:right;"/>
@@ -102,6 +110,10 @@ Topic | Instructions | Template | Hand in on Moodle
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
+
+
+--------------
+
 
 ### Week 4
 
