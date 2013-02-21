@@ -47,6 +47,11 @@ Day 2
 
 Food consumption by country and type of food
 
+### Exercises
+
+* What fraction of the population lives in countries smaller than XXX?
+* What fraction of the population lives in countries with an population/arable land fraction bigger than YYY?
+
 ### DCF Software
 
 * `mBar` for interaction with bar charts
