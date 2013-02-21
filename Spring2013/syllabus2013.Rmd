@@ -7,7 +7,7 @@ template=function(label="Rmd Template",nm,folder){
 }
 
 handin=function(name){
-  paste("[hand in on Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=",Handin[[name]],")",sep="")
+  paste("[Moodle link](https://moodle.macalester.edu/mod/assign/view.php?id=",Handin[[name]],")",sep="")
 }
 Handin=list()
 Handin$W1syntax=17814 
@@ -53,6 +53,8 @@ require(DCF)
 
 ### Week 1
 
+<img src="Images/Scatter.png" width=300 style="float:right;"/>
+
 #### Topics: 
 * Welcome `r I(gitHTML("Notes",nm="Day-1",folder="Notes/Day1/"))`
 * Introduction to R and R/Markdown
@@ -69,11 +71,86 @@ require(DCF)
 #### To Hand in
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|-------------------
-Exercises on syntax |  `r I(gitHTML(nm="syntax-exercises", folder="Notes/Day1/"))` | `r I(template(nm="syntax-exercises",folder="Notes/Day1/"))` :| `r I(handin("W1syntax"))`
+Exercises on syntax |  `r I(gitHTML(nm="syntax-exercises", folder="Notes/Day1/"))` | `r I(template(nm="syntax-exercises",folder="Notes/Day1/"))` | `r I(handin("W1syntax"))`
 Country data on the web | `r I(gitHTML(nm="Data-on-the-web", folder="Notes/Day1/"))` | |   `r I(handin("W1web"))` 
 Country-by-country data | `r I(gitHTML(nm="in-class-activity", folder="Notes/Day1/"))` | `r I(template(nm="UNFAO-week1",folder="Templates/"))` | `r I(handin("W1country"))` 
 Body shape data | `r I(gitHTML(nm="body-shape", folder="Notes/Day1/"))` | `r I(template(nm="body-shape-template",folder="Notes/Day1/"))` | `r I(handin("W1body"))` 
 
 ----------------
 
+
 ### Week 2
+
+<img src="Images/bird-month.png" width=100 style="float:right;"/>
+
+### Topics
+* Groupwise analysis
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
+
+### Week 3
+
+<img src="Images/world-map.png" width=100 style="float:right;"/>
+
+### Topics
+* Joining tables together
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
+
+### Week 4
+
+<img src="Images/utils-model.png" width=100 style="float:right;"/>
+
+#### Topics
+* Model functions and fitting
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
+
+
+----------
+### Week 5
+
+<img src="Images/density.png" width=100 style="float:right;"/>
+
+#### Topics 
+* Density and clustering
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
+
+----------
+### Week 6
+
+<img src="Images/dendrogram.png" width=100 style="float:right;"/>
+
+#### Topics
+* Classification & dimension reduction
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
+
+----------
+### Week 7
+
+<img src="Images/Gift Wrapped Box4LR.jpg" width=100 style="float:right;"/>
+
+#### Topics
+* Wrapping things up!
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
