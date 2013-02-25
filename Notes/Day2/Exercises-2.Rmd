@@ -1,0 +1,54 @@
+Exercises: Week 2
+=======================
+
+```{r include=FALSE}
+require(DCF)
+```
+
+**Still being developed**
+
+### Exercise 1
+
+The table below was published as part of the [CBMS survey](http://www.ams.org/profession/data/cbms-survey/cbms) of college-level mathematics enrollment in the US.  Like many published tables intended for the human reader it does not follow the strict case/variable format.
+
+![CBMS](math-enrollments.png)
+
+Create a new Google Spreadsheet that contains the information from the table.  Here's a stub of a table to show you one possible format.  Make sure not to include the "totals" in your data table.  Those are quantities that can be determined from the other data in the table.
+
+Field | Subject | Organization | Year | Enrollment
+------|---------|--------------|------|------------
+Math  | Precollege | Math Dept | 1995 | 222
+Math  | Introductory | Math Dept | 1995 | 613
+
+* Levels for **Field**: Math, Stats
+* Levels for **Year**: 1995, 2000, 2005, 2010
+* Levels for **Subject**: Precollege, Introductory, Calculus, Advanced, Other, Elementary, Upper
+* Levels for **Organization**: Math Dept, Stat Dept, Two-Year
+
+
+Read in your spreadsheet.  Make sure that you haven't made any mistakes in your entries for the different variables: the levels should match those given above.
+
+**(a)** Use `subset` to select out the cases that correspond to the total 1469 given in the table.  Verify that this total is correct. 
+
+**(b)** Use `subset` and `groupBy` to confirm the totals 1384, 1273, 1580, 1887
+
+**(c)** Find the total enrollments in each year.
+
+**(d)** Find the total enrollments in each year, broken down by Field
+
+**(d)** Find the total enrollments in each year, broken down by Subject (lumping all the organizations together)
+
+------------
+
+### Exercise 2
+
+Grouping
+
+
+------------
+
+### Exercise 3
+
+Making barplots from the enrollment data
+
+

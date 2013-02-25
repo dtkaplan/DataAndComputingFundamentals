@@ -1,0 +1,95 @@
+Taking a Defined Subset of Cases
+================
+
+
+```{r include=FALSE}
+options(na.rm=TRUE)
+require(DCF)
+```
+
+It often happens that you will be interested in only some of the cases from a data frame.  Some examples:
+
+* You believe that some of the data is erroneous and want to exclude those cases.
+* You're interested in only some of the groups represented in the dataframe, e.g. the southern states, or the elderly.
+
+In terms of the rectangular arrangement of data in data frames, taking a subset of cases means making a selection of rows.  The variables remain unaltered, so the result of taking a subset is another data frame that has the same columns has the original.
+
+The basic operator for taking subsets is, sensibly, `subset()`.  It takes as arguments a data frame and a criterion for making the selection.
+
+For instance, consider the NHANES-III data on body shape.  
+```{r} 
+data(nhanes)
+nrow(nhanes)
+```
+```{r results="hide"}
+names(nhanes)
+```
+```{r echo=FALSE}
+head(names(nhanes))
+```
+
+Each case is a person. Both males and females are included in the data, with the `sex` variable telling who is who:
+```{r}
+tally(~sex, data=nhanes)
+```
+Unfortunately, `sex` was encoded numerically, so you'll have to look in the documentation to find the meaning of the values.  (You can do this with `help(nhanes)`.)  It turns out that 1 stands for males, 2 for females.
+
+Suppose, for some reason, you just want to study females.  Here's how to construct a new data frame containing only the females:
+```{r}
+females = subset(nhanes, sex==2)
+```
+
+Some things to notice about this simple-looking statement:
+
+1. The criterion for selection, `sex==2`, involves the "test for equality" operator, `==`, consisting of two, adjacent equal signs.  Testing for equality, `==`, with its two characters is a completely different operation than assignment, `=`, which has just one.  There is no relationship between the two.
+2. The resulting object, that is, the output of `subset` is being stored in an object.  In this example, the object is called `females` because the name is descriptive and mnemonic.  But you can use any name you like.
+
+### Testing for Equality
+
+You're used to declarative statements in algebra, such as $latex x=2$.  In a test for equality, `x==2`, the value of `x` is compared to the value 2.  If `x` is a collection, each element of the collection is separately compared to `2`.  The returned value is either `TRUE` or `FALSE`.  For example:
+```{r}
+x = c(3,2,1,2,4)  # assignment
+x == 2   # test for equality
+```
+Some of the values in `x` are equal to 2, some aren't.  That's what the result says.
+
+In the statement `subset(nhanes, sex==2)`, each component of the `sex` variable is being compared to 2.  Only those cases for which the result is `TRUE` are included in the subset being returned.
+
+You can also test for equality between character strings.  For instance, in the `OrdwayBirds` data set, the `Sex` variable is encoded as characters:
+```{r}
+data(OrdwayBirds)
+tally( ~ Sex, data=OrdwayBirds)
+```
+Such character labels are helpful because they remind you at a glance what their meaning is.  ("U" stands for unknown. Evidently, it's not always easy to tell what the sex of a bird is.)
+
+To construct a subset of female birds, the statement would look like this:
+```{r}
+birdsf = subset(OrdwayBirds, Sex=="F")
+```
+
+
+### Levels of Categorical Variables
+
+`levels` command
+
+`%in%` for broader membership.
+
+Negation.
+
+
+Put in `drop=TRUE`.  Explain how this is a single equal sign and is assigning the value TRUE to the input `drop`.  
+
+### Other Numerical Comparisons
+
+Less than, greater than, 
+
+Intervals
+
+## When NOT to take subsets
+
+When what you want can be done by one of the grouping operators.  These allow you to look at multiple groups at once.
+```{r}
+mean(wgt ~ sex, data=nhanes)
+median(hgt ~ round(bmi), data=nhanes)
+groupBy(data=nhanes,by=sex, roundness=mean( wst/hgt ))
+```

@@ -1,0 +1,49 @@
+Exercises for Week 2: Answer Template
+========================================================
+
+```{r include=FALSE}
+require(DCF)
+```
+
+### Your Name Here
+
+
+---------------------
+
+### Exercise 1
+
+Copy the URL to your Google Doc here:
+```{r}
+myURL="https://docs.google.com/spreadsheet/pub?key=0Am13enSalO74dHJHcjktU3k3NFFXblpMQ25WcDdnMVE&single=true&gid=0&output=csv"
+# remember to change this to your own URL!
+```
+
+**You can use this command just as is.  It will read in your spreadsheet once youve set the variable `myURL` appropriately. If you don't like the name `mydat`, feel free to change it.
+```{r}
+mydat = fetchGoogle(myURL)
+head(mydat)
+```
+
+#### Problem (a)
+
+*In this and each of the following, put in an R command that takes the appropriate subset of your data and sums the subset up as required. YOU CAN DELETE THIS LINE.*
+```{r}
+# Your command here
+```
+
+#### Problem (b)
+
+#### Problem ( c)
+
+#### Problem (d)
+
+----------------------
+
+### Exercise 2
+
+
+
+
+----------------------
+
+Compiled on `r I(date())`

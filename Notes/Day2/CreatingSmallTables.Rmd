@@ -1,0 +1,28 @@
+Creating Small Data Tables by Hand
+=======================
+
+```{r include=FALSE}
+require(DCF)
+```
+
+It sometimes happens that you have a small set of data that you need to enter into the computer.  This might be because you've done a small study, or because you have some auxiliary data that you need to help with a larger study.  In either event, for entering small data sets, a spreadsheet is an appropriate tool.
+
+We'll use Google Spreadsheets as our tool for data entry.  In addition to being available for free, it's effective for collaborating among several people.
+
+### Publishing a Google Spreadsheet to R.
+
+For each spreadsheet, you need to generate a URL that instructs Google to publish the spreadsheet on demand, so that R can read the spreadsheet.  This is a one-time operation that will continue to work even if you add more data to the spreadsheet.
+
+1. In Google spreadsheets,  choose `File/Publish to the web`
+2. Start publishing, checking “Automatically republish when changes are made”
+3. Under “Get a link to the published data” Select “CSV” Sheet 1 All cells
+4. Copy the link. You'll need it in a bit.
+
+Now, to read the spreadsheet in to R …
+1. Paste the link from step (5) into R as a quoted argument to fetchGoogle() command, like this
+
+```{r results="hide",messages=FALSE,warning=FALSE,error=FALSE}
+mydat = fetchGoogle("https://docs.google.com/spreadsheet/pub?key=0Am13enSalO74dHJHcjktU3k3NFFXblpMQ25WcDdnMVE&single=true&gid=0&output=csv")
+```
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/8ZA4os9MMac?rel=0" frameborder="0" allowfullscreen></iframe>

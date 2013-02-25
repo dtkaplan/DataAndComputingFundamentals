@@ -1,0 +1,109 @@
+Exploring Birdlife at Ordway
+==============================
+
+```{r include=FALSE}
+require(DCF)     # boilerplate
+options(na.rm=TRUE)
+```
+
+### Introduction
+
+Macalester owns and manages the Katharine Ordway Natural Study Area, a 278 acre nature preserve in Inver Grove Heights, Minnesota.  Over many years, the resident manager has recorded data on birds trapped for banding and release.  These data were kept in a notebook, but are now being entered into computer-readable format by the current Ordway manager, Jerald Dosch.
+
+The data are still incomplete and in a raw format that includes many errors.  This is not unusual.  To help you get started with the data, we've done a bit of data cleaning and simplification and stored a subset of the data for your analysis.  Here are the simplified data:
+```{r cache=TRUE}
+birdsAll = fetchData("DCF/OrdwaySimple.csv")
+```
+
+Some important variables:
+* Year, Day, Month of capture
+* Hour.of.capture
+* species.name
+* Sex
+* Age --- the names are somewhat descriptive.
+* Weight (in grams)
+* Tail.length (in mm)
+* Wing.chord (in mm)
+
+One of the problems with the data is that species were recorded inconsistently --- misspellings, slightly different names, etc. The result is that there appears to be a very large number of different species, many of which have very few cases. (70 of the species have just one bird listed as the species, 122 have 10 or fewer birds. Just 11 species have 200 or more birds.)
+
+In later weeks, we'll develop a systematic approach that will allow you to fix this, but for now we've adopted a simple expedient, creating a new variable that gives, for each case, the number of other cases with the exact same string for species name.  This variable is 
+* species.count
+
+You can use `species.count` to select out a subset of the cases from those species with the highest counts.  For instance:
+```{r}
+birdsMajor = droplevels(subset(birdsAll, species.count > 200))
+```
+
+------------------------
+
+### Analysis
+
+Your task is to make appropriate graphics to address the questions.  Some questions are easy and have obvious answers, some questions are subtle and can be approached in different ways.  
+
+As you make the graphics, there may be refinements that you want to make but don't know how to do.  Write these in each section, perhaps labeled with **Refinements** and making a bullet-point list.  We'll return to these later when we have new techniques.
+
+The main functions you are going to use are `subset()`, `groupBy()`, and `mBar()`.  Some problems call for scatter plots.
+
+Remember that you are unlikely to want to make a bar plot of every case in the data.  Almost always, your bar plots will relate to the result of some grouping operation.
+
+
+Remember that you can construct a plotting expression with `mBar()` and then cut and paste the expression here to generate the plot.  For instance:
+
+```{r}
+birdsSome = droplevels(subset(birdsAll, species.count > 100))
+w = groupBy( birdsSome, by=species.name, Weight=mean(Weight))
+ggplot(data=w,aes(x=reorder(species.name,Weight),y=Weight ))+geom_bar(stat='identity',position=position_stack(width=.9)) + theme(axis.text.x=element_text(angle=60,hjust=1))+xlab("Species")+ylab("Weight (grams)") 
+```
+
+#### Problem 1
+
+How many total birds per month?
+
+*Your plot here*
+
+
+#### Problem 2
+
+How does the weight differ by species?  Wing chord, tail length?  Make a scatter plot where the position is weight and wing chord, color is tail length, and the diameter is the standard deviation of weight.
+
+*Your plots and commentary here*
+
+Make a similar scatter plot of the individual birds (leaving off the standard deviation, which doesn't apply to an individual bird).  Comment on the relative merits of the two kinds of plots.
+
+*Your plots and commentary here*
+
+#### Problem 3
+
+Make a bar plot of mean weight versus species.  Order the bars so that it's easy to see which species are heavy and which light.
+
+*Your analysis and commentary here*
+
+#### Problem 4
+
+Make a bar plot of mean weight versus species (for the most common species), breaking it down according to `Age`.  The goal of the graph should be to see if different species have the different patterns of weight gain with age.
+
+*Your analysis and commentary here*
+
+#### Problem 5
+
+Any trends over hour of the day? (`Hour.of.capture`)  How might you decide whether a given species has particular times of day when it is active in a way that might lead to capture.  How might you take into account the possibility that the traps are not checked on the same schedule during all seasons?  Make a graphic that tells a story about whether the traps are being checked on the same schedule during all seasons.
+
+*Your plot and commentary here*
+
+#### Problem 6
+
+Within a species, does the mixture of sexes depend on the time of year?
+
+*Your plot and commentary here*
+
+#### Problem 7
+
+Which species are seasonal?  How would you identify a migratory species?
+
+*Your plot and commentary here*
+
+-----------------
+
+Compiled on `r I(date())`.
+

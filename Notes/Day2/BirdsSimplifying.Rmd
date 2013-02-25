@@ -1,0 +1,42 @@
+Instructor Notes: Simplifying the Birds Dataset
+========================================================
+
+```{r include=FALSE}
+require(DCF)
+```
+
+The Ordway bird data has lots of duplicate coding of species and many other errors.  Initially, the students are going to work with a simplified version of the data.
+
+```{r}
+data(OrdwayBirds)
+count <- data.frame(tally( ~species.name, data=OrdwayBirds))
+names(count) <- c("species.name","species.count")
+OrdwaySimple <- join(OrdwayBirds, count, by="species.name")
+# OrdwaySimple <- droplevels(subset(OrdwaySimple, species.count > 200))
+OrdwaySimple <- droplevels(OrdwaySimple)
+```
+
+Change the Time.of.capture to be just the hour, and clean:
+```{r}
+bad = OrdwaySimple$Time.of.capture %in% c("M/4","none")
+OrdwaySimple$Time.of.capture[bad] = NA
+T = strsplit( as.character(OrdwaySimple$Time.of.capture),":",fixed=TRUE)
+OrdwaySimple$Hour.of.capture = sapply(T, FUN=function(x){as.numeric(x[[1]])})
+bad = !OrdwaySimple$Hour.of.capture %in% 0:24
+OrdwaySimple$Hour.of.capture[bad]=NA
+```
+
+Convert the potentially numerical values into simple numbers.
+```{r}
+OrdwaySimple$Weight = as.numeric(as.character(OrdwaySimple$Weight))
+OrdwaySimple$Wing.chord = as.numeric(as.character(OrdwaySimple$Wing.chord))
+OrdwaySimple$Tail.length = as.numeric(as.character(OrdwaySimple$Tail.length))
+```
+
+Write the file.
+```{r}
+write.csv(OrdwaySimple, "OrdwaySimple.csv", row.names=FALSE)
+```
+
+Then post the file for use with `fetchData`.
+
