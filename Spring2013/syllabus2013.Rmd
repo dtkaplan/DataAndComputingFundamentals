@@ -14,6 +14,9 @@ Handin$W1syntax=17814
 Handin$W1country=17816
 Handin$W1body=17815
 Handin$W1web=18513
+Handin$W2exercises=18806
+Handin$W2birds=18807
+Handin$W2voters=18808
 ```
 
 Syllabus 
@@ -83,20 +86,35 @@ Body shape data | `r I(gitHTML(nm="body-shape", folder="Notes/Day1/"))` | `r I(t
 
 ----------------
 
+<img src="Images/bird-month.png" width=300 style="float:right;"/>
 
 ### Week 2
 
-<img src="Images/bird-month.png" width=100 style="float:right;"/>
 
-### Topics
+
+#### Topics
+* `r I(gitHTML(label="Creating Small Data with a Spreadsheet",nm="CreatingSmallTables", folder="Notes/Day2/"))`
+* `r I(gitHTML(label="Subsets",nm="subsets", folder="Notes/Day2/"))`
 * Groupwise analysis
+* Bar Plots
+
+#### In Class
+* Debriefing: Scatter Plots and Data Organization
+* Introduction: Subsets, Grouping, Bar Plots
+* In-Class Data: Birds at Ordway
+* After-Class Data: Voters
 
 #### To Hand in
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
+Exercises | `r I(gitHTML(nm="Exercises-2", folder="Notes/Day2/"))` | `r I(template(nm="Exercises-2-template", folder="Notes/Day2/"))` | `r I(handin("W2exercises"))`
+Bird data | `r I(gitHTML(nm="BirdCounts", folder="Notes/Day2/"))`| `r I(template(nm="BirdCounts", folder="Notes/Day2/"))`| `r I(handin("W2birds"))`
+Voter data | | | `r I(handin("W2voters"))`
 
--------------
+
+
+-----------------
 
 
 ### Week 3
