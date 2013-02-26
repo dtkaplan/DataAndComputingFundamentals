@@ -14,11 +14,7 @@ data(FAOsimple)
 ```
 Look at the names of the variables and make sure you understand what is the meaning of each of them.
 
-You're going to be making scatter plots using mScatter(). To generate the graphics in this document, remember to cut-and-paste the command output of mScatter() into a fenced R command in this document, e.g.
-
-<pre>
-ggplot(data=FAOsimple)+geom_point(aes(x=Total.Population...Both.sexes,y=Agricultural.area))
-</pre>
+To answer the following questions/tasks, you're going to be making scatter plots using mScatter().  Make sure to write a short narrative after each of your scatter plots to explain what the plot shows.
 
 #### QUESTION:
 

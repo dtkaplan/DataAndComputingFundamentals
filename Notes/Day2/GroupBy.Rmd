@@ -65,6 +65,18 @@ Things to note ...
 * The `by` criterion is being defined through a calculation, rather than just naming a variable. The point of using `list()` is to give a simple name to the result.
 * The result of the summing is being stored in a variable called `population` 
 
+### More than one grouping variable
+
+Sometimes you are interested in dividing groups into subgroups.  You can do this by specifying more than one grouping variable in a list of variables handed to the argument `by=`.  For instance, here's the mean height and weight from the nhanes data, but broken down additionally by sex.
+
+```{r}
+meanWeight = groupBy(data=nhanes, 
+                     by=list(H=hgroups,sex=sex),  
+                     weight=mean(wgt), height=mean(hgt))
+head(meanWeight)
+```
+Be careful not to use the same names in the by-list as in the quantities that you want to calculate for each group.
+
 ### General Observations
 
 Notice that the operation is being identified by an assignment expression in much the same way as `transform()` uses an assigned name to create a new variable in a data frame.  The name to the left of the `=` sign gives the name of the new variable to be created.  You can name this output as you will. 

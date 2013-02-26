@@ -242,21 +242,42 @@ head(meanWeight)
 <h4>What&#39;s the total population of countries smaller than 100 sq. km?</h4>
 
 <pre><code class="r">data(FAOsimple)
-totalPop = groupBy(data = FAOsimple, by = Country.area &lt; 100, population = sum(Total.Population...Both.sexes))
+totalPop = groupBy(data = FAOsimple, by = list(small = Country.area &lt; 100), 
+    population = sum(Total.Population...Both.sexes))
 totalPop
 </code></pre>
 
-<pre><code>##   Country.area&lt;100 population
-## 1            FALSE    6849508
-## 2             TRUE       9711
+<pre><code>##   small population
+## 1 FALSE    6849508
+## 2  TRUE       9711
 </code></pre>
 
 <p>Things to note &hellip;</p>
 
 <ul>
-<li>The <code>by</code> criterion is being defined through a calculation, rather than just naming a variable.</li>
+<li>The <code>by</code> criterion is being defined through a calculation, rather than just naming a variable. The point of using <code>list()</code> is to give a simple name to the result.</li>
 <li>The result of the summing is being stored in a variable called <code>population</code> </li>
 </ul>
+
+<h3>More than one grouping variable</h3>
+
+<p>Sometimes you are interested in dividing groups into subgroups.  You can do this by specifying more than one grouping variable in a list of variables handed to the argument <code>by=</code>.  For instance, here&#39;s the mean height and weight from the nhanes data, but broken down additionally by sex.</p>
+
+<pre><code class="r">meanWeight = groupBy(data = nhanes, by = list(H = hgroups, sex = sex), weight = mean(wgt), 
+    height = mean(hgt))
+head(meanWeight)
+</code></pre>
+
+<pre><code>##           H sex weight height
+## 1 (0.5,0.6]   1    NaN    NaN
+## 2 (0.5,0.6]   2    NaN    NaN
+## 3 (0.6,0.7]   1    NaN    NaN
+## 4 (0.6,0.7]   2    NaN    NaN
+## 5 (0.7,0.8]   1    9.8  0.790
+## 6 (0.7,0.8]   2   10.1  0.797
+</code></pre>
+
+<p>Be careful not to use the same names in the by-list as in the quantities that you want to calculate for each group.</p>
 
 <h3>General Observations</h3>
 

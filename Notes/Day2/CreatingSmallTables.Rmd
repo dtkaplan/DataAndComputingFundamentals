@@ -19,7 +19,8 @@ For each spreadsheet, you need to generate a URL that instructs Google to publis
 4. Copy the link. You'll need it in a bit.
 
 Now, to read the spreadsheet in to R …
-1. Paste the link from step (5) into R as a quoted argument to fetchGoogle() command, like this
+
+1. Paste the link from step (4) into R as a quoted argument to fetchGoogle() command, like this
 
 ```{r results="hide",messages=FALSE,warning=FALSE,error=FALSE}
 mydat = fetchGoogle("https://docs.google.com/spreadsheet/pub?key=0Am13enSalO74dHJHcjktU3k3NFFXblpMQ25WcDdnMVE&single=true&gid=0&output=csv")

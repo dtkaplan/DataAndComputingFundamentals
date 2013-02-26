@@ -31,7 +31,7 @@ Syllabus
 To update the DCF software: copy and paste these commands into your R console.
 ```{r eval=FALSE}
 require(devtools) 
-install_url("http://mosaic-web.org/go/Repository/DannyKaplan/DCF_0.11.tar.gz")
+install_url("http://mosaic-web.org/go/Repository/DannyKaplan/DCF_0.12.tar.gz")
 require(DCF)
 ```
 
