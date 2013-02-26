@@ -3,7 +3,7 @@ Grouping Operations
 
 ```{r include=FALSE}
 require(DCF)
-options(na.rm=FALSE)
+options(na.rm=TRUE)
 ```
 
 Cases often fall into groups defined by some measured variable.  Often, your interest is in the group rather than the individual case.  There is a grouping variable and an operation to be performed on the group.  Some examples:
@@ -11,7 +11,7 @@ Cases often fall into groups defined by some measured variable.  Often, your int
 * What's the average weight of people who are between 1.6 and 1.7 m tall?  The grouping variable is height, the operation is averaging the weight.
 * What's the total population of countries smaller than 100 sq. km?  The grouping variable is land area, the operation is summing the population.
 
-In the examples given here, the R operations are `length()` (for counting), `mean()` (for averaging), and `sum()` for adding.
+In the examples given here, the R operations are `length()` for counting, `mean()` for averaging, and `sum()` for adding.
 
 The R function that we will use for grouping is `groupBy()`, provided by the DCF package.  This takes three arguments:
 1. `data=` the data frame on which to perform grouping.
@@ -19,20 +19,82 @@ The R function that we will use for grouping is `groupBy()`, provided by the DCF
 3. The operation to perform.
 
 Statements corresponding to the three examples above.
-OrdwayBirds
-nhanes
-FAOsimple
 
-Notice that the operation is being identified by an assignment expression in much the same way as `transform()` uses an assigned name to create a new variable in a data frame.  The name to the left of the `=` sign gives the name of the new variable to be created.  The operation ... be careful to explain that it expects to use a variable from the data frame.  That's why `length()` does the counting, rather than `nrow()`.
+#### How many birds are there of each species?
+
+```{r}
+data(OrdwayBirds)
+countBySpecies = groupBy(data=OrdwayBirds, 
+                         by=species.name, 
+                         scount=length(species.name))
+head(countBySpecies)
+```
+Two important things to note:
+1. The use of the `length()` function to count the number of cases
+2. Any variable could have been used as the input to `length()`; they all have the same length.
+
+#### Average weight of people between 1.6 and 1.7m tall.
+
+```{r}
+data(nhanes)
+nhanes = transform(nhanes, 
+                   hgroups=cut(hgt,breaks=seq(0.5,2.0,by=.1)))
+meanWeight = groupBy(data=nhanes, 
+                     by=hgroups, 
+                     weight=mean(wgt), height=mean(hgt))
+head(meanWeight)
+```
+
+Things to note:
+1. Since `hgt` is a quantitative variable, we created a new categorical  variable, `hgroups`, that splits up `hgt` into discrete groups.
+2. The `meanWeight` data frame produced by `groupBy` has been arranged to label the mean weight variable as `weight`.
+3. For later convenience, a quantitative variable `height` has been produced so that weight can be compared to height quantitatively.
+
+
+#### What's the total population of countries smaller than 100 sq. km?
+
+```{r}
+data(FAOsimple)
+totalPop = groupBy( data=FAOsimple,
+                    by=list(small=Country.area < 100),
+                    population=sum(Total.Population...Both.sexes) )
+totalPop
+```
+
+Things to note ...
+* The `by` criterion is being defined through a calculation, rather than just naming a variable. The point of using `list()` is to give a simple name to the result.
+* The result of the summing is being stored in a variable called `population` 
+
+### General Observations
+
+Notice that the operation is being identified by an assignment expression in much the same way as `transform()` uses an assigned name to create a new variable in a data frame.  The name to the left of the `=` sign gives the name of the new variable to be created.  You can name this output as you will. 
+
+The operation specified will be performed on each group that's defined by the levels of `by`. Almost always, you will want `by` to be a categorical variable.  If you use a quantitative variable, each different value of the quantity will become it's own group, so 3.14 will be different from 3.141.  
+
+Remember that the variables used in `groupBy` have to exist in the data frame being grouped.  
 
 Other operations commonly performed:
 * median
 * spread, as with `sd()` or `IQR()`
 * fraction in a range, e.g. using `prop()`
 * meeting some yes or no criterion
-The transformation must **always** produce a single number.  If you want to compute two quantities, have two arguments describing operations.
 
+The transformation must **always** produce a single number as an output.  If you want to compute two quantities, have two arguments describing operations.
 
+### Table-to-Table Operations
 
+You've now seen three operations that take a table (in R, a data frame) as an input and return a table as an output:
+* `subset()` for pulling out a subset of cases
+* `transform()` for creating new variables from existing ones
+* `groupBy()` for aggregating cases into groups and calculating quantities on those groups.
 
-Explain about the 
+Next week, we'll encounter a fourth operation:
+* `merge()` which combines two tables to create a new table.
+
+Keep in mind that different operations take different *kinds* of inputs and return different *kinds* of outputs:
+* Some operations take a variable or variables and return another variable.  Examples: arithmetic operations such as addition, division, multiplication, and so on.
+* Some operations take a variable or variables and return a number. Examples: means, sums.
+* Some operations take a data frame and return a data frame. Examples: `subset`, `transform`, `groupBy`.
+
+You should always know which you are doing.
+

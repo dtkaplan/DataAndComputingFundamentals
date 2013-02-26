@@ -1,6 +1,7 @@
 Week 2 Notes
 ==================
 
+Syntax problems from week 1.  Examples in this [email](https://mail.google.com/mail/u/0/?shva=1#inbox/13d12da9523743c3)
 
 Example of a stacked bar chart in the pre-computation days.
 

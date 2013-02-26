@@ -2,7 +2,8 @@ Exercises for Week 2: Answer Template
 ========================================================
 
 ```{r include=FALSE}
-require(DCF)
+require(DCF) # Boilerplate
+options(na.rm=TRUE)
 ```
 
 ### Your Name Here
@@ -18,30 +19,81 @@ myURL="https://docs.google.com/spreadsheet/pub?key=0Am13enSalO74dHJHcjktU3k3NFFX
 # remember to change this to your own URL!
 ```
 
-**You can use this command just as is.  It will read in your spreadsheet once youve set the variable `myURL` appropriately. If you don't like the name `mydat`, feel free to change it.
+*You can use this command just as is.  It will read in your spreadsheet once youve set the variable `myURL` appropriately. If you don't like the name `mydat`, feel free to change it.*
 ```{r}
 mydat = fetchGoogle(myURL)
 head(mydat)
 ```
 
-#### Problem (a)
 
 *In this and each of the following, put in an R command that takes the appropriate subset of your data and sums the subset up as required. YOU CAN DELETE THIS LINE.*
+
+#### Problem (1.a)
+
+
 ```{r}
 # Your command here
 ```
 
-#### Problem (b)
+#### Problem (1.b)
 
-#### Problem ( c)
+```{r}
+# Your command here
+```
 
-#### Problem (d)
+#### Problem (1.c)
 
+```{r}
+# Your command here
+```
+
+#### Problem (1.d)
+
+```{r}
+# Your command here
+```
+
+#### Problem (1.e)
+
+```{r}
+# Your command here
+```
 ----------------------
 
 ### Exercise 2
 
+#### Part (2.a)
 
+```{r}
+# Put the barplot commands here
+```
+
+#### Part (2.b)
+
+```{r}
+# Put the barplot commands here
+```
+----------------------
+
+### Exercise 3
+
+#### Part (3.a)
+
+```{r}
+# Put the commands here
+```
+
+#### Part (3.b)
+
+```{r}
+# Put the commands here
+```
+
+#### Part (3.c)
+
+```{r}
+# Put the commands here
+```
 
 
 ----------------------

@@ -58,32 +58,50 @@ In the statement `subset(nhanes, sex==2)`, each component of the `sex` variable 
 You can also test for equality between character strings.  For instance, in the `OrdwayBirds` data set, the `Sex` variable is encoded as characters:
 ```{r}
 data(OrdwayBirds)
-tally( ~ Sex, data=OrdwayBirds)
+with(data=OrdwayBirds, levels(Sex))
 ```
 Such character labels are helpful because they remind you at a glance what their meaning is.  ("U" stands for unknown. Evidently, it's not always easy to tell what the sex of a bird is.)
 
-To construct a subset of female birds, the statement would look like this:
+To construct a subset of just the female birds, the statement would look like this:
 ```{r}
 birdsf = subset(OrdwayBirds, Sex=="F")
 ```
 
 
-### Levels of Categorical Variables
+### Selecting more than one group
 
-`levels` command
+Sometimes you will need to include more than one group in your subset.  Two convenient operations for this are `%in%` and `!` (negation).  
 
-`%in%` for broader membership.
+For example, to select birds that are either female or male:
+```{r}
+sexedBirds = subset(OrdwayBirds, Sex %in% c("F","M"))
+```
 
-Negation.
+If you want to exclude groups from the subset, use negation:
+```{r}
+uBirds = subset(OrdwayBirds, !Sex %in% c("F","M"))
+```
+
+### Zombie levels
+
+R keeps track of all the possible levels of categorical variables, even when there are no cases at that level.  For instance, the `uBirds` data frame above has no birds at levels "F" or "M".  Yet these levels still show up among the possibilities:
+```{r}
+with(data=uBirds, levels(Sex))
+```
+
+You can force R to drop any unpopulated levels with `droplevels`.
+```{r}
+uBirds = droplevels(uBirds)
+with(data=uBirds, levels(Sex))
+```
 
 
-Put in `drop=TRUE`.  Explain how this is a single equal sign and is assigning the value TRUE to the input `drop`.  
+
 
 ### Other Numerical Comparisons
 
-Less than, greater than, 
+In addition to the test for equality, `==`, you can test for greater-than and lesser-than relationships.  The operators are `<`, `>`, `<=`, and `>=`.
 
-Intervals
 
 ## When NOT to take subsets
 

@@ -5,8 +5,6 @@ Exercises: Week 2
 require(DCF)
 ```
 
-**Still being developed**
-
 ### Exercise 1
 
 The table below was published as part of the [CBMS survey](http://www.ams.org/profession/data/cbms-survey/cbms) of college-level mathematics enrollment in the US.  Like many published tables intended for the human reader it does not follow the strict case/variable format.
@@ -28,27 +26,38 @@ Math  | Introductory | Math Dept | 1995 | 613
 
 Read in your spreadsheet.  Make sure that you haven't made any mistakes in your entries for the different variables: the levels should match those given above.
 
-**(a)** Use `subset` to select out the cases that correspond to the total 1469 given in the table.  Verify that this total is correct. 
+**(1.a)** Use `subset` to select out the cases that correspond to the total 1469 given in the table.  Verify that this total is correct. 
 
-**(b)** Use `subset` and `groupBy` to confirm the totals 1384, 1273, 1580, 1887
+**(1.b)** Use `subset` and `groupBy` to confirm the totals 1384, 1273, 1580, 1887
 
-**(c)** Find the total enrollments in each year.
+**(1.c)** Find the total enrollments in each year.
 
-**(d)** Find the total enrollments in each year, broken down by Field
+**(1.d)** Find the total enrollments in each year, broken down by Field
 
-**(d)** Find the total enrollments in each year, broken down by Subject (lumping all the organizations together)
+**(1.e)** Find the total enrollments in each year, broken down by Subject (lumping all the organizations together)
 
 ------------
 
 ### Exercise 2
 
-Grouping
+Making barplots from the enrollment data to illustrate each of these matters ...
+
+**(2.a)** How enrollment differs between math departments and two-year colleges in each of the different subjects.
+
+**(2.b)** How the fraction of overall enrollments in pre-college and pre-calculus math has changed over the years
 
 
 ------------
 
 ### Exercise 3
+Using the `FAOsimple` data ...
 
-Making barplots from the enrollment data
+**(3.a)** Find the total population of women in the world.
+
+**(3.b)** Find the total population of women in countries where women outnumber men and where men outnumber women.
+
+**(3.c)** Find the total population of women in countries where the urban population exceeds the agricultural population.
+
+
 
 
