@@ -28,6 +28,8 @@ Read in your spreadsheet.  Make sure that you haven't made any mistakes in your 
 
 **(1.a)** Use `subset` to select out the cases that correspond to the total 1469 given in the table.  Verify that this total is correct. 
 
+*In doing this, your criteria will involve multiple variables.  To make them all apply, use `&` to link the statements, e.g. `Year==1995 & Field=="Math"`  Once you have the subset, you can use `with(mysubset,sum(Enrollment))` to add up the enrollment numbers.*
+
 **(1.b)** Use `subset` and `groupBy` to confirm the totals 1384, 1273, 1580, 1887
 
 **(1.c)** Find the total enrollments in each year.

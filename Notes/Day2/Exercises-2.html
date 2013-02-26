@@ -143,8 +143,6 @@ hr {
 <body>
 <h1>Exercises: Week 2</h1>
 
-<p><strong>Still being developed</strong></p>
-
 <h3>Exercise 1</h3>
 
 <p>The table below was published as part of the <a href="http://www.ams.org/profession/data/cbms-survey/cbms">CBMS survey</a> of college-level mathematics enrollment in the US.  Like many published tables intended for the human reader it does not follow the strict case/variable format.</p>
@@ -188,6 +186,8 @@ hr {
 <p>Read in your spreadsheet.  Make sure that you haven&#39;t made any mistakes in your entries for the different variables: the levels should match those given above.</p>
 
 <p><strong>(1.a)</strong> Use <code>subset</code> to select out the cases that correspond to the total 1469 given in the table.  Verify that this total is correct. </p>
+
+<p><em>In doing this, your criteria will involve multiple variables.  To make them all apply, use <code>&amp;</code> to link the statements, e.g. <code>Year==1995 &amp; Field==&quot;Math&quot;</code>  Once you have the subset, you can use <code>with(mysubset,sum(Enrollment))</code> to add up the enrollment numbers.</em></p>
 
 <p><strong>(1.b)</strong> Use <code>subset</code> and <code>groupBy</code> to confirm the totals 1384, 1273, 1580, 1887</p>
 

@@ -1,10 +1,85 @@
 Week 2 Notes
 ==================
 
-Syntax problems from week 1.  Examples in this [email](https://mail.google.com/mail/u/0/?shva=1#inbox/13d12da9523743c3)
 
-Example of a stacked bar chart in the pre-computation days.
+## Debriefing from Week 1
+
+### The new syllabus location.  Bookmark it.
+
+### How to use the templates
+
+1. Copy them into an editing window.  
+2. Run it first thing to verify that it works.
+
+An [example with the exercises from Week 1](http://rpubs.com/jstrubl1/4571).  If you haven't yet done any, open up the Week 1 exercises and let's do one or two things.
+
+### Things that people were able to do
+
+* [A good start](http://rpubs.com/roldfath/4615) --- how could color be used to advantage here to see the difference between the sexes?
+* Interesting depiction of diabetes [here](http://rpubs.com/sbauman1/4638) --- it looks like as you age the "bmi threshold" for getting diabetes goes down.  Cholesterol doesn't seem related to diabetes.  Income doesn't seem related to BMI.
+* Not everything worked: 
+    * [one](http://rpubs.com/siukhymo/4640) let's see if we can get this to work
+    * [two](http://rpubs.com/wcraine/4611) using `xyplot` instead of `ggplot`
+
+####  Syntax problems from week 1.  
+
+Examples in this [email](https://mail.google.com/mail/u/0/?shva=1#inbox/13d12da9523743c3)
+
+## Back to Data
+
+You should know:
+* How to load in a template.
+* How to install and load the DCF package.  (You'll have to update this each week.  Grab the URL and bookmark it.)
+* The meaning of `data(nhanes)` and `utils = fetchData("utilities.csv")
+* How to make a scatter plot using `mScatter`
+* How to cut and paste the command string for a plot into a template.
+
+You may have already figured out,
+* How to create a new variable using `transform`.
+
+EXERCISES: 
+* Compute the population density.
+* Compute the fraction of the population which is female.
+
+
+### What's new today: 
+
+
+1. Picking a subset of cases.
+1. Creating small datasets using a spreadsheet.
+2. Calculating quantities on groups.
+3. The bar plot format.
+
+
+#### Subsets
+
+Work through the [subsets notes](subsets.html).
+
+#### Creating Small Datasets
+
+Hand out the math enrollment table.  
+
+1. Construct a bit of the table, perhaps 5 rows.  Then publish this and read it into R.
+2. **Copy** the [pre-populated spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AkXIvAg85dhhdHdONnZ6aWwtRDZtc2ZyN2QxeEdJMFE&usp=sharing#gid=0).  Fill in the missing entries.  Then publish it and work with this.
+3. Read in the exercises template and let's the very first one or two of the exercises.
+
+#### Grouping
+
+Work through the [grouping notes](GroupBy.html)
+
+1. Return to the math enrollment spreadsheet.
+2. Make a group using `sum` of enrollments by year.  
+3. Do total enrollments by year and course level.  
+
+#### Bar Plots
+
+##### Example of a stacked bar chart in the pre-computation days.
 
 ![Stacked Bar Chart](image001.jpg) 
 
 > Photograph by Peter Morenus in conjunction with Professor Linda Strausberg, University of Connecticut.  Subjects are University of Connecticut genetics students, females in white tops, males in dark tops.
+
+Make bar plots of the enrollment data.  
+
+### Exploring Birdlife
+

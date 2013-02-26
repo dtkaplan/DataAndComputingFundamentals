@@ -101,6 +101,7 @@ Body shape data | `r I(gitHTML(nm="body-shape", folder="Notes/Day1/"))` | `r I(t
 #### In Class
 * Debriefing: Scatter Plots and Data Organization
 * Introduction: Subsets, Grouping, Bar Plots
+* Pre-populated [math enrollment spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AkXIvAg85dhhdHdONnZ6aWwtRDZtc2ZyN2QxeEdJMFE&usp=sharing#gid=0) to **copy**, complete, publish, and read in to R.  
 * In-Class Data: Birds at Ordway
 * After-Class Data: Voters
 
