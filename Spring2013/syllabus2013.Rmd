@@ -95,12 +95,13 @@ Body shape data | `r I(gitHTML(nm="body-shape", folder="Notes/Day1/"))` | `r I(t
 #### Topics
 * `r I(gitHTML(label="Creating Small Data with a Spreadsheet",nm="CreatingSmallTables", folder="Notes/Day2/"))`
 * `r I(gitHTML(label="Subsets",nm="subsets", folder="Notes/Day2/"))`
-* Groupwise analysis
+* `r I(gitHTML(label="Groupwise analysis", nm="GroupBy", folder="Notes/Day2/"))`
 * Bar Plots
 
 #### In Class
 * Debriefing: Scatter Plots and Data Organization
 * Introduction: Subsets, Grouping, Bar Plots
+* Three of the *Big Four* Operations: Select, Project, Group ... next week: Join
 * In-Class Data: Birds at Ordway
 * After-Class Data: Voters
 

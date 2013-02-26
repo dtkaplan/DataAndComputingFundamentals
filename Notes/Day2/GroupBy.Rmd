@@ -1,0 +1,38 @@
+Grouping Operations
+============
+
+```{r include=FALSE}
+require(DCF)
+options(na.rm=FALSE)
+```
+
+Cases often fall into groups defined by some measured variable.  Often, your interest is in the group rather than the individual case.  There is a grouping variable and an operation to be performed on the group.  Some examples:
+* How many birds are there of each species?  The grouping variable is species, the operation is the number of cases.
+* What's the average weight of people who are between 1.6 and 1.7 m tall?  The grouping variable is height, the operation is averaging the weight.
+* What's the total population of countries smaller than 100 sq. km?  The grouping variable is land area, the operation is summing the population.
+
+In the examples given here, the R operations are `length()` (for counting), `mean()` (for averaging), and `sum()` for adding.
+
+The R function that we will use for grouping is `groupBy()`, provided by the DCF package.  This takes three arguments:
+1. `data=` the data frame on which to perform grouping.
+2. `by=` a grouping variable in the data frame or computed from it.
+3. The operation to perform.
+
+Statements corresponding to the three examples above.
+OrdwayBirds
+nhanes
+FAOsimple
+
+Notice that the operation is being identified by an assignment expression in much the same way as `transform()` uses an assigned name to create a new variable in a data frame.  The name to the left of the `=` sign gives the name of the new variable to be created.  The operation ... be careful to explain that it expects to use a variable from the data frame.  That's why `length()` does the counting, rather than `nrow()`.
+
+Other operations commonly performed:
+* median
+* spread, as with `sd()` or `IQR()`
+* fraction in a range, e.g. using `prop()`
+* meeting some yes or no criterion
+The transformation must **always** produce a single number.  If you want to compute two quantities, have two arguments describing operations.
+
+
+
+
+Explain about the 
