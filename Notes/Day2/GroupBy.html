@@ -193,7 +193,7 @@ hljs.initHighlightingOnLoad();
 <p>The R function that we will use for grouping is <code>groupBy()</code>, provided by the DCF package.  This takes three arguments:
 1. <code>data=</code> the data frame on which to perform grouping.
 2. <code>by=</code> a grouping variable in the data frame or computed from it.
-3. The operation to perform.</p>
+3. The operation to perform. (If you don&#39;t specify this, a count of the cases in each group will be printed.)</p>
 
 <p>Statements corresponding to the three examples above.</p>
 
@@ -229,9 +229,9 @@ head(meanWeight)
 ## 1 (0.5,0.6]    NaN    NaN
 ## 2 (0.6,0.7]    NaN    NaN
 ## 3 (0.7,0.8]   9.95 0.7935
-## 4 (0.8,0.9]  12.43 0.8710
-## 5   (0.9,1]  14.84 0.9510
-## 6   (1,1.1]  17.87 1.0499
+## 4 (0.8,0.9]    NaN 0.8710
+## 5   (0.9,1]    NaN 0.9510
+## 6   (1,1.1]    NaN 1.0499
 </code></pre>
 
 <p>Things to note:
@@ -263,12 +263,12 @@ totalPop
 
 <p>Sometimes you are interested in dividing groups into subgroups.  You can do this by specifying more than one grouping variable in a list of variables handed to the argument <code>by=</code>.  For instance, here&#39;s the mean height and weight from the nhanes data, but broken down additionally by sex.</p>
 
-<pre><code class="r">meanWeight = groupBy(data = nhanes, by = list(H = hgroups, sex = sex), weight = mean(wgt), 
+<pre><code class="r">meanWeight = groupBy(data = nhanes, by = list(hgroups, sex), weight = mean(wgt), 
     height = mean(hgt))
 head(meanWeight)
 </code></pre>
 
-<pre><code>##           H sex weight height
+<pre><code>##     hgroups sex weight height
 ## 1 (0.5,0.6]   1    NaN    NaN
 ## 2 (0.5,0.6]   2    NaN    NaN
 ## 3 (0.6,0.7]   1    NaN    NaN

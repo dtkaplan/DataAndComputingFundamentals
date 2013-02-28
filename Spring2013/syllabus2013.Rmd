@@ -111,7 +111,7 @@ Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
 Exercises | `r I(gitHTML(nm="Exercises-2", folder="Notes/Day2/"))` | `r I(template(nm="Exercises-2-template", folder="Notes/Day2/"))` | `r I(handin("W2exercises"))`
 Bird data | `r I(gitHTML(nm="BirdCounts", folder="Notes/Day2/"))`| `r I(template(nm="BirdCounts", folder="Notes/Day2/"))`| `r I(handin("W2birds"))`
-Voter data | | | `r I(handin("W2voters"))`
+Voter data | `r I(gitHTML(nm="voters", folder="Notes/Day2/"))` | `r I(template(nm="voters", folder="Notes/Day2/"))` | `r I(handin("W2voters"))`
 
 
 

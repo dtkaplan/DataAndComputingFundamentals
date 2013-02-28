@@ -16,7 +16,7 @@ In the examples given here, the R operations are `length()` for counting, `mean(
 The R function that we will use for grouping is `groupBy()`, provided by the DCF package.  This takes three arguments:
 1. `data=` the data frame on which to perform grouping.
 2. `by=` a grouping variable in the data frame or computed from it.
-3. The operation to perform.
+3. The operation to perform. (If you don't specify this, a count of the cases in each group will be printed.)
 
 Statements corresponding to the three examples above.
 
@@ -71,7 +71,7 @@ Sometimes you are interested in dividing groups into subgroups.  You can do this
 
 ```{r}
 meanWeight = groupBy(data=nhanes, 
-                     by=list(H=hgroups,sex=sex),  
+                     by=list(hgroups,sex),  
                      weight=mean(wgt), height=mean(hgt))
 head(meanWeight)
 ```
