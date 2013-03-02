@@ -1,0 +1,131 @@
+Wide versus Long Data
+======================
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+require(xtable)
+```
+
+The [Gapminder](www.gapminder.org) project has scraped databases from the United Nations and other organizations to produce data in a web-accessible format.  [Hans Rosling](http://en.wikipedia.org/wiki/Hans_Rosling), the co-founder of Gapminder, is probably the best known statistician today, famous particularly for a series of excellent health and national development presentations made on TED: for example this one from [2006](http://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen.html) and this from [2007](http://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty.html).
+
+The Gapminder data site gives several hundred variables on a country-by-country and year-by-year basis.  The list is available [here](http://www.gapminder.org/data/). 
+
+
+The data are available as spreadsheet files.  To keep things simple, we have downloaded a few of the files and are making them available for directly reading into R using `fetchData()`.  (We will eventually change this interface so that the data are read directly into R from the Gapminder site.)
+
+
+Topic                  | on Gapminder | `fetchData()` name
+-----------------------|-------------------------------|--------------------
+Alcohol consumption    | [link](http://spreadsheets.google.com/pub?key=0AgogXXPMARyldGJqTDRfNHBWODJMRWlZaVhNclhNZXc&gid=0) | `Gapminder/Alcoholconsumption.csv`
+Arms imports           | [link](https://spreadsheets.google.com/pub?key=0AkBd6lyS3EmpdEljeENrOXlFXzR3Rm8xT0drTV9YclE&gid=0)| `Gapminder/Armsinports.csv`
+Body Mass Index -- Male  | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdF9saE1pWUNYVkVsNU1FdW1Yem81Nmc&gid=1) | `Gapminder/MaleBMI.csv`
+Body Mass Index -- Female  | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGt0elo2dzJMVVQ3WmFGSmdhc09LRlE&gid=1) | `Gapminder/FemaleBMI.csv`
+Cell phone subscriptions | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhWLWtqNzljbWg4ZXV6M09JQXNGaUE&gid=1) | `Gapminder/Cellphonetotal.csv`
+Cholesterol (Total) -- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdDU5SnRoQ0xlZWhwRUZ6RFNQV042enc&gid=1) | `Gapminder/TCmale.csv`
+Cholesterol (Total) -- female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGJHcHZkSUdBcU56aS1OT3lLeU4tRHc&gid=1&gid=1) | `Gapminder/TCfemale.csv`
+Fertility              | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowVEFsSmVDRXpjR1E&gid=1) | `Gapminder/Fertility.csv`
+Liver Cancer incidence -- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxdTBLcFpic29wQ0E&gid=1) | `Gapminder/LiverCancerIncidenceMale.csv`
+Liver Cancer incidence -- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoyeGhhS0VObXlSS3c&gid=1) | `Gapminder/LiverCancerIncidenceFemale.csv`
+
+To read in a data file, use `fetchData()` in the ordinary way.  For instance, per capita alcohol consumption each year (in litres per adult, where an adult is defined as a person aged 15 years and over):
+```{r}
+alc = fetchData("Gapminder/Alcoholconsumption.csv")
+```
+
+Of course, you're tempted to look immediately at the data file, but it's fairly large:
+```{r}
+nrow(alc)
+names(alc)
+```
+There are `r nrow(alc)` countries.  There are data for `r length(names(alc))-1` years.  Altogther, that's `r nrow(alc)*(length(names(alc))-1)` entries.
+
+The variable names are a bit strange, but you can see that there is a different variable for each year, even though the value is the same thing: alcohol consumption in litres.  
+
+Here's a small part of the data table: a few countries over a few years.
+```{r echo=FALSE,results="asis"}
+small <- alc[156:165,c(1,14:25)]
+names(small) <- c("Country","1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004","2005","2006","2007","2008")
+print(xtable(small,caption="Alcohol Consumption"),type="html")
+```
+
+In this particular data set, each case is one country, each variable is alcohol consumption for each year.
+
+This is what's called a **wide** format for data.  A wide format is intended to make it easy to pull out all the data for one case as a `subset` operation, or all the data for one variable (in these data, one year) as a `projection` operation.  For instance:
+```{r}
+subset(alc, X=="Syria")
+```
+
+The most notable feature of this particular wide format is that most of the values are missing.  Presumably, that's because no reliable estimate of alcohol consumption was available for most countries in most years.
+
+Another possible format for these data is called **narrow**.  The narrow format has a different idea of what's a case.  Rather than treating each country as a case, the case is each country in a particular year.  This is what a narrow format looks like:
+
+```{r}
+readGapminderNarrow <- function(fetchname,value.name=fetchname){
+  dat <- fetchData(fetchname)
+  countryLabel <- names(dat)[1]
+  yearCols <- names(dat)[-1]
+  res <- melt(dat, id.vars=countryLabel, value.name="Var", 
+             measure.vars=yearCols, variable.name="Year")
+  res <- subset(res, !is.na(Var))
+  res$Year <- as.numeric(sub("X","",as.character(res$Year)))
+  names(res) <- c("Country","Year", value.name)
+  return(res)
+  }
+```
+
+```{r echo=FALSE, results="asis",echo=1}
+alcW = readGapminderNarrow("Gapminder/Alcoholconsumption.csv", value.name="Alcohol")
+print(xtable(alcW[1:10,]),type="html")
+```
+
+All the alcohol measurements are now in one variable, the years in another.  You can still easily grab the data for one year or one country, e.g.
+```{r results="hide"}
+subset(alcW, Country=="Russia")
+subset(alcW, Year==1990)
+```
+
+The `groupBy()` function works well on narrow data and allows you to consolidate data across countries or years.
+
+Here's a fairly elaborate example using operations that may be unfamiliar: Finding the country with the maximum alcohol consumption in each year:
+```{r}
+groupBy(alcW, by=Year, 
+        Country=as.character(Country[which.min(Alcohol)]), 
+        Consumption=min(Alcohol))
+```
+
+Why do you think that Sweden and Russian are often found to be the countries with the **minimum** alcohol consumption?  Hint: It's not because people in all other countries drank more in those years.
+
+#### Exercises with `groupBy()`:
+ 
+1. Which countries have more than 10 alcohol measurements?
+2. Which countries have alcohol measurements spanning a period of more than 10 years?
+
+### Comparing multiple variables
+
+The narrow format is particularly useful when you want put two or more variables side by side. Suppose you read in two variables:
+```{r echo=FALSE, results="asis",echo=1:2}
+alc = readGapminderNarrow("Gapminder/Alcoholconsumption.csv", value.name="Alcohol")
+liver = readGapminderNarrow("Gapminder/LiverCancerIncidenceMale.csv",value.name="LiverCancerM")
+print(xtable(alcW[1:5,]),type="html")
+print(xtable(liver[1:5,]),type="html")
+```
+
+Suppose you want to do a quick exploration of the potential link between liver cancer and alcohol consumption.  A scatter plot of the incidence of liver cancer against alcohol consumption might be informative.  To make this, you have to put the two variables side by side.  Of course, you'll need to match up the corresponding cases.  This is not just a matter of matching the first row in one data frame to the first row in the other; you don't want to put alcohol in Russia in 1985 against liver cancer in Denmark in 1953.  Instead, you want to join the tables in a sensible way, matching up the corresponding cases.
+
+
+
+
+
+JUST SIMPLE JOIN --- the defaults
+
+Exercises:
+
+* Then average the countries data --- match up the averaged data.
+* Break up the averages over decades.
+
+IN THE JOIN DOCUMENT, the different kinds of join.  Pull out a handful of countries with limited data.  Show the effects of the different joins.
+
+Cleaning the bird species data.  Make a Google spreadsheet with the current names, then the corrected name next to that.
+
+Standardizing  country names
