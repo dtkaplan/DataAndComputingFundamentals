@@ -1,9 +1,11 @@
-Wide versus Long Data
+Wide versus Narrow Data Formats
 ======================
 
 ```{r include=FALSE}
 require(DCF)
 startTemplate()
+require(reshape2)
+require(plyr)
 require(xtable)
 ```
 
@@ -15,22 +17,43 @@ The Gapminder data site gives several hundred variables on a country-by-country 
 The data are available as spreadsheet files.  To keep things simple, we have downloaded a few of the files and are making them available for directly reading into R using `fetchData()`.  (We will eventually change this interface so that the data are read directly into R from the Gapminder site.)
 
 
-Topic                  | on Gapminder | `fetchData()` name
+Topic                  | on Gapminder | `fetchData()/fetchGapminder()` name
 -----------------------|-------------------------------|--------------------
-Alcohol consumption    | [link](http://spreadsheets.google.com/pub?key=0AgogXXPMARyldGJqTDRfNHBWODJMRWlZaVhNclhNZXc&gid=0) | `Gapminder/Alcoholconsumption.csv`
+Alcohol consumption    | [link](http://spreadsheets.google.com/pub?key=0AgogXXPMARyldGJqTDRfNHBWODJMRWlZaVhNclhNZXc&gid=0) | `Gapminder/Alcohol.csv`
+Age at first marriage for women | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdDRlRjhIX2pxX3h5S0NVSEFYNlZUMWc&gid=1) | `Gapminder/MarriageAgeFemale.csv`
+Contraceptive use | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFp2OENYMUVKWnY1dkJLRXAtYnI3UVE&gid=1) | `Gapminder/ContraceptiveUse.csv`
+Tobacco use --- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdDYwdHBqeHBXcTNCbS1uQk92U20zb2c&gid=1) | `Gapminder/TobaccoUseMale.csv`
+Tobacco use --- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdGhvcnRQRXpEbjJ4Y181YlUyNTVtUEE&gid=1) | `Gapminder/TobaccoUseFemale.csv`
+Under 5 mortality rate | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowNVpSNjl1c3lRSWc&gid=1) | `Gapminder/Under5mortality.csv`
 Arms imports           | [link](https://spreadsheets.google.com/pub?key=0AkBd6lyS3EmpdEljeENrOXlFXzR3Rm8xT0drTV9YclE&gid=0)| `Gapminder/Armsinports.csv`
+CO_2 emissions | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxTkhQQzlNeVo5U1E&gid=1) | `Gapminder/CO2emissions.csv`
+Aid received per person | [link](https://spreadsheets.google.com/pub?key=t9GL1nIZdtxszJbjKErN2Hg&gid=0) | `Gapminder/AidReceived.csv`
+Paved roads (percent of roads) | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdDBKd2V5VmxkYlJuUHAtOURzUkZzNEE&gid=1) | `Gapminder/PavedRoads.csv`
+Traffic deaths (per 100,000) | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AgogXXPMARyldEs4N1NPeS1vWmxmVzk5VUREN0wzaHc&gid=1) | `Gapminder/TrafficDeathRate.csv`
+Urban population (percent) | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowLUxFNFN0ekNzRXc&gid=1) | `Gapminder/UrbanPopulationPercent.csv`
+Economic growth | [link](https://spreadsheets.google.com/pub?key=tkdAnkbHJxPAlRX6P1mAh8w&gid=0) |  `Gapminder/EconomicGrowth.csv`
+Income per person | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxamlNQWttcTFpTWc&gid=1) | `Gapminder/IncomePerCapitaPPP.csv`
+Improved sanitation | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdE4tekJPYkR4WmJqYTRPWjc3OTl4WUE&gid=1) | `Gapminder/ImprovedSanitation.csv`
 Body Mass Index -- Male  | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdF9saE1pWUNYVkVsNU1FdW1Yem81Nmc&gid=1) | `Gapminder/MaleBMI.csv`
 Body Mass Index -- Female  | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGt0elo2dzJMVVQ3WmFGSmdhc09LRlE&gid=1) | `Gapminder/FemaleBMI.csv`
-Cell phone subscriptions | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhWLWtqNzljbWg4ZXV6M09JQXNGaUE&gid=1) | `Gapminder/Cellphonetotal.csv`
+Underweight children | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdHFkZlc5WkhVQmVmeU0tR0RsSUdTU0E&gid=0) | `Gapminder/LowWeightForAge.csv`
+Cell phone subscriptions | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhWLWtqNzljbWg4ZXV6M09JQXNGaUE&gid=1) | `Gapminder/CellPhoneTotal.csv`
 Cholesterol (Total) -- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdDU5SnRoQ0xlZWhwRUZ6RFNQV042enc&gid=1) | `Gapminder/TCmale.csv`
-Cholesterol (Total) -- female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGJHcHZkSUdBcU56aS1OT3lLeU4tRHc&gid=1&gid=1) | `Gapminder/TCfemale.csv`
+Cholesterol (Total) -- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGJHcHZkSUdBcU56aS1OT3lLeU4tRHc&gid=1&gid=1) | `Gapminder/TCfemale.csv`
+HIV prevalence | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0Auk0ddvGIrGqcHlqNnRTY1pxbUVmYlp5bDBxamJpUlE&gid=1) | `Gapminder/HIVprevalence.csv`
+Primary education spending | [link](https://spreadsheets.google.com/pub?key=0AkBd6lyS3EmpdFJTUEVleTM0cE5jTnlTMk41ajBGclE&gid=0) | `Gapminder/PrimaryEdSpending.csv`
+Primary education completion | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhTN2hlZ05ZczVwZDdVZlF5cUxJb2c&gid=1) | `Gapminder/PrimaryEdCompletion.csv`
+Primary education completion -- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFVxSEVZVWE1b0l6NWo5NzNTZ2IzWVE&gid=1) | `Gapminder/PrimaryEdCompletionFemale.csv`
+Primary education completion -- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdGhCWnZrTGMwaTl5ek9QS0szMTIwcEE&gid=1) | `Gapminder/PrimaryEdCompletionMale.csv`
+Democracy score | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGQ2YlhDSWVIdXdpMmhLY2ZZRHdNNnc&gid=1) | `Gapminder/DemocracyScore.csv`
 Fertility              | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowVEFsSmVDRXpjR1E&gid=1) | `Gapminder/Fertility.csv`
 Liver Cancer incidence -- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxdTBLcFpic29wQ0E&gid=1) | `Gapminder/LiverCancerIncidenceMale.csv`
 Liver Cancer incidence -- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoyeGhhS0VObXlSS3c&gid=1) | `Gapminder/LiverCancerIncidenceFemale.csv`
 
+
 To read in a data file, use `fetchData()` in the ordinary way.  For instance, per capita alcohol consumption each year (in litres per adult, where an adult is defined as a person aged 15 years and over):
 ```{r}
-alc = fetchData("Gapminder/Alcoholconsumption.csv")
+alc = fetchData("Gapminder/Alcohol.csv")
 ```
 
 Of course, you're tempted to look immediately at the data file, but it's fairly large:
@@ -61,7 +84,9 @@ The most notable feature of this particular wide format is that most of the valu
 Another possible format for these data is called **narrow**.  The narrow format has a different idea of what's a case.  Rather than treating each country as a case, the case is each country in a particular year.  This is what a narrow format looks like:
 
 ```{r}
-readGapminderNarrow <- function(fetchname,value.name=fetchname){
+fetchGapminder <- function(fetchname,value.name=NULL){
+  if( is.null(value.name) ) # Just the base name of the file --- no extension.
+    value.name <- sub("\\.[^.]+$","",basename(fetchname))
   dat <- fetchData(fetchname)
   countryLabel <- names(dat)[1]
   yearCols <- names(dat)[-1]
@@ -75,21 +100,21 @@ readGapminderNarrow <- function(fetchname,value.name=fetchname){
 ```
 
 ```{r echo=FALSE, results="asis",echo=1}
-alcW = readGapminderNarrow("Gapminder/Alcoholconsumption.csv", value.name="Alcohol")
-print(xtable(alcW[1:10,]),type="html")
+alc = fetchGapminder("Gapminder/Alcohol.csv", value.name="Alcohol")
+print(xtable(alc[1:10,]),type="html")
 ```
 
 All the alcohol measurements are now in one variable, the years in another.  You can still easily grab the data for one year or one country, e.g.
 ```{r results="hide"}
-subset(alcW, Country=="Russia")
-subset(alcW, Year==1990)
+subset(alc, Country=="Russia")
+subset(alc, Year==1990)
 ```
 
 The `groupBy()` function works well on narrow data and allows you to consolidate data across countries or years.
 
 Here's a fairly elaborate example using operations that may be unfamiliar: Finding the country with the maximum alcohol consumption in each year:
 ```{r}
-groupBy(alcW, by=Year, 
+groupBy(alc, by=Year, 
         Country=as.character(Country[which.min(Alcohol)]), 
         Consumption=min(Alcohol))
 ```
@@ -105,17 +130,22 @@ Why do you think that Sweden and Russian are often found to be the countries wit
 
 The narrow format is particularly useful when you want put two or more variables side by side. Suppose you read in two variables:
 ```{r echo=FALSE, results="asis",echo=1:2}
-alc = readGapminderNarrow("Gapminder/Alcoholconsumption.csv", value.name="Alcohol")
-liver = readGapminderNarrow("Gapminder/LiverCancerIncidenceMale.csv",value.name="LiverCancerM")
+alc = fetchGapminder("Gapminder/Alcohol.csv", value.name="Alcohol")
+liver = fetchGapminder("Gapminder/LiverCancerIncidenceMale.csv",value.name="LiverCancerM")
 print(xtable(alcW[1:5,]),type="html")
 print(xtable(liver[1:5,]),type="html")
 ```
 
 Suppose you want to do a quick exploration of the potential link between liver cancer and alcohol consumption.  A scatter plot of the incidence of liver cancer against alcohol consumption might be informative.  To make this, you have to put the two variables side by side.  Of course, you'll need to match up the corresponding cases.  This is not just a matter of matching the first row in one data frame to the first row in the other; you don't want to put alcohol in Russia in 1985 against liver cancer in Denmark in 1953.  Instead, you want to join the tables in a sensible way, matching up the corresponding cases.
 
+Doing such matching requires that there be identifiers that mark the individual cases.  In for these data, the unique identifier is country and year --- for each variable there is only one entry for each country and year.  Later on, when you study the **join** operation, you'll see that there are choices to be made.  But for data like these, organized in very similar ways, the default operation is pretty simple.
 
+```{r echo=1,results="asis"}
+both = join(alc,liver)
+print( xtable( both[1:5,]),type="html")
+```
 
-
+Need to arrange this so that only the cases with both variables are shown.
 
 JUST SIMPLE JOIN --- the defaults
 
@@ -128,4 +158,9 @@ IN THE JOIN DOCUMENT, the different kinds of join.  Pull out a handful of countr
 
 Cleaning the bird species data.  Make a Google spreadsheet with the current names, then the corrected name next to that.
 
+```{r}
+par(mai=c(0,0,0.2,0), xaxs="i",yaxs="i")
+mp = mapCountryData( s, nameColumnToPlot="Alcohol", addLegend=FALSE)
+do.call(addMapLegend, c(mp, legendWidth=.5,legendMar=2))
+```
 Standardizing  country names
