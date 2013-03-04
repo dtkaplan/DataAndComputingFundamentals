@@ -1,0 +1,8 @@
+Week 3 Notes
+=================
+
+Go over some problems people are having with the templates.  See [this example](https://mail.google.com/mail/u/0/?shva=1#inbox/13d329f3b5fc811e)
+
+We need to spend more time hands on with students.  We're thinking, in future semesters, of having a "clinic" when students in very small groups will work with tutors.  
+
+

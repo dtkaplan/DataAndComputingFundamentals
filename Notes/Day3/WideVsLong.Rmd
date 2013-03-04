@@ -132,7 +132,7 @@ The narrow format is particularly useful when you want put two or more variables
 ```{r echo=FALSE, results="asis",echo=1:2}
 alc = fetchGapminder("Gapminder/Alcohol.csv", value.name="Alcohol")
 liver = fetchGapminder("Gapminder/LiverCancerIncidenceMale.csv",value.name="LiverCancerM")
-print(xtable(alcW[1:5,]),type="html")
+print(xtable(alc[1:5,]),type="html")
 print(xtable(liver[1:5,]),type="html")
 ```
 
@@ -142,12 +142,10 @@ Doing such matching requires that there be identifiers that mark the individual 
 
 ```{r echo=1,results="asis"}
 both = join(alc,liver)
-print( xtable( both[1:5,]),type="html")
+print( xtable( both[14:19,]),type="html")
 ```
 
-Need to arrange this so that only the cases with both variables are shown.
-
-JUST SIMPLE JOIN --- the defaults
+Notice that when there is a case in one table but no corresponding case in the other --- for instance, Ukraine in 1993 --- the variable is listed as `NA`.
 
 Exercises:
 
