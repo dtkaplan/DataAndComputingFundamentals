@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Gapminder</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Gapminder</h1>
+
+<p>The <a href="www.gapminder.org">Gapminder</a> project has scraped databases from the United Nations and other organizations to produce data in a web-accessible format.  <a href="http://en.wikipedia.org/wiki/Hans_Rosling">Hans Rosling</a>, the co-founder of Gapminder, is probably the best known statistician today, famous particularly for a series of excellent health and national development presentations made on TED: for example this one from <a href="http://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen.html">2006</a> and this from <a href="http://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty.html">2007</a>.</p>
+
+<p>The Gapminder data site gives several hundred variables on a country-by-country and year-by-year basis.  The list is available <a href="http://www.gapminder.org/data/">here</a>.  (Set the display to &ldquo;Show <strong>All</strong> Indicators&rdquo; to see the list of all the variables.)</p>
+
+<p>The data are available as spreadsheet files, each containing an individual variable.  This is a common format.  </p>
+
+<p>To keep access for this class simple, we have downloaded a few of the files and are making them available for directly reading into R using <code>fetchData()</code>.  (We will eventually change this interface so that the data are read directly into R from the Gapminder site.)</p>
+
+<table><thead>
+<tr>
+<th>Topic</th>
+<th>on Gapminder</th>
+<th><code>fetchData()/fetchGapminder()</code> name</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Alcohol consumption</td>
+<td><a href="http://spreadsheets.google.com/pub?key=0AgogXXPMARyldGJqTDRfNHBWODJMRWlZaVhNclhNZXc&amp;gid=0">link</a></td>
+<td><code>Gapminder/Alcohol.csv</code></td>
+</tr>
+<tr>
+<td>Age at first marriage for women</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdDRlRjhIX2pxX3h5S0NVSEFYNlZUMWc&amp;gid=1">link</a></td>
+<td><code>Gapminder/MarriageAgeFemale.csv</code></td>
+</tr>
+<tr>
+<td>Contraceptive use</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFp2OENYMUVKWnY1dkJLRXAtYnI3UVE&amp;gid=1">link</a></td>
+<td><code>Gapminder/ContraceptiveUse.csv</code></td>
+</tr>
+<tr>
+<td>Tobacco use &mdash; Male</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdDYwdHBqeHBXcTNCbS1uQk92U20zb2c&amp;gid=1">link</a></td>
+<td><code>Gapminder/TobaccoUseMale.csv</code></td>
+</tr>
+<tr>
+<td>Tobacco use &mdash; Female</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdGhvcnRQRXpEbjJ4Y181YlUyNTVtUEE&amp;gid=1">link</a></td>
+<td><code>Gapminder/TobaccoUseFemale.csv</code></td>
+</tr>
+<tr>
+<td>Total Population</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowWE9vQkxfbjV0QVE&amp;gid=1">link</a></td>
+<td><code>Gapminder/TotalPopulation.csv</code></td>
+</tr>
+<tr>
+<td>Land Surface Area</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFFWcWdEM0RXT1lRZ0wwRVNsakZCaWc&amp;gid=1">link</a></td>
+<td><code>Gapminder/LandArea.csv</code></td>
+</tr>
+<tr>
+<td>Under 5 mortality rate</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowNVpSNjl1c3lRSWc&amp;gid=1">link</a></td>
+<td><code>Gapminder/Under5mortality.csv</code></td>
+</tr>
+<tr>
+<td>Arms imports</td>
+<td><a href="https://spreadsheets.google.com/pub?key=0AkBd6lyS3EmpdEljeENrOXlFXzR3Rm8xT0drTV9YclE&amp;gid=0">link</a></td>
+<td><code>Gapminder/Armsinports.csv</code></td>
+</tr>
+<tr>
+<td>CO_2 emissions</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxTkhQQzlNeVo5U1E&amp;gid=1">link</a></td>
+<td><code>Gapminder/CO2emissions.csv</code></td>
+</tr>
+<tr>
+<td>Aid received per person</td>
+<td><a href="https://spreadsheets.google.com/pub?key=t9GL1nIZdtxszJbjKErN2Hg&amp;gid=0">link</a></td>
+<td><code>Gapminder/AidReceived.csv</code></td>
+</tr>
+<tr>
+<td>Paved roads (percent of roads)</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdDBKd2V5VmxkYlJuUHAtOURzUkZzNEE&amp;gid=1">link</a></td>
+<td><code>Gapminder/PavedRoads.csv</code></td>
+</tr>
+<tr>
+<td>Traffic deaths (per 100,000)</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AgogXXPMARyldEs4N1NPeS1vWmxmVzk5VUREN0wzaHc&amp;gid=1">link</a></td>
+<td><code>Gapminder/TrafficDeathRate.csv</code></td>
+</tr>
+<tr>
+<td>Urban population (percent)</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowLUxFNFN0ekNzRXc&amp;gid=1">link</a></td>
+<td><code>Gapminder/UrbanPopulationPercent.csv</code></td>
+</tr>
+<tr>
+<td>Economic growth</td>
+<td><a href="https://spreadsheets.google.com/pub?key=tkdAnkbHJxPAlRX6P1mAh8w&amp;gid=0">link</a></td>
+<td><code>Gapminder/EconomicGrowth.csv</code></td>
+</tr>
+<tr>
+<td>Income per person</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxamlNQWttcTFpTWc&amp;gid=1">link</a></td>
+<td><code>Gapminder/IncomePerCapitaPPP.csv</code></td>
+</tr>
+<tr>
+<td>Improved sanitation</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdE4tekJPYkR4WmJqYTRPWjc3OTl4WUE&amp;gid=1">link</a></td>
+<td><code>Gapminder/ImprovedSanitation.csv</code></td>
+</tr>
+<tr>
+<td>Body Mass Index &ndash; Male</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdF9saE1pWUNYVkVsNU1FdW1Yem81Nmc&amp;gid=1">link</a></td>
+<td><code>Gapminder/MaleBMI.csv</code></td>
+</tr>
+<tr>
+<td>Body Mass Index &ndash; Female</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGt0elo2dzJMVVQ3WmFGSmdhc09LRlE&amp;gid=1">link</a></td>
+<td><code>Gapminder/FemaleBMI.csv</code></td>
+</tr>
+<tr>
+<td>Underweight children</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdHFkZlc5WkhVQmVmeU0tR0RsSUdTU0E&amp;gid=0">link</a></td>
+<td><code>Gapminder/LowWeightForAge.csv</code></td>
+</tr>
+<tr>
+<td>Cell phone subscriptions</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhWLWtqNzljbWg4ZXV6M09JQXNGaUE&amp;gid=1">link</a></td>
+<td><code>Gapminder/CellPhoneTotal.csv</code></td>
+</tr>
+<tr>
+<td>Cholesterol (Total) &ndash; Male</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdDU5SnRoQ0xlZWhwRUZ6RFNQV042enc&amp;gid=1">link</a></td>
+<td><code>Gapminder/TCmale.csv</code></td>
+</tr>
+<tr>
+<td>Cholesterol (Total) &ndash; Female</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGJHcHZkSUdBcU56aS1OT3lLeU4tRHc&amp;gid=1&amp;gid=1">link</a></td>
+<td><code>Gapminder/TCfemale.csv</code></td>
+</tr>
+<tr>
+<td>HIV prevalence</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0Auk0ddvGIrGqcHlqNnRTY1pxbUVmYlp5bDBxamJpUlE&amp;gid=1">link</a></td>
+<td><code>Gapminder/HIVprevalence.csv</code></td>
+</tr>
+<tr>
+<td>Primary education spending</td>
+<td><a href="https://spreadsheets.google.com/pub?key=0AkBd6lyS3EmpdFJTUEVleTM0cE5jTnlTMk41ajBGclE&amp;gid=0">link</a></td>
+<td><code>Gapminder/PrimaryEdSpending.csv</code></td>
+</tr>
+<tr>
+<td>Primary education completion</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhTN2hlZ05ZczVwZDdVZlF5cUxJb2c&amp;gid=1">link</a></td>
+<td><code>Gapminder/PrimaryEdCompletion.csv</code></td>
+</tr>
+<tr>
+<td>Primary education completion &ndash; Female</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFVxSEVZVWE1b0l6NWo5NzNTZ2IzWVE&amp;gid=1">link</a></td>
+<td><code>Gapminder/PrimaryEdCompletionFemale.csv</code></td>
+</tr>
+<tr>
+<td>Primary education completion &ndash; Male</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdGhCWnZrTGMwaTl5ek9QS0szMTIwcEE&amp;gid=1">link</a></td>
+<td><code>Gapminder/PrimaryEdCompletionMale.csv</code></td>
+</tr>
+<tr>
+<td>Democracy score</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGQ2YlhDSWVIdXdpMmhLY2ZZRHdNNnc&amp;gid=1">link</a></td>
+<td><code>Gapminder/DemocracyScore.csv</code></td>
+</tr>
+<tr>
+<td>Fertility</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowVEFsSmVDRXpjR1E&amp;gid=1">link</a></td>
+<td><code>Gapminder/Fertility.csv</code></td>
+</tr>
+<tr>
+<td>Liver Cancer incidence &ndash; Male</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxdTBLcFpic29wQ0E&amp;gid=1">link</a></td>
+<td><code>Gapminder/LiverCancerIncidenceMale.csv</code></td>
+</tr>
+<tr>
+<td>Liver Cancer incidence &ndash; Female</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoyeGhhS0VObXlSS3c&amp;gid=1">link</a></td>
+<td><code>Gapminder/LiverCancerIncidenceFemale.csv</code></td>
+</tr>
+</tbody></table>
+
+<p>If you are interested in a Gapminder variable not listed here, help add it to the list.  Here&#39;s how.</p>
+
+<ol>
+<li>On the <a href="http://www.gapminder.org/data/">Gapminder data page</a>, right click on the Xcel icon for the file of interest.  If you left click, your browser will download the .xls file, but by right clicking, you&#39;ll get a context-sensitive menu with an option to copy the link.  Do so.</li>
+<li>Open a new tab in your browser and paste the copied link into the URL address box.  <strong>Before</strong> hitting return, edit the link so that the last three letters are <code>csv</code> rather than <code>xls</code>.  Then press return.</li>
+<li>Depending on the settings on your browser, it will either save the file or display it.  Whichever happens, arrange to save the file to disk.  Give the file a simple but informative name &mdash; this will become the name of the variable when the file is read in with <code>fetchGapminder()</code>.</li>
+<li>Go back to the Gapminder data page and click on the &ldquo;View&rdquo; magnifer icon.  The data will be displayed.  Move to the &ldquo;About&rdquo; tab. This will cause the URL to change.  Copy that URL.</li>
+<li>Send an email to <a href="mailto:dtkaplan@gmail.com">dtkaplan@gmail.com</a> with the following:
+
+<ul>
+<li>Set the &ldquo;subject:&rdquo; to &ldquo;Gapminder CSV file&rdquo;</li>
+<li>Your CSV file as an attachment</li>
+<li>The URL from the &ldquo;About&rdquo; tab as the contents of the mail.</li>
+</ul></li>
+<li>We&#39;ll add the file so that it can be directly accessed with <code>fetchGapminder()</code>.  But you can use it immediately by uploading it to your RStudio account.  To find the name of the file for use in <code>fetchGapminder()</code>, give the command <code>file.choose()</code>.  This will allow you to search the file system for your file and will produce the full path name of the file.</li>
+</ol>
+
+</body>
+
+</html>
+

@@ -17,6 +17,8 @@ Handin$W1web=18513
 Handin$W2exercises=18806
 Handin$W2birds=18807
 Handin$W2voters=18808
+Handin$W3exercises=19987
+Handin$W3maps=19989
 ```
 
 Syllabus 
@@ -125,7 +127,7 @@ Voter data | `r I(gitHTML(nm="voters", folder="Notes/Day2/"))` | `r I(template(n
 
 ### Topics
 
-* Data across many files: Example: [Gapminder](www.gapminder.org/data)
+* `r I(gitHTML(label="Data across many files",nm="Gapminder", folder="Notes/Day3/"))`
 * `r I(gitHTML(label="Wide and Narrow Data",nm="WideVsLong", folder="Notes/Day3/"))`
 * Continuous to Categorical (to be posted)
 * `r I(gitHTML(label="Drawing Maps",nm="Maps", folder="Notes/Day3/"))`
@@ -134,7 +136,8 @@ Voter data | `r I(gitHTML(nm="voters", folder="Notes/Day2/"))` | `r I(template(n
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
-Maps |  `r I(gitHTML(nm="map-exercises", folder="Notes/Day3/"))` | `r I(template(nm="map-exercises",folder="Notes/Day3/"))` | `r I(handin("W3maps"))`
+Exercises |  `r I(gitHTML(nm="Exercises-3", folder="Notes/Day3/"))` | `r I(template(nm="Exercises-3",folder="Notes/Day3/"))` | `r I(handin("W3exercises"))`
+Exploring Gapminder |  `r I(gitHTML(nm="map-exercises", folder="Notes/Day3/"))` | `r I(template(nm="map-exercises",folder="Notes/Day3/"))` | `r I(handin("W3maps"))`
 
 --------------
 

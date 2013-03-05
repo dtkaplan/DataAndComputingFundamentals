@@ -1,3 +1,78 @@
 Week 3 Notes
+===============
 
-[Maps of Hispanic population in California](http://www.nytimes.com/interactive/2013/02/20/us/hispanics-californias-next-majority.html?hp)
+## Todays' Topics
+
+* Accessing Gapminder data on the web.
+* Wide versus narrow data
+* Making maps
+
+The maps we make won't be as sophisticated as this one from the New York times, but are still pretty impressive. [NYTimes Map of Hispanic population in California](http://www.nytimes.com/interactive/2013/02/20/us/hispanics-californias-next-majority.html?hp)
+
+## The Gapminder Data site
+
+They offer analysis software, as do many data-oriented sites.  But it's much better to learn to use a general-purpose and customizable tool like R.  So we're going to use their data.
+
+* Pick a data set.
+* Look at the data file and the documentation.
+* Download a CSV file to your computer
+* Get the link to the documentation
+* Format an entry in the table form and email your file to me.
+<code>  
+    Short description | \[link](documentation link) | \`Gapminder/Filename.csv\`
+</code>
+
+## Wide versus Narrow
+
+## Simple operations on the data
+
+* How many countries?
+* How many years?
+* How many countries for each year?
+* How many years for each country?
+
+
+## Getting one value per country
+
+Use `groupBy()` with `by=Country` and pull out some summary of the values, e.g., `min`, `mean`, `median`, `sd`
+
+* What's a *standard deviation*?
+
+## Draw a Map of the Data
+
+## Discrete colors
+
+## Quantitative to Categorical
+
+`ifthen`, `cut`, `ntiles`
+
+* How even are the groups?
+* Widely divergent data: ntiles does something like this automatically.
+
+## Joining two data files
+
+* Very simple --- just use `join`
+
+## Maps and Scatter Plots
+
+* Use `mWorldMap` to generate the command.
+
+## Animating Graphics: The Basics
+
+How has fertility changed over the years:
+```{r}
+fert = fetchGapminder("Gapminder/Fertility.csv")
+co2 = fetchGapminder("Gapminder/CO2emissions.csv")
+both = join(fert,co2)
+```
+
+Now plot out one versus the other for a single year:
+```{r eval=FALSE}
+manipulate({thisyear = subset(both, Year==year)
+ggplot(data=thisyear)+geom_point(aes(x=CO2emissions,y=Fertility))+scale_x_log10(limits=c(1,1e9))+ylim(0,10)},year=slider(min=1950,max=2010,label="Year")) 
+```
+
+Things to add:
+* Country population as a size
+* region as a color
+

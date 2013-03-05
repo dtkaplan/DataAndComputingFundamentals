@@ -180,180 +180,7 @@ hljs.initHighlightingOnLoad();
 <body>
 <h1>Wide versus Narrow Data Formats</h1>
 
-<p>The <a href="www.gapminder.org">Gapminder</a> project has scraped databases from the United Nations and other organizations to produce data in a web-accessible format.  <a href="http://en.wikipedia.org/wiki/Hans_Rosling">Hans Rosling</a>, the co-founder of Gapminder, is probably the best known statistician today, famous particularly for a series of excellent health and national development presentations made on TED: for example this one from <a href="http://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen.html">2006</a> and this from <a href="http://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty.html">2007</a>.</p>
-
-<p>The Gapminder data site gives several hundred variables on a country-by-country and year-by-year basis.  The list is available <a href="http://www.gapminder.org/data/">here</a>. </p>
-
-<p>The data are available as spreadsheet files.  To keep things simple, we have downloaded a few of the files and are making them available for directly reading into R using <code>fetchData()</code>.  (We will eventually change this interface so that the data are read directly into R from the Gapminder site.)</p>
-
-<table><thead>
-<tr>
-<th>Topic</th>
-<th>on Gapminder</th>
-<th><code>fetchData()/fetchGapminder()</code> name</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Alcohol consumption</td>
-<td><a href="http://spreadsheets.google.com/pub?key=0AgogXXPMARyldGJqTDRfNHBWODJMRWlZaVhNclhNZXc&amp;gid=0">link</a></td>
-<td><code>Gapminder/Alcohol.csv</code></td>
-</tr>
-<tr>
-<td>Age at first marriage for women</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdDRlRjhIX2pxX3h5S0NVSEFYNlZUMWc&amp;gid=1">link</a></td>
-<td><code>Gapminder/MarriageAgeFemale.csv</code></td>
-</tr>
-<tr>
-<td>Contraceptive use</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFp2OENYMUVKWnY1dkJLRXAtYnI3UVE&amp;gid=1">link</a></td>
-<td><code>Gapminder/ContraceptiveUse.csv</code></td>
-</tr>
-<tr>
-<td>Tobacco use &mdash; Male</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdDYwdHBqeHBXcTNCbS1uQk92U20zb2c&amp;gid=1">link</a></td>
-<td><code>Gapminder/TobaccoUseMale.csv</code></td>
-</tr>
-<tr>
-<td>Tobacco use &mdash; Female</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdGhvcnRQRXpEbjJ4Y181YlUyNTVtUEE&amp;gid=1">link</a></td>
-<td><code>Gapminder/TobaccoUseFemale.csv</code></td>
-</tr>
-<tr>
-<td>Total Population</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowWE9vQkxfbjV0QVE&amp;gid=1">link</a></td>
-<td><code>Gapminder/TotalPopulation.csv</code></td>
-</tr>
-<tr>
-<td>Land Surface Area</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFFWcWdEM0RXT1lRZ0wwRVNsakZCaWc&amp;gid=1">link</a></td>
-<td><code>Gapminder/LandArea.csv</code></td>
-</tr>
-<tr>
-<td>Under 5 mortality rate</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowNVpSNjl1c3lRSWc&amp;gid=1">link</a></td>
-<td><code>Gapminder/Under5mortality.csv</code></td>
-</tr>
-<tr>
-<td>Arms imports</td>
-<td><a href="https://spreadsheets.google.com/pub?key=0AkBd6lyS3EmpdEljeENrOXlFXzR3Rm8xT0drTV9YclE&amp;gid=0">link</a></td>
-<td><code>Gapminder/Armsinports.csv</code></td>
-</tr>
-<tr>
-<td>CO_2 emissions</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxTkhQQzlNeVo5U1E&amp;gid=1">link</a></td>
-<td><code>Gapminder/CO2emissions.csv</code></td>
-</tr>
-<tr>
-<td>Aid received per person</td>
-<td><a href="https://spreadsheets.google.com/pub?key=t9GL1nIZdtxszJbjKErN2Hg&amp;gid=0">link</a></td>
-<td><code>Gapminder/AidReceived.csv</code></td>
-</tr>
-<tr>
-<td>Paved roads (percent of roads)</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdDBKd2V5VmxkYlJuUHAtOURzUkZzNEE&amp;gid=1">link</a></td>
-<td><code>Gapminder/PavedRoads.csv</code></td>
-</tr>
-<tr>
-<td>Traffic deaths (per 100,000)</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AgogXXPMARyldEs4N1NPeS1vWmxmVzk5VUREN0wzaHc&amp;gid=1">link</a></td>
-<td><code>Gapminder/TrafficDeathRate.csv</code></td>
-</tr>
-<tr>
-<td>Urban population (percent)</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowLUxFNFN0ekNzRXc&amp;gid=1">link</a></td>
-<td><code>Gapminder/UrbanPopulationPercent.csv</code></td>
-</tr>
-<tr>
-<td>Economic growth</td>
-<td><a href="https://spreadsheets.google.com/pub?key=tkdAnkbHJxPAlRX6P1mAh8w&amp;gid=0">link</a></td>
-<td><code>Gapminder/EconomicGrowth.csv</code></td>
-</tr>
-<tr>
-<td>Income per person</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxamlNQWttcTFpTWc&amp;gid=1">link</a></td>
-<td><code>Gapminder/IncomePerCapitaPPP.csv</code></td>
-</tr>
-<tr>
-<td>Improved sanitation</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdE4tekJPYkR4WmJqYTRPWjc3OTl4WUE&amp;gid=1">link</a></td>
-<td><code>Gapminder/ImprovedSanitation.csv</code></td>
-</tr>
-<tr>
-<td>Body Mass Index &ndash; Male</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdF9saE1pWUNYVkVsNU1FdW1Yem81Nmc&amp;gid=1">link</a></td>
-<td><code>Gapminder/MaleBMI.csv</code></td>
-</tr>
-<tr>
-<td>Body Mass Index &ndash; Female</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGt0elo2dzJMVVQ3WmFGSmdhc09LRlE&amp;gid=1">link</a></td>
-<td><code>Gapminder/FemaleBMI.csv</code></td>
-</tr>
-<tr>
-<td>Underweight children</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdHFkZlc5WkhVQmVmeU0tR0RsSUdTU0E&amp;gid=0">link</a></td>
-<td><code>Gapminder/LowWeightForAge.csv</code></td>
-</tr>
-<tr>
-<td>Cell phone subscriptions</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhWLWtqNzljbWg4ZXV6M09JQXNGaUE&amp;gid=1">link</a></td>
-<td><code>Gapminder/CellPhoneTotal.csv</code></td>
-</tr>
-<tr>
-<td>Cholesterol (Total) &ndash; Male</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdDU5SnRoQ0xlZWhwRUZ6RFNQV042enc&amp;gid=1">link</a></td>
-<td><code>Gapminder/TCmale.csv</code></td>
-</tr>
-<tr>
-<td>Cholesterol (Total) &ndash; Female</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGJHcHZkSUdBcU56aS1OT3lLeU4tRHc&amp;gid=1&amp;gid=1">link</a></td>
-<td><code>Gapminder/TCfemale.csv</code></td>
-</tr>
-<tr>
-<td>HIV prevalence</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0Auk0ddvGIrGqcHlqNnRTY1pxbUVmYlp5bDBxamJpUlE&amp;gid=1">link</a></td>
-<td><code>Gapminder/HIVprevalence.csv</code></td>
-</tr>
-<tr>
-<td>Primary education spending</td>
-<td><a href="https://spreadsheets.google.com/pub?key=0AkBd6lyS3EmpdFJTUEVleTM0cE5jTnlTMk41ajBGclE&amp;gid=0">link</a></td>
-<td><code>Gapminder/PrimaryEdSpending.csv</code></td>
-</tr>
-<tr>
-<td>Primary education completion</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhTN2hlZ05ZczVwZDdVZlF5cUxJb2c&amp;gid=1">link</a></td>
-<td><code>Gapminder/PrimaryEdCompletion.csv</code></td>
-</tr>
-<tr>
-<td>Primary education completion &ndash; Female</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFVxSEVZVWE1b0l6NWo5NzNTZ2IzWVE&amp;gid=1">link</a></td>
-<td><code>Gapminder/PrimaryEdCompletionFemale.csv</code></td>
-</tr>
-<tr>
-<td>Primary education completion &ndash; Male</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdGhCWnZrTGMwaTl5ek9QS0szMTIwcEE&amp;gid=1">link</a></td>
-<td><code>Gapminder/PrimaryEdCompletionMale.csv</code></td>
-</tr>
-<tr>
-<td>Democracy score</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGQ2YlhDSWVIdXdpMmhLY2ZZRHdNNnc&amp;gid=1">link</a></td>
-<td><code>Gapminder/DemocracyScore.csv</code></td>
-</tr>
-<tr>
-<td>Fertility</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowVEFsSmVDRXpjR1E&amp;gid=1">link</a></td>
-<td><code>Gapminder/Fertility.csv</code></td>
-</tr>
-<tr>
-<td>Liver Cancer incidence &ndash; Male</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxdTBLcFpic29wQ0E&amp;gid=1">link</a></td>
-<td><code>Gapminder/LiverCancerIncidenceMale.csv</code></td>
-</tr>
-<tr>
-<td>Liver Cancer incidence &ndash; Female</td>
-<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoyeGhhS0VObXlSS3c&amp;gid=1">link</a></td>
-<td><code>Gapminder/LiverCancerIncidenceFemale.csv</code></td>
-</tr>
-</tbody></table>
+<p>The <a href="www.gapminder.org">Gapminder</a> data are stored as individual files for each variable.  The format is <strong>wide</strong> &mdash; each year is its own column.</p>
 
 <p>To read in a data file, use <code>fetchData()</code> in the ordinary way.  For instance, per capita alcohol consumption each year (in litres per adult, where an adult is defined as a person aged 15 years and over):</p>
 
@@ -389,7 +216,7 @@ hljs.initHighlightingOnLoad();
 
 <!-- html table generated in R 2.15.1 by xtable 1.7-0 package -->
 
-<!-- Mon Mar  4 22:18:35 2013 -->
+<!-- Tue Mar  5 10:56:34 2013 -->
 
 <TABLE border=1>
 <CAPTION ALIGN="bottom"> Alcohol Consumption </CAPTION>
@@ -425,21 +252,6 @@ hljs.initHighlightingOnLoad();
 
 <p>Another possible format for these data is called <strong>narrow</strong>.  The narrow format has a different idea of what&#39;s a case.  Rather than treating each country as a case, the case is each country in a particular year.  This is what a narrow format looks like:</p>
 
-<pre><code class="r">fetchGapminder &lt;- function(fetchname,value.name=NULL){
-  if( is.null(value.name) ) # Just the base name of the file --- no extension.
-    value.name &lt;- sub(&quot;\\.[^.]+$&quot;,&quot;&quot;,basename(fetchname))
-  dat &lt;- fetchData(fetchname)
-  countryLabel &lt;- names(dat)[1]
-  yearCols &lt;- names(dat)[-1]
-  res &lt;- melt(dat, id.vars=countryLabel, value.name=&quot;Var&quot;, 
-             measure.vars=yearCols, variable.name=&quot;Year&quot;)
-  res &lt;- subset(res, !is.na(Var))
-  res$Year &lt;- as.numeric(sub(&quot;X&quot;,&quot;&quot;,as.character(res$Year)))
-  names(res) &lt;- c(&quot;Country&quot;,&quot;Year&quot;, value.name)
-  return(res)
-  }
-</code></pre>
-
 <pre><code class="r">alc = fetchGapminder(&quot;Gapminder/Alcohol.csv&quot;, value.name = &quot;Alcohol&quot;)
 </code></pre>
 
@@ -449,7 +261,7 @@ hljs.initHighlightingOnLoad();
 
 <!-- html table generated in R 2.15.1 by xtable 1.7-0 package -->
 
-<!-- Mon Mar  4 22:18:35 2013 -->
+<!-- Tue Mar  5 10:56:35 2013 -->
 
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Country </TH> <TH> Year </TH> <TH> Alcohol </TH>  </TR>
@@ -506,13 +318,6 @@ subset(alc, Year == 1990)
 
 <p>Why do you think that Sweden and Russian are often found to be the countries with the <strong>minimum</strong> alcohol consumption?  Hint: It&#39;s not because people in all other countries drank more in those years.</p>
 
-<h4>Exercises with <code>groupBy()</code>:</h4>
-
-<ol>
-<li>Which countries have more than 10 alcohol measurements?</li>
-<li>Which countries have alcohol measurements spanning a period of more than 10 years?</li>
-</ol>
-
 <h3>Comparing multiple variables</h3>
 
 <p>The narrow format is particularly useful when you want put two or more variables side by side. Suppose you read in two variables:</p>
@@ -533,7 +338,7 @@ subset(alc, Year == 1990)
 
 <!-- html table generated in R 2.15.1 by xtable 1.7-0 package -->
 
-<!-- Mon Mar  4 22:18:36 2013 -->
+<!-- Tue Mar  5 10:56:35 2013 -->
 
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Country </TH> <TH> Year </TH> <TH> Alcohol </TH>  </TR>
@@ -546,7 +351,7 @@ subset(alc, Year == 1990)
 
 <!-- html table generated in R 2.15.1 by xtable 1.7-0 package -->
 
-<!-- Mon Mar  4 22:18:36 2013 -->
+<!-- Tue Mar  5 10:56:35 2013 -->
 
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Country </TH> <TH> Year </TH> <TH> LiverCancerM </TH>  </TR>
@@ -569,7 +374,7 @@ subset(alc, Year == 1990)
 
 <!-- html table generated in R 2.15.1 by xtable 1.7-0 package -->
 
-<!-- Mon Mar  4 22:18:36 2013 -->
+<!-- Tue Mar  5 10:56:35 2013 -->
 
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Country </TH> <TH> Year </TH> <TH> Alcohol </TH> <TH> LiverCancerM </TH>  </TR>
@@ -582,32 +387,6 @@ subset(alc, Year == 1990)
    </TABLE>
 
 <p>Notice that when there is a case in one table but no corresponding case in the other &mdash; for instance, Ukraine in 1993 &mdash; the variable is listed as <code>NA</code>.</p>
-
-<p>Exercises:</p>
-
-<ul>
-<li>Then average the countries data &mdash; match up the averaged data.</li>
-<li>Break up the averages over decades.</li>
-</ul>
-
-<p>IN THE JOIN DOCUMENT, the different kinds of join.  Pull out a handful of countries with limited data.  Show the effects of the different joins.</p>
-
-<p>Cleaning the bird species data.  Make a Google spreadsheet with the current names, then the corrected name next to that.</p>
-
-<pre><code class="r">par(mai = c(0, 0, 0.2, 0), xaxs = &quot;i&quot;, yaxs = &quot;i&quot;)
-mp = mapCountryData(s, nameColumnToPlot = &quot;Alcohol&quot;, addLegend = FALSE)
-</code></pre>
-
-<pre><code>## Error: object &#39;s&#39; not found
-</code></pre>
-
-<pre><code class="r">do.call(addMapLegend, c(mp, legendWidth = 0.5, legendMar = 2))
-</code></pre>
-
-<pre><code>## Error: object &#39;mp&#39; not found
-</code></pre>
-
-<p>Standardizing  country names</p>
 
 </body>
 

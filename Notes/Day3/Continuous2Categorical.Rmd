@@ -1,0 +1,16 @@
+Converting Quantitative Variables to Categorical
+======================
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+require(xtable)
+```
+
+Cover
+* `ifthen()` for binary splits with assigned names
+* `cut()` for multi-way splits.
+    * cut with logarithmic spacing: `breaks=c(0,10^(1:10),Inf)`, `paste("d",1:10)`
+* `ntiles()` for evenly populated groups
+    * `quantile(nm, seq(0,1,length=n))` to see the dividing points
+    * `groupBy()` with `max()` and `min()` to see the breakpoints.

@@ -1,0 +1,59 @@
+Exercises for Week 3
+==============
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+options(na.rm=TRUE)
+require(xtable)
+```
+
+### Data and Computing Fundamentals
+
+## Narrow Data Exercises
+
+### In the `Gapminder\TotalPopulation.csv` data ...
+
+* How many countries altogether?
+* How many years altogether?
+* How many countries for each year?
+* How many years for each country?
+* Are there any countries that are listed before 1950 but not since then?
+
+### In the `Gapminder\LandArea.csv` data ...
+
+* Are there countries that have changed in size over the years?
+    Hint: Use `groupBy()` with an operation of  `min(LandArea) != max(LandArea)`
+* What countries have changed in area by more than 10%?
+
+## Narrow to Wide
+
+Use `subset()` and `join()` to create a new data frame that has the country's population in 1990 as one variable and the population in 2010 as another variable. 
+
+## Quantitative to Categorical
+
+* Use `transform()` and `cut()` to create a `prewar` variable indicating whether data are from before World War II.  Use levels: "pre" and "post"
+* Use `transform()` and `cut()` to create a `decade` variable coded as "1980s", "1990s", "2000s" 
+* Use `subset()`, `transform()` and `ntiles()` to divide up countries into 5 categories according to their GDP in 2010.
+    * Use `groupBy()` to find the range of GDP in each of the categories. Hint: `max()` and `min()`
+* Use `groupBy()`, `transform()` and `ntiles()` to divide up countries into 5 categories according to how much their GDP has grown from 1990 to 2010.
+* Use `groupBy()`, `transform()` and `ntiles()` to divide up countries into 5 categories according to how much their population has grown from 1990 to 2010.
+* Make a bar plot that shows the relationship between the GDP growth  categories and population growth categories.
+* Use `cut()` to divide countries up into those that have shrank in population from 1990 to 2010, those that grew by less than 1%, less than 5%, less than 10%, and so on.
+
+### Map Exercises
+
+*In each R chunk, include the commands needed to pre-process the data, e.g., `groupBy`, `join`, and `transform`.  Then, use `mWorldMap()` to generate a map command interactively.  Then add the map command to your R chunk.  Don't use `mWorldMap()` in this document.*
+
+
+#### Make a map of per-country CO_2 emissions.
+
+#### Make a map of per-country CO_2 emissions per capita.
+
+#### Make a map of per-country CO_2 emissions per unit of GDP.
+
+#### Make a map showing which countries have more than doubled in population since 1960.
+
+#### Make a bubble map showing population as the size of the bubble and fertility as the color.
+
+#### Pick a Gapminder variable.  Make a map that displays which countries have data over a wide range of years and which have data only recently.  Hint: `min(Year)`
