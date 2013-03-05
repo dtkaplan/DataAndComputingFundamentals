@@ -125,6 +125,7 @@ Voter data | `r I(gitHTML(nm="voters", folder="Notes/Day2/"))` | `r I(template(n
 
 ### Topics
 
+* Data across many files: Example: [Gapminder](www.gapminder.org/data)
 * `r I(gitHTML(label="Wide and Narrow Data",nm="WideVsLong", folder="Notes/Day3/"))`
 * Continuous to Categorical (to be posted)
 * `r I(gitHTML(label="Drawing Maps",nm="Maps", folder="Notes/Day3/"))`
