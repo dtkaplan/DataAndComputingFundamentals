@@ -145,7 +145,7 @@ Voter data | `r I(gitHTML(nm="voters", folder="Notes/Day2/"))` | `r I(template(n
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
 Exercises |  `r I(gitHTML(nm="Exercises-3", folder="Notes/Day3/"))` | `r I(template(nm="Exercises-3",folder="Notes/Day3/"))` | `r I(handin("W3exercises"))`
-Exploring Gapminder |  `r I(gitHTML(nm="map-exercises", folder="Notes/Day3/"))` | `r I(template(nm="map-exercises",folder="Notes/Day3/"))` | `r I(handin("W3maps"))`
+Exploring Gapminder |  `r I(gitHTML(nm="Exercises-Maps", folder="Notes/Day3/"))` | `r I(template(nm="Exercises-Maps",folder="Notes/Day3/"))` | `r I(handin("W3maps"))`
 
 --------------
 

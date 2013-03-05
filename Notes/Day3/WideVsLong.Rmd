@@ -11,21 +11,21 @@ The [Gapminder](www.gapminder.org) data are stored as individual files for each 
 
 To read in a data file, use `fetchData()` in the ordinary way.  For instance, per capita alcohol consumption each year (in litres per adult, where an adult is defined as a person aged 15 years and over):
 ```{r}
-alc = fetchData("Gapminder/Alcohol.csv")
+alcWide = fetchData("Gapminder/Alcohol.csv")
 ```
 
 Of course, you're tempted to look immediately at the data file, but it's fairly large:
 ```{r}
-nrow(alc)
-names(alc)
+nrow(alcWide)
+names(alcWide)
 ```
-There are `r nrow(alc)` countries.  There are data for `r length(names(alc))-1` years.  Altogther, that's `r nrow(alc)*(length(names(alc))-1)` entries.
+There are `r nrow(alcWide)` countries.  There are data for `r length(names(alcWide))-1` years.  Altogther, that's `r nrow(alcWide)*(length(names(alcWide))-1)` entries.
 
 The variable names are a bit strange, but you can see that there is a different variable for each year, even though the value is the same thing: alcohol consumption in litres.  
 
 Here's a small part of the data table: a few countries over a few years.
 ```{r echo=FALSE,results="asis"}
-small <- alc[156:165,c(1,14:25)]
+small <- alcWide[156:165,c(1,14:25)]
 names(small) <- c("Country","1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004","2005","2006","2007","2008")
 print(xtable(small,caption="Alcohol Consumption"),type="html")
 ```

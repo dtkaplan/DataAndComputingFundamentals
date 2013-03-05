@@ -7,9 +7,82 @@ startTemplate()
 require(xtable)
 ```
 
-Cover
-* `ifthen()` for binary splits with assigned names
-* `cut()` for multi-way splits.
+In displays, quantitative variables are effectively shown as a x- or y-position or as the size of a symbol.  But when you are displaying many variables, or using displays such as map coloring where position is used for other purposes, it can be helpful to convert a quantitative variable to a categorical variable.  Some such situations:
+
+* Using a symbol to display the value of a variable.  Symbols are discrete, and so the variable being displayed must fall into discrete groups. 
+* Using a color to display a value, as in coloring a map.  
+* Making a bar chart where the bars correspond to different numerical values.
+
+Here are some ways to create a new variable that puts a quantitative variable into groups:
+
+### A Two-Way Split
+
+If there is a dividing point, and you want to indicate whether each case is above or below that point, you can use `ifelse()`.  For example, does a country have fertility rates above the "replacement rate" of 2.1 children per woman.
+```{r}
+fertility = fetchGapminder("Gapminder/Fertility.csv")
+names(fertility)
+fertility = transform(fertility,
+                      Replace=ifelse(Fertility<2.1, "No","Yes"))
+```
+This is a perfectly ordinary use of `transform()` to create a new variable.  The division into groups of the fertility rate is being done by the `ifelse()` function.  Any reasonable names can be assigned to the two groups: the first name applies when the condition --- `Fertility<2.1` in the example --- is true, the second when it is false.
+
+Other common dicotomous splits:
+* the mean, e.g. `ifelse(Fertility<mean(Fertility),"Low","High")`
+* the median, e.g. `ifelse(Fertility<median(Fertility),"Low","High")`
+
+### Integer values
+
+The Democracy Score data from Gapminder scores each country on a $-10$ to 10$ scale of integers. 
+```{r}
+dem = fetchGapminder("Gapminder/DemocracyScore.csv")
+names(dem)
+```
+With 21 possible levels, the integers themselves might make a reasonable set of groups.  It might seem that there is no need to change anything, but in order to guarantee that the different groups are placed in numerical rather than alphabetical order, you can use `as.factor()` to convert the numbers explicitly to groups:
+```{r}
+dem = transform(dem,
+                DemLevel=as.factor(round(DemocracyScore)))
+```
+
+Now you are in a position to see how many countries there are at each level of `DemLevel` and `Replace`
+```{r}
+cts = groupBy(join(dem,fertility), by=list(DemLevel,Replace,Year))
+```
+
+A plot showing that more democratic countries tend to be more likely to have a fertility rate below replacement level:
+```{r}
+ggplot(data=subset(cts,Year==2005),aes(x=DemLevel,y=count ,fill=Replace))+geom_bar(stat='identity',position=position_stack(width=.9)) +xlab("Democracy Score") + ylab("Number of Countries")
+```
+
+### A Multi-Way Split
+
+When you want to split things up into several groups at specified levels, you can use `cut()`. For example, here's a split of democracy score into three groups:
+```{r}
+dem = transform( dem, 
+                 DLevel=cut(DemocracyScore,
+                            breaks=c(-Inf,-3,5,Inf),
+                            labels=c("Low","Middle","High")))
+recent = subset(dem, Year==2005)
+```
+
+```{r echo=FALSE}
+{.s. <- joinCountryData2Map(recent, joinCode='NAME',nameJoinColumn='Country' ); par(mai=c(0,0,0.2,0), xaxs='i',yaxs='i') ;.mp. <- mapCountryData(.s., nameColumnToPlot='DLevel',catMethod='categorical',mapRegion='world')} 
+```
+
+### Evenly Populated Groups
+
+The `ntiles()` function will break a quantitative variable into $n$ more or less evenly populated groups.  This is convenient when you want to make a quick split.
+
+```{r}
+fertility2005 = transform(subset(fertility,Year==2005),
+                      fertilityGroup=ntiles(Fertility,5))
+```
+
+Plotting this out:
+```{r}
+{.s. <- joinCountryData2Map(fertility2005, joinCode='NAME',nameJoinColumn='Country' ); par(mai=c(0,0,0.2,0), xaxs='i',yaxs='i') ;.mp. <- mapCountryData(.s., nameColumnToPlot='fertilityGroup',catMethod='categorical',mapRegion='world')} 
+```
+
+### Notes in Draft
     * cut with logarithmic spacing: `breaks=c(0,10^(1:10),Inf)`, `paste("d",1:10)`
 * `ntiles()` for evenly populated groups
     * `quantile(nm, seq(0,1,length=n))` to see the dividing points

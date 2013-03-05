@@ -48,10 +48,4 @@ Notice that there is a continuum of colors in the map above.  People are good at
 ```
 
 
-#### For Next Week
-
-We'll do join next week in a more serious way.
-
-* Identify each country with a region, using the region information in the scatter plot.
-* Clean the species variable in the bird data.
 
