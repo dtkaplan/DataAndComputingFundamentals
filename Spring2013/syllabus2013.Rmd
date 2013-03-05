@@ -129,8 +129,16 @@ Voter data | `r I(gitHTML(nm="voters", folder="Notes/Day2/"))` | `r I(template(n
 
 * `r I(gitHTML(label="Data across many files",nm="Gapminder", folder="Notes/Day3/"))`
 * `r I(gitHTML(label="Wide and Narrow Data",nm="WideVsLong", folder="Notes/Day3/"))`
-* Continuous to Categorical (to be posted)
+* `r I(gitHTML(label="Continuous to Categorical", nm="Continuous2Categorical", folder="Notes/Day3/"))`
 * `r I(gitHTML(label="Drawing Maps",nm="Maps", folder="Notes/Day3/"))`
+
+### In-Class
+
+* Gapminder files
+* Operations on Narrow Data
+* Continuous to Categorical
+* Joining two similar data files
+* Maps
 
 #### To Hand in
 

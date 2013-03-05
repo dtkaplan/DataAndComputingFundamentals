@@ -1,0 +1,66 @@
+Gapminder
+======================
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+require(xtable)
+```
+
+The [Gapminder](www.gapminder.org) project has scraped databases from the United Nations and other organizations to produce data in a web-accessible format.  [Hans Rosling](http://en.wikipedia.org/wiki/Hans_Rosling), the co-founder of Gapminder, is probably the best known statistician today, famous particularly for a series of excellent health and national development presentations made on TED: for example this one from [2006](http://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen.html) and this from [2007](http://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty.html).
+
+The Gapminder data site gives several hundred variables on a country-by-country and year-by-year basis.  The list is available [here](http://www.gapminder.org/data/).  (Set the display to "Show **All** Indicators" to see the list of all the variables.)
+
+
+The data are available as spreadsheet files, each containing an individual variable.  This is a common format.  
+
+To keep access for this class simple, we have downloaded a few of the files and are making them available for directly reading into R using `fetchData()`.  (We will eventually change this interface so that the data are read directly into R from the Gapminder site.)
+
+
+Topic                  | on Gapminder | `fetchData()/fetchGapminder()` name
+-----------------------|-------------------------------|--------------------
+Alcohol consumption    | [link](http://spreadsheets.google.com/pub?key=0AgogXXPMARyldGJqTDRfNHBWODJMRWlZaVhNclhNZXc&gid=0) | `Gapminder/Alcohol.csv`
+Age at first marriage for women | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdDRlRjhIX2pxX3h5S0NVSEFYNlZUMWc&gid=1) | `Gapminder/MarriageAgeFemale.csv`
+Contraceptive use | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFp2OENYMUVKWnY1dkJLRXAtYnI3UVE&gid=1) | `Gapminder/ContraceptiveUse.csv`
+Tobacco use --- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdDYwdHBqeHBXcTNCbS1uQk92U20zb2c&gid=1) | `Gapminder/TobaccoUseMale.csv`
+Tobacco use --- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdGhvcnRQRXpEbjJ4Y181YlUyNTVtUEE&gid=1) | `Gapminder/TobaccoUseFemale.csv`
+Total Population | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowWE9vQkxfbjV0QVE&gid=1) | `Gapminder/TotalPopulation.csv`
+Land Surface Area | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFFWcWdEM0RXT1lRZ0wwRVNsakZCaWc&gid=1) | `Gapminder/LandArea.csv`
+Under 5 mortality rate | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowNVpSNjl1c3lRSWc&gid=1) | `Gapminder/Under5mortality.csv`
+Arms imports           | [link](https://spreadsheets.google.com/pub?key=0AkBd6lyS3EmpdEljeENrOXlFXzR3Rm8xT0drTV9YclE&gid=0)| `Gapminder/Armsinports.csv`
+CO_2 emissions | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxTkhQQzlNeVo5U1E&gid=1) | `Gapminder/CO2emissions.csv`
+Aid received per person | [link](https://spreadsheets.google.com/pub?key=t9GL1nIZdtxszJbjKErN2Hg&gid=0) | `Gapminder/AidReceived.csv`
+Paved roads (percent of roads) | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdDBKd2V5VmxkYlJuUHAtOURzUkZzNEE&gid=1) | `Gapminder/PavedRoads.csv`
+Traffic deaths (per 100,000) | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AgogXXPMARyldEs4N1NPeS1vWmxmVzk5VUREN0wzaHc&gid=1) | `Gapminder/TrafficDeathRate.csv`
+Urban population (percent) | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowLUxFNFN0ekNzRXc&gid=1) | `Gapminder/UrbanPopulationPercent.csv`
+Economic growth | [link](https://spreadsheets.google.com/pub?key=tkdAnkbHJxPAlRX6P1mAh8w&gid=0) |  `Gapminder/EconomicGrowth.csv`
+Income per person | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxamlNQWttcTFpTWc&gid=1) | `Gapminder/IncomePerCapitaPPP.csv`
+Improved sanitation | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdE4tekJPYkR4WmJqYTRPWjc3OTl4WUE&gid=1) | `Gapminder/ImprovedSanitation.csv`
+Body Mass Index -- Male  | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdF9saE1pWUNYVkVsNU1FdW1Yem81Nmc&gid=1) | `Gapminder/MaleBMI.csv`
+Body Mass Index -- Female  | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGt0elo2dzJMVVQ3WmFGSmdhc09LRlE&gid=1) | `Gapminder/FemaleBMI.csv`
+Underweight children | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdHFkZlc5WkhVQmVmeU0tR0RsSUdTU0E&gid=0) | `Gapminder/LowWeightForAge.csv`
+Cell phone subscriptions | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhWLWtqNzljbWg4ZXV6M09JQXNGaUE&gid=1) | `Gapminder/CellPhoneTotal.csv`
+Cholesterol (Total) -- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdDU5SnRoQ0xlZWhwRUZ6RFNQV042enc&gid=1) | `Gapminder/TCmale.csv`
+Cholesterol (Total) -- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGJHcHZkSUdBcU56aS1OT3lLeU4tRHc&gid=1&gid=1) | `Gapminder/TCfemale.csv`
+HIV prevalence | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0Auk0ddvGIrGqcHlqNnRTY1pxbUVmYlp5bDBxamJpUlE&gid=1) | `Gapminder/HIVprevalence.csv`
+Primary education spending | [link](https://spreadsheets.google.com/pub?key=0AkBd6lyS3EmpdFJTUEVleTM0cE5jTnlTMk41ajBGclE&gid=0) | `Gapminder/PrimaryEdSpending.csv`
+Primary education completion | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhTN2hlZ05ZczVwZDdVZlF5cUxJb2c&gid=1) | `Gapminder/PrimaryEdCompletion.csv`
+Primary education completion -- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFVxSEVZVWE1b0l6NWo5NzNTZ2IzWVE&gid=1) | `Gapminder/PrimaryEdCompletionFemale.csv`
+Primary education completion -- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdGhCWnZrTGMwaTl5ek9QS0szMTIwcEE&gid=1) | `Gapminder/PrimaryEdCompletionMale.csv`
+Democracy score | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGQ2YlhDSWVIdXdpMmhLY2ZZRHdNNnc&gid=1) | `Gapminder/DemocracyScore.csv`
+Fertility              | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowVEFsSmVDRXpjR1E&gid=1) | `Gapminder/Fertility.csv`
+Liver Cancer incidence -- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxdTBLcFpic29wQ0E&gid=1) | `Gapminder/LiverCancerIncidenceMale.csv`
+Liver Cancer incidence -- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoyeGhhS0VObXlSS3c&gid=1) | `Gapminder/LiverCancerIncidenceFemale.csv`
+
+
+If you are interested in a Gapminder variable not listed here, help add it to the list.  Here's how.
+
+1. On the [Gapminder data page](http://www.gapminder.org/data/), right click on the Xcel icon for the file of interest.  If you left click, your browser will download the .xls file, but by right clicking, you'll get a context-sensitive menu with an option to copy the link.  Do so.
+2. Open a new tab in your browser and paste the copied link into the URL address box.  **Before** hitting return, edit the link so that the last three letters are `csv` rather than `xls`.  Then press return.
+3. Depending on the settings on your browser, it will either save the file or display it.  Whichever happens, arrange to save the file to disk.  Give the file a simple but informative name --- this will become the name of the variable when the file is read in with `fetchGapminder()`.
+4. Go back to the Gapminder data page and click on the "View" magnifer icon.  The data will be displayed.  Move to the "About" tab. This will cause the URL to change.  Copy that URL.
+5. Send an email to <mailto:dtkaplan@gmail.com> with the following:
+    * Set the "subject:" to "Gapminder CSV file"
+    * Your CSV file as an attachment
+    * The URL from the "About" tab as the contents of the mail.
+6. We'll add the file so that it can be directly accessed with `fetchGapminder()`.  But you can use it immediately by uploading it to your RStudio account.  To find the name of the file for use in `fetchGapminder()`, give the command `file.choose()`.  This will allow you to search the file system for your file and will produce the full path name of the file.

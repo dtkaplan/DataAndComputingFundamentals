@@ -47,35 +47,6 @@ Notice that there is a continuum of colors in the map above.  People are good at
 {.s. <- joinCountryData2Map(both, joinCode='NAME',nameJoinColumn='Country' ); par(mai=c(0,0,0.2,0), xaxs='i',yaxs='i') ;.mp. <- mapBubbles(.s., nameZColour='alcQ',nameZSize='deaths',mapRegion='eurasia')} 
 ```
 
-### Exercises:
-
-#### Exercise 1
-
-Make a world map in which the population of each country is indicated by a color.
-
-#### Exercise 2
-
-Make a world map in which the population of each country is indicated by the size of a circle.
-
-#### Exercise 3
-
-Make a world map in which the population density of each country is indicated by a color.
-
-#### Exercise 4
-
-Make a map, like this, that correlates traffic deaths with fraction of roads that are paved.  (See `PavedRoads.csv` in the Gapminder data.)
-
-```{r echo=FALSE}
-roads = fetchGapminder("Gapminder/PavedRoads.csv")
-rmean = groupBy(roads, by=Country, paved=mean(PavedRoads))
-both = join( rmean, both)
-{.s. <- joinCountryData2Map(both, joinCode='NAME',nameJoinColumn='Country' ); par(mai=c(0,0,0.2,0), xaxs='i',yaxs='i') ;.mp. <- mapBubbles(.s., nameZColour='deathQ',nameZSize='paved',mapRegion='eurasia')} 
-```
-
-* What sort of correlation is there between fraction of roads paved and traffic death rates?  
-* Are there countries that stand out of the trend?  Which ones
-
-Make a scatter plot of the traffic death rate, fraction of paved roads, and alcohol consumption per capita.  Compare the map portrayal to the scatter plot --- which one makes it easier to see various patterns.
 
 #### For Next Week
 
