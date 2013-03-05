@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Wide versus Long Data</title>
+<title>Wide versus Narrow Data Formats</title>
 
 <style type="text/css">
 body, td {
@@ -178,7 +178,7 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>Wide versus Long Data</h1>
+<h1>Wide versus Narrow Data Formats</h1>
 
 <p>The <a href="www.gapminder.org">Gapminder</a> project has scraped databases from the United Nations and other organizations to produce data in a web-accessible format.  <a href="http://en.wikipedia.org/wiki/Hans_Rosling">Hans Rosling</a>, the co-founder of Gapminder, is probably the best known statistician today, famous particularly for a series of excellent health and national development presentations made on TED: for example this one from <a href="http://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen.html">2006</a> and this from <a href="http://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty.html">2007</a>.</p>
 
@@ -190,13 +190,13 @@ hljs.initHighlightingOnLoad();
 <tr>
 <th>Topic</th>
 <th>on Gapminder</th>
-<th><code>fetchData()</code> name</th>
+<th><code>fetchData()/fetchGapminder()</code> name</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Alcohol consumption</td>
 <td><a href="http://spreadsheets.google.com/pub?key=0AgogXXPMARyldGJqTDRfNHBWODJMRWlZaVhNclhNZXc&amp;gid=0">link</a></td>
-<td><code>Gapminder/Alcoholconsumption.csv</code></td>
+<td><code>Gapminder/Alcohol.csv</code></td>
 </tr>
 <tr>
 <td>Age at first marriage for women</td>
@@ -217,6 +217,16 @@ hljs.initHighlightingOnLoad();
 <td>Tobacco use &mdash; Female</td>
 <td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdGhvcnRQRXpEbjJ4Y181YlUyNTVtUEE&amp;gid=1">link</a></td>
 <td><code>Gapminder/TobaccoUseFemale.csv</code></td>
+</tr>
+<tr>
+<td>Total Population</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowWE9vQkxfbjV0QVE&amp;gid=1">link</a></td>
+<td><code>Gapminder/TotalPopulation.csv</code></td>
+</tr>
+<tr>
+<td>Land Surface Area</td>
+<td><a href="https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFFWcWdEM0RXT1lRZ0wwRVNsakZCaWc&amp;gid=1">link</a></td>
+<td><code>Gapminder/LandArea.csv</code></td>
 </tr>
 <tr>
 <td>Under 5 mortality rate</td>
@@ -347,11 +357,11 @@ hljs.initHighlightingOnLoad();
 
 <p>To read in a data file, use <code>fetchData()</code> in the ordinary way.  For instance, per capita alcohol consumption each year (in litres per adult, where an adult is defined as a person aged 15 years and over):</p>
 
-<pre><code class="r">alc = fetchData(&quot;Gapminder/Alcoholconsumption.csv&quot;)
+<pre><code class="r">alc = fetchData(&quot;Gapminder/Alcohol.csv&quot;)
 </code></pre>
 
 <pre><code>## Retrieving from
-## http://www.mosaic-web.org/go/datasets/Gapminder/Alcoholconsumption.csv
+## http://www.mosaic-web.org/go/datasets/Gapminder/Alcohol.csv
 </code></pre>
 
 <p>Of course, you&#39;re tempted to look immediately at the data file, but it&#39;s fairly large:</p>
@@ -379,7 +389,7 @@ hljs.initHighlightingOnLoad();
 
 <!-- html table generated in R 2.15.1 by xtable 1.7-0 package -->
 
-<!-- Sat Mar  2 17:31:06 2013 -->
+<!-- Mon Mar  4 22:18:35 2013 -->
 
 <TABLE border=1>
 <CAPTION ALIGN="bottom"> Alcohol Consumption </CAPTION>
@@ -415,29 +425,31 @@ hljs.initHighlightingOnLoad();
 
 <p>Another possible format for these data is called <strong>narrow</strong>.  The narrow format has a different idea of what&#39;s a case.  Rather than treating each country as a case, the case is each country in a particular year.  This is what a narrow format looks like:</p>
 
-<pre><code class="r">readGapminderNarrow &lt;- function(fetchname, value.name = fetchname) {
-    dat &lt;- fetchData(fetchname)
-    countryLabel &lt;- names(dat)[1]
-    yearCols &lt;- names(dat)[-1]
-    res &lt;- melt(dat, id.vars = countryLabel, value.name = &quot;Var&quot;, measure.vars = yearCols, 
-        variable.name = &quot;Year&quot;)
-    res &lt;- subset(res, !is.na(Var))
-    res$Year &lt;- as.numeric(sub(&quot;X&quot;, &quot;&quot;, as.character(res$Year)))
-    names(res) &lt;- c(&quot;Country&quot;, &quot;Year&quot;, value.name)
-    return(res)
-}
+<pre><code class="r">fetchGapminder &lt;- function(fetchname,value.name=NULL){
+  if( is.null(value.name) ) # Just the base name of the file --- no extension.
+    value.name &lt;- sub(&quot;\\.[^.]+$&quot;,&quot;&quot;,basename(fetchname))
+  dat &lt;- fetchData(fetchname)
+  countryLabel &lt;- names(dat)[1]
+  yearCols &lt;- names(dat)[-1]
+  res &lt;- melt(dat, id.vars=countryLabel, value.name=&quot;Var&quot;, 
+             measure.vars=yearCols, variable.name=&quot;Year&quot;)
+  res &lt;- subset(res, !is.na(Var))
+  res$Year &lt;- as.numeric(sub(&quot;X&quot;,&quot;&quot;,as.character(res$Year)))
+  names(res) &lt;- c(&quot;Country&quot;,&quot;Year&quot;, value.name)
+  return(res)
+  }
 </code></pre>
 
-<pre><code class="r">alcW = readGapminderNarrow(&quot;Gapminder/Alcoholconsumption.csv&quot;, value.name = &quot;Alcohol&quot;)
+<pre><code class="r">alc = fetchGapminder(&quot;Gapminder/Alcohol.csv&quot;, value.name = &quot;Alcohol&quot;)
 </code></pre>
 
 <pre><code>## Retrieving from
-## http://www.mosaic-web.org/go/datasets/Gapminder/Alcoholconsumption.csv
+## http://www.mosaic-web.org/go/datasets/Gapminder/Alcohol.csv
 </code></pre>
 
 <!-- html table generated in R 2.15.1 by xtable 1.7-0 package -->
 
-<!-- Sat Mar  2 17:31:07 2013 -->
+<!-- Mon Mar  4 22:18:35 2013 -->
 
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Country </TH> <TH> Year </TH> <TH> Alcohol </TH>  </TR>
@@ -455,15 +467,15 @@ hljs.initHighlightingOnLoad();
 
 <p>All the alcohol measurements are now in one variable, the years in another.  You can still easily grab the data for one year or one country, e.g.</p>
 
-<pre><code class="r">subset(alcW, Country == &quot;Russia&quot;)
-subset(alcW, Year == 1990)
+<pre><code class="r">subset(alc, Country == &quot;Russia&quot;)
+subset(alc, Year == 1990)
 </code></pre>
 
 <p>The <code>groupBy()</code> function works well on narrow data and allows you to consolidate data across countries or years.</p>
 
 <p>Here&#39;s a fairly elaborate example using operations that may be unfamiliar: Finding the country with the maximum alcohol consumption in each year:</p>
 
-<pre><code class="r">groupBy(alcW, by = Year, Country = as.character(Country[which.min(Alcohol)]), 
+<pre><code class="r">groupBy(alc, by = Year, Country = as.character(Country[which.min(Alcohol)]), 
     Consumption = min(Alcohol))
 </code></pre>
 
@@ -505,14 +517,14 @@ subset(alcW, Year == 1990)
 
 <p>The narrow format is particularly useful when you want put two or more variables side by side. Suppose you read in two variables:</p>
 
-<pre><code class="r">alc = readGapminderNarrow(&quot;Gapminder/Alcoholconsumption.csv&quot;, value.name = &quot;Alcohol&quot;)
+<pre><code class="r">alc = fetchGapminder(&quot;Gapminder/Alcohol.csv&quot;, value.name = &quot;Alcohol&quot;)
 </code></pre>
 
 <pre><code>## Retrieving from
-## http://www.mosaic-web.org/go/datasets/Gapminder/Alcoholconsumption.csv
+## http://www.mosaic-web.org/go/datasets/Gapminder/Alcohol.csv
 </code></pre>
 
-<pre><code class="r">liver = readGapminderNarrow(&quot;Gapminder/LiverCancerIncidenceMale.csv&quot;, value.name = &quot;LiverCancerM&quot;)
+<pre><code class="r">liver = fetchGapminder(&quot;Gapminder/LiverCancerIncidenceMale.csv&quot;, value.name = &quot;LiverCancerM&quot;)
 </code></pre>
 
 <pre><code>## Retrieving from
@@ -521,7 +533,7 @@ subset(alcW, Year == 1990)
 
 <!-- html table generated in R 2.15.1 by xtable 1.7-0 package -->
 
-<!-- Sat Mar  2 17:31:07 2013 -->
+<!-- Mon Mar  4 22:18:36 2013 -->
 
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Country </TH> <TH> Year </TH> <TH> Alcohol </TH>  </TR>
@@ -534,7 +546,7 @@ subset(alcW, Year == 1990)
 
 <!-- html table generated in R 2.15.1 by xtable 1.7-0 package -->
 
-<!-- Sat Mar  2 17:31:07 2013 -->
+<!-- Mon Mar  4 22:18:36 2013 -->
 
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Country </TH> <TH> Year </TH> <TH> LiverCancerM </TH>  </TR>
@@ -557,18 +569,19 @@ subset(alcW, Year == 1990)
 
 <!-- html table generated in R 2.15.1 by xtable 1.7-0 package -->
 
-<!-- Sat Mar  2 17:31:07 2013 -->
+<!-- Mon Mar  4 22:18:36 2013 -->
 
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Country </TH> <TH> Year </TH> <TH> Alcohol </TH> <TH> LiverCancerM </TH>  </TR>
-  <TR> <TD align="right"> 1 </TD> <TD> Russia </TD> <TD align="right"> 1985.00 </TD> <TD align="right"> 13.31 </TD> <TD align="right">  </TD> </TR>
-  <TR> <TD align="right"> 2 </TD> <TD> Russia </TD> <TD align="right"> 1986.00 </TD> <TD align="right"> 10.77 </TD> <TD align="right">  </TD> </TR>
-  <TR> <TD align="right"> 3 </TD> <TD> Russia </TD> <TD align="right"> 1987.00 </TD> <TD align="right"> 10.96 </TD> <TD align="right">  </TD> </TR>
-  <TR> <TD align="right"> 4 </TD> <TD> Russia </TD> <TD align="right"> 1988.00 </TD> <TD align="right"> 11.57 </TD> <TD align="right">  </TD> </TR>
-  <TR> <TD align="right"> 5 </TD> <TD> Russia </TD> <TD align="right"> 1989.00 </TD> <TD align="right"> 12.04 </TD> <TD align="right">  </TD> </TR>
+  <TR> <TD align="right"> 14 </TD> <TD> Russia </TD> <TD align="right"> 1993.00 </TD> <TD align="right"> 13.60 </TD> <TD align="right">  </TD> </TR>
+  <TR> <TD align="right"> 15 </TD> <TD> Slovenia </TD> <TD align="right"> 1993.00 </TD> <TD align="right"> 24.19 </TD> <TD align="right"> 4.62 </TD> </TR>
+  <TR> <TD align="right"> 16 </TD> <TD> Ukraine </TD> <TD align="right"> 1993.00 </TD> <TD align="right"> 13.00 </TD> <TD align="right">  </TD> </TR>
+  <TR> <TD align="right"> 17 </TD> <TD> Austria </TD> <TD align="right"> 1994.00 </TD> <TD align="right"> 12.62 </TD> <TD align="right">  </TD> </TR>
+  <TR> <TD align="right"> 18 </TD> <TD> Denmark </TD> <TD align="right"> 1994.00 </TD> <TD align="right"> 14.36 </TD> <TD align="right"> 3.60 </TD> </TR>
+  <TR> <TD align="right"> 19 </TD> <TD> Finland </TD> <TD align="right"> 1994.00 </TD> <TD align="right"> 9.79 </TD> <TD align="right"> 4.10 </TD> </TR>
    </TABLE>
 
-<p>JUST SIMPLE JOIN &mdash; the defaults</p>
+<p>Notice that when there is a case in one table but no corresponding case in the other &mdash; for instance, Ukraine in 1993 &mdash; the variable is listed as <code>NA</code>.</p>
 
 <p>Exercises:</p>
 
@@ -580,6 +593,19 @@ subset(alcW, Year == 1990)
 <p>IN THE JOIN DOCUMENT, the different kinds of join.  Pull out a handful of countries with limited data.  Show the effects of the different joins.</p>
 
 <p>Cleaning the bird species data.  Make a Google spreadsheet with the current names, then the corrected name next to that.</p>
+
+<pre><code class="r">par(mai = c(0, 0, 0.2, 0), xaxs = &quot;i&quot;, yaxs = &quot;i&quot;)
+mp = mapCountryData(s, nameColumnToPlot = &quot;Alcohol&quot;, addLegend = FALSE)
+</code></pre>
+
+<pre><code>## Error: object &#39;s&#39; not found
+</code></pre>
+
+<pre><code class="r">do.call(addMapLegend, c(mp, legendWidth = 0.5, legendMar = 2))
+</code></pre>
+
+<pre><code>## Error: object &#39;mp&#39; not found
+</code></pre>
 
 <p>Standardizing  country names</p>
 

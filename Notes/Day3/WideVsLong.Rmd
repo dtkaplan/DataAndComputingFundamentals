@@ -4,8 +4,6 @@ Wide versus Narrow Data Formats
 ```{r include=FALSE}
 require(DCF)
 startTemplate()
-require(reshape2)
-require(plyr)
 require(xtable)
 ```
 
@@ -24,6 +22,8 @@ Age at first marriage for women | [link](https://spreadsheets.google.com/spreads
 Contraceptive use | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFp2OENYMUVKWnY1dkJLRXAtYnI3UVE&gid=1) | `Gapminder/ContraceptiveUse.csv`
 Tobacco use --- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdDYwdHBqeHBXcTNCbS1uQk92U20zb2c&gid=1) | `Gapminder/TobaccoUseMale.csv`
 Tobacco use --- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdGhvcnRQRXpEbjJ4Y181YlUyNTVtUEE&gid=1) | `Gapminder/TobaccoUseFemale.csv`
+Total Population | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowWE9vQkxfbjV0QVE&gid=1) | `Gapminder/TotalPopulation.csv`
+Land Surface Area | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdFFWcWdEM0RXT1lRZ0wwRVNsakZCaWc&gid=1) | `Gapminder/LandArea.csv`
 Under 5 mortality rate | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWowNVpSNjl1c3lRSWc&gid=1) | `Gapminder/Under5mortality.csv`
 Arms imports           | [link](https://spreadsheets.google.com/pub?key=0AkBd6lyS3EmpdEljeENrOXlFXzR3Rm8xT0drTV9YclE&gid=0)| `Gapminder/Armsinports.csv`
 CO_2 emissions | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCcGhBd2NOQVZ1eWoxTkhQQzlNeVo5U1E&gid=1) | `Gapminder/CO2emissions.csv`

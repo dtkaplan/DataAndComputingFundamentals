@@ -118,18 +118,22 @@ Voter data | `r I(gitHTML(nm="voters", folder="Notes/Day2/"))` | `r I(template(n
 -----------------
 
 
+<img src="Images/world-map.png" width=300 style="float:right;"/>
+
+
 ### Week 3
 
-<img src="Images/world-map.png" width=100 style="float:right;"/>
-
 ### Topics
-* Joining tables together
+
+* `r I(gitHTML(label="Wide and Narrow Data",nm="WideVsLong", folder="Notes/Day3/"))`
+* Continuous to Categorical (to be posted)
+* `r I(gitHTML(label="Drawing Maps",nm="Maps", folder="Notes/Day3/"))`
 
 #### To Hand in
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
-
+Maps |  `r I(gitHTML(nm="map-exercises", folder="Notes/Day3/"))` | `r I(template(nm="map-exercises",folder="Notes/Day3/"))` | `r I(handin("W3maps"))`
 
 --------------
 
