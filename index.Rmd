@@ -127,7 +127,7 @@ Voter data | `r I(gitHTML(nm="voters", folder="Notes/Day2/"))` | `r I(template(n
 
 ### Topics
 
-* `r I(gitHTML(label="Data across many files",nm="Gapminder", folder="Notes/Day3/"))`
+* `r I(gitHTML(label="Data across many files",nm="GapminderFiles", folder="Notes/Day3/"))`
 * `r I(gitHTML(label="Wide and Narrow Data",nm="WideVsLong", folder="Notes/Day3/"))`
 * `r I(gitHTML(label="Continuous to Categorical", nm="Continuous2Categorical", folder="Notes/Day3/"))`
 * `r I(gitHTML(label="Drawing Maps",nm="Maps", folder="Notes/Day3/"))`
