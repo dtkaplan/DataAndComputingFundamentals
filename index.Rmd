@@ -1,0 +1,203 @@
+```{r echo=FALSE}
+gitHTML=function(label="Description",nm,folder){
+  paste("[",label,"](http://htmlpreview.github.com/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/",folder,nm,".html)", sep="")
+}
+template=function(label="Rmd Template",nm,folder){
+  paste("[",label,"](https://raw.github.com/dtkaplan/DataAndComputingFundamentals/master/",folder,nm,".Rmd)", sep="")
+}
+
+handin=function(name){
+  paste("[Moodle link](https://moodle.macalester.edu/mod/assign/view.php?id=",Handin[[name]],")",sep="")
+}
+Handin=list()
+Handin$W1syntax=17814 
+Handin$W1country=17816
+Handin$W1body=17815
+Handin$W1web=18513
+Handin$W2exercises=18806
+Handin$W2birds=18807
+Handin$W2voters=18808
+Handin$W3exercises=19987
+Handin$W3maps=19989
+```
+
+Syllabus 
+================
+### Data and Computing Fundamentals `r I(gitHTML(".",nm="syllabus2013", folder="Spring2013/"))`
+### Spring 2013
+
+#### Danny Kaplan and Libby Shoop, instructors
+
+[Assignment Discussion Forum](https://moodle.macalester.edu/mod/forum/view.php?id=17817) on Moodle.
+
+To update the DCF software: copy and paste these commands into your R console.
+```{r eval=FALSE}
+require(devtools) 
+install_url("http://mosaic-web.org/go/Repository/DannyKaplan/DCF_0.12.tar.gz")
+require(DCF)
+```
+
+### Resources
+
+#### Software
+
+**R and RStudio**.  You will likely find it convenient to have an account on the <www.macalester.edu/rstudio> server.  If you don't already have one, you can [request one here](https://docs.google.com/a/macalester.edu/spreadsheet/viewform?formkey=dHJWYnlzdU10ZkFQRjRXcjhobWRORGc6MQ#gid=0).
+
+**RPubs**: a site for distributing documents on the web.  You'll hand in documents by cutting-and-pasting the URL into Moodle.  
+* HELP: A student volunteer is needed to make a video demonstrating this.
+
+**R Markdown** Introduction Template
+
+**R Syntax** Introduction Video
+
+**R Chunks in R Markdown** Introduction 
+
+**Making Graphics**
+* Scatter plots
+* Bar plots
+
+---------------
+
+### Week 1
+
+<img src="Images/Scatter.png" width=300 style="float:right;"/>
+
+#### Topics: 
+* Welcome `r I(gitHTML("Notes",nm="Day-1",folder="Notes/Day1/"))`
+* Introduction to R and R/Markdown. 
+* The structure of data tables
+* Scatter plots
+
+#### In-Class
+* R Syntax `r I(gitHTML("Notes",nm="syntax-notes",folder="Notes/Day1/"))`
+* Country-by-country size and population data
+
+#### Out of Class
+* Body shape and diabetes
+
+#### Background
+* [A cartoon about logarithms](http://xkcd.com/1162/)
+
+#### To Hand in
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|-------------------
+Exercises on syntax |  `r I(gitHTML(nm="syntax-exercises", folder="Notes/Day1/"))` | `r I(template(nm="syntax-exercises",folder="Notes/Day1/"))` | `r I(handin("W1syntax"))`
+Country data on the web | `r I(gitHTML(nm="Data-on-the-web", folder="Notes/Day1/"))` | |   `r I(handin("W1web"))` 
+Country-by-country data | `r I(gitHTML(nm="in-class-activity", folder="Notes/Day1/"))` | `r I(template(nm="UNFAO-week1",folder="Templates/"))` | `r I(handin("W1country"))` 
+Body shape data | `r I(gitHTML(nm="body-shape", folder="Notes/Day1/"))` | `r I(template(nm="body-shape-template",folder="Notes/Day1/"))` | `r I(handin("W1body"))` 
+
+----------------
+
+<img src="Images/bird-month.png" width=300 style="float:right;"/>
+
+### Week 2
+
+
+
+#### Topics
+* `r I(gitHTML(label="Creating Small Data with a Spreadsheet",nm="CreatingSmallTables", folder="Notes/Day2/"))`
+* `r I(gitHTML(label="Subsets",nm="subsets", folder="Notes/Day2/"))`
+* `r I(gitHTML(label="Groupwise analysis", nm="GroupBy", folder="Notes/Day2/"))`
+* `r I(gitHTML(label="Bar Plots", nm="CreatingBarPlots", folder="Notes/Day2/"))`
+
+#### In Class
+* Debriefing: Scatter Plots and Data Organization
+* Introduction: Subsets, Grouping, Bar Plots
+* Pre-populated [math enrollment spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AkXIvAg85dhhdHdONnZ6aWwtRDZtc2ZyN2QxeEdJMFE&usp=sharing#gid=0) to **copy**, complete, publish, and read in to R.  
+* In-Class Data: Birds at Ordway
+* After-Class Data: Voters
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
+Exercises | `r I(gitHTML(nm="Exercises-2", folder="Notes/Day2/"))` | `r I(template(nm="Exercises-2-template", folder="Notes/Day2/"))` | `r I(handin("W2exercises"))`
+Bird data | `r I(gitHTML(nm="BirdCounts", folder="Notes/Day2/"))`| `r I(template(nm="BirdCounts", folder="Notes/Day2/"))`| `r I(handin("W2birds"))`
+Voter data | `r I(gitHTML(nm="voters", folder="Notes/Day2/"))` | `r I(template(nm="voters", folder="Notes/Day2/"))` | `r I(handin("W2voters"))`
+
+
+
+-----------------
+
+
+<img src="Images/world-map.png" width=300 style="float:right;"/>
+
+
+### Week 3
+
+### Topics
+
+* `r I(gitHTML(label="Data across many files",nm="Gapminder", folder="Notes/Day3/"))`
+* `r I(gitHTML(label="Wide and Narrow Data",nm="WideVsLong", folder="Notes/Day3/"))`
+* `r I(gitHTML(label="Continuous to Categorical", nm="Continuous2Categorical", folder="Notes/Day3/"))`
+* `r I(gitHTML(label="Drawing Maps",nm="Maps", folder="Notes/Day3/"))`
+
+### In-Class
+
+* Gapminder files
+* Operations on Narrow Data
+* Continuous to Categorical
+* Joining two similar data files
+* Maps
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
+Exercises |  `r I(gitHTML(nm="Exercises-3", folder="Notes/Day3/"))` | `r I(template(nm="Exercises-3",folder="Notes/Day3/"))` | `r I(handin("W3exercises"))`
+Exploring Gapminder |  `r I(gitHTML(nm="Exercises-Maps", folder="Notes/Day3/"))` | `r I(template(nm="Exercises-Maps",folder="Notes/Day3/"))` | `r I(handin("W3maps"))`
+
+--------------
+
+
+### Week 4
+
+<img src="Images/utils-model.png" width=100 style="float:right;"/>
+
+#### Topics
+* Model functions and fitting
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
+
+
+----------
+### Week 5
+
+<img src="Images/density.png" width=100 style="float:right;"/>
+
+#### Topics 
+* Density and clustering
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
+
+----------
+### Week 6
+
+<img src="Images/dendrogram.png" width=100 style="float:right;"/>
+
+#### Topics
+* Classification & dimension reduction
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
+
+----------
+### Week 7
+
+<img src="Images/Gift Wrapped Box4LR.jpg" width=100 style="float:right;"/>
+
+#### Topics
+* Wrapping things up!
+
+#### To Hand in
+
+Topic | Instructions | Template | Hand in on Moodle
+------|--------------|----------|------------------
