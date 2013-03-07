@@ -180,6 +180,8 @@ hljs.initHighlightingOnLoad();
 <body>
 <h1>Week 3 Notes</h1>
 
+<p>Who&#39;s cool in the <a href="http://online.wsj.com/article/SB10001424127887323478304578332850293360468.html?mod=WSJ_hps_RightRailColumns#"><em>Wall Street Journal</em></a></p>
+
 <h2>Todays&#39; Topics</h2>
 
 <ul>
@@ -207,13 +209,50 @@ Short description | [link](documentation link) | `Gapminder/Filename.csv`
 
 <h2>Wide versus Narrow</h2>
 
-<h2>Simple operations on the data</h2>
+<p>Read in one of the data files, e.g. <code>dat = fetchData()</code> and navigate.  Or&hellip;</p>
+
+<pre><code class="r">dat = fetchData(&quot;Gapminder/Fertility.csv&quot;)
+</code></pre>
+
+<pre><code>## Retrieving from
+## http://www.mosaic-web.org/go/datasets/Gapminder/Fertility.csv
+</code></pre>
+
+<h3>Simple operations on the data</h3>
+
+<p>How would you do these things?</p>
 
 <ul>
 <li>How many countries?</li>
 <li>How many years?</li>
+</ul>
+
+<p>But could you do these things?</p>
+
+<ul>
 <li>How many countries for each year?</li>
 <li>How many years for each country?</li>
+</ul>
+
+<h3>The Narrow Format</h3>
+
+<p>Here&#39;s a special function that reads things in in narrow format:</p>
+
+<pre><code class="r">fertility = fetchGapminder(&quot;Gapminder/Fertility.csv&quot;)
+</code></pre>
+
+<pre><code>## Retrieving from
+## http://www.mosaic-web.org/go/datasets/Gapminder/Fertility.csv
+</code></pre>
+
+<p>Do each of these things:</p>
+
+<ul>
+<li>How many countries for each year?<br/></li>
+<li>How many years for each country?
+From the answers to these, you can figure out the answers to these:</li>
+<li>How many countries?</li>
+<li>How many years?</li>
 </ul>
 
 <h2>Getting one value per country</h2>
@@ -221,10 +260,14 @@ Short description | [link](documentation link) | `Gapminder/Filename.csv`
 <p>Use <code>groupBy()</code> with <code>by=Country</code> and pull out some summary of the values, e.g., <code>min</code>, <code>mean</code>, <code>median</code>, <code>sd</code></p>
 
 <ul>
-<li>What&#39;s a <em>standard deviation</em>?</li>
+<li>What&#39;s a <em>standard deviation</em>?  Plot values on a number line.  The mean is the center of mass.  The median is the point such that half are to the left and half to the right.  The standard deviation is the typical distrance from the mean.</li>
 </ul>
 
 <h2>Draw a Map of the Data</h2>
+
+<p>Reduce your data down to one value per country.</p>
+
+<p>Use <code>mWorldMap()</code></p>
 
 <h2>Discrete colors</h2>
 
@@ -233,7 +276,7 @@ Short description | [link](documentation link) | `Gapminder/Filename.csv`
 <p><code>ifthen</code>, <code>cut</code>, <code>ntiles</code></p>
 
 <ul>
-<li>How even are the groups?</li>
+<li>How even-numbered are the groups?</li>
 <li>Widely divergent data: ntiles does something like this automatically.</li>
 </ul>
 
@@ -256,19 +299,21 @@ Short description | [link](documentation link) | `Gapminder/Filename.csv`
 <pre><code class="r">fert = fetchGapminder(&quot;Gapminder/Fertility.csv&quot;)
 </code></pre>
 
-<pre><code>## Error: could not find function &quot;fetchGapminder&quot;
+<pre><code>## Retrieving from
+## http://www.mosaic-web.org/go/datasets/Gapminder/Fertility.csv
 </code></pre>
 
 <pre><code class="r">co2 = fetchGapminder(&quot;Gapminder/CO2emissions.csv&quot;)
 </code></pre>
 
-<pre><code>## Error: could not find function &quot;fetchGapminder&quot;
+<pre><code>## Retrieving from
+## http://www.mosaic-web.org/go/datasets/Gapminder/CO2emissions.csv
 </code></pre>
 
 <pre><code class="r">both = join(fert, co2)
 </code></pre>
 
-<pre><code>## Error: could not find function &quot;join&quot;
+<pre><code>## Joining by: Country, Year
 </code></pre>
 
 <p>Now plot out one versus the other for a single year:</p>

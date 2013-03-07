@@ -1,6 +1,14 @@
 Week 3 Notes
 ===============
 
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+require(xtable)
+```
+
+Who's cool in the [*Wall Street Journal*](http://online.wsj.com/article/SB10001424127887323478304578332850293360468.html?mod=WSJ_hps_RightRailColumns#)
+
 ## Todays' Topics
 
 * Accessing Gapminder data on the web.
@@ -24,21 +32,48 @@ They offer analysis software, as do many data-oriented sites.  But it's much bet
 
 ## Wide versus Narrow
 
-## Simple operations on the data
+Read in one of the data files, e.g. `dat = fetchData()` and navigate.  Or...
+```{r}
+dat = fetchData("Gapminder/Fertility.csv")
+```
 
+### Simple operations on the data
+
+How would you do these things?
 * How many countries?
 * How many years?
+
+But could you do these things?
 * How many countries for each year?
 * How many years for each country?
+
+### The Narrow Format
+
+Here's a special function that reads things in in narrow format:
+```{r}
+fertility = fetchGapminder("Gapminder/Fertility.csv")
+```
+
+Do each of these things:
+* How many countries for each year?  
+* How many years for each country?
+From the answers to these, you can figure out the answers to these:
+* How many countries?
+* How many years?
 
 
 ## Getting one value per country
 
 Use `groupBy()` with `by=Country` and pull out some summary of the values, e.g., `min`, `mean`, `median`, `sd`
 
-* What's a *standard deviation*?
+* What's a *standard deviation*?  Plot values on a number line.  The mean is the center of mass.  The median is the point such that half are to the left and half to the right.  The standard deviation is the typical distrance from the mean.
+
 
 ## Draw a Map of the Data
+
+Reduce your data down to one value per country.
+
+Use `mWorldMap()`
 
 ## Discrete colors
 
@@ -46,7 +81,7 @@ Use `groupBy()` with `by=Country` and pull out some summary of the values, e.g.,
 
 `ifthen`, `cut`, `ntiles`
 
-* How even are the groups?
+* How even-numbered are the groups?
 * Widely divergent data: ntiles does something like this automatically.
 
 ## Joining two data files

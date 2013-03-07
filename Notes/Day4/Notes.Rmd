@@ -1,6 +1,8 @@
 Week 4 Notes
 ========================================================
 
+News: [Data mining the web for drug interaction effects](http://www.nytimes.com/2013/03/07/science/unreported-side-effects-of-drugs-found-using-internet-data-study-finds.html?hp&_r=0)
+
 IN THE JOIN DOCUMENT, the different kinds of join.  Pull out a handful of countries with limited data.  Show the effects of the different joins.
 
 Cleaning the bird species data.  Make a Google spreadsheet with the current names, then the corrected name next to that.
