@@ -149,13 +149,12 @@ Exploring Gapminder |  `r I(gitHTML(nm="Exercises-Maps", folder="Notes/Day3/"))`
 
 --------------
 
+<img src="Images/utils-model.png" width=100 style="float:right;"/>
 
 ### Week 4
 
-<img src="Images/utils-model.png" width=100 style="float:right;"/>
-
 #### Topics
-* Model functions and fitting
+* `r I(gitHTML(label="Model Functions",nm="ModelFunctions", folder="Notes/Day4/"))`
 
 #### To Hand in
 

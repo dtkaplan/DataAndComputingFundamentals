@@ -1,0 +1,129 @@
+Model Functions
+===================
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+opts_chunk$set(tidy=FALSE,fig.width=4,fig.height=4,warning=FALSE)
+```
+
+Scatter plots are useful for looking for broad patterns, but sometimes you want a more specific mathematical description of a pattern.  To illustrate, consider the body-shape data in the `nhanes` file.  The next statements read in these data, recode the `sex` variable from the numerical code to more sensible "F" and "M", and pull out a small sample of cases.  The reason to use a sample is merely to speed up the calculations as you explore the data.
+
+```{r}
+data(nhanes)
+nhanes = transform(nhanes, sex=ifelse(sex==2,"F","M")) # 
+small = sample(nhanes, size=250) # initial look at a sample, for speed's sake
+ggplot(data=small,aes(x=age,y=hgt))+geom_point()+aes(colour=sex) 
+```
+
+Some features of this graph are utterly familiar.  People tend to grow in height as they age through childhood and the mid-teenage years.  Adults tend not to continue to grow as they age --- indeed the graph suggests that elderly people are a bit shorter than younger adults.  (This isn't necessarily because individual shrink in height as they age. It might be that nutrition and health have improved over the years, and the people who are now elderly have consistently been at their adult height.)
+
+For the sake of illustration, consider the childhood growth pattern, say through 15 years of age:
+```{r}
+kids = subset(small, age<=17)
+ggplot(data=kids,aes(x=jitter(age),y=hgt))+geom_point()+aes(colour=sex)+
+  xlab("Age (yrs)")+ylab("Height (m)") 
+```
+
+This graph indicates that boys and girls have a similar pattern of growth in height, maybe up until about 12 years when the girls tend not to grow further while the boys continue until about 15 or 16 years.  
+
+> **Graphics digression**: Some new techniques have been applied to this graph.  First, the axis labels have been prettied up.  More important, in order to show the similarity and differences between the sexes at each age, the age values have been "jittered" so that they don't line up in an exact vertical line.  
+
+A mathematical model of the height-versus age data can help you quantify more specifically the differences between the boys and the girls.  
+
+A very general technique is to smooth the data: look for a smooth, steady pattern of height versus age.  The specific mathematical methods used for this are somewhat advanced, but they are easy to apply to data.  Here's a plot of the data with smoothers drawn in:
+```{r}
+ggplot(data=kids,aes(x=age,y=hgt))+geom_point(aes(x=jitter(age)))+aes(colour=sex)+
+  xlab("Age (yrs)")+ylab("Height (m)") +
+  stat_smooth(method=loess)
+```
+
+The only programming here is to add `stat_smooth(method=loess)` to the plotting statement; everything happens automatically.
+
+There are two components being shown for each of the models.  These are more easily seen if the models are plotted without the underlying data and in different facets:
+
+```{r}
+ggplot(data=kids,aes(x=age,y=hgt))+aes(colour=sex)+
+  xlab("Age (yrs)")+ylab("Height (m)") + facet_wrap(~sex) + 
+  stat_smooth(method=loess)
+```
+
+The dark line shows the model function **estimate** itself.  The gray band around the line gives a **confidence interval**.  A simple way to interpret the confidence interval is that it shows the range of shapes of the function that are reasonably consistent with the data.  In this instance, where the function for "M" lies within the confidence interval band for "F", or vice versa, there's no reason to think that the functions are different.  Or, more precisely, whatever the "real" functions are, the data do not give any evidence that they are different.  (When comparing two functions, many people just look at whether the confidence interval bands for the functions overlap, which is not quite the same as saying that the estimate for one function falls within the confidence interval of the other.  But this distinction won't be important for our purposes.  You can reasonably do either.)
+
+Another widely used sort of model uses a straight-line function.  Choosing the linear model or the smoother is a matter of specifying `method=lm` or `method=loess` respectively.
+
+```{r}
+ggplot(data=kids,aes(x=age,y=hgt))+geom_point(aes(x=jitter(age)))+aes(colour=sex)+
+  xlab("Age (yrs)")+ylab("Height (m)") + facet_wrap(~sex) +
+  stat_smooth(method=lm)
+```
+
+With these data, the straight-line model can't capture the leveling-off of height with age in the female data.  One way to see this is to plot both the smoother and the straight-line model on the same plot.  
+
+```{r}
+ggplot(data=kids,aes(x=age,y=hgt))+aes(colour=sex)+
+  xlab("Age (yrs)")+ylab("Height (m)") + facet_wrap(~sex) +
+  stat_smooth(method=lm) + stat_smooth(method=loess)
+```
+
+For the males, the two models overlap. 
+There's no reason, based on these data, to prefer the smoother to the straight line. 
+For the females, starting about age 15, the models diverge.  That is, the data give us quantitative evidence for the leveling-out of height in the females because the models' confidence intervals don't overlap.
+
+### Confidence Intervals
+
+Where do the confidence intervals come from?    
+
+More data typically gives a narrower confidence interval.  A very useful rule is that the width of the confidence interval gets narrower with the number of cases $n$ as $1/\sqrt{n}$.
+
+Since we've got lots of data, we might as well use it all:
+```{r cache=TRUE}
+ggplot(data=subset(nhanes, age<=15),aes(x=age,y=hgt))+aes(colour=sex)+
+  xlab("Age (yrs)")+ylab("Height (m)") + facet_wrap(~sex) +
+  stat_smooth(method=lm) + stat_smooth(method=loess)
+```
+
+There's so much data that the confidence intervals are almost too narrow to see.  Based on the whole data set (for people aged $\leq 15$), there's no reason to prefer a nonlinear model for males, but clearly female heights are leveling off.
+
+## EXERCISES
+
+**In draft**.  Move these to a different file.
+
+### Simple:
+
+* Compare boys and girls aged 10 years and less. 
+    * Do the data given any reason to think that boys and girls grow differently up to age 10.
+    * Is there any evidence for nonlinear growth in height for these kids?
+
+* Looking at boys between 10 and 25 ...
+    * Make a graph that gives a compelling view of when boys' heights level off with age.
+
+### Exploratory:
+
+#### Height
+Look at people aged greater than 20 years, first with a very small sample (about 100 people) and then with the entire data set.  
+
+* Does the small data set clearly show a decrease in height with age?  How about the entire data?
+* Any evidence for nonlinear trends in height with age for those greater than 20 years old?
+
+#### BMI
+
+* Do boys and girls show a systematically changing BMI with age?  (Hint: Look to see if the confidence interval is consistent with a level-line model.)
+* Are the boys and girls different?  If not, at what age do males and females diverge in BMI? 
+
+```{r cache=TRUE,echo=FALSE,eval=FALSE}
+ggplot(data=nhanes,aes(x=age,y=bmi))+aes(colour=sex)+
+  xlab("Age (yrs)")+ylab("BMI") + #facet_wrap(~sex) +
+#  stat_smooth(method=lm) + 
+  stat_smooth(method=loess)
+```
+
+For Math 135 graduates ...
+
+The BMI models weight as being proportional to height squared.  This should give a straight line on a graph of log-weight against log-height.  Is this a reasonable model for adults?
+
+```{r cache=TRUE,echo=FALSE,eval=FALSE}
+ggplot(data=subset(nhanes,hgt>1.5),aes(x=log(hgt),y=log(wgt)))+aes(colour=sex)+
+  xlab("Height")+ylab("Weight") + facet_wrap(~sex) +
+  stat_smooth(method=loess) + stat_smooth(method=lm)
+```
