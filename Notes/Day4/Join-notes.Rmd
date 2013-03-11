@@ -1,0 +1,187 @@
+Using Join
+===========
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+opts_chunk$set(tidy=FALSE,fig.width=4,fig.height=4,warning=FALSE)
+options(na.rm=TRUE)
+require(xtable)
+```
+
+The intuitive ways to combine two tables L and R are straightforward: append the rows from table R to table L, making a longer table with more cases; append the columns from table R to table L, making a wider table.
+
+The `join` function adds more subtle capabilities: it allows you to add the columns from R to L only for cases where there is some sort of match between the case in L and a case in R.
+
+To illustrate, consider these small excerpts from Gapminder country data: per capita income (playing the role of X) and cell telephone subscriptions (R).
+
+```{r echo=1:2}
+income <- fetchGapminder("Gapminder/IncomePerCapitaPPP.csv")
+phones <- fetchGapminder("Gapminder/CellPhoneTotal.csv")
+keepC <- c("Argentina","Bolivia")
+keepY <- c(1990,2000)
+income <- subset(income, Country %in% keepC & Year %in% keepY)
+income <- income[-4,]
+phones <- subset(phones, Country %in% c(keepC,"Colombia") & Year %in% keepY)
+phones <- subset(phones, CellPhoneTotal>0)
+# phones <- transform(phones, CellPhoneTotal=ifelse(CellPhoneTotal>0,CellPhoneTotal,NA))
+rownames(phones) <- NULL
+rownames(income) <- NULL
+```
+
+The llustration of `join` will be based on small subsets:
+
+### Income Table: `income`
+
+```{r}
+income
+```
+
+### Cell Phone Subscriptions: `phones`
+
+```{r}
+phones
+```
+
+Note for later reference that there is no phone data for Bolivia and Colombia in 1990; these two cases are missing.
+
+## The "Natural Join"
+
+It's pretty obvious what constitutes a case in each table: a country in a particular year.  The **natural join** tries to figure this out by matching the column names across the two tables and using that to set up the matching criteria:
+```{r}
+both = join(income,phones)
+both
+```
+The new columns from the `phone` table has been appended to the columns from the `income` table.  The result gives a correspondence between income and phone usage for each country-year.  Simple.
+
+## Other Types of Join 
+
+This is **not** the only way to join the two tables, even if it is the obvious one.  
+
+### The "right" join
+
+Sometimes you will want to keep the cases in the second or "right" table, appending the corresponding cases from the "left" table to these:
+```{r}
+bothR = join(income,phones,type="right")
+bothR
+```
+
+### The "inner" join
+
+The inner join keeps only the cases that show up in both tables:
+```{r}
+bothInner = join(income,phones,type="inner")
+bothInner
+```
+
+### The "full" join
+
+```{r}
+bothFull = join(income,phones,type="full")
+bothFull
+```
+The full join keeps all cases from both tables, matching up wherever possible
+
+### The "unnatural" Join
+
+In the "natural" join, the criterion for matching cases between the tables is based on the column names: all columns in one table with correspondingly named columns in the other will be used to determine when cases match between the two tables.  This is indeed natural, but it may not be what you want.  You can control which columns are used with the `by=` argument.  For example, here's a match based just on `Country`
+
+```{r}
+join(income, phones, by="Country")
+```
+Take the time to scan through this long table.  Each country's income data has been replicated several times so that it can be matched with the phone data from **all** that country's years.
+
+**It's advisable** to state the matching variables explicitly with `by=` even when the natural join would do what you want.  This can avoid problems later on, for example, if you add a new column to the data frame whose name happens to match and existing column in another table.
+
+### Duplicate Matches
+
+Sometimes, is in the previous example matching only on `Country`, there is more than one match for each case.  By default, `join` will produce a row for each of the matches.  This may be what you want, but if it is not, be aware that (in very large data sets) `join` can be a slow operation.  
+
+If all you want is the first match --- which will be the case if you want only **one** match anyways, as is often the case --- then use `match="first"` in `join`.  This will give you what you want and it will be faster than the default `match="all"`.
+
+```{r}
+join(income,phones,by="Country",match="first")
+```
+
+But *watch out*.  In this example, which had an unnatural matching criterion of only `Country`, income in Argentina in 2000 has been matched to cell phone usage in 1990.  Using `match="first"` does not avoid the need to specify a sensible matching criterion.
+
+## Which Join Do I Want?
+
+In deciding, it may help to visualize which cases you want and how the different types of joins differ:
+
+![Join Venn diagram](http://www.udel.edu/evelyn/SQL-Class2/joins.jpg)
+
+##### Source: <http://www.udel.edu/evelyn/SQL-Class2/SQLclass2_Join.html>
+
+### Some Settings
+
+#### Adding Supplemental Data
+
+Suppose you have a new piece of data for each case, say the dominant language spoken in each country.  The table might look like this:
+```{r echo=FALSE}
+LanguagesByCountry <- data.frame(
+  Country=c("Argentina","Bolivia","Brazil","Colombia","China"),
+  Language=c("Spanish","Spanish","Portuguese","Spanish","Chinese"))
+```
+```{r}
+LanguagesByCountry
+```
+
+You may have more supplemental data than you need for the cases at hand.  That suggests a left join, with the supplemental data being in the left position:
+```{r}
+join(phones,LanguagesByCountry,type="left")
+```
+
+The right join will include cases for which you don't have any primary data, just because there happens to be supplementary data, **not what you want**.
+```{r}
+join(phones,LanguagesByCountry,type="right")
+```
+#### Joining Many Files 
+
+Suppose you have many variables stored in different files, as in the Gapminder Country data.  For your analysis you want to bring these together into one file, so that you can consider the various variables within each country and across years.
+
+It may be that data are missing for one variable for a country in a particular year, but the other variables might be there.  Chances are, you want to keep all of the data you've got, and not throw out, say, all data for Bolivia in 1990 because there happens not to be cell phone data for that year.  In such a case, use a **full** join.
+
+To illustrate, here's a comparison of many-country joins using the **full** and **inner** styles.  Here are four variables by year and country
+```{r}
+roads = fetchGapminder("Gapminder/PavedRoads.csv")
+income = fetchGapminder("Gapminder/IncomePerCapitaPPP.csv")
+sanitation = fetchGapminder("Gapminder/ImprovedSanitation.csv")
+fertility = fetchGapminder("Gapminder/Fertility.csv")
+```
+
+Using an inner join throws away data when either of the two tables being joined is missing an entry:
+```{r}
+resInner = roads
+resInner = join(resInner,income,type="inner")
+resInner = join(resInner,sanitation,type="inner")
+resInner = join(resInner,fertility,type="inner")
+```
+
+There are about 1700 entries in the resulting table:
+
+```{r}
+nrow(resInner)
+```
+
+This is only a small fraction of the actual data available, all of which is preserved by a **full** join:
+
+```{r}
+resFull = roads
+resFull = join(resFull,income,type="full")
+resFull = join(resFull,sanitation,type="full")
+resFull = join(resFull,fertility,type="full")
+nrow(resFull)
+```
+
+### Selecting a Subset Based on Group Properties
+
+Suppose you want to 
+
+EXERCISES:
+
+FIX THE COUNTRY LABELS
+
+FIX THE SPECIES NAMES
+
+Select out species with more than 20 birds in some month or 200 birds altogether

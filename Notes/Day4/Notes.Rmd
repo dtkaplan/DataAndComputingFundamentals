@@ -1,6 +1,16 @@
 Week 4 Notes
 ========================================================
 
+
+## Concepts 
+
+The idea of a **primary key** and a **foreign key**.  What uniquely identifies a case in a table?
+
+
+## Examples/Tutorials for Join
+
+* [Using Venn diagrams](http://www.codinghorror.com/blog/2007/10/a-visual-explanation-of-sql-joins.html) and [another](http://www.halfgaar.net/sql-joins-are-easy) and [still another](http://www.flickr.com/photos/mattimattila/8190148857/)
+
 News: [Data mining the web for drug interaction effects](http://www.nytimes.com/2013/03/07/science/unreported-side-effects-of-drugs-found-using-internet-data-study-finds.html?hp&_r=0)
 
 IN THE JOIN DOCUMENT, the different kinds of join.  Pull out a handful of countries with limited data.  Show the effects of the different joins.
