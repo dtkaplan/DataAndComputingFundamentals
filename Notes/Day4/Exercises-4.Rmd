@@ -1,0 +1,94 @@
+Exercises: Week 4
+========================================================
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+#### Data and Computing Fundamentals
+
+
+## Data Cleaning
+
+Implement the steps for cleaning the `OrdwayBirdsOrig` data, including
+
+* Cleaning the species name using the crowd-sourced correction file. (This is done in the write-up.)
+* Cleaning the year, converting to proper numerical form. (This is done in the write-up.)
+* Clean the month. Convert it to a valid number: 1 through 12
+* Clean the day.  Convert it to a valid number: 1 through 31.
+* Clean the weight.  You can use a strategy similar to that used for `WingChord`.
+* See which `Data Entry Person` makes more mistakes in entering the `SpeciesName`.  Hint: compare `SpeciesName` to `SpeciesNameCleaned`.
+
+### Using the Cleaned Data
+
+* Make a scatter plot of wing chord versus weight for different species.
+
+
+## Using Grouped Data for Individual Cases
+
+### Using the Cleaned Ordway Bird data:
+* Construct a subset of the bird data consisting of those bird species that have more than 200 cases altogether.
+* Construct a subset of bird data where there are more than 200 cases altogether or more than 20 in any month of the year.
+* Construct a subset of the bird data consisting of those months and years where there are more than 50 birds in the record and the species is more than 5% of all the birds in that year.
+
+### Country Data
+
+The `countrySynonyms` data file (you can load it with `data(countrySynonmyms)`) gives word synonyms for each country listed in the World-Map software, together with an official ISO 3-letter country code.  This data set is in "wide" format.  To turn it into narrow format, you can do this:
+```{r}
+data(countrySynonyms)
+foo <- melt(countrySynonyms, id.vars=c("ID","ISO3"),value.name="Country",
+     measure.vars=names(countrySynonyms)[-(1:2)],variable.name="whence")
+countrySynonymsLong <- subset(foo,!is.na(Country))
+countrySynonymsLong$whence <- NULL
+```
+* Using this `countrySynonymsLong`, find the names of any countries in the Gapminder data that don't have corresponding names in `countrySynonymsLong`.  Hint: `join()` and `subset()` are good tools.
+* As best you can, for those countries that don't have an exact match, find the country in `countrySynonymsLong` that is the non-exact match to the name and fix the Gapminder data accordingly, so that every possible country in the Gapminder data shows up in the map.
+
+The `countryRegions` data file (you can load it with `data(countryRegions)` or get documentation with `help(countryRegions)` let's you aggregate countries in various ways.
+* Make a map showing which countries have per capita GDP above and below the average for that continent.
+
+
+## Model Fitting
+
+
+
+
+### Height versus Age
+
+* Compare boys and girls aged 10 years and less. 
+    * Do the data given any reason to think that boys and girls grow differently up to age 10.
+    * Is there any evidence for nonlinear growth in height for these kids?
+
+* Looking at boys between 10 and 25 ...
+    * Make a graph that gives a compelling view of when boys' heights level off with age.
+
+### Further Exploration:
+
+#### Height
+Look at people aged greater than 20 years, first with a very small sample (about 100 people) and then with the entire data set.  
+
+* Does the small data set clearly show a decrease in height with age?  How about the entire data?
+* Any evidence for nonlinear trends in height with age for those greater than 20 years old?
+
+#### BMI
+
+* Do boys and girls show a systematically changing BMI with age?  (Hint: Look to see if the confidence interval is consistent with a level-line model.)
+* Are the boys and girls different?  If not, at what age do males and females diverge in BMI? 
+
+```{r cache=TRUE,echo=FALSE,eval=FALSE}
+ggplot(data=nhanes,aes(x=age,y=bmi))+aes(colour=sex)+
+  xlab("Age (yrs)")+ylab("BMI") + #facet_wrap(~sex) +
+#  stat_smooth(method=lm) + 
+  stat_smooth(method=loess)
+```
+
+#### For Math 135 graduates ...
+
+The BMI models weight as being proportional to height squared.  This should give a straight line on a graph of log-weight against log-height.  Is this a reasonable model for adults?
+
+```{r cache=TRUE,echo=FALSE,eval=FALSE}
+ggplot(data=subset(nhanes,hgt>1.5),aes(x=log(hgt),y=log(wgt)))+aes(colour=sex)+
+  xlab("Height")+ylab("Weight") + facet_wrap(~sex) +
+  stat_smooth(method=loess) + stat_smooth(method=lm)
+```

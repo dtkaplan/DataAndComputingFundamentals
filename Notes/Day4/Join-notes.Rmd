@@ -143,7 +143,7 @@ Suppose you have many variables stored in different files, as in the Gapminder C
 It may be that data are missing for one variable for a country in a particular year, but the other variables might be there.  Chances are, you want to keep all of the data you've got, and not throw out, say, all data for Bolivia in 1990 because there happens not to be cell phone data for that year.  In such a case, use a **full** join.
 
 To illustrate, here's a comparison of many-country joins using the **full** and **inner** styles.  Here are four variables by year and country
-```{r}
+```{r message=FALSE,warning=FALSE}
 roads = fetchGapminder("Gapminder/PavedRoads.csv")
 income = fetchGapminder("Gapminder/IncomePerCapitaPPP.csv")
 sanitation = fetchGapminder("Gapminder/ImprovedSanitation.csv")
@@ -151,7 +151,7 @@ fertility = fetchGapminder("Gapminder/Fertility.csv")
 ```
 
 Using an inner join throws away data when either of the two tables being joined is missing an entry:
-```{r}
+```{r message=FALSE,warning=FALSE}
 resInner = roads
 resInner = join(resInner,income,type="inner")
 resInner = join(resInner,sanitation,type="inner")
@@ -166,7 +166,7 @@ nrow(resInner)
 
 This is only a small fraction of the actual data available, all of which is preserved by a **full** join:
 
-```{r}
+```{r message=FALSE,warning=FALSE}
 resFull = roads
 resFull = join(resFull,income,type="full")
 resFull = join(resFull,sanitation,type="full")
@@ -176,12 +176,14 @@ nrow(resFull)
 
 ### Selecting a Subset Based on Group Properties
 
-Suppose you want to 
+Suppose you want to pick out a subset of cases based on information that extends beyond an individual case.  Examples:
 
-EXERCISES:
+* Limit consideration only to species that have more than 100 observations in the data set.
+* Consider countries that are relatively rich, e.g. have more than 150% of the mean per capita GDP in a region.
 
-FIX THE COUNTRY LABELS
+The general process:
 
-FIX THE SPECIES NAMES
+1. In the case-by-case data, construct any new variables that are needed, e.g. per capita GDP
+2. Group the cases, e.g. count the number of birds of each species, find the mean GDP in a region
+3. Join (using the appropriate sort of join) the group-wise data to the case-by-case data.
 
-Select out species with more than 20 birds in some month or 200 birds altogether

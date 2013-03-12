@@ -1,0 +1,199 @@
+Cleaning the Birds
+=====================
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+**Cleaning data** refers to the process of identifying and fixing errors in the way data were recorded.  
+
+The data set `OrdwayBirdsOrig` contains data being transcribed from paper records to electronic form.  This is common for historical data.  The original paper-based record keeping and the process of transcription leads to problems:
+* Since the data were written by hand, there was no automated enforcement of coding.  So different codes may be used for the same level.
+* The transcription process can introduce new errors --- typographical, etc.
+* As new records are discovered, the data set continues to grow.
+
+Many people think that cleaning data is a matter of opening up a spreadsheet and editing.  This may be satisfactory for very small data sets, but it is impractical for large ones.  In addition, the spreadsheet-editing approach provides no record or control --- you can't go back to restore mistakes in editing or to revise misconceived editing.  It's better to have a program-based approach to cleaning: it will be reproducible and can be updated.
+
+To illustrate why cleaning is necessary, consider the `SpeciesName` variable in the Ordway birds data.  `OrdwayBirdsOrig` contains the ongoing transcribed archive --- previously you may have worked with a shorter data set, `OrdwayBirds`, which was drawn from the first part of the archive and has already been cleaned.  Now, you'll work with the original.
+
+First, read it in and see what's recorded
+```{r}
+data(OrdwayBirdsOrig)
+nrow(OrdwayBirdsOrig)
+names(OrdwayBirdsOrig)
+```
+
+Now the names of the species:
+```{r}
+snames = with(OrdwayBirdsOrig, levels(SpeciesName))
+length(snames)
+```
+There are a lot of species!  But maybe not all of them are for real.
+```{r}
+head(snames,20) # Just take a peak!
+```
+You can see several entries that are clearly mistakes or various codes for missing data.  But there are mis-spellings and perhaps other blunders: "Baltimore Oriole" and "Batimore Oriole" are probably the same species.  Similarly with "American Gold Finch" and "American Goldfinch".
+
+We're going to fix this.  The `join` function provides a nice way to do so.  We're going to create a small, auxiliary data file that contains the names of the species in the raw data along with the proper name.  It will look like this:
+
+SpeciesName | SpeciesNameCleaned
+------------|-------------------
+  -lost-  | NA
+  -missing| NA
+  [Nothing, just dashes] | NA
+  13:00:00| NA
+  Batimore Oriole | Baltimore Oriole
+  Baltimore Oriole| Baltimore Oriole
+  American Gold Finch | American Goldfinch
+  American Goldfinch  | American Goldfinch
+  ... and so on ... | ...
+  
+Notice that the two columns will be identical for those species that are correct in the raw data.
+
+To construct such a table, you can pull out the names as they exist in the original data.  You need only one row for each name.  Here's one way to do it: creating a data frame with both columns and exporting it as a CSV file which you can edit by hand in a spreadsheet program.
+
+```{r eval=FALSE}
+namesForCleaning = with(OrdwayBirdsOrig, data.frame( SpeciesName=levels(SpeciesName)))
+namesForCleaning = transform(namesForCleaning, SpeciesNameCleaned=NA)
+write.csv(namesForCleaning, file="OrdwayNamesForCleaning.csv",row.names=FALSE)
+```
+
+This file has been uploaded to Google Drive, where it can be edited for cleaning.  The link to the file for editing is
+<https://docs.google.com/spreadsheet/ccc?key=0Av2C2RiwUxpVdFlPWUp6NERSQzhld3o4QklQd1p6d2c&usp=sharing>
+
+Once edited, you can read in the file with `fetchGoogle()`.
+```{r}
+namesCleaned = fetchGoogle("https://docs.google.com/spreadsheet/pub?key=0Av2C2RiwUxpVdFlPWUp6NERSQzhld3o4QklQd1p6d2c&single=true&gid=0&output=csv")
+```
+Now, to clean the names, `join` the name file to the original data.
+```{r}
+birds = join(OrdwayBirdsOrig, namesCleaned)
+```
+
+Note that the (partially) cleaned are being stored in a new data frame, `birds`.  There's a reason for this.
+
+Usually, cleaning is an iterative process.  You make some changes, re-examine the data, realize more changes that are required, make those, etc.  Let's look at the list of species currently in `birds`:
+```{r}
+groupBy(birds, by=SpeciesNameCleaned)
+```
+
+It's worthwhile to check how many of the entries are still missing:
+```{r}
+groupBy(birds, by=is.na(SpeciesNameCleaned))
+```
+
+When you go back and continue editing the species-name file, consider what would happen when you join the new file with `birds`.  Since `birds` already has the columns named `SpeciesName` and `SpeciesNameCleaned`, the natural join will attempt to match on *both* of those columns.  Therefore, the columns you've just changed won't match.  To avoid this problem, do either of two things: 
+
+1. Go back to the `OrdwayBirdsOrig` for the joining.  This is fine, but it will lose any changes you have already made.
+2. Use the explicit `by="SpeciesName"` argument to `join()` to specify that matching should be done just on the `SpeciesName` variable and not on both `SpeciesName` and `SpeciesNameCleaned`.
+
+### Cleaning Numerical Variables
+
+Some of the variables are meant to be numerical, such as `Year`.  But, due to mistakes in data entry, a non-numerical character is sometimes encountered.  This results in the data appearing to be categorical.
+
+The first thing is to check whether the data are being stored as numerical or categorical (which is referred to .  You can use the following statement:
+```{r}
+with(birds,class(Year))
+```
+
+This is not a number!  What to do next depends on how dirty the data are.  For a categorical variable, the `levels()` function will give the values that occur.  
+```{r}
+with(birds,levels(Year))
+```
+There are just a few bogus levels.  You can get an idea about the scale of the problem by counting how many cases are this way:
+```{r}
+groupBy(birds,by=Year)
+```
+
+Armed with this information, you can strategize about how to do the cleaning.  There are so few mistakes that it's sensible just to drop the bogus levels.  The steps to use are:
+
+1. Convert the "factor" to a number.
+2. Subset only those that are in the valid range, say: 1960-2020.  It's best to be inclusive in defining this range, so that things will still work when new data come along.
+
+Translated to R, this is
+```{r}
+birds = transform(birds, Year=as.numeric(as.character(Year)))
+birds = subset(birds, Year %in% 1960:2020)
+```
+
+#### Cleaning Messier Numbers
+
+The `WingChord` variable is, supposedly, a measurement in units of millimeters.
+
+* Look at the `class()` of `WingChord` to see that it is not being stored as a number.  
+* Look at the `levels()` to see the values, themselves.
+
+
+There are several problems.  Many of the values are empty strings, rather than `NA`.  While some of the values are sensible seeming (say "57" or "110"), others have "mm" appended to the value, for instance "71 mm".  A human reader recognizes this as redundant, but R takes the string literally, and it is not strictly speaking a number.  Another problem is that some values have extraneous measurements, e.g. "130 (84.9)" or "p/s 12 59".  Still another problem is that some values are outside a reasonable range, 10 mm is a very small wing chord.
+
+Looking at the values suggests a strategy:
+* Turn the empty strings into `NA`
+* The values recorded with "mm" are salvageable --- just strip the "mm".
+* Trash the rest of the values and make sure that you're not throwing away too much.
+* Once we have cleaned most of the data, let's look at the distribution of numerical values and exclude far outliers.
+
+First, deal with the empty strings.  There are quite a few:
+```{r}
+groupBy(birds, by=WingChord=="")
+birds = transform(birds, WC=ifelse(WingChord=="",NA,WingChord))
+```
+
+Next, strip off the "mm".  The `gsub()` function allows you to substitute one character string for another.  In the following, "mm" will be replaced with "" (that is, nothing).
+```{r}
+birds = transform(birds, 
+                  WC=gsub("mm","",as.character(WingChord), fixed=TRUE))
+```
+More advanced substitutions are also possible, using what are called "general expressions".  These are beyond the scope of this course, but would be important if we wanted to salvage "130 (84.9)".
+
+Now convert the character string to a number:
+```{r}
+birds = transform(birds, WC=as.numeric(as.character(WC)))
+```
+When `as.numeric()` encounters a non-number, it returns NA.  Let's see how many we have:
+```{r}
+groupBy(birds, is.na(WingChord)) # originally missing
+groupBy(birds, is.na(WC)) # after throwing away more
+```
+
+Once you have numerical values, you can try to judge what range of values is reasonable.  This is definitely a matter of judgement, or involves expertise about birds.  To start, let's look at the distribution of wing chord lengths:
+```{r}
+densityplot( ~WC, data=birds)
+```
+
+This suggests that wing chords under 50mm are very rare.  Perhaps, to be conservative, let's assume that numbers less than 20 should be considered unreliable:
+```{r}
+birds = transform(birds, WC=ifelse(WC<20,NA,WC))
+```
+
+### Digression: Reading the Transcribed Data Directly from Google Docs
+
+The emphasis in these notes is on cleaning the data.  Cleaning is part of a process that includes acquiring the data files. We've ignored this part of the process.  In this digression, only for people who are interested in the complete process, as you might be if you have to design your own system, the data acquisition part of the process is described.  This uses specialized web-scraping functions in R.
+
+The transcribers of the Ordway data have been using Google Spreadsheets, a reasonable choice (that integrates well with a simple web interface for entering individual observations) but which itself imposes limitations.  For instance, Google does not make it easy to export large data sets in a CSV or other spreadsheet format.  But there is, fortunately, a loop-hole; the data can be published in HTML form as a view-able table.  Here's the address: <https://docs.google.com/spreadsheet/pub?key=0Av2C2RiwUxpVdHIzYVl4ajhkTnR3R3NDX0M1OGNnclE&output=html>.  But **before** you click on that link, realize that it will take some minutes for the data to load and, at that point, you'll just have it in a browser window that you can read.  
+
+The following statements, which you **do not** need to run, show how it's possible to read in such an HTML table to R.  It will still require cleaning, but at least you'll have it in a format that's suitable for processing.
+```{r eval=FALSE}
+library(XML)
+theurl <- "https://docs.google.com/spreadsheet/pub?key=0Av2C2RiwUxpVdHIzYVl4ajhkTnR3R3NDX0M1OGNnclE&output=html"
+tables <- readHTMLTable(getURLContent(theurl))
+# There's only one table, but in general there might be more than one table on a web page.
+birds <- tables$tblMain # grab the one table
+# The first two rows are bogus
+birds <- birds[-(1:2),]
+names(birds) <- c("bogus","Timestamp","Year","Day","Month","CaptureTime",    
+ "SpeciesName","Sex","Age","BandNumber","TrapID","Weather",  
+ "BandingReport","RecaptureYN","RecaptureMonth","RecaptureDay","Condition","Release",  
+ "Comments","DataEntryPerson","Weight","WingChord", "Temperature","RecaptureOriginal",
+ "RecapturePrevious","TailLength")     # This statement was constructed by hand 
+```
+Now there is an object called `birds` that contains the data from Google with reasonable R variable names.  At this point, you can commence the cleaning. 
+
+#### End of Digression
+
+
+
+
+
+
+

@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Using Join</title>
+<title>Exercises: Week 4</title>
 
 <style type="text/css">
 body, td {
@@ -178,290 +178,100 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>Using Join</h1>
+<h1>Exercises: Week 4</h1>
 
-<p>The intuitive ways to combine two tables L and R are straightforward: append the rows from table R to table L, making a longer table with more cases; append the columns from table R to table L, making a wider table.</p>
+<h4>Data and Computing Fundamentals</h4>
 
-<p>The <code>join</code> function adds more subtle capabilities: it allows you to add the columns from R to L only for cases where there is some sort of match between the case in L and a case in R.</p>
+<h2>Data Cleaning</h2>
 
-<p>To illustrate, consider these small excerpts from Gapminder country data: per capita income (playing the role of X) and cell telephone subscriptions &reg;.</p>
-
-<pre><code class="r">income &lt;- fetchGapminder(&quot;Gapminder/IncomePerCapitaPPP.csv&quot;)
-</code></pre>
-
-<pre><code>## Retrieving from
-## http://www.mosaic-web.org/go/datasets/Gapminder/IncomePerCapitaPPP.csv
-</code></pre>
-
-<pre><code class="r">phones &lt;- fetchGapminder(&quot;Gapminder/CellPhoneTotal.csv&quot;)
-</code></pre>
-
-<pre><code>## Retrieving from
-## http://www.mosaic-web.org/go/datasets/Gapminder/CellPhoneTotal.csv
-</code></pre>
-
-<p>The llustration of <code>join</code> will be based on small subsets:</p>
-
-<h3>Income Table: <code>income</code></h3>
-
-<pre><code class="r">income
-</code></pre>
-
-<pre><code>##     Country Year IncomePerCapitaPPP
-## 1 Argentina 1990               7847
-## 2   Bolivia 1990               2897
-## 3 Argentina 2000              10571
-</code></pre>
-
-<h3>Cell Phone Subscriptions: <code>phones</code></h3>
-
-<pre><code class="r">phones
-</code></pre>
-
-<pre><code>##     Country Year CellPhoneTotal
-## 1 Argentina 1990          12000
-## 2 Argentina 2000        6487950
-## 3   Bolivia 2000         582620
-## 4  Colombia 2000        2256801
-</code></pre>
-
-<p>Note for later reference that there is no phone data for Bolivia and Colombia in 1990; these two cases are missing.</p>
-
-<h2>The &ldquo;Natural Join&rdquo;</h2>
-
-<p>It&#39;s pretty obvious what constitutes a case in each table: a country in a particular year.  The <strong>natural join</strong> tries to figure this out by matching the column names across the two tables and using that to set up the matching criteria:</p>
-
-<pre><code class="r">both = join(income,phones)
-</code></pre>
-
-<pre><code>## Joining by: Country, Year
-</code></pre>
-
-<pre><code class="r">both
-</code></pre>
-
-<pre><code>##     Country Year IncomePerCapitaPPP CellPhoneTotal
-## 1 Argentina 1990               7847          12000
-## 2   Bolivia 1990               2897             NA
-## 3 Argentina 2000              10571        6487950
-</code></pre>
-
-<p>The new columns from the <code>phone</code> table has been appended to the columns from the <code>income</code> table.  The result gives a correspondence between income and phone usage for each country-year.  Simple.</p>
-
-<h2>Other Types of Join</h2>
-
-<p>This is <strong>not</strong> the only way to join the two tables, even if it is the obvious one.  </p>
-
-<h3>The &ldquo;right&rdquo; join</h3>
-
-<p>Sometimes you will want to keep the cases in the second or &ldquo;right&rdquo; table, appending the corresponding cases from the &ldquo;left&rdquo; table to these:</p>
-
-<pre><code class="r">bothR = join(income,phones,type=&quot;right&quot;)
-</code></pre>
-
-<pre><code>## Joining by: Country, Year
-</code></pre>
-
-<pre><code class="r">bothR
-</code></pre>
-
-<pre><code>##     Country Year IncomePerCapitaPPP CellPhoneTotal
-## 1 Argentina 1990               7847          12000
-## 2 Argentina 2000              10571        6487950
-## 3   Bolivia 2000                 NA         582620
-## 4  Colombia 2000                 NA        2256801
-</code></pre>
-
-<h3>The &ldquo;inner&rdquo; join</h3>
-
-<p>The inner join keeps only the cases that show up in both tables:</p>
-
-<pre><code class="r">bothInner = join(income,phones,type=&quot;inner&quot;)
-</code></pre>
-
-<pre><code>## Joining by: Country, Year
-</code></pre>
-
-<pre><code class="r">bothInner
-</code></pre>
-
-<pre><code>##     Country Year IncomePerCapitaPPP CellPhoneTotal
-## 1 Argentina 1990               7847          12000
-## 2 Argentina 2000              10571        6487950
-</code></pre>
-
-<h3>The &ldquo;full&rdquo; join</h3>
-
-<pre><code class="r">bothFull = join(income,phones,type=&quot;full&quot;)
-</code></pre>
-
-<pre><code>## Joining by: Country, Year
-</code></pre>
-
-<pre><code class="r">bothFull
-</code></pre>
-
-<pre><code>##     Country Year IncomePerCapitaPPP CellPhoneTotal
-## 1 Argentina 1990               7847          12000
-## 2   Bolivia 1990               2897             NA
-## 3 Argentina 2000              10571        6487950
-## 4   Bolivia 2000                 NA         582620
-## 5  Colombia 2000                 NA        2256801
-</code></pre>
-
-<p>The full join keeps all cases from both tables, matching up wherever possible</p>
-
-<h3>The &ldquo;unnatural&rdquo; Join</h3>
-
-<p>In the &ldquo;natural&rdquo; join, the criterion for matching cases between the tables is based on the column names: all columns in one table with correspondingly named columns in the other will be used to determine when cases match between the two tables.  This is indeed natural, but it may not be what you want.  You can control which columns are used with the <code>by=</code> argument.  For example, here&#39;s a match based just on <code>Country</code></p>
-
-<pre><code class="r">join(income, phones, by=&quot;Country&quot;)
-</code></pre>
-
-<pre><code>##     Country Year IncomePerCapitaPPP Year CellPhoneTotal
-## 1 Argentina 1990               7847 1990          12000
-## 2 Argentina 1990               7847 2000        6487950
-## 3   Bolivia 1990               2897 2000         582620
-## 4 Argentina 2000              10571 1990          12000
-## 5 Argentina 2000              10571 2000        6487950
-</code></pre>
-
-<p>Take the time to scan through this long table.  Each country&#39;s income data has been replicated several times so that it can be matched with the phone data from <strong>all</strong> that country&#39;s years.</p>
-
-<p><strong>It&#39;s advisable</strong> to state the matching variables explicitly with <code>by=</code> even when the natural join would do what you want.  This can avoid problems later on, for example, if you add a new column to the data frame whose name happens to match and existing column in another table.</p>
-
-<h3>Duplicate Matches</h3>
-
-<p>Sometimes, is in the previous example matching only on <code>Country</code>, there is more than one match for each case.  By default, <code>join</code> will produce a row for each of the matches.  This may be what you want, but if it is not, be aware that (in very large data sets) <code>join</code> can be a slow operation.  </p>
-
-<p>If all you want is the first match &mdash; which will be the case if you want only <strong>one</strong> match anyways, as is often the case &mdash; then use <code>match=&quot;first&quot;</code> in <code>join</code>.  This will give you what you want and it will be faster than the default <code>match=&quot;all&quot;</code>.</p>
-
-<pre><code class="r">join(income,phones,by=&quot;Country&quot;,match=&quot;first&quot;)
-</code></pre>
-
-<pre><code>##     Country Year IncomePerCapitaPPP Year CellPhoneTotal
-## 1 Argentina 1990               7847 1990          12000
-## 2   Bolivia 1990               2897 2000         582620
-## 3 Argentina 2000              10571 1990          12000
-</code></pre>
-
-<p>But <em>watch out</em>.  In this example, which had an unnatural matching criterion of only <code>Country</code>, income in Argentina in 2000 has been matched to cell phone usage in 1990.  Using <code>match=&quot;first&quot;</code> does not avoid the need to specify a sensible matching criterion.</p>
-
-<h2>Which Join Do I Want?</h2>
-
-<p>In deciding, it may help to visualize which cases you want and how the different types of joins differ:</p>
-
-<p><img src="http://www.udel.edu/evelyn/SQL-Class2/joins.jpg" alt="Join Venn diagram"/></p>
-
-<h5>Source: <a href="http://www.udel.edu/evelyn/SQL-Class2/SQLclass2_Join.html">http://www.udel.edu/evelyn/SQL-Class2/SQLclass2_Join.html</a></h5>
-
-<h3>Some Settings</h3>
-
-<h4>Adding Supplemental Data</h4>
-
-<p>Suppose you have a new piece of data for each case, say the dominant language spoken in each country.  The table might look like this:</p>
-
-<pre><code class="r">LanguagesByCountry
-</code></pre>
-
-<pre><code>##     Country   Language
-## 1 Argentina    Spanish
-## 2   Bolivia    Spanish
-## 3    Brazil Portuguese
-## 4  Colombia    Spanish
-## 5     China    Chinese
-</code></pre>
-
-<p>You may have more supplemental data than you need for the cases at hand.  That suggests a left join, with the supplemental data being in the left position:</p>
-
-<pre><code class="r">join(phones,LanguagesByCountry,type=&quot;left&quot;)
-</code></pre>
-
-<pre><code>## Joining by: Country
-</code></pre>
-
-<pre><code>##     Country Year CellPhoneTotal Language
-## 1 Argentina 1990          12000  Spanish
-## 2 Argentina 2000        6487950  Spanish
-## 3   Bolivia 2000         582620  Spanish
-## 4  Colombia 2000        2256801  Spanish
-</code></pre>
-
-<p>The right join will include cases for which you don&#39;t have any primary data, just because there happens to be supplementary data, <strong>not what you want</strong>.</p>
-
-<pre><code class="r">join(phones,LanguagesByCountry,type=&quot;right&quot;)
-</code></pre>
-
-<pre><code>## Joining by: Country
-</code></pre>
-
-<pre><code>##     Country Year CellPhoneTotal   Language
-## 1 Argentina 1990          12000    Spanish
-## 2 Argentina 2000        6487950    Spanish
-## 3   Bolivia 2000         582620    Spanish
-## 4    Brazil   NA             NA Portuguese
-## 5  Colombia 2000        2256801    Spanish
-## 6     China   NA             NA    Chinese
-</code></pre>
-
-<h4>Joining Many Files</h4>
-
-<p>Suppose you have many variables stored in different files, as in the Gapminder Country data.  For your analysis you want to bring these together into one file, so that you can consider the various variables within each country and across years.</p>
-
-<p>It may be that data are missing for one variable for a country in a particular year, but the other variables might be there.  Chances are, you want to keep all of the data you&#39;ve got, and not throw out, say, all data for Bolivia in 1990 because there happens not to be cell phone data for that year.  In such a case, use a <strong>full</strong> join.</p>
-
-<p>To illustrate, here&#39;s a comparison of many-country joins using the <strong>full</strong> and <strong>inner</strong> styles.  Here are four variables by year and country</p>
-
-<pre><code class="r">roads = fetchGapminder(&quot;Gapminder/PavedRoads.csv&quot;)
-income = fetchGapminder(&quot;Gapminder/IncomePerCapitaPPP.csv&quot;)
-sanitation = fetchGapminder(&quot;Gapminder/ImprovedSanitation.csv&quot;)
-fertility = fetchGapminder(&quot;Gapminder/Fertility.csv&quot;)
-</code></pre>
-
-<p>Using an inner join throws away data when either of the two tables being joined is missing an entry:</p>
-
-<pre><code class="r">resInner = roads
-resInner = join(resInner,income,type=&quot;inner&quot;)
-resInner = join(resInner,sanitation,type=&quot;inner&quot;)
-resInner = join(resInner,fertility,type=&quot;inner&quot;)
-</code></pre>
-
-<p>There are about 1700 entries in the resulting table:</p>
-
-<pre><code class="r">nrow(resInner)
-</code></pre>
-
-<pre><code>## [1] 1721
-</code></pre>
-
-<p>This is only a small fraction of the actual data available, all of which is preserved by a <strong>full</strong> join:</p>
-
-<pre><code class="r">resFull = roads
-resFull = join(resFull,income,type=&quot;full&quot;)
-resFull = join(resFull,sanitation,type=&quot;full&quot;)
-resFull = join(resFull,fertility,type=&quot;full&quot;)
-nrow(resFull)
-</code></pre>
-
-<pre><code>## [1] 21441
-</code></pre>
-
-<h3>Selecting a Subset Based on Group Properties</h3>
-
-<p>Suppose you want to pick out a subset of cases based on information that extends beyond an individual case.  Examples:</p>
+<p>Implement the steps for cleaning the <code>OrdwayBirdsOrig</code> data, including</p>
 
 <ul>
-<li>Limit consideration only to species that have more than 100 observations in the data set.</li>
-<li>Consider countries that are relatively rich, e.g. have more than 150% of the mean per capita GDP in a region.</li>
+<li>Cleaning the species name using the crowd-sourced correction file. (This is done in the write-up.)</li>
+<li>Cleaning the year, converting to proper numerical form. (This is done in the write-up.)</li>
+<li>Clean the month. Convert it to a valid number: 1 through 12</li>
+<li>Clean the day.  Convert it to a valid number: 1 through 31.</li>
+<li>Clean the weight.  You can use a strategy similar to that used for <code>WingChord</code>.</li>
+<li>See which <code>Data Entry Person</code> makes more mistakes in entering the <code>SpeciesName</code>.  Hint: compare <code>SpeciesName</code> to <code>SpeciesNameCleaned</code>.</li>
 </ul>
 
-<p>The general process:</p>
+<h3>Using the Cleaned Data</h3>
 
-<ol>
-<li>In the case-by-case data, construct any new variables that are needed, e.g. per capita GDP</li>
-<li>Group the cases, e.g. count the number of birds of each species, find the mean GDP in a region</li>
-<li>Join (using the appropriate sort of join) the group-wise data to the case-by-case data.</li>
-</ol>
+<ul>
+<li>Make a scatter plot of wing chord versus weight for different species.</li>
+</ul>
+
+<h2>Using Grouped Data for Individual Cases</h2>
+
+<h3>Using the Cleaned Ordway Bird data:</h3>
+
+<ul>
+<li>Construct a subset of the bird data consisting of those bird species that have more than 200 cases altogether.</li>
+<li>Construct a subset of bird data where there are more than 200 cases altogether or more than 20 in any month of the year.</li>
+<li>Construct a subset of the bird data consisting of those months and years where there are more than 50 birds in the record and the species is more than 5% of all the birds in that year.</li>
+</ul>
+
+<h3>Country Data</h3>
+
+<p>The <code>countrySynonyms</code> data file (you can load it with <code>data(countrySynonmyms)</code>) gives word synonyms for each country listed in the World-Map software, together with an official ISO 3-letter country code.  This data set is in &ldquo;wide&rdquo; format.  To turn it into narrow format, you can do this:</p>
+
+<pre><code class="r">data(countrySynonyms)
+foo &lt;- melt(countrySynonyms, id.vars = c(&quot;ID&quot;, &quot;ISO3&quot;), value.name = &quot;Country&quot;, 
+    measure.vars = names(countrySynonyms)[-(1:2)], variable.name = &quot;whence&quot;)
+countrySynonymsLong &lt;- subset(foo, !is.na(Country))
+countrySynonymsLong$whence &lt;- NULL
+</code></pre>
+
+<ul>
+<li>Using this <code>countrySynonymsLong</code>, find the names of any countries in the Gapminder data that don&#39;t have corresponding names in <code>countrySynonymsLong</code>.  Hint: <code>join()</code> and <code>subset()</code> are good tools.</li>
+<li>As best you can, for those countries that don&#39;t have an exact match, find the country in <code>countrySynonymsLong</code> that is the non-exact match to the name and fix the Gapminder data accordingly, so that every possible country in the Gapminder data shows up in the map.</li>
+</ul>
+
+<p>The <code>countryRegions</code> data file (you can load it with <code>data(countryRegions)</code> or get documentation with <code>help(countryRegions)</code> let&#39;s you aggregate countries in various ways.</p>
+
+<ul>
+<li>Make a map showing which countries have per capita GDP above and below the average for that continent.</li>
+</ul>
+
+<h2>Model Fitting</h2>
+
+<h3>Height versus Age</h3>
+
+<ul>
+<li><p>Compare boys and girls aged 10 years and less. </p>
+
+<ul>
+<li>Do the data given any reason to think that boys and girls grow differently up to age 10.</li>
+<li>Is there any evidence for nonlinear growth in height for these kids?</li>
+</ul></li>
+<li><p>Looking at boys between 10 and 25 &hellip;</p>
+
+<ul>
+<li>Make a graph that gives a compelling view of when boys&#39; heights level off with age.</li>
+</ul></li>
+</ul>
+
+<h3>Further Exploration:</h3>
+
+<h4>Height</h4>
+
+<p>Look at people aged greater than 20 years, first with a very small sample (about 100 people) and then with the entire data set.  </p>
+
+<ul>
+<li>Does the small data set clearly show a decrease in height with age?  How about the entire data?</li>
+<li>Any evidence for nonlinear trends in height with age for those greater than 20 years old?</li>
+</ul>
+
+<h4>BMI</h4>
+
+<ul>
+<li>Do boys and girls show a systematically changing BMI with age?  (Hint: Look to see if the confidence interval is consistent with a level-line model.)</li>
+<li>Are the boys and girls different?  If not, at what age do males and females diverge in BMI? </li>
+</ul>
+
+<h4>For Math 135 graduates &hellip;</h4>
+
+<p>The BMI models weight as being proportional to height squared.  This should give a straight line on a graph of log-weight against log-height.  Is this a reasonable model for adults?</p>
 
 </body>
 

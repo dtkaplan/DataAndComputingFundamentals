@@ -156,21 +156,21 @@ Exploring Gapminder |  `r I(gitHTML(nm="Exercises-Maps", folder="Notes/Day3/"))`
 #### Topics
 * `r I(gitHTML(label="Model Functions",nm="ModelFunctions", folder="Notes/Day4/"))`
 * `r I(gitHTML(label="Uses for Join",nm="Join-notes", folder="Notes/Day4/"))`
+* `r I(gitHTML(label="Data Cleaning",nm="CleaningTheBirds",folder="Notes/Day4/"))`
 
 #### In-Class
 
-* Uses for Join
-* Crowd-sourcing data cleaning: Bird Species
 * Functions, fits, and confidence intervals
+* Uses for Join
+* Crowd-sourcing data cleaning: Bird Species.  The [species name spreadsheet for editing](https://docs.google.com/spreadsheet/ccc?key=0Av2C2RiwUxpVdFlPWUp6NERSQzhld3o4QklQd1p6d2c&usp=sharing).  The link for [reading in the editing file to R](https://docs.google.com/spreadsheet/pub?key=0Av2C2RiwUxpVdFlPWUp6NERSQzhld3o4QklQd1p6d2c&single=true&gid=0&output=csv).
+
 
 #### To Hand in
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
-Exercises |
-Modeling Body Shape |
-Cleaning the Birds |
-Arsenic in Wells | 
+Exercises | `r I(gitHTML(nm="Exercises-4", folder="Notes/Day4/"))` | `r I(template(nm="Exercises-4",folder="Notes/Day4/"))` | `r I(handin("W3exercises"))`
+Arsenic in Wells | to be posted
 
 ----------
 ### Week 5
