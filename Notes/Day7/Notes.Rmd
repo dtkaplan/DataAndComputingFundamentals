@@ -1,0 +1,9 @@
+Week 7 Ideas
+================
+
+* Google books -> Bioinformatics
+* XML as another data format, traversing a tree in an XML file
+* Regular expressions
+    * "Sparrow" and "sparrow" should be the same thing.
+    * "F" and "f" should be the same thing.
+    
