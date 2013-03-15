@@ -39,7 +39,7 @@ As we find new things, let's list them here so that we have a record.
 
 ### In progress
 
-* ggplot2 --- Danny is writing a simple R-GUI for this, so that students can construct plots easily and get the command out.
+* ggplot2 --- Danny is writing a simple R-GUI for this, so that students can construct plots easily and get the command out.  DTK wrote `mScatter()` and `mBar()`
 * rworldmap --- for making easy world maps.
 
 ### Discarded
