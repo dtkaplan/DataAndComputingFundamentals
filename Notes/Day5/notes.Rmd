@@ -1,0 +1,74 @@
+
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+### installing the mclust
+
+Make it a required part of DCF?  
+
+```{r eval=FALSE}
+faithfulMclust <- Mclust(faithful)
+plot(faithfulMclust,what="classification")
+classError
+hcTree() and cl() # to cluster into different numbers of groups and return the index of the classification.
+```
+
+### A brush-able, interactive parallel coordinates plot: [here](http://syntagmatic.github.com/parallel-coordinates/)
+
+
+An example of a parallel plot: characteristics of cars:
+```{r}
+parallelPlot(mtcars, ~ wt +  cyl + disp + hp - mpg,lwd=5,axes=TRUE,alpha=.5)
+```
+Which car is the sports-car?
+
+Which are the econo-boxes?
+
+What exceptions are there to the rule: lighter weight means better gas mileage?
+
+### Exercise on parallel coordinate plots
+
+Use the kids data from the `fastR` package.  Use popularity as the first variable so that it controls the coloring.  At a glance, what is associated with popularity in the individual variables.  Can you find a set of variables and an inversion that tends to keep lines parallel?
+
+Maybe some of the other multi-variable things from `fastR`, e.g. `concreteAll`
+
+### Outline
+
+
+
+#### II. Density and clustering
+
+A. How to show large numbers of points in a scatter plot, e.g. `hexbin`, low `alpha` (which I'll have them do programmatically), faceting (also programmatically)
+B. Unsupervised clustering: bird wing widths 
+    (next week, supervised clustering and tree models, cross validation)
+C. Clustering in two dimensions, where you can see what's going on
+D. Clustering in three and more dimensions.
+E. Bar plot of the bird cluster groups by species --- how are we doing?
+
+#### III. Parallel coordinates for hypothesis formation
+
+#### IV. Many variables.
+
+##### A. Programming techniques 
+
+Write `Index.csv` file for the Gapminder directory.  List the file names.
+
+Have them write a function that reads in a data file, subsets out the years from 2000-20005, and takes the average from 2000-2005, 
+
+Join ("outer") this with another variable.
+
+Programming: loops
+1. An accumulator: `res=NULL`
+2. The loop: over the files you want to read
+3. Accumulation, join the new file to the old one
+    Technique: assuming that `join` doesn't do the right thing with NULL, use an `if/then` structure
+    
+Assignment: do parallel coordinates and unsupervised clustering on the country data to assign a group to each one. Then make a map of the groups.  Interpret the results using your geopolitical knowledge.
+
+
+Exercise: More advanced: Cut year into decades. Group by country,decade and take the mean or max of the values.  Later on, take subsets to get individual decades
+
+##### V. New Data --- nutrition by country

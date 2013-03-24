@@ -1,0 +1,18 @@
+Working with Several Variables
+========================================================
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+#### Data and Computing Fundamentals
+
+The graphical techniques you've seen thus far can handle only a couple of variables. Scatterplots display can display two variables clearly, with a third used for color.  Bar charts can show counts of two variables. Maps are effective for only one data variable shown as a color --- the $x$ and $y$ axes being reserved for the geographic shape and location data. 
+
+Now it's time to move into the domain of several variables.  You'll use two distinct strategies:
+
+1. **Parallel coordinate plots** that let you explore relationships among several variables --- up to around a dozen.
+2. **Clustering** techniques that break up a scatterplot-like cloud of points into categories, providing a way to summarize the shape information that we naturally interpret visually when presented in the two variables of a scatterplot.
+
+You'll also see some basic computer programming techniques that allow you to specify a pattern of data processing for one file and then apply that pattern automatically to several or many files.

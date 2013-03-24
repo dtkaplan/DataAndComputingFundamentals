@@ -1,0 +1,102 @@
+Basic Programming Techniques
+========================================================
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+#### Data and Computing Fundamentals
+
+Consider the Gapminder data.  It's organized as one physical variable per file, with a case identifier involving two variables: Country and Year.
+
+It's relatively easy to process each file individually.  For example, suppose that you want to create a one-value per country file giving the mean level of a variable from year 2000 onward.  Here's how, using alcohol consumption for the example:
+```{r}
+gapdat = fetchGapminder("Gapminder/Alcohol.csv")
+gapdat = subset(gapdat, Year >= 2000)
+oneVar = groupBy(gapdat, by=Country, Alcohol=mean(Alcohol))
+```
+
+
+
+Now you have a single value per country which you can use to make, for instance, a map:
+
+```{r echo=FALSE}
+.s. <- joinCountryData2Map(oneVar, joinCode='NAME',nameJoinColumn='Country' ); 
+par(mai=c(0,0,0.2,0), xaxs='i',yaxs='i') ;
+.mp. <- mapCountryData(.s., nameColumnToPlot='Alcohol', addLegend=FALSE,mapRegion='world',mapTitle="Alcohol Consumption (litres/yr)"); 
+do.call(addMapLegend, c(.mp., legendWidth=.5,legendMar=2))
+```
+
+You could do the same operation for all of the Gapminder data.  There's a pattern which will be the same for all the files.  Using XXX to stand for the name of the variable, the pattern looks like this:
+```{r eval=FALSE}
+gapdat = fetchGapminder("Gapminder/XXX.csv")
+gapdat = subset(gapdat, Year >= 2000)
+oneVar = groupBy(gapdat, by=Country, XXX=mean(XXX))
+```
+
+This is not yet a valid computer command.  To make it such, you need to work out how to replace XXX with the name of the variable.  That requires some knowledge of functions provided by the R language outside of those already used in this course.  Here is a working version:
+```{r}
+XXX="Alcohol" # Line 1
+gapdat = fetchGapminder(paste("Gapminder/",XXX,".csv",sep="")) # Line 2
+gapdat = subset(gapdat, Year >=2000) # Line 3
+command = parse(text=paste("mean(",XXX,")")) # Line 4
+oneVar = groupBy(gapdat, by=Country, value=eval(command) ) # Line 5
+oneVar = rename(oneVar, c(value=XXX)) # Line 6
+```
+
+There's a lot going on here that's new.  But don't get anxious.  Some of it will make sense, some will not.  Focus on what does make sense and then figure out how the rest of it might fit into the part of the framework that you already understand.
+
+* Line 1: Creates an object named `XXX` with a character string value.
+* Line 2: Uses `fetchGapminder()`.  Since `fetchGapminder()` takes a character string as an argument, you can assume that the `paste()` stuff is making a character string.  Try it:
+```{r}
+paste("Gapminder/",XXX,".csv",sep="")
+```
+There's no reason why you would have figured this out on your own, but you can probably see the pattern here.  If you're curious to understand `paste()` a little better, look at the help page (`help(paste)`) and experiment a bit with changing the value of the argument `sep`, for instance, try `sep="+++"`.
+* Line 3: Perfectly ordinary
+* Line 4: This is quite advanced, so don't trouble yourself too much about the details.  But you can see that `paste()` is being used to create a character string `"mean(Alcohol)"`.  The business with `parse()` and `eval()` on Line 5 is a technical means to translate a character string into a command.
+* Line 5: Do the grouping command to calculate the quantity named in Line 4.  (If the Gapminder data had been structured so that the variable was)
+* Line 6: This renames the calculated variable from "value" to the name of the quantity in the file.  This is helpful for keeping track later of what's what.
+
+Now that there is a general pattern for the operation, you're in a position to apply the operation to any of the Gapminder data files, specified by variable name.  So, not just "Alcohol", but any of them.  This involves a "loop", which is a programming structure that allows you to repeat an operation.  Again, it's not important that you be able to figure this out on your own, just that you can get an idea of where the information is coming from and how it emerges at the end.
+```{r cache=FALSE}
+varNames = c("Alcohol", "Fertility", "TrafficDeathRate")
+res = NULL # start with no data
+for (XXX in varNames) {
+  gapdat = fetchGapminder(paste("Gapminder/",XXX,".csv",sep="")) 
+  gapdat = subset(gapdat, Year >=2000) 
+  command = parse(text=paste("mean(",XXX,")"))
+  oneVar = groupBy(gapdat, by=Country, value=eval(command) ) 
+  oneVar = rename(oneVar, c(value=XXX))
+  # Outer join with existing data
+  if (is.null(res)) {
+    res=oneVar
+    }
+  else {
+    res=join(res,oneVar,by="Country",type="full")
+  }
+}
+```
+```{r}
+traceback()
+```
+The at the end of the loop, a data frame called `res` has been constructed that has each of the named variables as a quantity:
+```{r}
+head(res)
+```
+This means that you can put as many variables as you want into the data frame simply by adding their names onto the `varNames` object at the start.
+
+Again, it's not that you are expected to be able to reconstruct this loop and its contents, just that 
+* You see that a loop makes it possible to carry out an operation repeatedly.
+* That you see enough structure that you could, for example, change the subset of years being considered, or shift from, say, the `mean` to the `max` or some other operation.  
+
+You can copy and paste the commands into your own document in order to carry them out.
+
+### A Parallel Axes Plot
+
+Notes for a potential exercise.  What's the relationship between alcohol consumption and traffic daths.  It appears that fertility has a stronger connection --- the higher the per capita alcohol consumption, the lower the traffic death rate.  Ecological paradox: that this pattern holds true for countries doesn't mean that it will hold true for individual people.
+
+```{r}
+res = transform(res, TD=log(TrafficDeathRate))
+parallelPlot( ~ Fertility - Alcohol + TD, data=res,axes=TRUE)
+```
