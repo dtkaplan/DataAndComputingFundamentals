@@ -1,4 +1,4 @@
-Basic Programming Techniques
+Programming for Repeating Operations
 ========================================================
 
 ```{r include=FALSE}
@@ -8,7 +8,7 @@ startTemplate()
 
 #### Data and Computing Fundamentals
 
-Consider the Gapminder data.  It's organized as one physical variable per file, with a case identifier involving two variables: Country and Year.
+Consider the [Gapminder data](../Notes/Day3/GapminderFiles.html).   It's organized as one physical variable per file, with a case identifier involving two variables: Country and Year.
 
 It's relatively easy to process each file individually.  For example, suppose that you want to create a one-value per country file giving the mean level of a variable from year 2000 onward.  Here's how, using alcohol consumption for the example:
 ```{r}
@@ -59,7 +59,7 @@ There's no reason why you would have figured this out on your own, but you can p
 * Line 6: This renames the calculated variable from "value" to the name of the quantity in the file.  This is helpful for keeping track later of what's what.
 
 Now that there is a general pattern for the operation, you're in a position to apply the operation to any of the Gapminder data files, specified by variable name.  So, not just "Alcohol", but any of them.  This involves a "loop", which is a programming structure that allows you to repeat an operation.  Again, it's not important that you be able to figure this out on your own, just that you can get an idea of where the information is coming from and how it emerges at the end.
-```{r cache=FALSE}
+```{r cache=FALSE,message=FALSE,warning=FALSE}
 varNames = c("Alcohol", "Fertility", "TrafficDeathRate")
 res = NULL # start with no data
 for (XXX in varNames) {
@@ -77,9 +77,7 @@ for (XXX in varNames) {
   }
 }
 ```
-```{r}
-traceback()
-```
+
 The at the end of the loop, a data frame called `res` has been constructed that has each of the named variables as a quantity:
 ```{r}
 head(res)
@@ -88,15 +86,10 @@ This means that you can put as many variables as you want into the data frame si
 
 Again, it's not that you are expected to be able to reconstruct this loop and its contents, just that 
 * You see that a loop makes it possible to carry out an operation repeatedly.
-* That you see enough structure that you could, for example, change the subset of years being considered, or shift from, say, the `mean` to the `max` or some other operation.  
+* That you see enough structure that you could, change things, for example:
+    * the variables being included
+    * the subset of years being considered, 
+    * shift from, say, the `mean` to the `max` or some other operation.  
 
 You can copy and paste the commands into your own document in order to carry them out.
 
-### A Parallel Axes Plot
-
-Notes for a potential exercise.  What's the relationship between alcohol consumption and traffic daths.  It appears that fertility has a stronger connection --- the higher the per capita alcohol consumption, the lower the traffic death rate.  Ecological paradox: that this pattern holds true for countries doesn't mean that it will hold true for individual people.
-
-```{r}
-res = transform(res, TD=log(TrafficDeathRate))
-parallelPlot( ~ Fertility - Alcohol + TD, data=res,axes=TRUE)
-```

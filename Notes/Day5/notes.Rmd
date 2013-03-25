@@ -5,6 +5,8 @@ require(DCF)
 startTemplate()
 ```
 
+
+
 ### installing the mclust
 
 Make it a required part of DCF?  
@@ -16,18 +18,7 @@ classError
 hcTree() and cl() # to cluster into different numbers of groups and return the index of the classification.
 ```
 
-### A brush-able, interactive parallel coordinates plot: [here](http://syntagmatic.github.com/parallel-coordinates/)
 
-
-An example of a parallel plot: characteristics of cars:
-```{r}
-parallelPlot(mtcars, ~ wt +  cyl + disp + hp - mpg,lwd=5,axes=TRUE,alpha=.5)
-```
-Which car is the sports-car?
-
-Which are the econo-boxes?
-
-What exceptions are there to the rule: lighter weight means better gas mileage?
 
 ### Exercise on parallel coordinate plots
 

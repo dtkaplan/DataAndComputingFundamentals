@@ -1,0 +1,78 @@
+Parallel Coordinates
+========================================================
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+#### Data and Computing Fundamentals
+
+We live in a three-dimensional world.  We perceive by projecting light onto a two-dimensional surface: the retina.  As a result, we're naturals at interpreting graphics with two variables.  As it happens, our vision is coarse.  We have the ability to discern detail only in a small part of our visual field, the [fovea](http://en.wikipedia.org/wiki/Fovea_centralis).  So, we really are limited to two variables over a small locale, like the proverbial blind men investigating an elephant by touch.
+
+There are tricks for adding a third variable: exploit color or shape, use time to show changes, for instance in the rotation of a three-dimensional object projected down onto two dimensions.  These tricks are more-or-less successful.  Our mental facilities for the comparison of colors are limited, not nearly so powerful as our ability to sort things out spatially.  The use of time is problematic, since we also use time to investigate different parts of the object.
+
+One other trick that's available is called "parallel coordinates."  This takes advantage of our visual abilities to perceive position and slope very precisely and to note crossing of lines locally.
+
+As the name suggests, in a parallel coordinate plot each of the variables is plotted along a coordinate axis.  The axis are all parallel.  For each case, a zig-zagging line is drawn connecting the values of each of the variables.  You discern connections among the variables by looking for parallel clusters of lines or crossings of lines.
+
+The `DCF` package provides a function `parallelPlot()` for drawing parallel coordinate plots.  It's so simple that there's little reason to provide an interactive graphical user interface (like `mWorldMap`, `mScatter` or `mBar`).  It takes as arguments a data frame and an R formula listing the variable to be plotted on each axis.  Use `+` to separate the variables, or `-` if you want to invert the axis of a particular variable.  (Remember, `+` and `-` are not standing for arithmetic --- they are just separators.)
+
+As an example, consider the `mtcars` data set (built into R), that gives characteristics of automobiles: weight (`wt`), number of cylinders (`cyl`) and their displacement (`disp`), horse-power (`hp`) and fuel economy (`mpg`).  Here's a parallel coordinate plot in which each case is a single model of automobile.
+
+```{r}
+parallelPlot(mtcars, ~ wt +  cyl + disp + hp - mpg,lwd=2,axes=TRUE,alpha=.5)
+```
+Notice that color is used to echo the position on the left-most axis.  That way, you can directly compare the left-most variable to each of the others.
+
+To learn to use this new format, it's good to practice.  Answer the following questions based on the above plot:
+* Which cars are exceptions to the rule that lighter weight means better gas mileage?
+* Which car is the sports-car?
+* Which are the econo-boxes?
+
+It's also possible to add interactivity to parallel coordinate plots, so that time can be exploited to help our perception.  Here's an example [on the web](http://syntagmatic.github.com/parallel-coordinates/).  We won't be using this technique simply because our software does not yet support it.
+
+By default, position on the left-most axis is used to set the color.  This helps for tracing the relationship of the left-most variable to each of the other variables.  But you can also set the color according to a categorical variable.  See the examples in `help(parallelPlot)`.
+
+## Activity
+
+Let's explore something that you probably don't know very much about: concrete.
+
+[Concrete](http://en.wikipedia.org/wiki/Concrete) is a composite material, a mixture of a binder ([cement](http://en.wikipedia.org/wiki/Cement) with various other solid materials, water, and other ingredients (such as plasticizer).  Structurally, concrete is used to provide compressive strength --- think of it as a substitute for stone.  Concrete does not have much strength in tension, that's why steel reinforcement (["Rebar"](http://en.wikipedia.org/wiki/Rebar)) is often used in concrete structures such as bridges and beams that need to have both compressive and tensile strength.
+
+The `concreteAll` data set in the `fastR` package contains data on the compressive strength of concrete in different mixtures and as they age.  Here's a parallel plot:
+```{r}
+require(fastR)
+parallelPlot( concreteAll, ~strength + cement + slag + ash + superP + coarseAg + fineAg + age)
+```
+
+Figure out what's involved in making strong concrete.  To do this, you may want to explore different orders of the variables, or perhaps subset out a variable (such as `age` w)
+
+## Exercises
+
+```{r}
+varNames = c("Alcohol", "Fertility", "TrafficDeathRate")
+res = NULL  # start with no data
+for (XXX in varNames) {
+    gapdat = fetchGapminder(paste("Gapminder/", XXX, ".csv", sep = ""))
+    gapdat = subset(gapdat, Year >= 2000)
+    command = parse(text = paste("mean(", XXX, ")"))
+    oneVar = groupBy(gapdat, by = Country, value = eval(command))
+    oneVar = rename(oneVar, c(value = XXX))
+    # Outer join with existing data
+    if (is.null(res)) {
+        res = oneVar
+    } else {
+        res = join(res, oneVar, by = "Country", type = "full")
+    }
+}
+
+```
+
+Notes for a potential exercise.  What's the relationship between alcohol consumption and traffic deaths.  It appears that fertility has a stronger connection --- the higher the per capita alcohol consumption, the lower the traffic death rate.  Ecological paradox: that this pattern holds true for countries doesn't mean that it will hold true for individual people.
+
+```{r}
+res = transform(res, TD=log(TrafficDeathRate))
+parallelPlot( ~ Fertility - Alcohol + TD, data=res,axes=TRUE)
+```
+

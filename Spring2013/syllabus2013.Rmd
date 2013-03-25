@@ -178,7 +178,10 @@ Arsenic in Wells | to be posted
 <img src="Images/density.png" width=100 style="float:right;"/>
 
 #### Topics 
-* Density and clustering
+* `r I(gitHTML(label="From Two to Several",nm="notes", folder="Notes/Day5/"))`
+* `r I(gitHTML(label="Programming for Repeating",nm="BasicProgramming", folder="Notes/Day5/"))`
+* `r I(gitHTML(label="Graphics: Parallel Coordinates",nm="Parallel Coordinates",folder="Notes/Day5/"))`
+* `r I(gitHTML(label="Clustering: From Position to Groups",nm="Clustering",folder="Notes/Day5/"))`
 
 #### To Hand in
 
