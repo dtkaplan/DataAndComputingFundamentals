@@ -196,20 +196,28 @@ Overview: `r I(gitHTML(label="From Two to Several",nm="SeveralVariables", folder
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
 Exercises | `r I(gitHTML(nm="Exercises-5", folder="Notes/Day5/"))` | `r I(template(nm="Exercises-5",folder="Notes/Day5/"))` | `r I(handin("W5exercises"))`
-
+Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWWE-pW5Lo2aJBuAjOs8w4mq-MQpSL1mXxj1HQ8WXmc/edit?usp=sharing)
+... |
+... | 
 
 ----------
+
+<img src="Images/dendrogram.png" width=300 style="float:right;"/>
+
 ### Week 6
 
-<img src="Images/dendrogram.png" width=100 style="float:right;"/>
-
 #### Topics
-* Classification & dimension reduction
+* Classification & dimension reduction 
+
 
 #### To Hand in
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
+Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWWE-pW5Lo2aJBuAjOs8w4mq-MQpSL1mXxj1HQ8WXmc/edit?usp=sharing)
+... | 
+... | 
+... | 
 
 ----------
 ### Week 7
@@ -223,3 +231,4 @@ Topic | Instructions | Template | Hand in on Moodle
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
+Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWWE-pW5Lo2aJBuAjOs8w4mq-MQpSL1mXxj1HQ8WXmc/edit?usp=sharing)
