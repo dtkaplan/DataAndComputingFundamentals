@@ -1,0 +1,57 @@
+Exercises: Week 5
+========================================================
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+#### Data and Computing Fundamentals
+
+
+### Gapminder Data
+
+For your reference, here are commands to read in a set of Gapminder files, taking the mean value of the variable for year 2000 and later.
+```{r message=FALSE}
+varNames = c("Alcohol", "Fertility", "TrafficDeathRate")
+res = NULL  # start with no data
+for (XXX in varNames) {
+    gapdat = fetchGapminder(paste("Gapminder/", XXX, ".csv", sep = ""))
+    gapdat = subset(gapdat, Year >= 2000)
+    command = parse(text = paste("mean(", XXX, ")"))
+    oneVar = groupBy(gapdat, by = Country, value = eval(command))
+    oneVar = rename(oneVar, c(value = XXX))
+    # Outer join with existing data
+    if (is.null(res)) {
+        res = oneVar
+    } else {
+        res = join(res, oneVar, by = "Country", type = "full")
+    }
+}
+
+```
+
+#### Exercise 1
+
+Make a parallel coordinates plot involving `Fertility`, `Alcohol` and `TrafficDeathRate`.  Show the plot and interpret it as regards the connection between per capita alcohol consumption and traffic death rate.
+
+<!-- Notes for a potential exercise.  What's the relationship between alcohol consumption and traffic deaths.  It appears that fertility has a stronger connection --- the higher the per capita alcohol consumption, the lower the traffic death rate.  Ecological paradox: that this pattern holds true for countries doesn't mean that it will hold true for individual people. -->
+
+```{r eval=FALSE}
+res = transform(res, TD=log(TrafficDeathRate))
+parallelPlot( ~ Fertility - Alcohol + TD, data=res,axes=TRUE)
+```
+
+#### Exercise 2
+
+Pull out a set of Gapminder variables that you think are important 
+in showing health risks.  
+* Use them to cluster countries.  
+* Make a map showing the geographical distribution of the health risk clusters.  
+* Use scatter plots or parallel coordinate plots to give a meaningful, descriptive name to each cluster.
+
+
+Do the same for variables that indicate
+
+1. Pro-feminist policies
+2. Economic advancement.

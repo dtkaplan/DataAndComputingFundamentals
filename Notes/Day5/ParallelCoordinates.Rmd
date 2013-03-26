@@ -46,33 +46,6 @@ require(fastR)
 parallelPlot( concreteAll, ~strength + cement + slag + ash + superP + coarseAg + fineAg + age)
 ```
 
-Figure out what's involved in making strong concrete.  To do this, you may want to explore different orders of the variables, or perhaps subset out a variable (such as `age` w)
+Figure out what's involved in making strong concrete.  To do this, you may want to explore different orders of the variables, or perhaps subset out a variable (such as `age`).
 
-## Exercises
-
-```{r}
-varNames = c("Alcohol", "Fertility", "TrafficDeathRate")
-res = NULL  # start with no data
-for (XXX in varNames) {
-    gapdat = fetchGapminder(paste("Gapminder/", XXX, ".csv", sep = ""))
-    gapdat = subset(gapdat, Year >= 2000)
-    command = parse(text = paste("mean(", XXX, ")"))
-    oneVar = groupBy(gapdat, by = Country, value = eval(command))
-    oneVar = rename(oneVar, c(value = XXX))
-    # Outer join with existing data
-    if (is.null(res)) {
-        res = oneVar
-    } else {
-        res = join(res, oneVar, by = "Country", type = "full")
-    }
-}
-
-```
-
-Notes for a potential exercise.  What's the relationship between alcohol consumption and traffic deaths.  It appears that fertility has a stronger connection --- the higher the per capita alcohol consumption, the lower the traffic death rate.  Ecological paradox: that this pattern holds true for countries doesn't mean that it will hold true for individual people.
-
-```{r}
-res = transform(res, TD=log(TrafficDeathRate))
-parallelPlot( ~ Fertility - Alcohol + TD, data=res,axes=TRUE)
-```
 

@@ -15,29 +15,34 @@ Clustering is a technique for classifying cases.  It's based on the idea of find
 
 
 
-![Old Faithful](http://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Bierstadt_Albert_Old_Faithful.jpg/126px-Bierstadt_Albert_Old_Faithful.jpg A painting of Old Faithful by Albert Bierstadt, c. 1881)
+![Old Faithful](http://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Bierstadt_Albert_Old_Faithful.jpg/126px-Bierstadt_Albert_Old_Faithful.jpg)
+
+*A painting of Old Faithful by Albert Bierstadt, c. 1881*
 
 The scatter plot shows the from run eruption to the next (`waiting` in minutes) versus the duration (`eruptions` in minutes) of the previous eruption.  You can see from the scatter plot that eruptions happen at roughly 50 to 90 minute intervals (pretty faithful for a geyser!) and last from 2 to 5 minutes.  The overall pattern is that shorter duration eruptions are followed sooner by the next eruption, longer duration eruptions are followed by a longer waiting period. It's almost as if, after a long eruption, Old Faithful takes longer to recharge for the next blast.  
 
-```{r fig.width=3,fig.height=3,echo=FALSE}
-xyplot( waiting ~ eruptions, data=faithful)
+```{r fig.width=4,fig.height=4,echo=FALSE}
+ggplot(data=faithful,aes(x=eruptions,y=waiting))+geom_point() 
 ```
 
 As you can see from the scatter plot, the individual cases fall into two groups --- clusters --- of data points.  The clustering technique examines such patterns and models them by one or more clusters.  Each individual case can be assigned to a cluster.   
 
 There are many methods for deciding what forms a cluster.  The method we will use is based on the "normal" distribution and attempting to find sets that cover the points compellingly.
 
-```{r fig.width=3,fig.height=3}
+```{r fig.width=4,fig.height=4}
 require(mclust)
-clusters <- Mclust(faithful)
+clusters <- Mclust(
+  getVarFormula(~waiting + eruptions, data=faithful))
 plot(clusters,what="classification")
 ```
 
 The `Mclust()` function has discerned three clusters in the data.  The plot shows the cases drawn in color and shape to indicate shich cluster they belong to.  The rule used is, roughly, that a case point is assigned to the closest cluster.  The black ellipses show the location of each cluster.  "Distance" is measured in a sophisticated way that takes into account both the different units of measurement of the respective axes and the possibility that a cluster has a distended shape.  (For the mathematically inclined: the dashed lines in each ellipse are the eigenvectors of the covariance matrix associated with the points in each cluster.)
 
 A reasonable person might differ and say that there are just two clusters --- that it's artificial to sub-divide the top-right cluster into the blue and green shown.  So instruct `Mclust()` to make two clusters:
-```{r fig.width=3,fig.height=3}
-clusters = Mclust(faithful,G=2)
+```{r fig.width=4,fig.height=4}
+clusters = Mclust(
+   getVarFormula(~waiting + eruptions, data=faithful),
+   G=2)
 plot(clusters,what="classification")
 ```
 
@@ -46,7 +51,7 @@ When you don't specify the number of clusters, `G`, the `Mclust()` function will
 In this example, there are many points that are right in the center of their clusters.  There's little doubt about which cluster those points should be assigned to.  For cases that are in-between clusters, it makes sense to calculate a probability of belonging to each cluster.  We won't make use of this here, except to calculate, for each case an "uncertainty" of classification and an index that indicates (roughly) how many different clusters a point might be reasonably considered to belong to. (For the curious: This index is based on the Shannon entropy of the belong-to-cluster probabilities converted from "bits" to a count by $2_{bits}$.)
 
 Although our pictures have been drawn using scatter plots of two variables, the clustering methodology can be applied to any number of variables.  To illustrate, consider the `mtcars` data set.  We'll see how cars divide into groups according to the relationship among horsepower, weight, cylinder displacement, and quater-mile time (`qsec`):
-```{r fig.width=4,fig=height=4}
+```{r fig.width=5,fig.height=5}
 dat = getVarFormula(data=mtcars,~hp+wt+disp+qsec)
 carclusts = Mclust(dat,G=3)
 plot(carclusts,what="classification")
@@ -54,49 +59,23 @@ plot(carclusts,what="classification")
 
 In displaying the results, each of the variables is plotted against each of the other variables.  Here, `Mclust()` was instructed to find 3 clusters.  You might decide that more or fewer suits your purpose better.
 
-As an example of what to do with such clusters, consider using the cluster ID as the coloring variable in a scatter plot or a parallel coordinates plot.  This can help to condense multivariable structure in a way that allows you to interpret other variables and frame hypotheses.
+As an example of what to do with such clusters, consider using the cluster ID as the coloring variable in a scatter plot or a parallel coordinates plot. This can help to condense multivariable structure in a way that allows you to interpret other variables and frame hypotheses. 
 
+First, you'll need to extract the most likely cluster for each case.  You can use `whichCluster()` to do this:
 ```{r}
 clustID = whichCluster(carclusts)
+```
+
+Next, you want to join the cluster ID to the variables for the parallel plot.  (Ideally, you would use `join()` to do this, but we haven't yet organized the output of `whichCluster()` appropriately.  So, here's a kluge that takes advantage of the fact that the order of cases in the cluster IDs is the same as that in the data used to generate the clustering.  The `cbind()` function simply slaps together the columns of two data frames. 
+
+
+```{r}
 mtcars = cbind( mtcars, clustID )
-parallelPlot( data=mtcars, Cluster ~ wt + disp - mpg)
-
-```{r}
-#' @param clustObj a cluster object produced by Mclust or DCF:findClusters()
-#' @param prefix a character string (default "C") to prefix the cluster numbers.  If an empty string, the numbers themselves will be returned, as numbers.
-whichCluster <- function(clustObj,title="Cluster",prefix="C") {
-  if( !inherits(clustObj,"Mclust") ) 
-    stop("Must provide a cluster object")
-  K <- nrow(clustObj$z)
-  shannon <- function(p){
-    p<-p[p>0]
-    return(-sum(p*log2(p)))
-    }
-  ngroups <- 2^aaply(.fun=shannon, .margin=1, .data=clustObj$z)
-  biggest <- aaply(.fun=which.max,.margin=1,.data=clustObj$z)
-  names <- paste(prefix,1:max(biggest),sep="")
-  if (nchar(prefix)>0) {
-    res <- factor(names[biggest], levels=names)
-  }
-  else {
-    res <- biggest
-    names(res) <- NULL
-  }
-  # package as a data frame
-  res <- data.frame(res,clustObj$uncertainty, ngroups)
-  names(res) <- c(title,paste(title,c("uncertainty","ngroups"),sep="_"))
-  return(res)
-}
 ```
 
-```{r}
-
+Not you can draw a parallel coordinates plot using `Cluster` to set the colors: 
+```{r} 
+parallelPlot( data=mtcars, Cluster ~ wt + disp - mpg,alpha=.5,lwd=3)
 ```
 
 
-```{r eval=FALSE}
-faithfulMclust <- Mclust(faithful)
-plot(faithfulMclust,what="classification")
-classError
-hcTree() and cl() # to cluster into different numbers of groups and return the index of the classification.
-```
