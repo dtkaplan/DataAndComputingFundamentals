@@ -187,7 +187,7 @@ Arsenic in Wells | to be posted
 #### Topics 
 
 Overview: `r I(gitHTML(label="From Two to Several",nm="SeveralVariables", folder="Notes/Day5/"))`
-* `r I(gitHTML(label="Graphics: Parallel Coordinates",nm="Parallel Coordinates",folder="Notes/Day5/"))`
+* `r I(gitHTML(label="Graphics: Parallel Coordinates",nm="ParallelCoordinates",folder="Notes/Day5/"))`
 * `r I(gitHTML(label="Programming for Repeating",nm="BasicProgramming", folder="Notes/Day5/"))`
 * `r I(gitHTML(label="Clustering: Position =>> Groups",nm="Clustering",folder="Notes/Day5/"))`
 
