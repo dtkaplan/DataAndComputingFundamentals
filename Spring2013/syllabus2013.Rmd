@@ -214,6 +214,7 @@ Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWW
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
+Exercises | `r I(gitHTML(nm="Exercises-6", folder="Notes/Day6/"))` | `r I(template(nm="Exercises-6",folder="Notes/Day6/"))` | `r I(handin("W6exercises"))`
 Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWWE-pW5Lo2aJBuAjOs8w4mq-MQpSL1mXxj1HQ8WXmc/edit?usp=sharing)
 ... | 
 ... | 
@@ -231,4 +232,5 @@ Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWW
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
+Exercises | `r I(gitHTML(nm="Exercises-7", folder="Notes/Day7/"))` | `r I(template(nm="Exercises-7",folder="Notes/Day7/"))` | `r I(handin("W7exercises"))`
 Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWWE-pW5Lo2aJBuAjOs8w4mq-MQpSL1mXxj1HQ8WXmc/edit?usp=sharing)
