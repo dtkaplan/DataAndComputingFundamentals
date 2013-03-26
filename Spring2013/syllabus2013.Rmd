@@ -19,6 +19,10 @@ Handin$W2birds=18807
 Handin$W2voters=18808
 Handin$W3exercises=19987
 Handin$W3maps=19989
+Handin$W4exercises=21837
+Handin$W5exercises=21838
+Handin$W6exercises=21839
+Handin$W7exercises=21840
 ```
 
 Syllabus 
@@ -173,20 +177,26 @@ Exercises | `r I(gitHTML(nm="Exercises-4", folder="Notes/Day4/"))` | `r I(templa
 Arsenic in Wells | to be posted
 
 ----------
+
+<img src="Images/density.png" width=300 style="float:right;"/>
+
 ### Week 5
 
-<img src="Images/density.png" width=100 style="float:right;"/>
+
 
 #### Topics 
-* `r I(gitHTML(label="From Two to Several",nm="notes", folder="Notes/Day5/"))`
-* `r I(gitHTML(label="Programming for Repeating",nm="BasicProgramming", folder="Notes/Day5/"))`
+
+Overview: `r I(gitHTML(label="From Two to Several",nm="SeveralVariables", folder="Notes/Day5/"))`
 * `r I(gitHTML(label="Graphics: Parallel Coordinates",nm="Parallel Coordinates",folder="Notes/Day5/"))`
-* `r I(gitHTML(label="Clustering: From Position to Groups",nm="Clustering",folder="Notes/Day5/"))`
+* `r I(gitHTML(label="Programming for Repeating",nm="BasicProgramming", folder="Notes/Day5/"))`
+* `r I(gitHTML(label="Clustering: Position =>> Groups",nm="Clustering",folder="Notes/Day5/"))`
 
 #### To Hand in
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
+Exercises | `r I(gitHTML(nm="Exercises-5", folder="Notes/Day5/"))` | `r I(template(nm="Exercises-5",folder="Notes/Day5/"))` | `r I(handin("W5exercises"))`
+
 
 ----------
 ### Week 6
