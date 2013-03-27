@@ -173,7 +173,7 @@ Exploring Gapminder |  `r I(gitHTML(nm="Exercises-Maps", folder="Notes/Day3/"))`
 
 Topic | Instructions | Template | Hand in on Moodle
 ------|--------------|----------|------------------
-Exercises | `r I(gitHTML(nm="Exercises-4", folder="Notes/Day4/"))` | `r I(template(nm="Exercises-4",folder="Notes/Day4/"))` | `r I(handin("W3exercises"))`
+Exercises | `r I(gitHTML(nm="Exercises-4", folder="Notes/Day4/"))` | `r I(template(nm="Exercises-4",folder="Notes/Day4/"))` | `r I(handin("W4exercises"))`
 Arsenic in Wells | to be posted
 
 ----------
