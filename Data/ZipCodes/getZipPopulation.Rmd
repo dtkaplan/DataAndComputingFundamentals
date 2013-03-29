@@ -1,0 +1,47 @@
+Zip Code Data
+===============
+
+```{r include=FALSE}
+require(XML)
+require(RCurl)
+``` 
+
+To analyze the Consumer Financial Products Bureau database, it's helpful to know the population of each zip code.  Perhaps the Census Bureau provides such information, but I haven't found it yet.  In searching around on the Internet, I found a site, <http://www.brainyzip.com/state/zip_minnesota.html> that give population-by-zip code information for Minnesota.  
+
+The web site also has information for other states.  So I thought I would try to "scrape" the site for the information I sought.
+
+First, to get a list of the state and their populations.  That will help to double-check the zip-code data.
+```{r}
+stateURL <- "http://www.indexmundi.com/facts/united-states/quick-facts/all-states/population"
+tables <- readHTMLTable(getURLContent(stateURL))
+stateData <- tables[[3]] # it happened to be in 3
+head(stateData)
+```
+
+Alas, the population isn't being stored as a number, even if it looks like it.  The commas cause R to treat `Value` as a categorical variable.  We can fix that:
+```{r}
+stateData <- transform(stateData,
+                       Value=as.numeric(gsub(",","",as.character(Value))))
+head(stateData)
+```
+
+Now to scrape the zip-code data from the website....
+
+
+Here's how, using the `XML` and `RCurl` packages:
+```{r eval=FALSE}
+stateNames <- stateData$State
+res <- NULL
+for (state in stateNames) {
+  state <- tolower(gsub(" ","",state)) # kill spaces and upper case
+  theURL <- paste("http://www.brainyzip.com/state/zip_",
+                  state,".html",sep="")
+  tables <- readHTMLTable(getURLContent(theURL))
+  tab <- tables[[3]][-1,] # drop the first entry
+  names(tab) <- c("Zip","City","State","County","Population")
+  res <- rbind(res,tab)
+}
+res <- transform(res, Population=as.numeric(as.character(Population)))
+zipPop <- droplevels(res)
+```
+The data frame `zipPop` was written to `zipPop.rda`.

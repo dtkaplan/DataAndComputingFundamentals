@@ -1,0 +1,8 @@
+Consumer Complaint Database
+------------------
+
+The Consumer Financial Protection Bureau  (CFPB) is a newly created agency of the US federal government. (Here is the [agency website](http://www.consumerfinance.gov/ and the [Wikipedia entry](http://en.wikipedia.org/wiki/Consumer_Financial_Protection_Bureau).)  
+
+They provide a database of consumer complaints registered with them --- see <http://www.consumerfinance.gov/complaintdatabase/>.  You can download the data directly, but to to make things easier, it's been stored in a compact form for uploading directly into your RStudio session.  (See CFPB.rda --- put it on mosaic and give the URL so that students can get it directly.)
+
+Also the `zipPop.rda` which contains a population for each zip code.
