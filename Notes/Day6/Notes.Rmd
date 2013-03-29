@@ -1,0 +1,5 @@
+Dimension Reduction and Classification
+==================
+
+
+See `cmdscale` for a dimension-reduction calculation.
