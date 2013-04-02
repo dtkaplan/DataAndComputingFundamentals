@@ -14,9 +14,9 @@ You may have seen an evolutionary tree like this one of mammals:
 
 We humans ([hominidae](http://en.wikipedia.org/wiki/Hominidae)) are on the far left of the tree.  The numbers at the branch points are estimates of how long ago --- in millions of years --- the branches separated.  According to the diagram, rodents and we primates diverged about 90 million years ago.
 
-The tree is a nice organizing structure for relationships.  In biology, we imagine that at each branch point there was an actual animal whose descendents split into groups that developed in different directions. In evolutionary biology, the inferences about branches come from comparing existing creatures to one another (as well as creatures from the fossil record).  Creatures with similar traits are in nearby branches, creatures with different traits are in further branches.  It takes considerable expertise in anatomy and morphology to know what similarities and differences to look for.
+The tree, sometimes called a **dendrogram**, is a nice organizing structure for relationships.  In biology, we imagine that at each branch point there was an actual animal whose descendents split into groups that developed in different directions. In evolutionary biology, the inferences about branches come from comparing existing creatures to one another (as well as creatures from the fossil record).  Creatures with similar traits are in nearby branches, creatures with different traits are in further branches.  It takes considerable expertise in anatomy and morphology to know what similarities and differences to look for.
 
-A tree is a nice way to describe degrees of similarity between different things, regardless of how those relationships came to be.  If you have a set of objects or cases, and you can measure how similar any two of the objects are, you can construct a tree.  The tree may or may not reflect some deeper relationship among the objects, but it often provides a simple way to visualize relationships.
+Trees can describe degrees of similarity between different things, regardless of how those relationships came to be.  If you have a set of objects or cases, and you can measure how similar any two of the objects are, you can construct a tree.  The tree may or may not reflect some deeper relationship among the objects, but it often provides a simple way to visualize relationships.
 
 When the description of an object consists of a set of numerical variables, there are two main steps in constructing a tree:
 
@@ -56,10 +56,29 @@ hc = hclust(perfDist)
 plot(hc, hang=-1)
 ```
 
+There are many ways to graph such trees.  For examples, see [Visualizing Dendrograms in R](http://rpubs.com/gaston/dendrograms).
 
-Interpreting the tree.
+EXERCISE:
 
-Graphing the tree.
-
-
-
+Here are commands for grabbing Gapminder data on some variables relating to support for women.
+```{r}
+varNames = c("MarriageAgeFemale", "ContraceptiveUse", "Alcohol", "Fertility", "PrimaryEdCompletionFemale")
+res = NULL  # start with no data
+for (XXX in varNames) {
+    gapdat = fetchGapminder(paste("Gapminder/", XXX, ".csv", sep = ""))
+    gapdat = subset(gapdat, Year >= 2000)
+    command = parse(text = paste("mean(", XXX, ")"))
+    oneVar = groupBy(gapdat, by = Country, value = eval(command))
+    oneVar = rename(oneVar, c(value = XXX))
+    # Outer join with existing data
+    if (is.null(res)) {
+        res = oneVar
+    } else {
+        res = join(res, oneVar, by = "Country", type = "full")
+    }
+}
+ress = subset(res, complete.cases(res))
+relDists =  dist(getVarFormula(Country~., data=ress ))
+hc = hclust(relDists)
+plot(hc, hang=-1)
+```

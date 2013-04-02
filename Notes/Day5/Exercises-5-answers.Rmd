@@ -25,8 +25,8 @@ ress = subset(res, complete.cases(res))
 Make a cluster
 ```{r}
 require(mclust)
-clusters <- Mclust(getVarFormula(~MarriageAgeFemale+ContraceptiveUse+Fertility+ PrimaryEdCompletionFemale, data=ress  ))
+clusters <- Mclust(getVarFormula(Country~., data=ress ), G=3)
 clusterID = whichCluster(clusters)
-together = cbind(ress, clusterID)
-{.s. <- joinCountryData2Map(together, joinCode='NAME',nameJoinColumn='Country' ); par(mai=c(0,0,0.2,0), xaxs='i',yaxs='i') ;.mp. <- mapCountryData(.s., nameColumnToPlot='Cluster',catMethod='categorical',mapRegion='world')} 
+clusterID = transform(clusterID, Country=rownames(clusterID))
+{.s. <- joinCountryData2Map(clusterID, joinCode='NAME',nameJoinColumn='Country' ); par(mai=c(0,0,0.2,0), xaxs='i',yaxs='i') ;.mp. <- mapCountryData(.s., nameColumnToPlot='Cluster',catMethod='categorical',mapRegion='world')} 
 ```
