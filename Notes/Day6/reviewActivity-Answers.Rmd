@@ -1,0 +1,135 @@
+Review Activity --- Week 6 --- Answers
+==================
+
+### Data and Computing Fundamentals
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+## Introduction
+
+
+```{r}
+load(url("http://www.mosaic-web.org/go/datasets/CFPB.rda"))
+```
+Once this is done, the CFPB database will be stored in a data frame named `CFPB`.  You can look at the various variables to get an idea of the kinds of financial services included in the data.  For instance
+```{r}
+answered = groupBy(CFPB, by=list(Product,Submitted.via))
+```
+
+### Warm Up
+
+Make a bar chart that tells an interesting story about the CFPB data.
+Student-loan complaints are more likely to be submitted via email:
+```{r}
+ggplot(data=answered,aes(x=Product,y=count ,fill=Submitted.via))+geom_bar(stat='identity',position=position_fill(width=.9)) 
+```
+
+
+## Main Activity
+
+```{r}
+load(url("http://www.mosaic-web.org/go/datasets/zipPop.rda"))
+## Fix the zip code
+zipPop = transform(zipPop, 
+                 Zip=as.numeric(gsub(" zip code","",as.character(Zip))))
+```
+
+
+
+1. Find the total population represented in the `zipPop` file.  How does it compare to the standard estimates of the US population.
+2. Find the population of each state based on the `zipPop` file.
+3. Nationally, find out how many CFPB complaints there are per capita (using the population estimate from `zipPop`).  Answer: it's about 3.25 per 10,000 people.  You should give a statement that you used to compute this number.
+
+```{r}
+with(zipPop, sum(Population, na.rm=TRUE))
+states = groupBy(zipPop, by=State, Population=sum(Population, na.rm=TRUE))
+nrow(CFPB)/with(states, sum(Population))
+```
+### Combining the ZIP-code with the CFPB data
+
+```{r}
+CFPB = rename(CFPB, c("ZIP.code"="Zip"))
+```
+
+And the join ...
+```{r}
+both = join(CFPB, zipPop, by="Zip")
+```
+
+**Question**: Why was `CFPB` listed first in the `join()` command?
+
+Alas, not all the complaints come from a ZIP code that's represented in our ZIP-code population data:
+```{r}
+groupBy(both, by=is.na(Population))
+```
+
+Ideally, we would hunt down the missing ZIP codes.  But, for now, let's just get rid of the missing cases.
+```{r}
+both = subset(both, !is.na(Population))
+```
+
+### State-by-State Summaries
+
+Let's see how many complaints come from each state and compare that to the expected number of complaints, given the state's population.  First, the number of complaints in each state.
+
+```{r}
+countByState = groupBy(both, by=State)
+```
+
+Next, the population of each state
+```{r}
+popByState = groupBy(zipPop, by=State, 
+                     Population=sum(Population,na.rm=TRUE))
+```
+
+**Question**: By find state-by-state population from the `zipPop` data rather than `both`?
+
+Join the complaint count and the population:
+```{r}
+states = join(countByState, popByState, by="State")
+```
+
+Find the number of complaints per capita nationwide.  This will be different from the 3.25 per 10000 because we threw away some of the complaints --- the ones that don't match to an entry in our `zipPop` data.
+```{r}
+perCapita = nrow(both)/with(popByState, sum(Population))
+perCapita
+```
+
+Use the number you found to find the expected number of complaints per state. 
+```{r}
+states = transform(states, expected=perCapita*Population)
+```
+
+Are there states that have much more than the expected number of complaints?  Which ones?  Are there states that have many fewer than the expected number of complaints?  Which ones?
+
+```{r}
+states = transform(states, 
+                   upper=qpois(0.99999, lambda=expected),
+                   lower=qpois(0.00001, lambda=expected))
+extremes = subset(states, (count > 1.5*upper) | (count < 0.5*lower))
+```
+
+
+### By Zip Codes
+
+```{r}
+countByZip = groupBy(both, by=Zip)
+zips = join(countByZip, zipPop, by="Zip")
+zips = transform(zips, expected=perCapita*Population)
+zips = transform(zips, 
+                   upper=qpois(0.99999, lambda=expected),
+                   lower=qpois(0.00001, lambda=expected))
+extremes = subset(zips, (count > 1.5*upper) | (count < 0.5*lower))
+```
+
+## Finishing Up
+
+As a **class group** 
+* Look for financial or other information available on a by-Zip-code basis.
+* Decide what variables you think are important.
+* Make a Google Spreadsheet that incorporates these variables.  
+* Use the supervised partitioning methods too model how the variables might relate to whether a Zip-code has more or fewer complaints than expected.
+

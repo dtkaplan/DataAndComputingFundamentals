@@ -1,0 +1,32 @@
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+```{r}
+varNames = c("MarriageAgeFemale", "ContraceptiveUse", "Alcohol", "Fertility", "PrimaryEdCompletionFemale")
+res = NULL  # start with no data
+for (XXX in varNames) {
+    gapdat = fetchGapminder(paste("Gapminder/", XXX, ".csv", sep = ""))
+    gapdat = subset(gapdat, Year >= 2000)
+    command = parse(text = paste("mean(", XXX, ")"))
+    oneVar = groupBy(gapdat, by = Country, value = eval(command))
+    oneVar = rename(oneVar, c(value = XXX))
+    # Outer join with existing data
+    if (is.null(res)) {
+        res = oneVar
+    } else {
+        res = join(res, oneVar, by = "Country", type = "full")
+    }
+}
+ress = subset(res, complete.cases(res))
+```
+
+Make a cluster
+```{r}
+require(mclust)
+clusters <- Mclust(getVarFormula(~MarriageAgeFemale+ContraceptiveUse+Fertility+ PrimaryEdCompletionFemale, data=ress  ))
+clusterID = whichCluster(clusters)
+together = cbind(ress, clusterID)
+{.s. <- joinCountryData2Map(together, joinCode='NAME',nameJoinColumn='Country' ); par(mai=c(0,0,0.2,0), xaxs='i',yaxs='i') ;.mp. <- mapCountryData(.s., nameColumnToPlot='Cluster',catMethod='categorical',mapRegion='world')} 
+```

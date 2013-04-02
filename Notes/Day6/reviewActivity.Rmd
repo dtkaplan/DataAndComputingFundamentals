@@ -1,0 +1,137 @@
+Review Activity --- Week 6
+==================
+
+### Data and Computing Fundamentals
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+## Introduction
+
+The *Global Burden of Disease Study*, published in a leading medical journal, [The Lancet](http://www.thelancet.com/themed/global-burden-of-disease), in December 2012 is described as the "largest ever systematic effort to describe the global distribution and causes of a wide array of major diseases, injuries, and health risk factors."
+
+In coming years, as data such as that included in the *Global Burden* becomes more widely available, and as data analysis techniques become more accessible to subject-matter experts and others who can frame imaginative hypotheses, the detailed quantitative description of health and disease will continue to expand.  Debates and policy initiatives will be founded on the new data and analysis.  For example, here is a recent article from the New York *Times*, using data from the *Global Burden* study that reports there were 1.2 million deaths in China in 2010 caused prematurely by air pollution.
+
+## Consumer Financial Protection Bureau
+
+By analogy to the sorts of studies that can be carried out using *Global Burden* data, we're going to work on a much smaller project, one on which we can make progress as a class in 30 minutes or so.  Our in-class review project concerns complaints filed with the Consumer Financial Protection Bureau ([CFPB](http://www.consumerfinance.gov/)).
+
+The CFPB has reeased "the nation's largest public database of federal consumer financial complaints with information on more than 90,000 individual complaints on financial products and services."  The [web site for the database](http://www.consumerfinance.gov/complaintdatabase/) contains a way to access the data as well as some example visualizations of the data using a web-based visualization tool. (Here's an [example](https://data.consumerfinance.gov/dataset/Complaints-by-channel/ua6r-6267?).)
+
+We're going to access the data in an efficient format suited to R. To read the data set, give this command:
+```{r}
+load(url("http://www.mosaic-web.org/go/datasets/CFPB.rda"))
+```
+Once this is done, the CFPB database will be stored in a data frame named `CFPB`.  You can look at the various variables to get an idea of the kinds of financial services included in the data.  For instance
+```{r}
+answered = groupBy(CFPB, by=list(Product,Submitted.via))
+```
+
+### Warm Up
+
+Make a bar chart that tells an interesting story about the CFPB data.
+
+## Main Activity
+
+Each of the complaints in the CFPB file is associated with a postal/ZIP code.  This is the only information we have that can be used to provide demographic information.  For instance, we might be interested to know whether the CFPB complaints are originating from poor, middle-class or wealthy people. 
+
+As a first matter, we're going to check whether there are geographic areas that are over- or under-represented in the CFPB database.  To help in this analysis, there is a data frame, `zipPop` that gives the population of each ZIP code in the US.
+
+```{r}
+load(url("http://www.mosaic-web.org/go/datasets/zipPop.rda"))
+## Fix the zip code
+zipPop = transform(zipPop, 
+                 Zip=as.numeric(gsub(" zip code","",as.character(Zip))))
+```
+
+### Simple ZIP-code activities
+
+#### Note 
+
+In the following, you'll have to use the `sum()` function to add up the population values.  Unfortunately, `sum()` needs to be told explicitly how to handle missing values.  So your statements will look like `sum(Population, na.rm=TRUE)`.
+
+
+1. Find the total population represented in the `zipPop` file.  How does it compare to the standard estimates of the US population.
+2. Find the population of each state based on the `zipPop` file.
+3. Nationally, find out how many CFPB complaints there are per capita (using the population estimate from `zipPop`).  Answer: it's about 3.25 per 10,000 people.  You should give a statement that you used to compute this number.
+
+### Combining the ZIP-code with the CFPB data
+
+We want to associate each complaint in `CFPB` with the population data from the `zipPop` file.  This can be done with a `join()` on the ZIP code, but first the name must be made the same in both files.  
+```{r}
+names(CFPB)
+names(zipPop)
+```
+This can be accomplished by renaming the `ZIP.code` variable in `CFPB` to match that in `zipPop`:
+```{r}
+CFPB = rename(CFPB, c("ZIP.code"="Zip"))
+```
+
+And the join ...
+```{r}
+both = join(CFPB, zipPop, by="Zip")
+```
+
+**Question**: Why was `CFPB` listed first in the `join()` command?
+
+Alas, not all the complaints come from a ZIP code that's represented in our ZIP-code population data:
+```{r}
+groupBy(both, by=is.na(Population))
+```
+
+Ideally, we would hunt down the missing ZIP codes.  But, for now, let's just get rid of the missing cases.
+```{r}
+both = subset(both, !is.na(Population))
+```
+
+### State-by-State Summaries
+
+Let's see how many complaints come from each state and compare that to the expected number of complaints, given the state's population.  First, the number of complaints in each state.
+
+```{r}
+countByState = groupBy(both, by=State)
+```
+
+Next, the population of each state
+```{r}
+popByState = groupBy(zipPop, by=State, 
+                     Population=sum(Population,na.rm=TRUE))
+```
+
+**Question**: By find state-by-state population from the `zipPop` data rather than `both`?
+
+Join the complaint count and the population:
+```{r}
+states = join(countByState, popByState, by="State")
+```
+
+Find the number of complaints per capita nationwide.  This will be different from the 3.25 per 10000 because we threw away some of the complaints --- the ones that don't match to an entry in our `zipPop` data.
+
+Use the number you found to find the expected number of complaints per state. 
+
+Are there states that have much more than the expected number of complaints?  Which ones?  Are there states that have many fewer than the expected number of complaints?  Which ones?
+
+#### Some Statistical Nuance
+
+Just by luck, you would expect about half the states to have more complaints than the expected number, and half to have fewer.  We're interested in which states have **many more** or **many fewer** complaints than expected.  
+
+One way to get a handle on what "many more" or "many fewer" means is to model the expected fluctuations in the number of complaints, if they were due just to chance.  The standard model for a rate-related event is called the poisson distribution.  
+
+If you've had a course such as Math 155, 253, or 355, you may remember an operation, `qpois()` which let's you compute a count number that's much more or many fewer expected.  The statement, assuming `count` is the number of complaints and `expected` is the expected number is
+* Many more ... `count > qpois(0.99999, lambda=expected)`
+* Many fewer ... `count < qpois(0.00001, lambda=expected)`
+
+### By Zip Codes
+
+Repeat the analysis to find some individual Zip codes that have many more or many fewer complaints than expected.  Write down a list of several such zip codes, together with the actual count and the expected count.
+
+## Finishing Up
+
+As a **class group** 
+* Look for financial or other information available on a by-Zip-code basis.
+* Decide what variables you think are important.
+* Make a Google Spreadsheet that incorporates these variables.  
+* Use the supervised partitioning methods too model how the variables might relate to whether a Zip-code has more or fewer complaints than expected.
+
