@@ -226,7 +226,10 @@ Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWW
 <img src="Images/Gift Wrapped Box4LR.jpg" width=100 style="float:right;"/>
 
 #### Topics
-* Wrapping things up!
+
+* Mining information from words: [a radio report](http://www.npr.org/blogs/health/2013/04/01/175584297/mining-books-to-map-emotions-through-a-century) on mapping emotions across the years.
+* General expressions
+* Data Scraping
 
 #### To Hand in
 

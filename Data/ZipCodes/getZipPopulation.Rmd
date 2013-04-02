@@ -45,3 +45,5 @@ res <- transform(res, Population=as.numeric(as.character(Population)))
 zipPop <- droplevels(res)
 ```
 The data frame `zipPop` was written to `zipPop.rda`.
+
+Links to get more data for each zip code: <http://www.brainyzip.com/economic/71/economic_71602.html>

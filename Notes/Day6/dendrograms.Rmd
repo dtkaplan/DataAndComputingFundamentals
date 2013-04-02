@@ -1,0 +1,65 @@
+Trees
+=====================
+
+### Data and Computing Fundamentals
+
+```{r include=FALSE}
+require(DCF)
+startTemplate()
+```
+
+You may have seen an evolutionary tree like this one of mammals:
+
+<a href="http://upload.wikimedia.org/wikipedia/commons/0/0e/An_evolutionary_tree_of_mammals.jpeg"><img src="http://upload.wikimedia.org/wikipedia/commons/0/0e/An_evolutionary_tree_of_mammals.jpeg" width=400></a>
+
+We humans ([hominidae](http://en.wikipedia.org/wiki/Hominidae)) are on the far left of the tree.  The numbers at the branch points are estimates of how long ago --- in millions of years --- the branches separated.  According to the diagram, rodents and we primates diverged about 90 million years ago.
+
+The tree is a nice organizing structure for relationships.  In biology, we imagine that at each branch point there was an actual animal whose descendents split into groups that developed in different directions. In evolutionary biology, the inferences about branches come from comparing existing creatures to one another (as well as creatures from the fossil record).  Creatures with similar traits are in nearby branches, creatures with different traits are in further branches.  It takes considerable expertise in anatomy and morphology to know what similarities and differences to look for.
+
+A tree is a nice way to describe degrees of similarity between different things, regardless of how those relationships came to be.  If you have a set of objects or cases, and you can measure how similar any two of the objects are, you can construct a tree.  The tree may or may not reflect some deeper relationship among the objects, but it often provides a simple way to visualize relationships.
+
+When the description of an object consists of a set of numerical variables, there are two main steps in constructing a tree:
+
+1. Represent each object as a point in a Cartesian space.
+2. Make branching decisions based on how close together points or clouds of points are.
+
+The data about automobile characteristics in `mtcars` can illustrate.
+```{r}
+data(mtcars)
+names(mtcars)
+summary(mtcars)
+```
+
+For an individual quantitative variable, it's easy to measure how far apart any two cars are: take the difference between the numerical values.  The different variables are, however, on different scales.  For example, `gear` ranges only from 3 to 5, while `hp` goes from 52 to 355.  This means that some decision needs to be made about rescaling the variables so that the differences along each variable reasonably reflect how different the respective cars are.  There is more than one way to do this. The `dist()` function takes a simple and pragmatic point of view: each variable is equally important.
+```{r}
+carDiffs = dist(mtcars)
+```
+The result gives the "distance" from each individual car to every other car.  It's much like the tables that used to be printed on road maps giving the distance from one city to another, like this one of European cities:
+
+<a href="http://www.ual.es/Universidad/AsEcon/images/ke.gif"><img src="http://www.ual.es/Universidad/AsEcon/images/ke.gif" width=400></a>
+
+Notice that the distances are symmetrical: it's the same distance from Barcelona to Amsterdam as from Amsterdam to Barcelona (1620 km, according to the table).
+
+Knowing the distances between the cities is not the same thing as knowing their locations.  But the set of mutual distances is enough information to reconstruct the relative positions.  
+
+Cities, of course, lie on the surface of the earth.  That need not be true for the abstract distance between automobile types.  Even so, the set of mutual distances provides information equivalent to knowing the relative positions.  This can be used to construct branches between nearby items, then to connect those branches, and so on to construct an entire tree.  The process is called "hierarchical clustering."  For example:
+
+```{r}
+hc = hclust( carDiffs )
+plot(hc, hang=-1)
+```
+
+Performance-related measures
+```{r}
+perfDist = dist(getVarFormula(~mpg+hp+wt+qsec, data=mtcars))
+hc = hclust(perfDist)
+plot(hc, hang=-1)
+```
+
+
+Interpreting the tree.
+
+Graphing the tree.
+
+
+
