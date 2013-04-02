@@ -1,0 +1,131 @@
+Supervised Partitioning
+==================
+
+### Data and Computing Fundamentals
+
+```{r include=FALSE}
+require(DCF)
+require(party)
+startTemplate()
+```
+
+Sometimes you have data that indicate an outcome and you want to see how other variables --- often called **explanatory** or **predictor** variables --- can be used to forecast the outcome.  You've already seen some examples of this with model fitting --- finding a smooth curve that relates one continuous variable to another.
+
+Now we're going to approach the model-fitting problem when there are potentially many explanatory variable, and the outcome is a group.  For instance, consider the data from the `ipred` package involving laser scanning of eyes as part of an automated system for detecting [glaucoma](http://en.wikipedia.org/wiki/Glaucoma).  There are 196 patients.  For each patient, there are 62 variables derived from confocal laser scanning of the optic nerve head, which describe its morphology.  There's also a `Class` variable that indicates whether the patient has glaucoma or not.
+```{r}
+data("GlaucomaM", package="ipred")
+names(GlaucomaM)
+groupBy(GlaucomaM, by=Class)
+```
+The problem is to use the morphology variables to determine if the patient has glaucoma.  
+
+One way to think of this is as a clustering problem: Use the predictor variables to cluster the cases, then see if the clusters distinguish between glaucoma and normal patients.  For example, one could consider all of the predictor variables at once:
+```{r}
+goo = getVarFormula(Class~., data=GlaucomaM)
+dists = dist(goo)
+hc = hclust(dists)
+plot(hc, hang=-1)
+```
+
+Whether this is the best choice of predictor variables is unclear.  There does seem to be some separation between the glaucoma and normal patients, but it might be that we could do better.  In particular, it might help to use the outcome --- glaucoma or normal --- in choosing the variables.  
+
+One technique for doing this is **recursive partitioning**.  An implementation is given by the `party` package in R.  (This example about glaucoma is drawn from the `party` documentation by Torsten Hothorn, Kurt Hornik, and Achim Zeileis.)
+
+In recursive partitioning, a search is made for an effective predictor variable.  Then, using this variable to split the cases, other variables are sought.  The `ctree()` function will carry out recursive partitioning.
+```{r}
+require(party)
+res = ctree(Class ~ ., data=GlaucomaM) # . means use all vars
+plot(res)
+```
+
+The ovals show a decision rule for splitting up the cases.  The graphs at the bottom show, using the decision rule, what fraction of cases are normal or have glaucoma.  The number of cases that fall into each group is given by the number $n=$.
+
+There seem to be only three predictor variables in use: `vari`, `vasg`, and `tms`.  Let's look at a cluster based on these three:
+```{r}
+goo = getVarFormula(Class~vari + vasg + tms, data=GlaucomaM)
+dists = dist(goo)
+hc = hclust(dists)
+plot(hc, hang=-1)
+```
+There do seem to be similarities within the groups of normal and glaucoma patients, but the cluster methodology doesn't give an explicit formula for making a prediction.  
+
+In contrast, the recursive partition does make a prediction for each case.  It's useful to compare that prediction to the actual diagnosis:
+```{r}
+tally( ~ Predict(res) + Class, data=GlaucomaM)
+```
+
+There were 5 false negatives, where the prediction was normal ("negative") but wrong.  There were 24 false positives where the prediction was for glaucoma ("positive") but wrong.
+
+The quality of the prediction can be described by two quantities: [sensitivity and specificity](http://en.wikipedia.org/wiki/Sensitivity_and_specificity).
+
+#### Sensitivity
+
+The sensitivity of a diagnostic prediction is the probability, given that the patient has the condition, that the diagnostic prediction is right.  You can calculate the sensitivity by conditioning the tally on the actual diagnosis:
+```{r}
+tally( ~ Predict(res) | Class, data=GlaucomaM)
+```
+The sensitivity is 75%
+
+#### Specificity
+
+The specificity of a diagnostic prediction is the probability, given that the prediction is negative, that the prediction is right.  You can calculate the specificity by conditioning the tally on the prediction result:
+```{r}
+tally( ~ Class | Predict(res), data=GlaucomaM)
+```
+The specificity is 79%.
+
+Ideally, both the sensitivity and specificity are 100%, but **false positives** and **false negatives** are a fact of life.  Whether sensitivity and specificity are good enough depends on the relative costs of a false positive are a false negative.
+
+## Model-based Partitioning
+
+Sometimes the quantity to be predicted is quantitative.  You can use recursive partitioning on such quantities as well.  For example, here's a model of the strength of concrete (for samples at 28 days of age):
+```{r}
+mod = ctree(strength ~ water + cement + coarseAg, 
+            data=concrete28) 
+plot(mod)
+```
+
+In some circumstances, there is a straightforward, straight-line dependence of the output on one or more of the inputs.  The `mob()` method allows you to take that relationship into account, and can simplify the partitioning.
+
+```{r}
+mod = mob(strength ~ cement | water + coarseAg, 
+            data=concrete28) 
+plot(mod)
+```
+
+## EXERCISES
+
+Investigate the relationship between diabetes and variables such as age, body mass index, waist size, etc. in the `nhanes` data set.  To help, here's some preprocessing of the data so that `ctree()` is easier to use.  The outcome variable is `D`.
+
+```{r}
+data(nhanes)
+nhanes = transform(nhanes, D = c("No","Diab")[diab+1])
+nhanes = subset(nhanes, !is.na(D))
+```
+
+An example model:
+```{r}
+mod = ctree(D ~ age + bmi, data=nhanes)
+```
+
+
+### Question 1
+
+For the example model above: 
+
+1. What's the overall effect of age on the probability of having diabetes?
+2. What's the overall effect of bmi?
+3. What's the effect of age at node 26? Who does this node apply to?
+4. What's the effect of bmi at node 30?  Who does this node apply to?
+
+### Question 2
+
+Make your own model that makes better predictions than the example model given above.  Use `Predict()` and `tally()` to show that your model is better.
+
+### Question 3
+
+Why is this a stupid model?
+```{r}
+mod = ctree(D ~ age + bmi + diab, data=nh)
+```
+

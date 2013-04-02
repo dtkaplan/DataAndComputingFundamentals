@@ -37,7 +37,7 @@ Syllabus
 To update the DCF software: copy and paste these commands into your R console.
 ```{r eval=FALSE}
 require(devtools) 
-install_url("http://mosaic-web.org/go/Repository/DannyKaplan/DCF_0.12.tar.gz")
+install_url("http://mosaic-web.org/go/Repository/DannyKaplan/DCF_0.13.tar.gz")
 require(DCF)
 ```
 
@@ -206,19 +206,25 @@ Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWW
 
 ### Week 6
 
+#### In Class
+* A review activity: Consumer Financial Protection Bureau complaints. `r I(gitHTML(label="Activity Description",nm="reviewActivity",folder="Notes/Day6/"))`
+* Hierarchical Clustering
+* Supervised Partitioning
+* Dimension Reduction (to be added)
+
+
 #### Topics
-* Classification & dimension reduction 
+* Dendrograms and Hierarchical Clustering `r I(gitHTML(label="Notes",nm="dendrograms",folder="Notes/Day6/"))`
+* Supervised Partitioning `r I(gitHTML(label="Notes",nm="Partitioning",folder="Notes/Day6/"))`
 
 
 #### To Hand in
 
-Topic | Instructions | Template | Hand in on Moodle
-------|--------------|----------|------------------
-Exercises | `r I(gitHTML(nm="Exercises-6", folder="Notes/Day6/"))` | `r I(template(nm="Exercises-6",folder="Notes/Day6/"))` | `r I(handin("W6exercises"))`
+Topic | Instructions | Hand in on Moodle
+------|--------------|------------------
+Exercises | `r I(gitHTML(nm="Exercises-6", folder="Notes/Day6/"))`  | `r I(handin("W6exercises"))`
 Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWWE-pW5Lo2aJBuAjOs8w4mq-MQpSL1mXxj1HQ8WXmc/edit?usp=sharing)
-... | 
-... | 
-... | 
+
 
 ----------
 ### Week 7
@@ -228,12 +234,12 @@ Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWW
 #### Topics
 
 * Mining information from words: [a radio report](http://www.npr.org/blogs/health/2013/04/01/175584297/mining-books-to-map-emotions-through-a-century) on mapping emotions across the years.
-* General expressions
+* Regular expressions
 * Data Scraping
 
 #### To Hand in
 
-Topic | Instructions | Template | Hand in on Moodle
-------|--------------|----------|------------------
+Topic | Instructions | Hand in on Moodle
+------|--------------|------------------
 Exercises | `r I(gitHTML(nm="Exercises-7", folder="Notes/Day7/"))` | `r I(template(nm="Exercises-7",folder="Notes/Day7/"))` | `r I(handin("W7exercises"))`
 Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWWE-pW5Lo2aJBuAjOs8w4mq-MQpSL1mXxj1HQ8WXmc/edit?usp=sharing)
