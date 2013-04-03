@@ -1,0 +1,48 @@
+Strategizing for the Consumer Financial Protection Bureau Data
+========================================================
+
+Start with the finish.  What question do you want to be able to answer?  What would be a reasonable format for your data to answer this question.  Then work backwards toward the data forms that you have available.
+
+With the CFPB complaints, we're interested in finding some regions where complaints are heavy, and regions where complaints are light.  The table might look like this:
+
+Table Name: `levelByRegion`
+
+Region | ComplaintLevel
+-------|----------------
+East   |  2
+South  | 0.5
+West   | 1
+
+ComplaintLevel is the number of complaints per capita compared to the national average.
+
+Table Name: `ExpectedVsActualByRegion`
+
+Region | ExpectedComplaintCount | ActualComplaintCount
+-------|------------------------|---------------------
+East |      20  | 10
+South |     5  | 10
+West |      20 | 20
+
+Where do these variables come from.  ActualComplaintCount can come from grouping the complaints by Region.
+
+Complaint table
+
+Table Name: `complaintByRegion`
+
+ComplaintID | Region |  ...
+----------|----------|-----------
+1001      |  East    | ...
+1002      |  East    | ...
+1003      |  South   | ...
+
+
+ExpectedComplainCount can come from multiplying a population by the average complaint rate
+
+Table Name: `popByRegion`
+
+Region | Population
+-------|-------------
+West   | 12000
+South  |  8000
+East   | 10000
+

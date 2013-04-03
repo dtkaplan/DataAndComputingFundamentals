@@ -216,7 +216,7 @@ Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWW
 #### Topics
 * Dendrograms and Hierarchical Clustering `r I(gitHTML(label="Notes",nm="dendrograms",folder="Notes/Day6/"))`
 * Supervised Partitioning `r I(gitHTML(label="Notes",nm="Partitioning",folder="Notes/Day6/"))`
-
+* After-class notes: Toward a strategy of table design `r I(gitHTML(label="draft",nm="StrategizingCFPB",folder="Notes/Day6/"))`
 
 #### To Hand in
 
