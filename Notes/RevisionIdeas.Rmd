@@ -1,0 +1,16 @@
+Revision Ideas
+========================
+
+### Exercises
+
+More drill early on with Markdown documents.
+
+Have exercises on `join()` by hand, generating the tables in markdown
+
+### Strategy for Design
+
+Generate sketches of tables.  Teach the Markdown notation for tabular stuff.  **Central Question** What does your table need to look like to answer the question of interest?  **Design Strategy** How do you get to a table like the one you need?
+
+### Sequence
+
+Some of the more "advanced" display/modeling modalities earlier, giving them the tables that they need.  Push off toward later how one gets to the final table.  In other words, echo the strategy of design.

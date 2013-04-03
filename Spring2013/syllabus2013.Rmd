@@ -243,3 +243,9 @@ Topic | Instructions | Hand in on Moodle
 ------|--------------|------------------
 Exercises | `r I(gitHTML(nm="Exercises-7", folder="Notes/Day7/"))` | `r I(template(nm="Exercises-7",folder="Notes/Day7/"))` | `r I(handin("W7exercises"))`
 Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWWE-pW5Lo2aJBuAjOs8w4mq-MQpSL1mXxj1HQ8WXmc/edit?usp=sharing)
+
+------------
+
+#### Notes for future development
+
+`r I(gitHTML(label="Revision ideas",nm="RevisionIdeas",folder="Notes/"))`
