@@ -183,7 +183,8 @@ hljs.initHighlightingOnLoad();
 <p>We have seen how we can search for data rows when a string value
 for a variable mathes exactly, like this:</p>
 
-<pre><code class="r">sparrow1 &lt;- subset(OrdwayBirdsOrig, SpeciesName == &quot;Field Sparrow&quot;)
+<pre><code class="r">data(OrdwayBirdsOrig)
+sparrow1 &lt;- subset(OrdwayBirdsOrig, SpeciesName == &quot;Field Sparrow&quot;)
 </code></pre>
 
 <p>Now we will explore how we can go beyond exact string matching, using some narly, yet powerful constructs called regular expressions, which can depict a general pattern of text that we wish to compare to a string.</p>
