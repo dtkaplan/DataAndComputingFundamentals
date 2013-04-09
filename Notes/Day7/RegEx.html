@@ -186,29 +186,32 @@ for a variable mathes exactly, like this:</p>
 <pre><code class="r">sparrow1 &lt;- subset(OrdwayBirdsOrig, SpeciesName == &quot;Field Sparrow&quot;)
 </code></pre>
 
-<pre><code>## Error: object &#39;OrdwayBirdsOrig&#39; not found
-</code></pre>
-
 <p>Now we will explore how we can go beyond exact string matching, using some narly, yet powerful constructs called regular expressions, which can depict a general pattern of text that we wish to compare to a string.</p>
 
 <p>First, let&#39;s go through <a href="http://regexone.com/">a tutorial on creating regular expressions</a></p>
 
-<p>Here is how we could get a subset of just the Sparrows, using
+<p>Here is how we could get a subset of just the names of the Sparrows, using
 the grepl operator, which works like ==, in that it returns TRUE when the pattern given matches the data value for the varible called SpeciesName:</p>
-
-<pre><code class="r">parrowNames &lt;- subset(OrdwayBirds, grepl(&quot;.*Sparrow$&quot;, species.name), select = &quot;species.name&quot;)
-</code></pre>
-
-<pre><code>## Error: object &#39;OrdwayBirds&#39; not found
-</code></pre>
 
 <pre><code class="r">sparrowNames &lt;- subset(OrdwayBirdsOrig, grepl(&quot;.*Sparrow$&quot;, SpeciesName), select = &quot;SpeciesName&quot;)
 </code></pre>
 
-<pre><code>## Error: object &#39;OrdwayBirdsOrig&#39; not found
+<p>How would you change it to filter out only Song and Chirping Sparrows?</p>
+
+<p>Recall that we can get all the data variables by elimiating the select, like this:</p>
+
+<pre><code class="r">sparrowBirds &lt;- subset(OrdwayBirdsOrig, grepl(&quot;.*Sparrow$&quot;, SpeciesName))
 </code></pre>
 
-<p>How would you change it to filter out only Song and Chirping Sparrows?</p>
+<p>The Release column variable has data that looks like this:</p>
+
+<p>to no. meadow
+to n. meadow edge
+to north meadow</p>
+
+<p>How many different variations of &#39;north meadow&#39; (or something like it) are there for the Release data?</p>
+
+<p>Can we now find a way to now get Sparrows who flew to the &#39;north meadow&#39; but not to the &#39;north meadow edge&#39;?</p>
 
 </body>
 

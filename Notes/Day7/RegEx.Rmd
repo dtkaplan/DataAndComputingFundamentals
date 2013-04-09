@@ -9,7 +9,7 @@ require(DCF)
 We have seen how we can search for data rows when a string value
 for a variable mathes exactly, like this:
 
-```{r}
+```{r eval=FALSE}
 sparrow1 <- subset(OrdwayBirdsOrig, SpeciesName == "Field Sparrow")
 ```
 
@@ -20,7 +20,7 @@ First, let's go through [a tutorial on creating regular expressions](http://rege
 Here is how we could get a subset of just the names of the Sparrows, using
 the grepl operator, which works like ==, in that it returns TRUE when the pattern given matches the data value for the varible called SpeciesName:
 
-```{r}
+```{r eval=FALSE}
 sparrowNames <- subset(OrdwayBirdsOrig, grepl(".*Sparrow$", SpeciesName), select="SpeciesName")
 ```
 
@@ -28,7 +28,7 @@ How would you change it to filter out only Song and Chirping Sparrows?
 
 Recall that we can get all the data variables by elimiating the select, like this:
 
-```{r}
+```{r eval=FALSE}
 sparrowBirds <- subset(OrdwayBirdsOrig, grepl(".*Sparrow$", SpeciesName))
 ```
 
