@@ -234,14 +234,13 @@ Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWW
 #### Topics
 
 * Mining information from words: [a radio report](http://www.npr.org/blogs/health/2013/04/01/175584297/mining-books-to-map-emotions-through-a-century) on mapping emotions across the years.
-* Regular expressions
-* Data Scraping
+* `r I(gitHTML(label="GoogleNgrams",nm="GoogleNgrams",folder="Notes/Day7/"))`
+* `r I(gitHTML(label="Regular expressions",nm="RegEx",folder="Notes/Day7/"))`
 
 #### To Hand in
 
 Topic | Instructions | Hand in on Moodle
 ------|--------------|------------------
-Exercises | `r I(gitHTML(nm="Exercises-7", folder="Notes/Day7/"))` | `r I(template(nm="Exercises-7",folder="Notes/Day7/"))` | `r I(handin("W7exercises"))`
 Book Reviews | [Link to Shared Document](https://docs.google.com/document/d/1NWWE-pW5Lo2aJBuAjOs8w4mq-MQpSL1mXxj1HQ8WXmc/edit?usp=sharing)
 
 ------------
