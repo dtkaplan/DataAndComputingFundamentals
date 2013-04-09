@@ -1,0 +1,45 @@
+Regular Expressions
+========================================================
+
+```{r include=FALSE}
+require(DCF)
+#startTemplate()
+```
+
+We have seen how we can search for data rows when a string value
+for a variable mathes exactly, like this:
+
+```{r}
+sparrow1 <- subset(OrdwayBirdsOrig, SpeciesName == "Field Sparrow")
+```
+
+Now we will explore how we can go beyond exact string matching, using some narly, yet powerful constructs called regular expressions, which can depict a general pattern of text that we wish to compare to a string.
+
+First, let's go through [a tutorial on creating regular expressions](http://regexone.com/)
+
+Here is how we could get a subset of just the names of the Sparrows, using
+the grepl operator, which works like ==, in that it returns TRUE when the pattern given matches the data value for the varible called SpeciesName:
+
+```{r}
+sparrowNames <- subset(OrdwayBirdsOrig, grepl(".*Sparrow$", SpeciesName), select="SpeciesName")
+```
+
+How would you change it to filter out only Song and Chirping Sparrows?
+
+Recall that we can get all the data variables by elimiating the select, like this:
+
+```{r}
+sparrowBirds <- subset(OrdwayBirdsOrig, grepl(".*Sparrow$", SpeciesName))
+```
+
+The Release column variable has data that looks like this:
+
+to no. meadow
+to n. meadow edge
+to north meadow
+
+How many different variations of 'north meadow' (or something like it) are there for the Release data?
+
+Can we now find a way to now get Sparrows who flew to the 'north meadow' but not to the 'north meadow edge'?
+
+

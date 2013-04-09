@@ -1,0 +1,46 @@
+Google Books NGrams
+========================================================
+
+The Google books ngrams project created a huge amount of data about words contained in books that have been scanned into the Google Books collection.  For each book, each occurance of a word was counted and the year of publication was noted. Then data for each word was created that has these variables:
+
+* word
+* year
+* total number of occurances
+* total number of books
+
+These single words are called 1-grams. Pairs of words that occur together, or 2-grams, were also computed, along with 3-, 4-, and 5-grams.
+
+[The NGrams Viewer](http://books.google.com/ngrams) is a great tool for trying some preliminary analyses.  Open it in another browser window.  To get started, try these searches using these words:
+
+* feminism
+* communism, socialism
+* PC, typewriter, teletype, telegraph, email
+* podcast, broadcast
+* radio, television
+
+
+Can you think of some others that might be interesting to try?
+
+What does the plot represent?  Read on...
+
+Additional Information about Ngram searching
+---------------------------------------------
+
+You can find more details on the [information page for Google Ngrams](http://books.google.com/ngrams/info).  Look at that page and note how you can combine NGrams together by using the '+' sign, such as:  
+
+* game + sport
+* radio, television, internet+web
+
+
+Recall the reading/audiocast for this week, where the work by Bently and colleagues hypothesized that perhaps words conveying certain emotions could tell us something about the human condition over time ("emotional archelogy").  Here are some sets of words to try for our relative joy and sadness:
+
+joy + glee + amusement + ecstasy + gaiety + euphoria + bliss + elation + delight + happiness + jubilation, sad + depression + unhappiness + misery + melancholy + gloom + despair
+
+Or these for fear:
+
+panic + terror + hysteria + horror + fear
+
+Raw Data Available
+-------------------
+
+Anyone can get [the NGram project data](http://storage.googleapis.com/books/ngrams/books/datasetsv2.html) and try analyses such as Bently and his colleagues did.  There are many interesting possibilities with this vast amount of data.
