@@ -173,6 +173,10 @@ hljs.initHighlightingOnLoad();
 </script>
 
 
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 
 
 </head>
@@ -213,6 +217,36 @@ to north meadow</p>
 <p>How many different variations of &#39;north meadow&#39; (or something like it) are there for the Release data?</p>
 
 <p>Can we now find a way to now get Sparrows who flew to the &#39;north meadow&#39; but not to the &#39;north meadow edge&#39;?</p>
+
+<h2>Transforming Data</h2>
+
+<p>There is another useful wat to use regular expressions in R, using operators available in the package called stringr.  As an example, we can extract a portion of a string that matches a pattern by using the operator called str_extract, as in this example:</p>
+
+<pre><code class="r">require(stringr)
+</code></pre>
+
+<pre><code>## Loading required package: stringr
+</code></pre>
+
+<pre><code class="r">sparrowTypes = transform(sparrowBirds, SparrowType = str_extract(SpeciesName, 
+    &quot;^\\w+&quot;))
+# Get a subset of variables
+sparrowTypes = subset(sparrowTypes, select = c(SpeciesName, SparrowType, Age, 
+    BandNumber))
+</code></pre>
+
+<p>Note that we are first creating a new column in the data whose name is SparrowType and that the portion of the pattern that matches first in SpeciciesName is saved as a new data element.  </p>
+
+<p>Try this:</p>
+
+<p>Can we use this method to get the 2-3 letter tags used at the beginning of the &#39;Age&#39; data and place them in a new column? </p>
+
+<p>This is a common operation: extract data that has been combined in one column and place it in spearate columns.  However, this operator has its limitations, because it finds the first occurance of a pattern and extracts that.  Suppose we want to get the description within the parentheses in Age.  This will get it with the parentheses:</p>
+
+<pre><code class="r">sparrowTypes = transform(sparrowTypes, AgeDescription = str_extract(Age, &quot;\\(.*\\)&quot;))
+</code></pre>
+
+<p>It is a bit trickier to remove the parentheses.</p>
 
 </body>
 
