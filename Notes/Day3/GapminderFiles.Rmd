@@ -38,7 +38,7 @@ Income per person | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0
 Improved sanitation | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdE4tekJPYkR4WmJqYTRPWjc3OTl4WUE&gid=1) | `Gapminder/ImprovedSanitation.csv`
 Body Mass Index -- Male  | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdF9saE1pWUNYVkVsNU1FdW1Yem81Nmc&gid=1) | `Gapminder/MaleBMI.csv`
 Body Mass Index -- Female  | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGt0elo2dzJMVVQ3WmFGSmdhc09LRlE&gid=1) | `Gapminder/FemaleBMI.csv`
-Underweight children | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdHFkZlc5WkhVQmVmeU0tR0RsSUdTU0E&gid=0) | `Gapminder/LowWeightForAge.csv`
+Underweight children | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdHFkZlc5WkhVQmVmeU0tR0RsSUdTU0E&gid=0) | `Gapminder/LowWeightForAgePercent.csv`
 Cell phone subscriptions | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0AkBd6lyS3EmpdEhWLWtqNzljbWg4ZXV6M09JQXNGaUE&gid=1) | `Gapminder/CellPhoneTotal.csv`
 Cholesterol (Total) -- Male | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdDU5SnRoQ0xlZWhwRUZ6RFNQV042enc&gid=1) | `Gapminder/TCmale.csv`
 Cholesterol (Total) -- Female | [link](https://spreadsheets.google.com/spreadsheet/pub?key=0ArfEDsV3bBwCdGJHcHZkSUdBcU56aS1OT3lLeU4tRHc&gid=1&gid=1) | `Gapminder/TCfemale.csv`

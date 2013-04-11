@@ -1,0 +1,93 @@
+Foreign Direct Investment and the Gender Wage Gap
+========================================================
+
+```{r include=FALSE}
+require(DCF)
+require(plyr)
+```
+
+This is from a project done by Macalester student Pukitta Chunsuttiwat '15 for a class in Economic Restructuring in Latin America, taught by Prof. Raymond Robertson.
+
+The issue is whether the amount of foreign direct investment in Latin American countries has an effect on the gender wage gap, specifically, the hypothesis that higher FDI leads to a smaller gap.
+
+Variables:
+* FDI --- Foreign Direct Investment (USD)
+* Wage gap using data from the UN
+* Controlling for percentage of female employment
+
+The data come from the World Bank, several files created by Pukitta from the [World Bank site]().  These data files have been downloaded to this directory.
+
+```{r}
+setwd("CaseStudies/ForeignInvestmentAndWageGap")
+```
+
+### Countries of interest
+
+```{r}
+CofI = c("Brazil", "Costa Rica", "El Salvador", "Mexico", "Panama", "Paraguay")
+### Read in the UN data on the Wage Gap
+
+```{r}
+gap = fetchData("UN-Wages-flattable.csv")
+gap = subset(gap, Country.or.Area %in% CofI & Coverage=="Employees")
+gap = subset(gap, SourceID=="# 0" | (Country.or.Area=="Mexico" & SourceID=="# 1"))
+vars = c("Country.or.Area", "Year", "Value")
+women = subset(gap, subset=Sex=="Women", select=vars)
+men = subset(gap, subset=Sex=="Men", select=vars)
+women= rename(women, c("Value"="WageF"))
+men = rename(men, c("Value"="WageM"))
+gapboth = merge(women,men)
+gapboth = transform(gapboth, WageRatio=WageF/WageM)
+```
+
+We're interested in the relative wages of men and women:
+```{r}
+xyplot( WageRatio ~ Year | Country.or.Area, data=gapboth)
+```
+
+### FDI by country and year
+The wages are in local currencies.  We want to put them on a common footing.  For this, we'll need a conversion for each country for each year
+
+```{r}
+FDI = fetchData("FDI World Bank.csv")
+foo = melt(FDI, id.vars=c("Country.Name"), 
+           measure.vars=paste("X",1999:2008,sep=""))
+foo = rename(foo, c("variable"="Year", "value"="FDI"))
+FDI = transform(foo, Year=as.numeric(as.character(gsub("X","",Year))))
+```
+
+```{r}
+xyplot( log10(FDI) ~ Year | Country.Name, data=FDI)
+```
+
+### Employment to Population Ratio for Females
+
+```{r}
+ratio = fetchData("Employment to Pop Ratio Female.csv")
+ratio = subset(ratio, Indicator.Name=="Employment to population ratio, 15+, female (%)")
+ratio = subset(ratio, Country.Name %in% CofI)
+foo = melt(ratio, id.vars=c("Country.Name"), 
+           measure.vars=paste("X",1990:2012,sep=""))
+foo = rename(foo, c("variable"="Year", "value"="EmploymentRatio"))
+ratio = transform(foo, Year=as.numeric(as.character(gsub("X","",Year))))
+```
+
+```{r}
+xyplot( EmploymentRatio ~ Year | Country.Name, data=ratio)
+```
+
+
+### Put the tables together
+
+```{r}
+gapboth = rename(gapboth, c("Country.or.Area"="Country.Name"))
+final = merge(FDI, gapboth)
+final = merge(final,ratio)
+```
+
+### Construct the model:
+
+```{r}
+mod = lm( WageRatio ~ FDI + EmploymentRatio + Country.Name + Year, data=final)
+anova(mod)
+```
