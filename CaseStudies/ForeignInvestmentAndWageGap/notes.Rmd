@@ -54,10 +54,19 @@ foo = melt(FDI, id.vars=c("Country.Name"),
            measure.vars=paste("X",1999:2008,sep=""))
 foo = rename(foo, c("variable"="Year", "value"="FDI"))
 FDI = transform(foo, Year=as.numeric(as.character(gsub("X","",Year))))
+baseyear = subset(FDI, Year==1999)
+baseyear = rename(baseyear, c("FDI"="BaseLevel"))
+baseyear$Year <- NULL
+foo = merge(FDI,baseyear,by="Country.Name")
+FDI = transform(foo, FDIindex=FDI/BaseLevel)
 ```
 
 ```{r}
 xyplot( log10(FDI) ~ Year | Country.Name, data=FDI)
+```
+
+```{r}
+xyplot( FDIindex ~ Year | Country.Name, data=FDI)
 ```
 
 ### Employment to Population Ratio for Females
@@ -83,11 +92,29 @@ xyplot( EmploymentRatio ~ Year | Country.Name, data=ratio)
 gapboth = rename(gapboth, c("Country.or.Area"="Country.Name"))
 final = merge(FDI, gapboth)
 final = merge(final,ratio)
+justFDI = merge(FDI, ratio)
 ```
 
 ### Construct the model:
 
 ```{r}
-mod = lm( WageRatio ~ FDI + EmploymentRatio + Country.Name + Year, data=final)
+mod = lm( WageRatio ~ log10(FDI) + EmploymentRatio + Country.Name , data=final)
 anova(mod)
+summary(mod)
+```
+
+```{r}
+mod = lm( WageRatio ~ FDIindex + EmploymentRatio + Country.Name , data=final)
+anova(mod)
+summary(mod)
+```
+
+```{r}
+xyplot( EmploymentRatio ~ FDIindex | Country.Name, data=justFDI)
+```
+
+Produce the data files for outside analysis:
+```{r}
+write.csv(final, "allvars.csv", row.names=FALSE)
+write.csv(justFDI, "noGapData.csv", row.names=FALSE)
 ```
