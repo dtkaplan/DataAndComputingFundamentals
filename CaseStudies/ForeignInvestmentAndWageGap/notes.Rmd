@@ -113,6 +113,12 @@ summary(mod)
 xyplot( EmploymentRatio ~ FDIindex | Country.Name, data=justFDI)
 ```
 
+```{r}
+mod = lm( EmploymentRatio ~ FDIindex + WageRatio + Country.Name , data=final)
+anova(mod)
+summary(mod)
+```
+
 Produce the data files for outside analysis:
 ```{r}
 write.csv(final, "allvars.csv", row.names=FALSE)

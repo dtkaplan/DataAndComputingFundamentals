@@ -17,6 +17,8 @@ Who's cool in the [*Wall Street Journal*](http://online.wsj.com/article/SB100014
 
 The maps we make won't be as sophisticated as this one from the New York times, but are still pretty impressive. [NYTimes Map of Hispanic population in California](http://www.nytimes.com/interactive/2013/02/20/us/hispanics-californias-next-majority.html?hp)
 
+Maps tend to show only one variable per geographic entity.  Sometimes multiple maps are used, as in this article about attitudes in [Muslim countries](http://www.washingtonpost.com/blogs/worldviews/wp/2013/05/02/what-the-muslim-world-believes-on-everything-from-alcohol-to-honor-killings-in-8-maps-and-4-charts/).  It's possible to put together multiple variables into one, something we'll consider in Weeks 5 and 6.
+
 ## The Gapminder Data site
 
 They offer analysis software, as do many data-oriented sites.  But it's much better to learn to use a general-purpose and customizable tool like R.  So we're going to use their data.
