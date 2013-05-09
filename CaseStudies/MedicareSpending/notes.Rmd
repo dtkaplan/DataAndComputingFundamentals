@@ -1,0 +1,35 @@
+Medicare Spending 
+========================================================
+
+```{r include=FALSE}
+require(DCF)
+```
+
+In May 2013, the [Centers for Medicare and Medicaid Services](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/index.html) released data on the price of health services at hospitals around the US.  This attracted press attention.  For example, a headline in the New York Times read ["Hospital Billing Varies Wildly, Government Data Shows"](http://www.nytimes.com/2013/05/08/business/hospital-billing-varies-wildly-us-data-shows.html).  A [map with the article](http://www.nytimes.com/interactive/2013/05/08/business/how-much-hospitals-charge.html?_r=0) shows the geographic disparities in hospital charges.  
+
+* Read the New York *Times* article to familiarize yourself with the issue.
+
+The data themselves are available as a [zip-compressed CSV file](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Downloads/IPPS_DRG_CSV.zip).  
+
+DRAFTY: This file format happens to be wasteful in storage and speed for reasons we will discover later in the semester.  You can read in the data frame, called `med` with: (PUT THIS IN THE PACKAGE or on a fetch repository)
+```{r}
+load("/Users/kaplan/kaplanfiles/Github/DataAndComputingFundamentals/CaseStudies/MedicareSpending/CMS-data-2013-05-06.rda")
+```
+
+### Uses for these data
+
+1. How many Direct Recovery Groups are there?
+2. What is the most expensive group (on average and in the median)?
+3. What is the most expensive state (on average and in the median)?
+4. What is the most expensive city (on average and in the median)?
+5. What DRG has the largest spread of values? (use the sd)
+6. As a proportion from the median, which DRG has the largest spread of values? (use the sd divided by the mean)
+
+
+Later on (when we do maps): 
+1. Find the z-score for each DRG.  Make a map of the average z-score by state.
+
+When we do join:
+1. Look at how the data are not normalized.  Present a normalized version of the data and show how much smaller it is.  Link in some other variable relating to zip code, for example per capita income.
+
+

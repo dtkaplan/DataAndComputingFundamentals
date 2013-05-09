@@ -7,6 +7,10 @@ More drill early on with Markdown documents.
 
 Have exercises on `join()` by hand, generating the tables in markdown
 
+### Examples
+
+For the groupBy and barchart exercises, see the [Medicare Spending case study](../CaseStudies/MedicareSpending/notes.html)
+
 ### Strategy for Design
 
 Generate sketches of tables.  Teach the Markdown notation for tabular stuff.  **Central Question** What does your table need to look like to answer the question of interest?  **Design Strategy** How do you get to a table like the one you need?
