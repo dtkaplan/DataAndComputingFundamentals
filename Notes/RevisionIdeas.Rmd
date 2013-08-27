@@ -11,6 +11,8 @@ Have exercises on `join()` by hand, generating the tables in markdown
 
 For the groupBy and barchart exercises, see the [Medicare Spending case study](../CaseStudies/MedicareSpending/notes.html)
 
+Parallel coordinates.  How the data from 1971, an early parallel coordinates plot.  How might you cluster people according to their condition?  How might the range of normal and abnormal be shown more informatively?  Could the order of the tests be altered to highlight decisions about particular differential diagnoses? 
+
 ### Strategy for Design
 
 Generate sketches of tables.  Teach the Markdown notation for tabular stuff.  **Central Question** What does your table need to look like to answer the question of interest?  **Design Strategy** How do you get to a table like the one you need?
@@ -18,3 +20,10 @@ Generate sketches of tables.  Teach the Markdown notation for tabular stuff.  **
 ### Sequence
 
 Some of the more "advanced" display/modeling modalities earlier, giving them the tables that they need.  Push off toward later how one gets to the final table.  In other words, echo the strategy of design.
+
+Readings
+* Story from NYT about Obama's data campaign [link](http://www.nytimes.com/2013/06/23/magazine/the-obama-campaigns-digital-masterminds-cash-in.html?src=recg)
+
+* Mapping your relationships through gmail: [newspaper article](http://www.boston.com/2013/06/29/SZbsH6c8tiKtdCxTdl5TWM/singlepage.html) and site <http://immersion.media.mit.edu/>
+
+* [Employee theft and monitoring](http://bits.blogs.nytimes.com/2013/08/26/how-surveillance-changes-behavior-a-restaurant-workers-case-study/?hpw)
