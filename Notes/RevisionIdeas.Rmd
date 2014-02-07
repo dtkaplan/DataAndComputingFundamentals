@@ -1,6 +1,16 @@
 Revision Ideas
 ========================
 
+### Data
+
+* [Global Burden of Disease](http://ghdx.healthmetricsandevaluation.org/global-burden-disease-study-2010-gbd-2010-data-downloads)
+
+* [World cities](http://www.maxmind.com/en/worldcities)
+
+* [Datakind](http://www.datakind.org/projects/) for examples of projects.
+
+* Visualization with the Minneapolis mayoral election.
+
 ### Exercises
 
 More drill early on with Markdown documents.
@@ -44,3 +54,8 @@ Readings
 * Mapping your relationships through gmail: [newspaper article](http://www.boston.com/2013/06/29/SZbsH6c8tiKtdCxTdl5TWM/singlepage.html) and site <http://immersion.media.mit.edu/>
 
 * [Employee theft and monitoring](http://bits.blogs.nytimes.com/2013/08/26/how-surveillance-changes-behavior-a-restaurant-workers-case-study/?hpw)
+
+
+* [Big Ag and Big Data](http://bits.blogs.nytimes.com/2013/10/02/why-big-ag-likes-big-data/?hpw)
+
+* Maps in Time and Space [Nuclear Weapons Testing](http://www.youtube.com/watch?v=I9lquok4Pdk)

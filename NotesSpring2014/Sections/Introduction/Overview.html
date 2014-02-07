@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Overview</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h2>Overview</h2>
+
+<p>There was a time when most scientists wrote their data in lab notebooks, business-people kept their accounts in ledgers, and libraries kept their books on shelves. Learning to use these data resources was straightforward and most often done informally, by looking over the shoulder of experienced people.  The rare exceptions to common-sense ways of storing and organizing data were governments and other large organizations, which kept address, census, payment and tax data on millions of people.  For this purpose, special training for people and equipment for handling information was needed, but relatively few people needed to be involved.</p>
+
+<figure>
+<img src="http://upload.wikimedia.org/wikipedia/commons/7/7c/1890_Census_Hollerith_Electrical_Counting_Machines_Sci_Amer.jpg" width="50%">Electrical counting machine used in the 1890 US Census.</img> 
+<figcaption>
+The 1890 US Census arranged its data on punched cards so that machines could tabulate the data.  Tabulating the 1880 census by hand had taken eight years.  By using machines for 1890, the time was reduced to one year. (Image from *Scientific American* via [Wikipedia](http://en.wikipedia.org/wiki/File:1890_Census_Hollerith_Electrical_Counting_Machines_Sci_Amer.jpg).)
+</figcaption>
+</figure>
+
+<p>Today, there are still lab notebooks, ledgers, and library shelves.  But now the means for collecting and storing large amounts of data have become widely accessible and are being heavily employed in science, commerce and government, and even literature and the arts.  This provides an opportunity to use data for many specialized purposes, whether this be relating the human genome to the historical migration of people, figuring out the potential market for a new product, directing people to goods for purchase or to locations near and far.  </p>
+
+<p>The expansion of the practical uses of data and the corresponding need for people in their everyday work to access, process, and draw conclusions from data.  This widespread need, and the development of advanced equipment and techniques, renders obsolete the traditional, over-the-shoulder form of acquainting people with using data.  In the &ldquo;information age,&#39;&#39; special training is needed to be able to use data effectively &mdash; common sense no longer does the job.</p>
+
+<p>These notes are intended to guide you to some of the important concepts and techniques for understanding and using data.  Broadly speaking, you&#39;ll study three different aspects of the use of data:</p>
+
+<ul>
+<li>the grammar of graphics and the rules of data rhetoric</li>
+<li>algorithms for domesticating data</li>
+<li>transformations for simplifying and modeling data</li>
+</ul>
+
+<h3>Graphics and Rhetoric</h3>
+
+<p>You collect and analyze data for a purpose.  Often, your purpose includes persuading others of some finding.  The word &quot;rhetoric&rdquo; refers to the use of language for persuasion.  With data, the language often used is graphics.  </p>
+
+<p>You&#39;ll study several important graphical forms for data, learn some components of effective and truthful communication with graphics, and deconstruct the graphics to understand the structure of the data behind them.   You&#39;ll find that once you have a proper arrangement of data, the technical part of generating a graphic is easy.  What requires insight and creativity is arranging an effective correspondence between the elements of data and the components of the graphics.</p>
+
+<h3>Algorithms</h3>
+
+<p>Data often do not come to you ready-shaped in a form suitable for graphical or other presentation.  You might want to think of the original data as being &ldquo;wild.&rdquo;  Your job is to domesticate them, so that they can perform the decision-making or communication task at hand.  This process of data domestication often involves <em>combining</em> data from different sources and about different entities, <em>extracting</em> quantities of interest, <em>summarizing</em> multiple measurements about the same thing, and even <em>cleaning</em> data to remove mistakes made when collecting it.</p>
+
+<p>Computers can be very effective at domesticating data, but *<em>only if you can instruct the computer what to do</em>. There are many varieties of wild data.  Similarly, there are many potential forms in which to domesticate and present the data.  This means that there is a large number of potential paths for the domestication process.  You need to be able to design and construct the path that you think is most useful for your data.</p>
+
+<p>Such a path for processing data &mdash; a series of steps &mdash; constitutes an <em>algorithm</em>.  To domesticate your data, you need to learn to design and construct algorithms, and to communicate them to a computer.  Each step may be conceptually simple and easy to carry out.  Your algorithm describes how to combine the steps.</p>
+
+<p>Since many people are unfamiliar with describing algorithms (and even put off by the word), it may help to have a metaphor for thinking about algorithms, a demonstration of an algorithm-like thing in a more familiar context.  </p>
+
+<p>Consider the common pencil.  This is a domesticated tool; the pencil is already in a form that can be readily and effectively used.  The materials that go into a pencil &mdash; wood, graphite, clay &mdash; are wild.  Manufacturing a pencil &mdash; domesticating the wild ingredients &mdash; requires specifying a series of practical steps.  Each of the steps may be simple: planing wood, cutting at an angle, routing a slot, mixing clay and graphite, extruding the mix into a thin rod, placing the rod into the slot in the wood, gluing the word together, sanding and smoothing.  These verbs &mdash; cutting, extruding, placing, gluing &mdash; are the steps in the algorithm.  The algorithm itself is a description of the specifics of each step and the order in which they are to be carried out.</p>
+
+<p>Designing an algorithm requires that you be familiar with the possible verbs and the types of materials to which each can be applied.  Some of the verbs involved in pencil making are familiar and everyday: mixing, cutting, gluing.  Others of the verbs are perhaps unfamiliar to you: extruding, routing.  Conceiving of a proper order for the steps requires insight and an understanding of the requirements and capabilities of each possible action.</p>
+
+<p>Algorithms for domesticating data are often built from a few simple actions applied to simple materials.  Some of the actions are familiar, for instance <em>counting</em> and <em>grouping</em>.  Other actions, such as <em>subsetting</em> are simple but require you to master a way of describing them in detail to the computer.  Still other actions, for instance, <em>joining</em> will at first be unfamiliar.  The effects of the individual actions are simple to illustrate and understand. Also fairly easy to understand are what actions can be applied to which materials in which situations.  (You can&#39;t mix pieces of wood, but you can glue pieces together so long as they have compatible surfaces.)  What&#39;s difficult is envisioning how to create a series of actions that construct the finished product in the form that you need it.  Fortunately, many of the tasks of domesticating data follow common forms, so you can learn a lot by example.</p>
+
+<ul>
+<li>The verbs.  Pretty easy.</li>
+<li>The materials to which each verb can be applied.  Easy.</li>
+<li>The result of applying a verb. Easy.</li>
+<li>Understanding a specified sequence of steps.  Straightforward.</li>
+<li>Creatively constructing a series of steps to accomplish a desired re-arrangement of data: requires insight and skill. </li>
+</ul>
+
+<p><a href="http://pencils.com/pencil-making-today/">How to make a pencil</a>.</p>
+
+<p><figure>
+<img src="http://36z9yt2c7y8f2f8nht38fgt3173q.wpengine.netdna-cdn.com/wp-content/uploads/2012/09/block_pencil_progression1.jpg" width="60%">
+<figurecaption>
+Steps in making a pencil.  1-&gt;2 cutting a blank.  2-&gt;3 waxing. 3-&gt;4 groving the blank, 4-5 placing graphite/clay mixture in groves, 5-6 gluing two blanks together.
+</figurecaption>
+<figure></p>
+
+<p>Steps in making a pencil:</p>
+
+<h3>Transformation, Simplification, and Modeling</h3>
+
+<h2>Odds and Ends</h2>
+
+<p>Misleading graphic because of misplaced zero: <a href="http://bits.blogs.nytimes.com/2014/02/06/twitters-stock-crashes-back-to-reality/?hpw&amp;rref=technology">twitter stock price falls</a>.  Puts the change on a different scale than the value, since we read proportion with our eyes.</p>
+
+</body>
+
+</html>
+

@@ -1,0 +1,13 @@
+This csv data set example contains records of US flights between 2000-2011 that have been struck by a bird while in flight.
+
+Source: FAA Wildlife Strike Database: http://wildlife-mitigation.tc.faa.gov/wildlife/default.aspx
+
+I found this at http://www.play-r.com/file/view/323/bird-strikes-csv
+
+
+Ask some simple questions:
+* When do the bird strikes occur?
+* What states?
+* What airplane types?
+
+etc.
