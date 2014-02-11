@@ -1,0 +1,119 @@
+## Basics
+
+The word "data" is common in everyday speech. It means more or less "facts" or "information."  In this sense, it's relatively recent, originating in the mid 1700s, a time of intellectual, industrial, and philosophical revolution. "Data" is a construction from Latin. The singular form, "datum," translates as literally "something given." 
+
+"Something given" is an appropriate root for "data."  Data are intended to be about the factual world, not something that is made up but something given us to reflect reality.  Data is something given to you.  It might be given by laboratory instrumentation, by laborious field work, by government agencies, or by commercial sources.  
+
+Your use for data is to inform you about the world, but the data you are given are not necessarily in a form that corresponds well to your needs.
+
+FROM the gym: But very often the original data have been processed in some way and presented to you in a format that anticipates the use you will have for it.  Processing to prepare for a purpose is an essential part of working with data.  Infant data.  Where might data like these have come from?  What purpose might they be intended to solve.
+
+Domestication (give definition) process of taking something wild in its natural form and reshaping it for your own use: Domestication.  This is a compelling metaphor for data processing.
+Just to have a way to describe it concisely, ***domesticating*** data refers to the process of
+taking data as it exists and re-arranging it in a format that makes it easy to do the analysis that you want.  Sometimes this is called "data processing," ...
+
+### Dataframes, Databases, and Presentations
+
+Data are often organized as sets of rectangular arrays of information.  You are probably familiar with this arrangement; computer spreadsheets lend themselves to it.  The rectangle comprises vertical ***columns*** and hortizontal ***rows***.   The rectangle as a whole is often called a ***table***.  Since "table" is an everyday word with several meanings, other, more specific, technical synonyms are used.  These notes will use the word ***dataframe*** to designate a rectangular layout of data.
+
+Over the years, a few details in the arrangement of dataframes have become conventional.  
+* Row -> Case
+* Column -> Variable
+* Each column has only one "type" of data
+* All of the rows contain similarly arranged entries.
+* The first row is often used as a header, naming the variables.
+* Missing values are designated with a special code, often `NA` for "not available".
+
+As a simple example, here are the first three cases in a dataframe holding information about students enrolled at a university:
+
+
+ID     | Name         | Sex | YOB 
+-------|--------------|-----|-----
+100342 | April Walker |   F | 1995
+104523 | Jean Scott   |   F | 1997
+239290 | Percy Jones  |   M | 1992
+
+<figurecaption>
+Students dataframe
+</figurecaption>
+
+
+In this dataframe, a case is an individual person.  There are four columns.  Each column contains a single variable.  The four variables are ID, Name, Sex, and YOB (year of birth).  The word "variable" is used because the value can differ from case to case.
+
+Often, the information that's germane to a problem comes in multiple dataframes.  This is necessary because the structure of a single dataframe is very limiting and constrained.  To continue with the university enrollment example, consider a dataframe containing information about the courses that each student took.  The first several cases might look like this:
+
+Student | Course   | Year | Semester | Credits | Grade
+--------|----------|------|----------|---------|-------
+100342  | Engl 209 | 2013 |  Fall    | 3       | B+
+100342  | Phil 118 | 2013 |  Fall    | 4       | B-
+239290  | Math 155 | 2014 |  Spring  | 4       | A-
+239290  | Engl 209 | 2013 |  Fall    | 3       | B
+239290  | Math 237 | 2014 |  Spring  | 3       | A
+239290  | Hist 171 | 2014 |  Spring  | 4       | B
+
+<figurecaption>
+Credits datafram
+</figurecaption>
+
+Notice that a case in each of the two dataframes, Students and Credits, is a different sort of thing.  In Students, the case is an individual person.  In Credits, the case is a student's enrollment in a particular course.  A collection of related dataframes is called a ***database***.
+
+### Data Presentations
+
+The analysis of data often culminates in a ***presentation*** of a dataframe.  A presentation can take on many different forms, depending on your purpose.  Often, the presentation is a summary or simplification of the dataframe, for instance the count of the total number of students, or a breakdown of the count of each sex.  
+
+Occasionally, you will be able to construct the presentation you need using a given dataframe.  For instance, to find out how many of the enrolled students are female, you need only the Students dataframe.  To find a given student's gradepoint average, you need only the Credits dataframe.
+
+It's quite common that, to construct the presentation you want, you will need to take into account information that's spread across dataframes.  For instance, to find out whether women or men are more likely to take a philosophy course, you need the information in *both* the Students and Credits dataframes.
+
+Although simple presentations on small data can be constructed by hand, you will almost always use a computer to construct the presentation.  And, almost always, you will use one of a small set of standard software functions to calculate and display the presentation: summaries, graphics, models, and so on. 
+
+You will use the same software functions for all sorts of data.  This is possible because the software has been written specifically to work with information arranged as a single dataframe.  This leads to a powerful paradigm for the analysis of data.
+
+**First**, carry out the steps needed to construct an individual dataframe that has all the information required for a presentation.
+
+**Second**, apply a specific software function to that dataframe to construct the presentation itself.
+
+Human judgment comes into things because you have to:
+
+1. Decide what sort of presentations will be informative for the purpose you have.
+2. Strategize about the sequence of data domestication operations that will transform the given data into a form from which the presentation can easily be calculated. 
+
+## Basic Presentations of Data
+
+A presentation is a depiction of a dataframe in a way that highlights information of importance and helps you or others to draw useful conclusions from data.  
+
+The first step in constructing a presentation is to secure a dataframe that has the information you need.  For now, you will work with dataframes that have already been domesticated.  This means that the only data domestication operation you will need is to **read in** an already existing dataframe.  Later, you'll work with other operations that transform dataframes in more complex ways.
+
+### Reading in a Dataframe
+
+An advantage of the conventions for dataframes is that it is very easy to access data using standard computer software.  Store the dataframe in a "file", read in the file and refer to it by a name you give it.  Often, you will be dealing with different dataframes at the same time; the ability to refer to one or another by name is important.
+
+
+This paradigm means that you can carry out data analysis by knowing just a handful of operations.  Some of these operations convert one or more dataframes to a new form: what has been called **domesticating data**. Other operations generate the presentation from whatever dataframe is provided.
+
+
+
+
+
+
+
+
+
+SIDEBAR: Differences of dataframes from spreadsheets:
+* Some of them have "tabs". This is something like a database.  This isn't a feature of a dataframe, however.
+* You can put whatever you like whereever you like.  No insistence on cases and variables.
+* Analysis is often carried out within the spreadsheet.  This confuses data and analysis.  It's better to sequester data; don't risk letting it be altered by the analysis.
+
+### Types of data
+
+* Quantitative
+    * amounts
+    * characteristics (e.g. temperature)
+    * counts and proportions
+* Categorical
+
+
+The columns in a dataframe each contain information of a single type.
+ 
+* Ordinal --- order will be important later as you consider
+

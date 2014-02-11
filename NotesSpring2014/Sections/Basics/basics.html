@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Basics</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h2>Basics</h2>
+
+<p>The word &ldquo;data&rdquo; is common in everyday speech. It means more or less &ldquo;facts&rdquo; or &ldquo;information.&rdquo;  In this sense, it&#39;s relatively recent, originating in the mid 1700s, a time of intellectual, industrial, and philosophical revolution. &ldquo;Data&rdquo; is a construction from Latin. The singular form, &ldquo;datum,&rdquo; translates as literally &ldquo;something given.&rdquo; </p>
+
+<p>&ldquo;Something given&rdquo; is an appropriate root for &ldquo;data.&rdquo;  Data are intended to be about the factual world, not something that is made up but something given us to reflect reality.  Data is something given to you.  It might be given by laboratory instrumentation, by laborious field work, by government agencies, or by commercial sources.  </p>
+
+<p>Your use for data is to inform you about the world, but the data you are given are not necessarily in a form that corresponds well to your needs.</p>
+
+<p>FROM the gym: But very often the original data have been processed in some way and presented to you in a format that anticipates the use you will have for it.  Processing to prepare for a purpose is an essential part of working with data.  Infant data.  Where might data like these have come from?  What purpose might they be intended to solve.</p>
+
+<p>Domestication (give definition) process of taking something wild in its natural form and reshaping it for your own use: Domestication.  This is a compelling metaphor for data processing.
+Just to have a way to describe it concisely, <strong><em>domesticating</em></strong> data refers to the process of
+taking data as it exists and re-arranging it in a format that makes it easy to do the analysis that you want.  Sometimes this is called &ldquo;data processing,&rdquo; &hellip;</p>
+
+<h3>Dataframes and Databases</h3>
+
+<p>Data are often organized as sets of rectangular arrays of information.  You are probably familiar with this arrangement; computer spreadsheets lend themselves to it.  The rectangle comprises vertical <strong><em>columns</em></strong> and hortizontal <strong><em>rows</em></strong>.   The rectangle as a whole is often called a <strong><em>table</em></strong>.  Since &ldquo;table&rdquo; is an everyday word with several meanings, other, more specific, technical synonyms are used.  These notes will use the word <strong><em>dataframe</em></strong> to designate a rectangular layout of data.</p>
+
+<p>Over the years, a few details in the arrangement of dataframes have become conventional.  </p>
+
+<ul>
+<li>Row -&gt; Case</li>
+<li>Column -&gt; Variable</li>
+<li>Each column has only one &ldquo;type&rdquo; of data</li>
+<li>All of the rows contain similarly arranged entries.</li>
+<li>The first row is often used as a header, naming the variables.</li>
+<li>Missing values are designated with a special code, often <code>NA</code> for &ldquo;not available&rdquo;.</li>
+</ul>
+
+<p>As a simple example, here are the first three cases in a dataframe holding information about students enrolled at a university:</p>
+
+<table><thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Sex</th>
+<th>YOB</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100342</td>
+<td>April Walker</td>
+<td>F</td>
+<td>1995</td>
+</tr>
+<tr>
+<td>104523</td>
+<td>Jean Scott</td>
+<td>F</td>
+<td>1997</td>
+</tr>
+<tr>
+<td>239290</td>
+<td>Percy Jones</td>
+<td>M</td>
+<td>1992</td>
+</tr>
+</tbody></table>
+
+<p><figurecaption>
+Students
+</figurecaption></p>
+
+<p>In this dataframe, a case is an individual person.  There are four columns.  Each column contains a single variable.  The four variables are ID, Name, Sex, and YOB (year of birth).  The word &ldquo;variable&rdquo; is used because the value can differ from case to case.</p>
+
+<p>Often, the information that&#39;s germane to a problem comes in multiple dataframes.  This is necessary because the structure of a single dataframe is very limiting and constrained.  To continue with the university enrollment example, consider a dataframe containing information about the courses that each student took.  The first several cases might look like this:</p>
+
+<table><thead>
+<tr>
+<th>Student</th>
+<th>Course</th>
+<th>Year</th>
+<th>Semester</th>
+<th>Credits</th>
+<th>Grade</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100342</td>
+<td>Engl 209</td>
+<td>2013</td>
+<td>Fall</td>
+<td>3</td>
+<td>B+</td>
+</tr>
+<tr>
+<td>100342</td>
+<td>Phil 118</td>
+<td>2013</td>
+<td>Fall</td>
+<td>4</td>
+<td>B-</td>
+</tr>
+<tr>
+<td>239290</td>
+<td>Math 155</td>
+<td>2014</td>
+<td>Spring</td>
+<td>4</td>
+<td>A-</td>
+</tr>
+<tr>
+<td>239290</td>
+<td>Engl 209</td>
+<td>2013</td>
+<td>Fall</td>
+<td>3</td>
+<td>B</td>
+</tr>
+<tr>
+<td>239290</td>
+<td>Math 237</td>
+<td>2014</td>
+<td>Spring</td>
+<td>3</td>
+<td>A</td>
+</tr>
+<tr>
+<td>239290</td>
+<td>Hist 171</td>
+<td>2014</td>
+<td>Spring</td>
+<td>4</td>
+<td>B</td>
+</tr>
+</tbody></table>
+
+<p>An advantage of the conventions for dataframes is that it is very easy to access data using standard computer software.  Store the dataframe in a &ldquo;file&rdquo;, read in the file and refer to it by a name you give it.  Often, you will be dealing with different dataframes at the same time; the ability to refer to one or another
+by name is important.</p>
+
+<p>As you&#39;ll see later, many of the processing you will do with data generates new dataframes from existing ones.  Becoming adept with dataframes is a large step in mastering data processing.</p>
+
+<p>Differences from spreadsheets:</p>
+
+<ul>
+<li>Some of them have &ldquo;tabs&rdquo;. This is something like a database.  This isn&#39;t a feature of a dataframe, however.</li>
+<li>You can put whatever you like whereever you like.  No insistence on cases and variables.</li>
+<li>Analysis is often carried out within the spreadsheet.  This confuses data and analysis.  It&#39;s better to sequester data; don&#39;t risk letting it be altered by the analysis.</li>
+</ul>
+
+<h3>Types of data</h3>
+
+<ul>
+<li>Quantitative</li>
+<li>Categorical</li>
+</ul>
+
+<p>The columns in a dataframe each contain information of a single type.</p>
+
+<ul>
+<li>Ordinal &mdash; order will be important later as you consider</li>
+</ul>
+
+</body>
+
+</html>
+
