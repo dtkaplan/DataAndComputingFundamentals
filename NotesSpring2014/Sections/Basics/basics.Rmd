@@ -78,18 +78,7 @@ Human judgment comes into things because you have to:
 1. Decide what sort of presentations will be informative for the purpose you have.
 2. Strategize about the sequence of data domestication operations that will transform the given data into a form from which the presentation can easily be calculated. 
 
-## Basic Presentations of Data
 
-A presentation is a depiction of a dataframe in a way that highlights information of importance and helps you or others to draw useful conclusions from data.  
-
-The first step in constructing a presentation is to secure a dataframe that has the information you need.  For now, you will work with dataframes that have already been domesticated.  This means that the only data domestication operation you will need is to **read in** an already existing dataframe.  Later, you'll work with other operations that transform dataframes in more complex ways.
-
-### Reading in a Dataframe
-
-An advantage of the conventions for dataframes is that it is very easy to access data using standard computer software.  Store the dataframe in a "file", read in the file and refer to it by a name you give it.  Often, you will be dealing with different dataframes at the same time; the ability to refer to one or another by name is important.
-
-
-This paradigm means that you can carry out data analysis by knowing just a handful of operations.  Some of these operations convert one or more dataframes to a new form: what has been called **domesticating data**. Other operations generate the presentation from whatever dataframe is provided.
 
 
 
@@ -104,16 +93,4 @@ SIDEBAR: Differences of dataframes from spreadsheets:
 * You can put whatever you like whereever you like.  No insistence on cases and variables.
 * Analysis is often carried out within the spreadsheet.  This confuses data and analysis.  It's better to sequester data; don't risk letting it be altered by the analysis.
 
-### Types of data
-
-* Quantitative
-    * amounts
-    * characteristics (e.g. temperature)
-    * counts and proportions
-* Categorical
-
-
-The columns in a dataframe each contain information of a single type.
- 
-* Ordinal --- order will be important later as you consider
 

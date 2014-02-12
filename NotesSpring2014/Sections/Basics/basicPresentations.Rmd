@@ -1,0 +1,101 @@
+```{r include=FALSE}
+require(mosaic)
+require(DCF)
+```
+
+
+## Basic Presentations of Data
+
+A presentation is a depiction of a dataframe in a way that highlights information of importance and helps you or others to draw useful conclusions from data.  
+
+The first step in constructing a presentation is to secure a dataframe that has the information you need.  For now, you will work with dataframes that have already been domesticated.  This means that the only data domestication operation you will need is to **read in** an already existing dataframe.  Later, you'll work with other operations that transform dataframes in more complex ways.
+
+### Loading a Dataframe
+
+Data is typically stored in computer files.  These might be spreadsheet-style files or more specialized formats for storing large amounts of data efficiently.  Either way, the first step in generating a data presentation is to copy the data from the storage file into the data analysis software.  This is often called "loading" or "reading in" data.
+
+Generally, data storage files are set up in a way that makes them very easy to load.  You need only the name and location of the file.  Often the file name has a suffix that indicates the type of data.  You will often see suffixes like `.csv`, `.rda`, `.Rdata` and `.dat`.  (??Also some examples of data from SPSS??)  This suffix is not important in its own right, but it is helpful to know the common suffixes so that you can recognize data files when you see them.
+
+A data file might be located on your own computer disk or on a web server.  For the most part, you will be using data on web servers.  For web servers, the file location is specified by a URL (Uniform Resource Locator).  Commonly, URLs start with `http:` or `www.`  For instance, the URLs of two data files you will use in this chapter are:
+
+    http://www.mosaic-web.org/go/datasets/repeat-runners.csv
+    http://www.mosaic-web.org/go/datasets/nhanes.rda
+    
+To load the file's dataframe into your R session, you use the corresponding file-reading function.  For example, `read.csv()` for `.csv` files.   
+
+```{r}
+Runners <- read.csv("http://www.mosaic-web.org/go/datasets/running-longitudinal.csv")
+```
+
+A command like this does two things:
+
+1. Read the contents of the file at the specified location and organize them as a dataframe.  Notice that the URL is included in quotation marks.
+2. Provide a name in your R session by which you can refer to the data frame.
+
+Since often you will be using more than one dataframe for your analysis, it's helpful to be able to refer to the different dataframes by name.  You can use most any name you like subject to just a few restrictions.  It's sensible to choose a name that reminds you what the dataframe is.  Names must start with a letter and can't include any punctuation other than `.` and `_`.  Digits can be used after the first character.  The example above reads data about performance in a ten-mile running race, so `Runners` seems like an appropriate name. You could use another name as you like, e.g., `RoadRace` or `TenMileRace` or `Race10`.  The name `10MileRace` is not valid, however.
+
+Once the dataframe has been loaded, you will refer to it by the name you assigned.  
+
+### Very Basic Presentations of Data
+
+Recall that a ***presentation*** of data is a way of summarizing or displaying data that supports your purpose.  As you work with dataframes on the computer, you will find several very basic presentations useful to help you see how the dataframe is organized.  Here are a few:
+
+**Names of the variables**: Each variable in a dataframe has a name that can be used to refer to the individual variable.
+```{r}
+names(Runners)
+```
+
+**Number of Cases**: 
+```{r}
+nrow(Runners)
+```
+
+**The first few cases** often provide a quick way to orient yourself:
+```{r}
+head(Runners)
+```
+
+**An overall summary of the data frame**
+```{r}
+str(Runners)
+```
+or 
+```{r}
+summary(Runners)
+```
+
+Notice that the command to produce each of these summaries consists of the name of a ***function*** --- `names()`, `nrow()`, `head()`, etc. --- followed by the name of the dataframe.  Whenever you use functions, you will need the function name followed by a pair of parentheses.  The parenthesis contain the ***arguments*** to the function, that is, the input or inputs that give the function what it needs to carry out the calculation.  Here, each of the functions is taking the name of the dataframe as the only input.
+
+A dataframe usually does not contain much information that tells you the story of how and why the data were collected.  Such information is sometimes called ***metadata*** and is often stored in another file, called a ***codebook***.  The codebook tells you the meaning of the variables, including information such as the units used.
+
+The `running-longitudinal.csv` data contains information on the performance and characteristics of people running in a 10-mile road race.  The race, called the "Cherry Blossom Ten Miler" is run every spring in Washington, D.C.  The data contain entries for people who have run the race more than once.  It was assembled for studying how age affects an individual's performance.  Of course, none of this meta-data is contained in the data frame, although you may be able to see how the variables are connected with the metadata.
+
+The codebook gives information about each variable:
+
+* age
+* net
+* gun
+* sex
+* year
+* previous
+* nruns
+* id
+
+
+### Types of Variables
+
+* Quantitative
+    * amounts
+    * characteristics (e.g. temperature)
+    * counts and proportions
+* Categorical
+
+
+The columns in a dataframe each contain information of a single type.
+ 
+* Ordinal --- order will be important later as you consider
+
+### Starting with a Small Sample
+
+
+
