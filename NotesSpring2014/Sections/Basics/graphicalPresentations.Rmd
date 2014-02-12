@@ -1,0 +1,151 @@
+## Graphical Presentations
+
+
+Overview of frequently used types of graphical presentations of data.
+
+
+### Data into a Graphical Presentation
+
+
+Each aspect of the graphic should be set to correspond to a quantitative or categorical variable.
+
+You need to decide how this is to be done and decide on the correspondence. 
+
+There are many "details," ways to refine graphics to attract attention to what's important and to avoid attracting attention to the extraneous.  We're going to work with just the most basic structures of these graphics, without an attempt to tweak them into perfection.  References for how to do the tweaking: Tufte, Nathan Yau's books, 
+
+Infographics are an important means of communication; we're not going to touch on them. (Examples of nice infographics, maybe xkcd radiation)
+
+### Some graphical modes
+
+
+
+#### Scatterplot
+
+1. x-coordinate
+2. y-coordinate
+3. color
+4. size
+5. precision
+
+Variations
+* Line plot
+
+
+
+#### Bars
+
+1. x-coordinate (a category in some order)
+2. y-coordinate (some quantity)
+3. color (for another category)
+
+Topology
+
+1. x-coordinate order
+2. stacked or staggered
+
+Variations: Dot plot
+
+#### Distributions
+
+Density dot plot  
+box-and-whiskers  
+density curve
+histogram
+
+#### Parallel Coordinates
+
+Two or more axes aligned in parallel.
+
+1. Location on axis
+2. Color
+3. Width of connectors (as in the alumni map)
+
+Topology
+
+1. Order of the axes
+2. Sequence of colors
+
+
+#### Choropleth Map
+
+Like a scatterplot, but the x- and y- positions are given over to the geometry of the thing being mapped and the size/shape is set by the geographical units.
+
+This leaves only one quantity to be represented: color.
+
+#### Fields/Arrays
+
+densities here??
+heat map
+vector field
+2 variable densities
+
+Somewhat related to a scatter plot
+
+#### Tree
+
+nodes, branches, leaves.
+
+heirarchical, no loops
+
+Topology: This format emphasizes connections
+
+#### Network
+
+nodes and connections
+
+Topology: This format emphasizes connections
+
+
+
+
+
+
+### Practical considerations
+
+#### Do you really need color?
+
+Color blindness.  Printing.
+
+#### Starting with a Small Sample
+
+
+## A Theory of Graphical Presentations
+
+Or, maybe, **Dos and Don'ts of Graphical Presentations**
+
+Put things near each other that you want to compare.
+
+People are good at comparing lengths, good at colors of adjacent areas, bad at colors of non-adjacent areas.  (Do the chess board example of how the same color can look completely different in different settings.)
+
+People are good at angles and slopes, less good at thicknesses, not so good at shape.  Areas register on us as magnitude.
+
+Avoid chartjunk.
+
+Have a high information-to-ink ratio.
+
+Avoid distracting shapes, as in the bars of a histogram.
+
+People tend to assume that the "start" of the axis is zero.
+
+There are only two dimensions in graphical space --- make sure to use them wisely.
+
+When mapping a categorical variable onto position, think carefully about what the order should be and how you want to present the order.
+
+Interactive graphics allow for an additional dimension of time, but this is limited.
+
+## Models
+
+Classification, e.g clustering
+
+Regression
+
+CART
+
+
+## Displaying Uncertainty
+
+What uncertainty means and how to display it in different types of plots.
+
+Error bars
+
+

@@ -21,11 +21,17 @@ These notes are intended to guide you to some of the important concepts and tech
 * algorithms for domesticating data
 * transformations for simplifying and modeling data
 
+In order to turn these ideas into a practical means of extracting information from data, you'll need to be able to communicate instructions to the computer.  These notes make use of a computer notation that's also can be read and understood by people. 
+
 ### Graphics and Rhetoric
 
-You collect and analyze data for a purpose.  Often, your purpose includes persuading others of some finding.  The word "rhetoric" refers to the use of language for persuasion.  With data, the language often used is graphics.  
+You collect and analyze data for a purpose.  Often, your purpose includes persuading others of some finding.  The word "rhetoric" refers to the use of language for persuasion.  With data, the language often used is graphics.
 
-You'll study several important graphical forms for data, learn some components of effective and truthful communication with graphics, and deconstruct the graphics to understand the structure of the data behind them.   You'll find that once you have a proper arrangement of data, the technical part of generating a graphic is easy.  What requires insight and creativity is arranging an effective correspondence between the elements of data and the components of the graphics.
+Graphics are effective as a form of communication not because they are pretty, but because they draw on human visual cognitive skills that allow large amounts of information to be assimilated quickly.  But not all forms of graphics are effective this way, and some forms cause the cognitive system to lead us astray.  The grammar of graphics provides a way to talk about graphics; the rules of rhetoric are principles that help identify and construct graphics that are effective and truthful.
+
+**for notes:**
+Misleading graphic because of misplaced zero: [twitter stock price falls](http://bits.blogs.nytimes.com/2014/02/06/twitters-stock-crashes-back-to-reality/?hpw&rref=technology).  Puts the change on a different scale than the value, since we read proportion with our eyes.
+
 
 ### Algorithms
 
@@ -59,17 +65,20 @@ Steps in making a pencil.  1->2 cutting a blank.  2->3 waxing. 3->4 groving the 
 </figurecaption>
 <figure>
 
-
-Steps in making a pencil:
-
 ### Transformation, Simplification, and Modeling
 
+You need to quantify, the pattern is too complicated to be effectively conveyed by a graphic, the useful information is hidden by useless variation and noise.
 
 
+## Directing the Computer
 
-## Odds and Ends
+Not code, but instructions.
 
-Misleading graphic because of misplaced zero: [twitter stock price falls](http://bits.blogs.nytimes.com/2014/02/06/twitters-stock-crashes-back-to-reality/?hpw&rref=technology).  Puts the change on a different scale than the value, since we read proportion with our eyes.
+you need to be able to keep a record of what you have told the computer to do.  This record makes it easier for you and others to verify that your instructions do what you intend them to do.  The record also makes it feasible to take existing instructions and modify them for your particular purpose.  The work style used will be to start with something that works and performs a task close to what you want, then modify it toward exactly the task you want.
+
+You will be using software written specifically
+
+
 
 
 

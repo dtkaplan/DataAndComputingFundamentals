@@ -95,7 +95,7 @@ The columns in a dataframe each contain information of a single type.
  
 * Ordinal --- order will be important later as you consider
 
-### Starting with a Small Sample
+
 
 
 
