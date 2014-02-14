@@ -15,8 +15,23 @@ There are many "details," ways to refine graphics to attract attention to what's
 
 Infographics are an important means of communication; we're not going to touch on them. (Examples of nice infographics, maybe xkcd radiation)
 
+Infographic from [NYTimes about Olympics](http://www.nytimes.com/interactive/2014/02/09/sports/olympics/finish-line.html?_r=0)
+
 ### Some graphical modes
 
+From *Grammar of Graphics** p. 83
+
+Relations | Summaries | Partitions | Networks
+----------|-----------|------------|----------
+point | schema | tile | path
+line (surface) | | contour | link
+area (volume) | | |
+bar (interval) | | |
+histobar | | | 
+
+Do I want to start with Relations, Maps, and Networks?  Skip Partitions for a bit.
+
+With Relations, start with point and bar, that is, a mapping to position and a mapping to length.
 
 
 #### Scatterplot
