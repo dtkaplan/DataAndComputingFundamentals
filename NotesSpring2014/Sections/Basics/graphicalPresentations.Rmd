@@ -33,6 +33,34 @@ Do I want to start with Relations, Maps, and Networks?  Skip Partitions for a bi
 
 With Relations, start with point and bar, that is, a mapping to position and a mapping to length.
 
+### Proposed Schema
+
+* Cases are plotted as individuals
+    * scatterplots, barplots, maps
+    * collective properties are inferred from the graphical pattern
+* Connections between pairs of cases
+    * graphs
+    * collective properties are inferred by density of network connections
+* Collective summary of multiple cases
+    * density, bwplot-type schema, clusters, 
+  
+
+#### Questions to ask about a graphic
+
+* What is the glyph? 
+* What is a "case."  Is it a physical entity?  Is it a collective property of multiple entities, e.g. a count of individuals matching a criterion.
+* What's the back story to the data --- the data underlying the data being displayed.
+* (Are there more than one graphical entity, e.g. lines connecting cases, models, smoothers, ...?)
+* Are there facets?  What do they stand for?
+* What does position mean?  Is there a coordinate system?  One or two axes? Typically, there will be two components to position. Exception: Parallel coordinates.
+    * Where is zero?  Is zero meaningful?
+    * Scale and transformation, e.g. log.
+    * Is position representing a categorical variable or a quantitative variable?
+    * Categorical to position.  How is order being used?
+* What does the individual glyph mean?  Color, shape, size, slope, length, contours, ...
+* What is being encoded by the collective summary?  Density, spread, center, group membership
+
+
 
 #### Scatterplot
 
