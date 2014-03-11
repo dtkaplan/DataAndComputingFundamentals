@@ -1,0 +1,27 @@
+---
+Title: Global Temperatures over Time
+---
+
+Resources for global temperatures.  What to do with this?  Perhaps how does one site compare to the global average?  How do the annual fluctuations around the global mean correlate from place to place?
+
+
+
+```
+---------- Forwarded message ----------
+From: steven mosher <moshersteven@gmail.com>
+Date: Sat, Mar 1, 2014 at 6:59 PM
+Subject: [R-sig-Geo] New Global Temperature datasets
+To: r-sig-geo <r-sig-geo@r-project.org>, Tomislav Hengl <hengl@spatial-analyst.net>
+```
+
+I wanted to take some time out to let the list know  that we have  a few new global temperature data sets. 
+
+
+Global Land and Ocean is here : http://berkeleyearth.org/land-and-ocean-data  
+Gridded Data is here :  http://berkeleyearth.org/data  
+
+We have a few new experimental products including a daily global series back to 1880  and some high resolution (1/4 degree)  data sets for Conus [DTK: Continental US?] and Europe.
+
+Thanks again for all your help support and most of all the inspiration your work provided.
+
+Steve

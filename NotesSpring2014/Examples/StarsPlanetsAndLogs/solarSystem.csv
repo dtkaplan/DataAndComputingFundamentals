@@ -1,0 +1,11 @@
+Planet,Atmosphere,Distance,Mass,Radius,Temperature
+Mercury,NONE,58,0.06,0.38,600
+Venus,THICK,108,0.82,0.95,900
+Earth,AVERAGE,150,1.0,1.0,70
+Mars,THIN,228,0.11,0.53,10
+Jupiter,THICK,780,318,11,-185 
+Saturn,THICK,1427,95,9.5,-200 
+Uranus,THICK,2871,15,4.1,-290 
+Neptune,THICK,4497,17,3.8,-330 
+Pluto,THIN,5914,0.002,0.2,-410 
+Sun,NA,1,333000,109,NA

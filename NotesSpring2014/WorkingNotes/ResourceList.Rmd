@@ -1,0 +1,9 @@
+
+
+[Paper on Rmd in undergraduate work](http://escholarship.org/uc/item/90b2f5xh) summarized in [phys.org](http://phys.org/news/2014-02-scientific-young.html)
+
+Many (mostly useless) [open data from government sites](http://www.data.gov/open-gov/)
+
+Baby names from 1880 to 2012 from Social Security Administration [link](http://www.ssa.gov/oact/babynames/names.zip), [baby names in New York](http://catalog.data.gov/dataset/baby-names-beginning-2007)
+
+A large collection of interactive graphs: http://rcharts.io/gallery/

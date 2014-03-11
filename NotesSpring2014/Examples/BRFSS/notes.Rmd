@@ -1,0 +1,86 @@
+---
+Author: Daniel Kaplan
+Title: BRFSS Survey Exploration
+Date: 2013-03-02
+Topics: Constructed Variables, box-and-whiskers, topology, grouping operations
+---
+
+IDEA: Go from simple tables and bar charts to more complex ones that include multiple factors.  Then to models, e.g. CART, logistic.
+
+
+```{r include=FALSE}
+require(mosaic)
+```
+
+The [Behavioral Risk Factor Survey (BRFSS)](http://www.cdc.gov/brfss) is an annual survey of 350,000 people in the United States designed to identify risk factors in the adult population and report emerging health trends.  Among other things, respondents are asked about their diet and weekly physical activity, HIV/AIDS status, tobacco use, and level of healthcare coverage.
+
+
+The data file of a random sample of 20,000 is coming from the [Open Intro statistics project](www.openintro.org/stat).  But it's awkwardly formatted there, so I translated it to a CSV file:
+```{r, eval=FALSE}
+source('http://www.openintro.org/stat/data/cdc.R')
+write.csv(cdc,"BRFSSintro.csv",row.names=FALSE)
+remove(cdc)
+```
+
+The [Behavioral Risk Factor Survey (BRFSS)](http://www.cdc.gov/brfss) is an annual survey of 350,000 people in the United States designed to identify risk factors in the adult population and report emerging health trends.  Among other things, respondents are asked about their diet and weekly physical activity, HIV/AIDS status, tobacco use, and level of healthcare coverage.
+
+```{r}
+CDC <- read.csv('BRFSSintro.csv')
+```
+
+Is the desire to change weight related to BMI?
+```{r}
+CDC <- transform(CDC, bmi=703*weight/height^2, loss=weight-wtdesire)
+xyplot(loss~bmi, groups=gender, data=CDC, alpha=.1,auto.key=TRUE)
+```
+
+* Are there outliers?  Clean them.
+
+* Is there a relationship between desire to lose weight and BMI?
+```{r}
+bwplot(loss ~ factor(round(bmi)), groups=gender, data=CDC)
+```
+
+The "normal" range for BMI is 20-25.  Is there any indication that people's desire to lose weight reflects this sense of normal?
+    
+* If people reached their desired weight loss, what's the corresponding BMI.
+```{r}
+CDC <- transform(CDC, targetBMI=703*wtdesire / height^2)
+bwplot(targetBMI ~ factor(round(bmi)), data=CDC, ylim=c(0,50) )
+bwplot(targetBMI ~ factor(round(bmi))|gender, data=CDC, ylim=c(0,50) )
+```
+
+    * Are people (as a whole) looking to reach sensible BMIs?  
+    * Which of the plot modes gives better information?
+
+
+Is the topology of `genhlth` sensible?
+```{r}
+tally( ~ genhlth | gender, data=CDC)
+```
+
+Make stacked bar plot: 
+* proportion of men and women in each health category
+* proportion of health category by sex.
+
+Make a dodged bar plot: 
+* Fraction of each gender that's at a given level of health.
+
+Any relationship between smoking and perception of health?
+
+Any relationship between height, age, and perception of health?
+
+Any relationship between smoking and age and sex?
+
+Who is more likely to exercise more, men or women?
+
+Look at 
+```{r}
+mod <- glm( exerany==1 ~ gender*poly(bmi,2), data=CDC, family='binomial')
+f <- makeFun(mod)
+plotFun( f('m',bmi=bmi)~bmi, bmi.lim=c(10,50))
+plotFun( f('f',bmi=bmi)~bmi, bmi.lim=c(10,50),add=TRUE,col='red')
+```
+
+Is there a relationship between desire to loose weight and desire to exercise?
+

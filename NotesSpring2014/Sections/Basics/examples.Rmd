@@ -1,0 +1,20 @@
+# Graphics Examples
+
+## Movies
+
+[film trailer editing](http://www.nytimes.com/interactive/2013/02/19/movies/awardsseason/oscar-trailers.html?hp&_r=0) 
+
+* Use of color to indicate absolute position in the movie.  The vertical scale also indicates this.  In terms of position, we tend to focus on relative position, so "before" and "after" are very easy.  But it's hard to do such comparisons across large distances.  The (formally redundant) use of color makes this easier.
+
+## Politics
+
+Shilad Sen provided [this link](http://blog.okcupid.com/index.php/the-democrats-are-doomed-or-how-a-big-tent-can-be-too-big/) to a political frame for mapping out people's political views as they age.
+
+For highlighting the nature of topology.
+
+![the image](http://cdn.okcimg.com/blog/general/Political-Evolution-BW-Labels.png)
+
+Things to do:
+* Point out that the topology is LEFT/RIGHT and in between.  It wouldn't matter which way the individual axes go.
+* Some people think that the far left is somewhat like the far right.  Would this be a loop on the frame.
+* Why don't they give a density at each age to show how age changes.  

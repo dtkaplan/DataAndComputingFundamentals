@@ -111,3 +111,19 @@ Criticisms:
 * Distribution inhomogeneity makes it hard to eyeball correlation: the shape of the cloud often reflects just the single-variate distribution.
 * Just one correlation seems there: Wound vs 70 gene
 * How about a parallel axes plot, with one axis for expression in each condition and the line color being the gene.
+
+## Probability field
+
+The visualization of the linguistic survey results [on the shiny server](http://www.rstudio.com/shiny/showcase/)
+
+This is an interactive map.
+
+As a collective properties graph, the individual cases are not being graphed, nor are pairs.  Instead, all the cases in a locale are summarized, with the summary being displayed.  The summary is very smooth because changing the locale by a little doesn't change the relevant cases by very much.
+
+Background: [article](http://www.businessinsider.com/22-maps-that-show-the-deepest-linguistic-conflicts-in-america-2013-6)
+
+## Large Network/Map
+
+Friends on Facebook
+
+[Facebook friend connections](http://blog.revolutionanalytics.com/2010/12/facebooks-social-network-graph.html)

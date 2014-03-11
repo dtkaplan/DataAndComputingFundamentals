@@ -1,0 +1,37 @@
+---
+Author: Danny Kaplan
+Title: Parsing Graphics
+Topics: Parsing Graphics
+Type: Exercise
+---
+
+
+A graphic from the New York *Times*, "[College, the Great Unlevele](http://opinionator.blogs.nytimes.com/2014/03/01/college-the-great-unleveler)," by Suzanne Mettler, March 1, 2014  about the cost of college and sources of financial aid.
+
+![New York Times graphic](http://graphics8.nytimes.com/images/2014/03/02/opinion/02divide-ch/02divide-ch-tmagArticle.png)
+
+### In the left-hand graph,
+
+* What variables make up the frame?
+    * Fraction of family income to pay for one year of college, and year.
+* What are the guides?
+    * Labels for the different quintiles of family income.
+    * A line scaling the axis, showing where the fraction of family income is 100%.
+    * Text to label the extent of the horizontal axis, from 1971 to 2010
+* What are the glyphs?
+    * A line connecting the values for 1971 and 2011, with the numerical values marked.
+* Write down what the glyph-ready dataframe looks like.
+
+Quintile        | 1971 <br>cost | 2011 <br>cost
+----------------|:-----------:|:-----------:
+Poorest fifth   | 42%       | 114%
+Second poorist fifth  | 19%       | 46%
+Middle fifth    | 13% | 46%
+Next fifth      | 10% | 19%
+Wealthiest fifth  | 6% | 9%
+    
+### For the right-hand graph, 
+* What are the glyphs and what data do they represent?
+    * This is tricky.  The glyphs are the segments of the circles.
+* Sketch, roughly, what a stacked bar chart would look like representing the same information.
+* Write down what the glyph-ready dataframe looks like.

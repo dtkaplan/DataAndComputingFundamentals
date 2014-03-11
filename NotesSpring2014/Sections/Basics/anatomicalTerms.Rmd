@@ -1,0 +1,9 @@
+## Anatomical Vocabular for Scientific Graphics
+
+* glyph -- a symbol, shape, or other graphical item.  The graphical properties --- length, color, shape, opacity, membership in a group, etc. --- of the glyph are often arranged to display the values of one or more variables.  Sometimes 
+* guide -- an axis, legend, label, etc.  In maps or plots related to maps, the boundaries between geographic entities (states, countries, etc) are drawn as a guide.  The guide doesn't contain information about the individual cases, but relates the graphical property (such as position) to the variable being displayed.
+* frame
+* facet
+* variable
+* topology
+* axis

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Graphical Presentations</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h2>Graphical Presentations</h2>
+
+<p>Overview of frequently used types of graphical presentations of data.</p>
+
+<h3>Data into a Graphical Presentation</h3>
+
+<p>Each aspect of the graphic should be set to correspond to a quantitative or categorical variable.</p>
+
+<p>You need to decide how this is to be done and decide on the correspondence. </p>
+
+<p>There are many &ldquo;details,&rdquo; ways to refine graphics to attract attention to what&#39;s important and to avoid attracting attention to the extraneous.  We&#39;re going to work with just the most basic structures of these graphics, without an attempt to tweak them into perfection.  References for how to do the tweaking: Tufte, Nathan Yau&#39;s books, </p>
+
+<p>Infographics are an important means of communication; we&#39;re not going to touch on them. (Examples of nice infographics, maybe xkcd radiation)</p>
+
+<p>Infographic from <a href="http://www.nytimes.com/interactive/2014/02/09/sports/olympics/finish-line.html?_r=0">NYTimes about Olympics</a></p>
+
+<h3>Some graphical modes</h3>
+
+<p>From <em>Grammar of Graphics</em>* p. 83</p>
+
+<table><thead>
+<tr>
+<th>Relations</th>
+<th>Summaries</th>
+<th>Partitions</th>
+<th>Networks</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>point</td>
+<td>schema</td>
+<td>tile</td>
+<td>path</td>
+</tr>
+<tr>
+<td>line (surface)</td>
+<td></td>
+<td>contour</td>
+<td>link</td>
+</tr>
+<tr>
+<td>area (volume)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bar (interval)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>histobar</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Do I want to start with Relations, Maps, and Networks?  Skip Partitions for a bit.</p>
+
+<p>With Relations, start with point and bar, that is, a mapping to position and a mapping to length.</p>
+
+<h3>Proposed Schema</h3>
+
+<ul>
+<li>Cases are plotted as individuals
+
+<ul>
+<li>scatterplots, barplots, maps</li>
+<li>collective properties are inferred from the graphical pattern</li>
+</ul></li>
+<li>Connections between pairs of cases
+
+<ul>
+<li>graphs</li>
+<li>collective properties are inferred by density of network connections</li>
+</ul></li>
+<li>Collective summary of multiple cases
+
+<ul>
+<li>density, bwplot-type schema, clusters, </li>
+</ul></li>
+</ul>
+
+<h4>Questions to ask about a graphic</h4>
+
+<ul>
+<li>What is the glyph? </li>
+<li>What is a &ldquo;case.&rdquo;  Is it a physical entity?  Is it a collective property of multiple entities, e.g. a count of individuals matching a criterion.</li>
+<li>What&#39;s the back story to the data &mdash; the data underlying the data being displayed.</li>
+<li>(Are there more than one graphical entity, e.g. lines connecting cases, models, smoothers, &hellip;?)</li>
+<li>Are there facets?  What do they stand for?</li>
+<li>What does position mean?  Is there a coordinate system?  One or two axes? Typically, there will be two components to position. Exception: Parallel coordinates.
+
+<ul>
+<li>Where is zero?  Is zero meaningful?</li>
+<li>Scale and transformation, e.g. log.</li>
+<li>Is position representing a categorical variable or a quantitative variable?</li>
+<li>Categorical to position.  How is order being used?</li>
+</ul></li>
+<li>What does the individual glyph mean?  Color, shape, size, slope, length, contours, &hellip;</li>
+<li>What is being encoded by the collective summary?  Density, spread, center, group membership</li>
+</ul>
+
+<h4>Scatterplot</h4>
+
+<ol>
+<li>x-coordinate</li>
+<li>y-coordinate</li>
+<li>color</li>
+<li>size</li>
+<li>precision</li>
+</ol>
+
+<p>Variations</p>
+
+<ul>
+<li>Line plot</li>
+</ul>
+
+<h4>Bars</h4>
+
+<ol>
+<li>x-coordinate (a category in some order)</li>
+<li>y-coordinate (some quantity)</li>
+<li>color (for another category)</li>
+</ol>
+
+<p>Topology</p>
+
+<ol>
+<li>x-coordinate order</li>
+<li>stacked or staggered</li>
+</ol>
+
+<p>Variations: Dot plot</p>
+
+<h4>Distributions</h4>
+
+<p>Density dot plot<br/>
+box-and-whiskers<br/>
+density curve
+histogram</p>
+
+<h4>Parallel Coordinates</h4>
+
+<p>Two or more axes aligned in parallel.</p>
+
+<ol>
+<li>Location on axis</li>
+<li>Color</li>
+<li>Width of connectors (as in the alumni map)</li>
+</ol>
+
+<p>Topology</p>
+
+<ol>
+<li>Order of the axes</li>
+<li>Sequence of colors</li>
+</ol>
+
+<h4>Choropleth Map</h4>
+
+<p>Like a scatterplot, but the x- and y- positions are given over to the geometry of the thing being mapped and the size/shape is set by the geographical units.</p>
+
+<p>This leaves only one quantity to be represented: color.</p>
+
+<h4>Fields/Arrays</h4>
+
+<p>densities here??
+heat map
+vector field
+2 variable densities</p>
+
+<p>Somewhat related to a scatter plot</p>
+
+<h4>Tree</h4>
+
+<p>nodes, branches, leaves.</p>
+
+<p>heirarchical, no loops</p>
+
+<p>Topology: This format emphasizes connections</p>
+
+<h4>Network</h4>
+
+<p>nodes and connections</p>
+
+<p>Topology: This format emphasizes connections</p>
+
+<h3>Practical considerations</h3>
+
+<h4>Do you really need color?</h4>
+
+<p>Color blindness.  Printing.</p>
+
+<h4>Starting with a Small Sample</h4>
+
+<h2>A Theory of Graphical Presentations</h2>
+
+<p>Or, maybe, <strong>Dos and Don&#39;ts of Graphical Presentations</strong></p>
+
+<p>Put things near each other that you want to compare.</p>
+
+<p>People are good at comparing lengths, good at colors of adjacent areas, bad at colors of non-adjacent areas.  (Do the chess board example of how the same color can look completely different in different settings.)</p>
+
+<p>People are good at angles and slopes, less good at thicknesses, not so good at shape.  Areas register on us as magnitude.</p>
+
+<p>Avoid chartjunk.</p>
+
+<p>Have a high information-to-ink ratio.</p>
+
+<p>Avoid distracting shapes, as in the bars of a histogram.</p>
+
+<p>People tend to assume that the &ldquo;start&rdquo; of the axis is zero.</p>
+
+<p>There are only two dimensions in graphical space &mdash; make sure to use them wisely.</p>
+
+<p>When mapping a categorical variable onto position, think carefully about what the order should be and how you want to present the order.</p>
+
+<p>Interactive graphics allow for an additional dimension of time, but this is limited.</p>
+
+<h2>Models</h2>
+
+<p>Classification, e.g clustering</p>
+
+<p>Regression</p>
+
+<p>CART</p>
+
+<h2>Displaying Uncertainty</h2>
+
+<p>What uncertainty means and how to display it in different types of plots.</p>
+
+<p>Error bars</p>
+
+</body>
+
+</html>
+

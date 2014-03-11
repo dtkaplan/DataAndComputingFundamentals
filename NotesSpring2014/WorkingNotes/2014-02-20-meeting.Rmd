@@ -1,0 +1,225 @@
+
+### What is this?
+
+DTK and LS discussion of framework for course and work plan on 20 Feb. 2014, and a more detailed draft course outline and principles developed by Danny since then.
+
+## Background/General Principles
+
+We're going to change things substantially, drawing on the lessons we learned from last year's prototype.
+
+* Introduce operations mentally/by-hand on a small scale before the large-scale computation.
+* Teach how to strategize toward a goal.
+    * What the data would need to look like to make the graph.
+    * How to get there from the data that we have.
+* Reduce the skill heirarchy.  Students shouldn't need completely to master the previous topics in order to have access to the topic at hand.
+* Provide a reference guide and glossary, both for computational actions and for concepts.
+* Go beyond R to highlight the generality of these principles.
+    * Feel free to use other software in lecture topics. 
+
+The classroom time budget is 10 hours.  Out-of-classroom time budget is 25 hours.  Aim toward a flipped model where classroom time is spent interacting with students as they start on their work.
+
+Student work:
+
+* Technical projects: roughly 6 over the course: 
+* Each requiring roughly one-hour's work, 
+* Perhaps finish with a capstone taking 3 hours.
+* Before the project, there should be exercises that develop the components needed in the project.  Each exercise should take from 1 minute to 5 minutes.  Roughly one hour worth of exercises before each project.
+
+I have included some **Lecture topics**.  These are **not** meant to be traditional long-form classroom lectures.  Instead, they will be very short (5-10 minute) surveys, perhaps in video form.  Students are not expected to be able to operationalize the lecture topics.  The topics are meant to expose students to extensions to the core topics and expand vocabulary.  The lectures are opportunistic: we don't need to have all of them implemented from the start.  We should plan to swap them in and out of syllabus as new experts become available.
+
+# Topic Outline
+
+## I. Graphics 
+
+3 classroom hours, 6 out-of-classroom/working
+
+### A. Graphics, Science, and Stories
+
+A picture gallery.  An introduction to scientific graphics in various modes with an emphasis on the kinds of information we do (or don't) extract from graphics.  Maps, mainstream graphics (e.g., scatter and bar charts, error bars, ... ), networks.  A bit of interactive graphics.
+
+A basic introduction to Markdown (without the R component).  Headings, bullet lists, bold and italics, including graphics via URL link.  How to extract the URL of an image contained in an HTML document.  Mechanism for sharing/handing in the files.
+
+Student Work: take three graphics that we provide and, looking at them as a gestalt, write down in words the story and conclusions that the graphics indicate.  Produce this in Markdown -> HTML.
+
+Lecture topics:
+
+* Where data come from, common data-collection settings.  
+    * Lab-type procedures (e.g. genetic sequences, micro-arrays/expression, spectroscopy)
+    * Time series
+    * Health care 
+    * Financial transactions
+
+### B. Analysis and Nomenclature
+
+Deconstructing graphics.  The idea of a *glyph* and how information is encoded in the position of the glyph and in the glyph itself. Other concepts:
+
+* variable
+* frame/coordinates
+* guide
+* axis
+* topology/order
+* facet
+
+Common kinds of glyphs
+
+* point/shape
+* bar
+* path (as in time series, plotting functions)
+* path (as in parallel coordinates)
+* vertices and edges
+* tile
+* ?error bars?, but nothing elaborate.  Examples with point/shape and with bars.
+
+Student Work: Take some graphics that we provide and break them down into these components, describing each component individually.  I'll suggest that, for each setting, we provide a document that contains links to both the whole graphic and to snippets from the graphic, so that students have an easy way to display the parts of the graph in their commentary.
+
+Lecture topics:
+
+* Guest lectures from field experts about their setting and graphics that are helpful to them.  Some possibilities
+    * Economics (Sarah West gas consumption, Raymond Roberts labor markets)
+    * Sociology (esp. networks)
+    * Ecology
+    * Genetics/Molecular biology
+    * Climate (Louisa Bradtmiller)
+    * Geology
+    * Biostatistics (Victor Addona)
+    * Public Health (Christy Hanson)
+    * Text
+        * Google ngram
+        * Zipf's law
+        * Word cloud
+    * Geography and sophisticated mapping, GIS.
+* A map graphic that isn't geographic, e.g. Paul Overvoorde's root tip mapping.
+
+### C. Synthesis/Use of the computer and constructing graphics
+
+The tabular organization of data.  At this stage, we will work with data that maps directly onto the components of a graphic.  (We need a special word for this situation, where each case will correspond to one glyph in the graph.  For the present, I'll suggest *glyph-case*. Other possibilities: *glyph-ready*, *graph-ready*,  ...)
+
+Tabular data files (CSV, Google Spreadsheets) and variable names.  Quantitative versus categorical. Basic command syntax in R, software for constructing scatter, bar, maps, networks. Start with a GUI for constructing the map between variables and graphical features.
+
+Student Work: Take various pre-assembled data in glyph-case form and, using software, choose mappings between variables and graphical features.  Compare two or more renderings of the same data --- help students realize that there is more than one possibility and that they can have different cognitive effects.
+
+Lecture topics: (by which I mean features that we don't expect students to master but we want them to be aware of)
+
+* different sorts of glyphs and how precisely we can perceive and compare them.  How people perceive size, area, volume.
+* coordinate systems (e.g. cartesian versus polar)
+* the importance of proximity for comparison, order of categorical variables
+* color scales and order
+* facets
+* contour plots to represent tile-type information, especially for overlaying two graphics. 
+
+## II. The Back Story
+
+5 hours in-class, 10 hours out-of-class
+
+The glyph-case data is not necessarily the original data.  There's a back story that gives the ancestry of the glyph-case data.  Three basic situations:
+* ancestor-case corresponds to glyph case (e.g., scatter plot, map, simple bar plot)
+* two ancestor-cases correspond to a glyph (e.g., network edge)
+* the glyph reflects *collective properties* of the ancestor-cases, e.g. density, means and standard errors/confidence intervals, box-and-whisker glyphs, ranges, ...
+
+Data operations in order from simple to more complex.  Basic framework: create a new dataframe from one or more existing dataframes.
+
+* Transformations to create new variables
+    * rescaling
+    * quantitative -> categorical, cutting/ntiles
+    * re-ordering categorical
+    * transformations involving two variables, e.g. area per capita
+* Subsets/selection
+    * criteria for selection
+        * categorical matching a single level
+        * categorical matching any of a set of levels
+* Grouping --- this will anticipate Section III ("Collective Properties").  Keep it simple and intuitive here.
+* Joining
+
+More technical: renaming variables, re-categorization.
+
+Student Work: This will parallel the assignments and tasks from Spring 2013
+
+Lecture topics: 
+
+* SQL and widely used database systems
+* Processing text
+* Social media (guest lecture from Shilad?)
+
+## III. Collective Properties
+
+2 hours in class, 6 hours out of class
+
+### A. Collective across cases 
+
+(Where the new case reflects multiple of the ancestor cases.)
+* Simple examples: counts, means.
+* Intermediate: density
+* Complex 
+    * Clustering 
+        * agglomerative and clades
+        * k-means?
+    * Model fitting:
+        * linear
+        * smoothers
+        * confidence bands and how to interpret them
+            * Is there a relationship?
+            * Are two relationships different?  
+
+Lecture topics:
+
+* linear multivariate models
+
+
+### B. Collective across variables
+
+(Where each case retains its identity in the eventual graphic.)
+
+Dimension reduction 
+
+* using clustering to assign each case a label in one dimension. 
+
+Lecture topics:
+
+* Standard errors and confidence intervals
+* CART tree-type models/recursive partitioning
+
+### C. Caveats
+
+Lecture topics:
+
+* sampling bias
+* observation versus experiment
+* why we do randomized clinical trials
+
+## D. Capstone project
+
+3 hours out of class.
+
+Individual, small-group project at the end of the course.  We'll provide settings and data.
+
+
+
+# Work plan/sequence
+
+## 1. Develop examples
+
+* Includes a description of the situation as well as the data.
+* In many examples, we will present students with glyph-case data, ready for section I, that we have derived from ancestors.  We might bring the ancestors into later examples in sections II and III.
+* After we have a collection of examples, we'll divide them into exercise material, lecture material, and student projects.
+* We can use any software we like to develop the examples.  If we are going eventually to translate it from non-R to R, do that during the "software implementation" and "narrative writing" phases. 
+
+## 2. Implement software for students
+
+Anticipate ...
+* `dply` for dataframe operations
+* `ggplot2` as base for graphics
+* GUI-type interface to `ggplot2`.
+
+We don't yet have network-drawing software implemented.  We'll need to do this.
+
+Keep maps very simple, perhaps just country-level.  Try to have at least one map example that's not geographic.  This might be under a lecture topic, so we don't have to implement it in student software.
+
+
+
+## 3. Write narrative
+
+* text materials
+* videos for lecture topics
+* select examples for text and lectures
+* construct short exercises
+* construct hour-long projects

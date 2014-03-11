@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>What is this?</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h3>What is this?</h3>
+
+<p>DTK and LS discussion of framework for course and work plan on 20 Feb. 2014, and a more detailed draft course outline and principles developed by Danny since then.</p>
+
+<h2>Background/General Principles</h2>
+
+<p>We&#39;re going to change things substantially, drawing on the lessons we learned from last year&#39;s prototype.</p>
+
+<ul>
+<li>Introduce operations mentally/by-hand on a small scale before the large-scale computation.</li>
+<li>Teach how to strategize toward a goal.
+
+<ul>
+<li>What the data would need to look like to make the graph.</li>
+<li>How to get there from the data that we have.</li>
+</ul></li>
+<li>Reduce the skill heirarchy.  Students shouldn&#39;t need completely to master the previous topics in order to have access to the topic at hand.</li>
+<li>Provide a reference guide and glossary, both for computational actions and for concepts.</li>
+<li>Go beyond R to highlight the generality of these principles.
+
+<ul>
+<li>Feel free to use other software in lecture topics. </li>
+</ul></li>
+</ul>
+
+<p>The classroom time budget is 10 hours.  Out-of-classroom time budget is 25 hours.  Aim toward a flipped model where classroom time is spent interacting with students as they start on their work.</p>
+
+<p>Student work:</p>
+
+<ul>
+<li>Technical projects: roughly 6 over the course: </li>
+<li>Each requiring roughly one-hour&#39;s work, </li>
+<li>Perhaps finish with a capstone taking 3 hours.</li>
+<li>Before the project, there should be exercises that develop the components needed in the project.  Each exercise should take from 1 minute to 5 minutes.  Roughly one hour worth of exercises before each project.</li>
+</ul>
+
+<p>I have included some <strong>Lecture topics</strong>.  These are <strong>not</strong> meant to be traditional long-form classroom lectures.  Instead, they will be very short (5-10 minute) surveys, perhaps in video form.  Students are not expected to be able to operationalize the lecture topics.  The topics are meant to expose students to extensions to the core topics and expand vocabulary.  The lectures are opportunistic: we don&#39;t need to have all of them implemented from the start.  We should plan to swap them in and out of syllabus as new experts become available.</p>
+
+<h1>Topic Outline</h1>
+
+<h2>I. Graphics</h2>
+
+<p>3 classroom hours, 6 out-of-classroom/working</p>
+
+<h3>A. Graphics, Science, and Stories</h3>
+
+<p>A picture gallery.  An introduction to scientific graphics in various modes with an emphasis on the kinds of information we do (or don&#39;t) extract from graphics.  Maps, mainstream graphics (e.g., scatter and bar charts, error bars, &hellip; ), networks.  A bit of interactive graphics.</p>
+
+<p>A basic introduction to Markdown (without the R component).  Headings, bullet lists, bold and italics, including graphics via URL link.  How to extract the URL of an image contained in an HTML document.  Mechanism for sharing/handing in the files.</p>
+
+<p>Student Work: take three graphics that we provide and, looking at them as a gestalt, write down in words the story and conclusions that the graphics indicate.  Produce this in Markdown -&gt; HTML.</p>
+
+<p>Lecture topics:</p>
+
+<ul>
+<li>Where data come from, common data-collection settings.<br/>
+
+<ul>
+<li>Lab-type procedures (e.g. genetic sequences, micro-arrays/expression, spectroscopy)</li>
+<li>Time series</li>
+<li>Health care </li>
+<li>Financial transactions</li>
+</ul></li>
+</ul>
+
+<h3>B. Analysis and Nomenclature</h3>
+
+<p>Deconstructing graphics.  The idea of a <em>glyph</em> and how information is encoded in the position of the glyph and in the glyph itself. Other concepts:</p>
+
+<ul>
+<li>variable</li>
+<li>frame/coordinates</li>
+<li>guide</li>
+<li>axis</li>
+<li>topology/order</li>
+<li>facet</li>
+</ul>
+
+<p>Common kinds of glyphs</p>
+
+<ul>
+<li>point/shape</li>
+<li>bar</li>
+<li>path (as in time series, plotting functions)</li>
+<li>path (as in parallel coordinates)</li>
+<li>vertices and edges</li>
+<li>tile</li>
+<li>?error bars?, but nothing elaborate.  Examples with point/shape and with bars.</li>
+</ul>
+
+<p>Student Work: Take some graphics that we provide and break them down into these components, describing each component individually.  I&#39;ll suggest that, for each setting, we provide a document that contains links to both the whole graphic and to snippets from the graphic, so that students have an easy way to display the parts of the graph in their commentary.</p>
+
+<p>Lecture topics:</p>
+
+<ul>
+<li>Guest lectures from field experts about their setting and graphics that are helpful to them.  Some possibilities
+
+<ul>
+<li>Economics (Sarah West gas consumption, Raymond Roberts labor markets)</li>
+<li>Sociology (esp. networks)</li>
+<li>Ecology</li>
+<li>Genetics/Molecular biology</li>
+<li>Climate (Louisa Bradtmiller)</li>
+<li>Geology</li>
+<li>Biostatistics (Victor Addona)</li>
+<li>Public Health (Christy Hanson)</li>
+<li>Text
+
+<ul>
+<li>Google ngram</li>
+<li>Zipf&#39;s law</li>
+<li>Word cloud</li>
+</ul></li>
+<li>Geography and sophisticated mapping, GIS.</li>
+</ul></li>
+<li>A map graphic that isn&#39;t geographic, e.g. Paul Overvoorde&#39;s root tip mapping.</li>
+</ul>
+
+<h3>C. Synthesis/Use of the computer and constructing graphics</h3>
+
+<p>The tabular organization of data.  At this stage, we will work with data that maps directly onto the components of a graphic.  (We need a special word for this situation, where each case will correspond to one glyph in the graph.  For the present, I&#39;ll suggest <em>glyph-case</em>. Other possibilities: <em>glyph-ready</em>, <em>graph-ready</em>,  &hellip;)</p>
+
+<p>Tabular data files (CSV, Google Spreadsheets) and variable names.  Quantitative versus categorical. Basic command syntax in R, software for constructing scatter, bar, maps, networks. Start with a GUI for constructing the map between variables and graphical features.</p>
+
+<p>Student Work: Take various pre-assembled data in glyph-case form and, using software, choose mappings between variables and graphical features.  Compare two or more renderings of the same data &mdash; help students realize that there is more than one possibility and that they can have different cognitive effects.</p>
+
+<p>Lecture topics: (by which I mean features that we don&#39;t expect students to master but we want them to be aware of)</p>
+
+<ul>
+<li>different sorts of glyphs and how precisely we can perceive and compare them.  How people perceive size, area, volume.</li>
+<li>coordinate systems (e.g. cartesian versus polar)</li>
+<li>the importance of proximity for comparison, order of categorical variables</li>
+<li>color scales and order</li>
+<li>facets</li>
+<li>contour plots to represent tile-type information, especially for overlaying two graphics. </li>
+</ul>
+
+<h2>II. The Back Story</h2>
+
+<p>5 hours in-class, 10 hours out-of-class</p>
+
+<p>The glyph-case data is not necessarily the original data.  There&#39;s a back story that gives the ancestry of the glyph-case data.  Three basic situations:</p>
+
+<ul>
+<li>ancestor-case corresponds to glyph case (e.g., scatter plot, map, simple bar plot)</li>
+<li>two ancestor-cases correspond to a glyph (e.g., network edge)</li>
+<li>the glyph reflects <em>collective properties</em> of the ancestor-cases, e.g. density, means and standard errors/confidence intervals, box-and-whisker glyphs, ranges, &hellip;</li>
+</ul>
+
+<p>Data operations in order from simple to more complex.  Basic framework: create a new dataframe from one or more existing dataframes.</p>
+
+<ul>
+<li>Transformations to create new variables
+
+<ul>
+<li>rescaling</li>
+<li>quantitative -&gt; categorical, cutting/ntiles</li>
+<li>re-ordering categorical</li>
+<li>transformations involving two variables, e.g. area per capita</li>
+</ul></li>
+<li>Subsets/selection
+
+<ul>
+<li>criteria for selection
+
+<ul>
+<li>categorical matching a single level</li>
+<li>categorical matching any of a set of levels</li>
+</ul></li>
+</ul></li>
+<li>Grouping &mdash; this will anticipate Section III (&ldquo;Collective Properties&rdquo;).  Keep it simple and intuitive here.</li>
+<li>Joining</li>
+</ul>
+
+<p>More technical: renaming variables, re-categorization.</p>
+
+<p>Student Work: This will parallel the assignments and tasks from Spring 2013</p>
+
+<p>Lecture topics: </p>
+
+<ul>
+<li>SQL and widely used database systems</li>
+<li>Processing text</li>
+<li>Social media (guest lecture from Shilad?)</li>
+</ul>
+
+<h2>III. Collective Properties</h2>
+
+<p>2 hours in class, 6 hours out of class</p>
+
+<h3>A. Collective across cases</h3>
+
+<p>(Where the new case reflects multiple of the ancestor cases.)</p>
+
+<ul>
+<li>Simple examples: counts, means.</li>
+<li>Intermediate: density</li>
+<li>Complex 
+
+<ul>
+<li>Clustering 
+
+<ul>
+<li>agglomerative and clades</li>
+<li>k-means?</li>
+</ul></li>
+<li>Model fitting:
+
+<ul>
+<li>linear</li>
+<li>smoothers</li>
+<li>confidence bands and how to interpret them
+
+<ul>
+<li>Is there a relationship?</li>
+<li>Are two relationships different?<br/></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Lecture topics:</p>
+
+<ul>
+<li>linear multivariate models</li>
+</ul>
+
+<h3>B. Collective across variables</h3>
+
+<p>(Where each case retains its identity in the eventual graphic.)</p>
+
+<p>Dimension reduction </p>
+
+<ul>
+<li>using clustering to assign each case a label in one dimension. </li>
+</ul>
+
+<p>Lecture topics:</p>
+
+<ul>
+<li>Standard errors and confidence intervals</li>
+<li>CART tree-type models/recursive partitioning</li>
+</ul>
+
+<h3>C. Caveats</h3>
+
+<p>Lecture topics:</p>
+
+<ul>
+<li>sampling bias</li>
+<li>observation versus experiment</li>
+<li>why we do randomized clinical trials</li>
+</ul>
+
+<h2>D. Capstone project</h2>
+
+<p>3 hours out of class.</p>
+
+<p>Individual, small-group project at the end of the course.  We&#39;ll provide settings and data.</p>
+
+<h1>Work plan/sequence</h1>
+
+<h2>1. Develop examples</h2>
+
+<ul>
+<li>Includes a description of the situation as well as the data.</li>
+<li>In many examples, we will present students with glyph-case data, ready for section I, that we have derived from ancestors.  We might bring the ancestors into later examples in sections II and III.</li>
+<li>After we have a collection of examples, we&#39;ll divide them into exercise material, lecture material, and student projects.</li>
+<li>We can use any software we like to develop the examples.  If we are going eventually to translate it from non-R to R, do that during the &ldquo;software implementation&rdquo; and &ldquo;narrative writing&rdquo; phases. </li>
+</ul>
+
+<h2>2. Implement software for students</h2>
+
+<p>Anticipate &hellip;</p>
+
+<ul>
+<li><code>dply</code> for dataframe operations</li>
+<li><code>ggplot2</code> as base for graphics</li>
+<li>GUI-type interface to <code>ggplot2</code>.</li>
+</ul>
+
+<p>We don&#39;t yet have network-drawing software implemented.  We&#39;ll need to do this.</p>
+
+<p>Keep maps very simple, perhaps just country-level.  Try to have at least one map example that&#39;s not geographic.  This might be under a lecture topic, so we don&#39;t have to implement it in student software.</p>
+
+<h2>3. Write narrative</h2>
+
+<ul>
+<li>text materials</li>
+<li>videos for lecture topics</li>
+<li>select examples for text and lectures</li>
+<li>construct short exercises</li>
+<li>construct hour-long projects</li>
+</ul>
+
+</body>
+
+</html>
+

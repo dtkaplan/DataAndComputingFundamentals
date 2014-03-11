@@ -1,0 +1,33 @@
+Using R in Data and Computing Fundamentals
+========================================================
+author: Danny Kaplan 
+date: May 31, 2013
+
+Why R?
+========================================================
+audio: voice-test.mp3
+at: 0:05 console-input: plot(cars)
+
+* Professional level
+* Free and open source
+* Large development community
+* Compatible with many data technologies
+* Excellent Graphics
+* Integrated with report-writing and tutorials
+
+&nbsp;
+
+Slide With Code
+========================================================
+console-input: plot(cars)
+
+```{r}
+summary(cars)
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+plot(cars)
+```

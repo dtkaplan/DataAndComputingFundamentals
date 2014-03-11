@@ -1,0 +1,38 @@
+---
+title: "2014-02-28-meeting"
+author: DTK
+date: March 11, 2014
+output: html_document
+---
+
+"The CVC announces a workshop for science faculty ...  (HHMI)." [add: The goal of the workshop is to help faculty develop skills and materials for using "big data" and modern scientific graphics in their teaching.  The first part of the short course provides an introductory framework for newbies.  The second part provides an opportunity to develop relevant course materials and work one-on-one or in small groups with the workshop faculty."
+
+The first 2.5 days includes:
+
+* an introduction to using R for handling data and graphics
+* deconstructing graphs to the underlying data
+* constructing graphics from data
+* data wrangling: operations to get data in the right form for graphics
+
+The second 2.5 days includes:
+
+* quick review of the first half of workshop
+* one-on-one or small group (by discipline) development of case studies.
+* summarizing data with models
+* data cleaning
+* data web-scraping basics 
+* programming in R (as needed)
+
+Participants are welcome to attend either or both of the halves of the workshop.  Those who plan to attend only the second half will benefit most if they already have some experience with formatting, analyzing, and visualizing data data.
+
+
+
+
+Other items to change:
+
+* I'd be [i]nterested in attending.
+* Please summarize in 3-5 sentences your experience [ (if any) ] formatting, analyzing and visualizing data. 
+
+
+
+
