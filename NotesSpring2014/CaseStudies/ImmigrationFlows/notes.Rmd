@@ -1,0 +1,61 @@
+---
+title: "Notes on Immigration Flows"
+author: DTK
+date: March 11, 2014
+output: html_document
+---
+
+The data come via Cory Stern
+
+The migration info came from the [Global Bilateral Migration Database](http://data.worldbank.org/data-catalog/global-bilateral-migration-database) (World Bank) and the GDP per capita data came from the [Maddison Project](http://www.ggdc.net/maddison/maddison-project/home.htm)
+
+## Migration Data
+
+Went to the [Global Bilateral Migration Database](http://data.worldbank.org/data-catalog/global-bilateral-migration-database), from there to the [variable selection](http://databank.worldbank.org/data/views/variableselection/selectvariables.aspx?source=global-bilateral-migration#) page.  After some experimenting, I decided to download all countries versus all countries, for all years, for both sexes and total, about 160,000 rows.
+
+Download parameters
+
+Country origin: row
+Gender: page
+Destination: page
+Year: column
+
+The CSV file was read with `read.csv()` and then `save()` as a dataframe in R format, with name `MigrationData`.
+
+```{r}
+load( 'MigrationData' )
+```
+
+The names are awful, and there is a lot of duplication with names and codes.
+```{r}
+names(MigrationData)
+```
+
+Grab only columns
+* 1 sex
+* 4, 5 destination country name and code
+* 7, 8 origin country name and code
+* 9, 10, 11, 12, 13 Number of people in that decade (?)e
+
+```{r}
+MigrationFlows <- MigrationData[,c(1,4,5,7,8,9,10,11,12,13)]
+names(MigrationFlows) <- c("sex", "dest", "destcode", "origin","origincode","Y2000", "Y1990","Y1980","Y1970","Y1960")
+```
+
+Break out another table of country codes -> country name, and keep just the codes in the dataset.
+
+
+* What was the total immigration to France in Y2000?  (subset, group, sum)
+* What country had the largest immigration in Y2000?
+* Construct a bar plot of immigration for each country, sorted from least to most?  Log scale?
+* Which country had the largest inbalance between men and women (on a proportional basis)?
+
+* Construct the country-pair by country-pair inflow and outflow for Y2000?  (Rename columns, Join)
+
+* Which countries have the largest outflows?  (group (by different vars: origin and by destination), ntile(), subset() )
+
+
+
+### Description
+
+> Global matrices of bilateral migrant stocks spanning the period 1960-2000, disaggregated by gender and based primarily on the foreign-born concept are presented. Over one thousand census and population register records are combined to construct **decennial** matrices corresponding to the last five completed census rounds. For the first time, a comprehensive picture of bilateral global migration over the last half of the twentieth century emerges. The data reveal that the global migrant stock increased from 92 to 165 million between 1960 and 2000. South-North migration is the fastest growing component of international migration in both absolute and relative terms. The United States remains the most important migrant destination in the world, home to one fifth of the world’s migrants and the top destination for migrants from no less than sixty sending countries. Migration to Western Europe remains largely from elsewhere in Europe. The oil-rich Persian Gulf countries emerge as important destinations for migrants from the Middle East, North Africa and South and South-East Asia. Finally, although the global migrant stock is still predominantly male, the proportion of women increased noticeably between 1960 and 2000.
