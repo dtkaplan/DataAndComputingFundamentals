@@ -7,3 +7,13 @@ Many (mostly useless) [open data from government sites](http://www.data.gov/open
 Baby names from 1880 to 2012 from Social Security Administration [link](http://www.ssa.gov/oact/babynames/names.zip), [baby names in New York](http://catalog.data.gov/dataset/baby-names-beginning-2007)
 
 A large collection of interactive graphs: http://rcharts.io/gallery/
+
+http://www.stat.cmu.edu/~cshalizi/statcomp/13/
+
+A large list of miscellaneous data: http://www.inside-r.org/howto/finding-data-internet
+
+[Oracle client from R session](http://www.inside-r.org/node/48947)
+
+Web Scraping [the basics](http://quantifyingmemory.blogspot.co.uk/2014/02/web-scraping-basics.html), [two](http://quantifyingmemory.blogspot.co.uk/2014/02/web-scraping-part2-digging-deeper.html), [three](http://quantifyingmemory.blogspot.com/2014/03/web-scraping-scaling-up-digital-data.html),  [part four](http://quantifyingmemory.blogspot.com/2014/03/web-scraping-working-with-apis.html)
+
+[Description of an R bootcamp for scientists](http://gettinggeneticsdone.blogspot.com/2014/03/software-carpentry-at-uva-redux.html)
