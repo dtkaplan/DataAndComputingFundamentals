@@ -17,3 +17,6 @@ A large list of miscellaneous data: http://www.inside-r.org/howto/finding-data-i
 Web Scraping [the basics](http://quantifyingmemory.blogspot.co.uk/2014/02/web-scraping-basics.html), [two](http://quantifyingmemory.blogspot.co.uk/2014/02/web-scraping-part2-digging-deeper.html), [three](http://quantifyingmemory.blogspot.com/2014/03/web-scraping-scaling-up-digital-data.html),  [part four](http://quantifyingmemory.blogspot.com/2014/03/web-scraping-working-with-apis.html)
 
 [Description of an R bootcamp for scientists](http://gettinggeneticsdone.blogspot.com/2014/03/software-carpentry-at-uva-redux.html)
+
+
+[Huge baseball database](http://www.seanlahman.com/baseball-archive/statistics/) which can be read into R using the `Lahman` package.

@@ -5,9 +5,21 @@ date: March 11, 2014
 output: html_document
 ---
 
+### Technical notes
+
+* Be careful if using `plyr`: it overwrites `summarize()`.
+* I'm using `merge()` for now.  `inner_join()` crashes.
+
+```{r include=FALSE}
+require(dplyr)
+require(igraph)
+```
+
 The data come via Cory Stern
 
-The migration info came from the [Global Bilateral Migration Database](http://data.worldbank.org/data-catalog/global-bilateral-migration-database) (World Bank) and the GDP per capita data came from the [Maddison Project](http://www.ggdc.net/maddison/maddison-project/home.htm)
+The migration info came from the [Global Bilateral Migration Database](http://data.worldbank.org/data-catalog/global-bilateral-migration-database) (World Bank) and the GDP per capita data came from the [Maddison Project](http://www.ggdc.net/maddison/maddison-project/home.htm), which gives a historical view of GDP per capita.
+
+
 
 ## Migration Data
 
@@ -23,7 +35,7 @@ Year: column
 The CSV file was read with `read.csv()` and then `save()` as a dataframe in R format, with name `MigrationData`.
 
 ```{r}
-load( 'MigrationData' )
+load( 'OrigMigration.Rdata' )
 ```
 
 The names are awful, and there is a lot of duplication with names and codes.
@@ -38,8 +50,8 @@ Grab only columns
 * 9, 10, 11, 12, 13 Number of people in that decade (?)e
 
 ```{r}
-MigrationFlows <- MigrationData[,c(1,4,5,7,8,9,10,11,12,13)]
-names(MigrationFlows) <- c("sex", "dest", "destcode", "origin","origincode","Y2000", "Y1990","Y1980","Y1970","Y1960")
+MigrationFlows <- MigrationData[,c(1,5,8,9,10,11,12,13)]
+names(MigrationFlows) <- c("sex", "destcode","origincode","Y2000", "Y1990","Y1980","Y1970","Y1960")
 ```
 
 Break out another table of country codes -> country name, and keep just the codes in the dataset.
@@ -59,3 +71,113 @@ Break out another table of country codes -> country name, and keep just the code
 ### Description
 
 > Global matrices of bilateral migrant stocks spanning the period 1960-2000, disaggregated by gender and based primarily on the foreign-born concept are presented. Over one thousand census and population register records are combined to construct **decennial** matrices corresponding to the last five completed census rounds. For the first time, a comprehensive picture of bilateral global migration over the last half of the twentieth century emerges. The data reveal that the global migrant stock increased from 92 to 165 million between 1960 and 2000. South-North migration is the fastest growing component of international migration in both absolute and relative terms. The United States remains the most important migrant destination in the world, home to one fifth of the world’s migrants and the top destination for migrants from no less than sixty sending countries. Migration to Western Europe remains largely from elsewhere in Europe. The oil-rich Persian Gulf countries emerge as important destinations for migrants from the Middle East, North Africa and South and South-East Asia. Finally, although the global migrant stock is still predominantly male, the proportion of women increased noticeably between 1960 and 2000.
+
+
+### Population Data
+
+Population in 2012 (in thousands) with the same country codes as in the migration data.
+
+[web page](http://data.worldbank.org/data-catalog/Population-ranking-table)
+
+Raw file: `POP.csv`
+
+#### Putting into dataframe format
+
+```{r}
+pop <- read.csv(file="POP.csv", skip=5, nrows=214, header=FALSE)
+pop <- pop[,c(1,5)]
+names(pop) <- c("CODE", "Population")
+np <- as.numeric( gsub(",","",as.character(pop$Population)))
+pop$Population <- 1000*np # units of people
+```
+
+### Gross National Income
+
+Including PPP
+
+[web page](http://data.worldbank.org/data-catalog/GNI-per-capita-Atlas-and-PPP-table)
+
+Raw file: `GNIPC.csv`
+
+```{r}
+gni <- read.csv(file="GNIPC.csv", skip=7, nrows=183, header=FALSE)
+gni <- gni[,c(11,14)]
+names(gni) <- c("PPP","CODE")
+gni$PPP <- as.numeric( gsub(",","",as.character(gni$PPP)))
+```
+
+### Get the Code -> Country Name table
+
+```{r}
+ccodes <- read.csv(file="GNIPC.csv", skip=7, nrows=222, header=FALSE,
+                   stringsAsFactors=FALSE)
+ccodes <- ccodes[,c(10,14)]
+names(ccodes) <- c("Country","CODE")
+```
+
+### Plan
+
+Add two columns: total emigration for the origin and total immigration for the destination for year 2000. 
+
+```{r}
+outflow <- group_by(MigrationFlows, origincode ) %.%
+  summarize( outflow=sum(Y2000, na.rm=TRUE))  
+outflow <- plyr::rename(outflow, c('origincode'='CODE'))
+inflow <- summarize(
+  group_by( MigrationFlows, destcode ),
+  inflow =sum(Y2000, na.rm=TRUE))
+inflow <- plyr::rename(inflow, c('destcode'='CODE'))
+```
+
+Create inflow and outflow balance table:
+```{r}
+balance <- merge(merge(inflow,outflow),pop)
+balance <- mutate( balance, 
+                   ratio=inflow/outflow, 
+                   growth=inflow-outflow,
+                   fracGrowth=growth/Population,
+                   fracIn=inflow/Population,
+                   fracOut=outflow/Population)
+```
+
+Find the K most common destinations and origins:
+```{r}
+K <- 30
+deltaDest <- arrange(balance,desc(growth))$CODE[1:K]
+deltaOrig <- arrange(balance,growth)$CODE[1:K]
+biggies <- filter(MigrationFlows, 
+                  destcode %in% deltaDest, 
+                  origincode %in% deltaOrig,
+                  sex=="Total")
+```
+You're going to have to create a set of criteria so that the students can see different kinds of graphs.
+
+
+
+Make the graph.
+
+```{r fig.width=8,fig.height=8}
+foo <- subset(biggies,Y2000>200000)[,c(3,2)]
+goo <- graph.data.frame( foo, directed=TRUE)
+plot(goo)
+```
+
+
+Two more columns, Population for the origin and destination
+
+Two more columns, PPP for the origin and destination.
+
+`dplyr` operations: 
+
+* `group_by()` 
+* `summarize()` 
+* `mutate()` 
+* `filter()`
+* `select()` 
+* `arrange()`
+
+Join opperations are `inner_join()`, `left_join()`, etc.
+
+## Other ideas
+
+Make a map showing immigration to and from other countries from one given country.  (Say, Japan.  Find all the edges that involve Japan and color & width code them according to direction and magnitude.  Place them geographically.
