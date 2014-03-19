@@ -142,7 +142,7 @@ balance <- mutate( balance,
 
 Find the K most common destinations and origins:
 ```{r}
-K <- 30
+K <- 50
 deltaDest <- arrange(balance,desc(growth))$CODE[1:K]
 deltaOrig <- arrange(balance,growth)$CODE[1:K]
 biggies <- filter(MigrationFlows, 
@@ -157,7 +157,7 @@ You're going to have to create a set of criteria so that the students can see di
 Make the graph.
 
 ```{r fig.width=8,fig.height=8}
-foo <- subset(biggies,Y2000>200000)[,c(3,2)]
+foo <- subset(biggies,Y2000>20000)[,c(3,2)]
 goo <- graph.data.frame( foo, directed=TRUE)
 plot(goo)
 ```
@@ -178,6 +178,65 @@ Two more columns, PPP for the origin and destination.
 
 Join opperations are `inner_join()`, `left_join()`, etc.
 
-## Other ideas
 
-Make a map showing immigration to and from other countries from one given country.  (Say, Japan.  Find all the edges that involve Japan and color & width code them according to direction and magnitude.  Place them geographically.
+## Exercises 
+
+#### Maps
+
+Create variables like fraction of population emigrating.  Draw a map coloring each country according to this.  Net immigration is at one end of the color scale, emigration at the other.
+
+Keys: color scale, map, transformation
+
+#### Bar charts
+
+Create a bar chart showing countries ordered by fraction of population emigrating or number of people emigrating.
+
+Keys: bar chart, topology
+
+#### Creating Flag and Lumping
+
+Create a factor that lists the country for big players, and lumps the small players into one category.
+
+Keys: transformation, grouping (of the small players together)
+
+#### Group by PPP
+
+Divide up countries into, say, 10 categories by PPP.  Make the graph showing movement among these 10 categories.
+
+Keys: quantitative -> categorical, network
+
+#### One country at a time
+
+Make a map showing immigration to and from other countries from one given country.  (Say, Japan.)  Find all the edges that involve Japan and color & width code them according to direction and magnitude.  Place them geographically.
+
+Keys: subset, network
+
+#### Geographical groups
+
+Divide countries into geographical (or economic, or health-realted, or religious, or linquistic) groups.  Create the network among these groups.
+
+Keys: join, network, cluster (?)
+
+#### Clustering
+
+Use as a feature vector, the proportional emigration to each of several large countries.  Then do unsupervised clustering.
+
+keys: clustering
+
+#### Time comparisons
+
+Use edge width to encode the Y2000 movement and color to encode the change from Y1960 to Y2000
+
+keys: color scale, transformation (Y1960 to Y2000), network
+
+#### Regional and Global
+
+Pull out the major global sources and sinks and the countries in one region.  Make the map just among these.
+
+keys: subset, network
+
+#### Modeling (speculative)
+
+Create a model of emigration as a function of economic variables between two countries.  Then add in the interaction term between linquistics (or whatever) of source and destination countries.  Draw the graph showing how each combination of linqistic level flows to the others, *adjusting for* the economic variables.
+
+keys: modeling, summer project.

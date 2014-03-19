@@ -20,3 +20,5 @@ Web Scraping [the basics](http://quantifyingmemory.blogspot.co.uk/2014/02/web-sc
 
 
 [Huge baseball database](http://www.seanlahman.com/baseball-archive/statistics/) which can be read into R using the `Lahman` package.
+
+* Reading Google Drive docs into R [blog description](http://www.r-bloggers.com/download-all-documents-from-google-drive-with-r/?utm_source=feedburner&utm_medium=email&utm_campaign=Feed%3A+RBloggers+%28R+bloggers%29)
