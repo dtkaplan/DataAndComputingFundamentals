@@ -2,7 +2,8 @@ Medicare Spending
 ========================================================
 
 ```{r include=FALSE}
-require(DCF)
+require(mosaic)
+# require(DCF)
 ```
 
 In May 2013, the [Centers for Medicare and Medicaid Services](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/index.html) released data on the price of health services at hospitals around the US.  This attracted press attention.  For example, a headline in the New York Times read ["Hospital Billing Varies Wildly, Government Data Shows"](http://www.nytimes.com/2013/05/08/business/hospital-billing-varies-wildly-us-data-shows.html).  A [map with the article](http://www.nytimes.com/interactive/2013/05/08/business/how-much-hospitals-charge.html?_r=0) shows the geographic disparities in hospital charges.  
@@ -13,10 +14,66 @@ The data themselves are available as a [zip-compressed CSV file](http://www.cms.
 
 DRAFTY: This file format happens to be wasteful in storage and speed for reasons we will discover later in the semester.  You can read in the data frame, called `med` with: (PUT THIS IN THE PACKAGE or on a fetch repository)
 ```{r}
-load("/Users/kaplan/kaplanfiles/Github/DataAndComputingFundamentals/CaseStudies/MedicareSpending/CMS-data-2013-05-06.rda")
+load("CMS-data-2013-05-06.rda)
 ```
 
-### Uses for these data
+### Some explanations 
+
+From the [FAQ for the site](https://questions.cms.gov/faq.php?id=5005&rtopic=2038
+)
+* What is the difference between “Average Charges” and “Average Total Payments”?
+    “Average Charges” refers to the what the provider bills to Medicare. “Average Total Payments” refers to what Medicare actually pays to the provider.
+
+* `Total.Discharges` is the number of cases.
+
+### To Do
+
+* Get population by city
+* Get population by state
+* Get median income by city
+
+### Topics
+
+#### Simple Summary
+
+1. How many Direct Recovery Groups are there?
+2. How many hospitals are there?
+3. How many cities are there?
+
+#### Ordering
+
+1. Which are the most commonly performed DRGs in these data?
+2. Which are the highest price DRGs in these data?
+
+#### Maps
+
+1. Make a map of the state-wide charge in DRG 
+
+
+#### Classification
+
+1. Divide up DRG/Hospitals into ntiles by the number of cases.  Is there a trend for the amount charged by number of cases?  Is there a trend for the total payments by the number of cases?
+1. Pick out two DRGs that are common but are different from one another (e.g., knee replacement and heart failure).  Make a map of the ratio of case numbers and of costs.
+2. Pick out the 10 most common DRGs nationally.  Do clustering on the proportion of all cases for each state of these DRGs.  Make a map of cluster number.
+
+#### Grouping
+
+1. How much money was paid to each provider?
+    * O
+
+
+
+
+
+#### Join
+
+1. Population
+    1. Add population of each state. (example)
+    2. Add population of each city. (exercise)
+2. Variation in each DRG (say, IQR or sd)
+
+
+### Some tasks
 
 1. How many Direct Recovery Groups are there?
 2. What is the most expensive group (on average and in the median)?
