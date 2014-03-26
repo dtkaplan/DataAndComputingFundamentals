@@ -22,3 +22,31 @@ Web Scraping [the basics](http://quantifyingmemory.blogspot.co.uk/2014/02/web-sc
 [Huge baseball database](http://www.seanlahman.com/baseball-archive/statistics/) which can be read into R using the `Lahman` package.
 
 * Reading Google Drive docs into R [blog description](http://www.r-bloggers.com/download-all-documents-from-google-drive-with-r/?utm_source=feedburner&utm_medium=email&utm_campaign=Feed%3A+RBloggers+%28R+bloggers%29)
+
+### Maps
+
+rmaps package for R.  See [this blog](https://mail.google.com/mail/u/0/#inbox/144f0f70078a7ed4) original [here](http://mockquant.blogspot.com/2014/03/seamless-analytical-environment-by-wdi.html).
+
+### Strings
+
+A book about R string processing: <http://blog.revolutionanalytics.com/2014/03/strings-in-r-free-ebook.html>
+
+### OK Cupid dataset 
+
+https://github.com/evee746/okcupid
+
+50,000 or so records.
+
+### More about NHANES
+
+http://www.r-bloggers.com/analyze-the-national-health-and-nutrition-examination-survey-nhanes-with-r/
+
+### Sankey diagrams
+
+Network diagrams showing flows and subsets.  See [this blog](http://lamages.blogspot.com/2014/03/sankey-diagrams-with-googlevis.html).  Suitable for alumni-job type data.
+
+### E-book on Data Science
+
+This [book](http://blog.revolutionanalytics.com/2014/03/free-ebook-on-big-data-and-data-science.html) is free.
+
+
