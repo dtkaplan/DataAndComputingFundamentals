@@ -1,0 +1,23 @@
+---
+title: "Data and Computing Fundamentals"
+author: "Daniel Kaplan"
+date: "April 12, 2014"
+output: html_document
+---
+
+## A World of Data
+
+Examples:
+
+1. Digital receipt versus paper receipt
+2. Chromosome picture versus sequence, gel (get one from Maya) vs microarray
+3. Medical record filing cabinet (one with color coded files) vs electronic medical records (what to use for picture?)
+
+Data can be transmitted and shared.
+
+
+
+## From Glyphs to Graphics
+
+## Glyph-Ready Data
+
