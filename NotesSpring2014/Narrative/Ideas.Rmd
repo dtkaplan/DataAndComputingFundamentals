@@ -5,19 +5,102 @@ date: "April 12, 2014"
 output: html_document
 ---
 
-## A World of Data
+## Background: A World of Data
+
+### Telling a Story 
+
+Target pregnancy story.
+
+You want the story to be truthful and useful.  
+
+* Financial data before and during the great recession.
+* The antarctic ozone hole.  
+
+
+OK, sometimes people want the story to be convincing, even if false.  Perhaps more often, they don't realize that they are misleading themselves.  Confirmation bias.  
+
+An important skill is understanding how the story is incomplete and how it can be misleading.  Confounding.  NHANES, smoking and death.
+
+### Computers and Data Collection
 
 Examples:
 
 1. Digital receipt versus paper receipt
 2. Chromosome picture versus sequence, gel (get one from Maya) vs microarray
 3. Medical record filing cabinet (one with color coded files) vs electronic medical records (what to use for picture?)
+4. Field measurements and citizen science (e.g. eBird)
 
-Data can be transmitted and shared.
+Data can be transmitted and shared.  This vastly expands the possibilities:
+
+Galton heights versus NHANES
+
+### Analysis and Synthesis
+
+Analysis means to take things apart.  This is a powerful way to understand things: to break complex systems apart into simpler parts.
+
+Synthesis means to bring things together.  That's often what we're doing.
+
+Patterns, trends, comparisons, 
+
+Don't compare apples and oranges: put things in a context where comparison makes sense.
+
+### The Point of it All
+
+What's the purpose behind the use of data? Verbs: predict, describe, detect, measure, explore, relate, inform and educate, ... ultimately to decide and act.
+
+1. To make predictions. To do this, you need to understand relationships, between what can be measured and what it's desired to know.
+2. To describe. 
+    * To measure.  What's the risk?  What's the
+3. To find or detect. Often such descriptions involve relationships.
+     * Credit card fraud
+     * Not always looking for a negative
+4. To explore
+5. To look for relationships
+     * Data mining, pregnancy and Target
+     * Genes and disease
+     * Risk factors for illness
+6. Inform and educate (information for give people a better sense of the world)
+7. To draw conclusions
+
+## Cases and Variables
+
+Simple introduction to them.
 
 
+## Data Displays
+
+Three main forms:
+
+* Cases
+    * scatterplot
+    * bar plot
+    * maps
+* Networks
+    * Trees and clades
+* Fields
+    * densities
+    * example: use of language
+    
+
+Also:
+
+* Guides
+* Geometries: rectangular, polar, geographic
+
+## Data and the Backstory
+
+Cases can change as part of the analysis, e.g. counts
+
+### Representations and models
+
+SHORT
+
+Graphics are just one form of representation of data.  There are more abstract forms: formulas, 
 
 ## From Glyphs to Graphics
 
 ## Glyph-Ready Data
 
+## The Back Story I: Grouping and Aggregation
+
+## The Back Story II: Merging
